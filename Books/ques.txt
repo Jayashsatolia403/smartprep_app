@@ -1,0 +1,31 @@
+1. Let $z \in C$ with $\operatorname{Im}(z)=10$ and it satisfies $\frac{2 z-n}{2 z+n}=2 i-1$ for some natural number $n$, then $\quad$ (2019 Main, 12 April II)
+(a) $n=20$ and $\operatorname{Re}(z)=-10$ (b) $n=40$ and $\operatorname{Re}(z)=10$
+(c) $n=40$ and $\operatorname{Re}(z)=-10$ (d) $n=20$ and $\operatorname{Re}(z)=10$
+
+2. All the points in the set $S=\left\{\frac{\alpha+i}{\alpha-i}: \alpha \in \mathbf{R}\right\}(i=\sqrt{-1})$ lie on a
+(2019 Main, 9 April I)
+(a) circle whose radius is $\sqrt{2}$.
+(b) straight line whose slope is $-1$
+(c) circle whose radius is 1 .
+(d) straight line whose slope is 1 .
+
+3 Let $z \in C$ be such that $|z|<1$. If $\omega=\frac{5+3 z}{5(1-z)}$, then
+(2019 Main, 9 April II)
+(a) $4 \operatorname{Im}(\omega)>5$
+(b) $5 \operatorname{Re}(\omega)>1$
+(c) $5 \operatorname{Im}(\omega)<1$
+(d) $5 \operatorname{Re}(\omega)>4$
+
+4 Let $\left(-2-\frac{1}{3} i\right)^{3}=\frac{x+i y}{27}(i=\sqrt{-1})$, where $x$ and $y$ are real numbers, then $y-x$ equals
+(2019 Main, 11 Jan I)
+(a) 91
+(b) 85
+(c) $-85$
+(d) $-91$
+
+5. Let $A=\left\{\theta \in\left(-\frac{\pi}{2}, \pi\right): \frac{3+2 i \sin \theta}{1-2 i \sin \theta}\right.$ is purely imaginary $\}$
+Then, the sum of the elements in $A$ is (2019 Main, 9 Jan I)
+(a) $\frac{3 \pi}{4}$
+(b) $\frac{5 \pi}{6}$
+(c) $\pi$
+(d) $\frac{2 \pi}{3}$
