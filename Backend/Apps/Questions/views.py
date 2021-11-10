@@ -76,6 +76,7 @@ def getDailyQuestions(request):
     addPracticeQuestions = PracticeQuestions.objects.filter(user = request.user)
     if len(addPracticeQuestions) == 0:
         addPracticeQuestions = PracticeQuestions(user = request.user)
+        addPracticeQuestions.save()
     else:
         addPracticeQuestions = addPracticeQuestions[0]
 

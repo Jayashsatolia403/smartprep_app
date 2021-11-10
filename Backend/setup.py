@@ -239,16 +239,16 @@ correctOptions = ['T', 'F', 'F', 'F']
 
 for count in range(20):
     for i in subjects:
-        a = ">>$$$This is a sample option A for testing purpose.$$$<<"
-        b = ">>$$$This is a sample option B for testing purpose.$$$<<"
-        c = ">>$$$This is a sample option C for testing purpose.$$$<<"
-        d = ">>$$$This is a sample option D for testing purpose.$$$<<"
+        a = ">>$$${} : This is a sample option A for testing purpose.$$$<<".format(i[0])
+        b = ">>$$${} : This is a sample option B for testing purpose.$$$<<".format(i[0])
+        c = ">>$$${} : This is a sample option C for testing purpose.$$$<<".format(i[0])
+        d = ">>$$${} : This is a sample option D for testing purpose.$$$<<".format(i[0])
 
         random.shuffle(correctOptions)
 
 
         data = {"content" : a+" "+b+" "+c+" "+d+" "+ ' '.join(correctOptions),
-                'statement' : "This is sample question {}".format(str(count)), 'subject' : "{}".format(i[0])}
+                'statement' : "{} : This is sample question {}".format(i[0],str(count)), 'subject' : "{}".format(i[0])}
         
         f = re.post(url, headers={'Authorization': "Token {}".format(token)}, data=data)
 

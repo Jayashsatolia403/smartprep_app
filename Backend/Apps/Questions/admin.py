@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import DailyQuestions, Exams, Options, Questions, Subjects, QuestionsOfTheDays, PrevQuesOfDays
+from .models import DailyQuestions, Exams, Options, PracticeQuestions, Questions, Subjects, QuestionsOfTheDays, PrevQuesOfDays
 
 admin.site.register(Questions)
 admin.site.register(Options)
@@ -9,3 +9,4 @@ admin.site.register(Exams)
 admin.site.register(QuestionsOfTheDays)
 admin.site.register(PrevQuesOfDays)
 admin.site.register(DailyQuestions)
+admin.site.register(PracticeQuestions)

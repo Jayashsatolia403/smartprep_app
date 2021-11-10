@@ -1,3 +1,4 @@
+import 'package:app/tests/daily_questions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -16,7 +17,7 @@ class _JeeTestsState extends State<JeeTests> {
         child: Scaffold(
           appBar: AppBar(
             title: Column(
-              children: [
+              children: const [
                 SizedBox(height:50),
                 Align(
                   alignment: Alignment.topLeft,
@@ -34,8 +35,8 @@ class _JeeTestsState extends State<JeeTests> {
           ),
           body: ListView(
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                 child: Align(
                   child: Text("JEE Mains", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                   alignment: Alignment.topLeft,
@@ -47,15 +48,18 @@ class _JeeTestsState extends State<JeeTests> {
                       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                       child: IconButton(
                           onPressed: () {},
-                          icon:  Image.asset("assets/images/allindiatest.png"),
+                          icon:  Image.asset("assets/images/all_india_mock_test.png"),
                           iconSize: 200
                       )
                   ),
                   Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                       child: IconButton(
-                          onPressed: () {print("HEY!");},
-                          icon:  Image.asset("assets/images/allindiatest.png"),
+                          onPressed: () {Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const DailyQuestions(exam: "jeeMains")),
+                          );},
+                          icon:  Image.asset("assets/images/daily_questions.png"),
                           iconSize: 200
                       )
                   ),
@@ -86,8 +90,8 @@ class _JeeTestsState extends State<JeeTests> {
                 ],),
                 scrollDirection: Axis.horizontal,
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                 child: Align(
                   child: Text("JEE Advanced", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                   alignment: Alignment.topLeft,
@@ -99,15 +103,20 @@ class _JeeTestsState extends State<JeeTests> {
                       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                       child: IconButton(
                           onPressed: () {print("HEY!");},
-                          icon:  Image.asset("assets/images/allindiatest.png"),
+                          icon:  Image.asset("assets/images/all_india_mock_test.png"),
                           iconSize: 200
                       )
                   ),
                   Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                       child: IconButton(
-                          onPressed: () {print("HEY!");},
-                          icon:  Image.asset("assets/images/allindiatest.png"),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => DailyQuestions(exam: "jeeAdv")),
+                            );
+                          },
+                          icon:  Image.asset("assets/images/daily_questions.png"),
                           iconSize: 200
                       )
                   ),

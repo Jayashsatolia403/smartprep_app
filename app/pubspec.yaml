@@ -54,6 +54,7 @@ dependencies:
 
   wifi_info_flutter: ^2.0.2
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -79,6 +80,7 @@ flutter:
   assets:
     - assets/images/
     - assets/fonts/
+    - assets/text/
 
   fonts:
     - family: OpenSans

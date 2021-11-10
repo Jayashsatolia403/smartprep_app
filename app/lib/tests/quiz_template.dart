@@ -45,7 +45,7 @@ class CustomRadioState extends State<CustomRadio> {
       setState(() {
         banner = BannerAd(
             adUnitId: adState.bannerAdUnitId,
-            size: AdSize.banner,
+            size: AdSize.largeBanner,
             request: const AdRequest(),
             listener: adState.listener
         )..load();
@@ -54,7 +54,7 @@ class CustomRadioState extends State<CustomRadio> {
   }
 
 
-  String text = "Done : Performing hot reload Syncing files to device GIONEE S10 lite Reloaded 1 of 559 libraries in 2,000ms. Performing hot reload Syncing files to device GIONEE S10 lite Reloaded 1 of 559 libraries in 2,000ms. Performing hot reload Syncing files to device GIONEE S10 lite Reloaded 1 of 559 libraries in 2,000ms.";
+  // String text = widget.statement;
 
   List<RadioModel> sampleData = <RadioModel>[];
 
@@ -96,7 +96,7 @@ class CustomRadioState extends State<CustomRadio> {
                         Padding(
                             padding : const EdgeInsets.only(left:15, top: 20, right: 15, bottom: 30),
                             child: Text(
-                                text,
+                                widget.statement,
                                 style: const TextStyle(
                                   fontSize: 18,
                                 )
@@ -139,7 +139,7 @@ class CustomRadioState extends State<CustomRadio> {
             ),
             if (banner == null) const Text("yo")
             else SizedBox(
-                height: 50,
+                height: 100,
                 child: AdWidget(ad: banner!)
             )
           ]

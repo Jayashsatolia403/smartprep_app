@@ -138,4 +138,4 @@ class PracticeQuestions(models.Model):
     skippedQuestions = ArrayField(models.CharField(max_length=50, null=True, blank=True), null=True, blank=True)
     correctQuestions = ArrayField(models.CharField(max_length=50, blank=True, null=True), blank=True, null=True)
     wrongQuestions = ArrayField(models.CharField(max_length=50, null=True, blank=True), null=True, blank=True)
-    unansweredQuesions = ArrayField(models.CharField(max_length=50, null=True, blank=True))
+    unansweredQuesions = ArrayField(models.CharField(max_length=50, null=True, blank=True), blank=True, null=True)

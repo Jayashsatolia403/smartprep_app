@@ -9,6 +9,7 @@ import 'quiz_template.dart';
 import 'package:provider/provider.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
+import 'package:flutter/services.dart' show rootBundle;
 
 
 
@@ -19,8 +20,10 @@ int limit = 0;
 
 
 Future<List<dynamic>> getDailyQuestions(String type) async {
+  String ip = await rootBundle.loadString('assets/text/ip.txt');
+
   final tokenRes = await http.get(
-    Uri.parse('http://192.168.1.11:8000/getToken'),
+    Uri.parse('http://$ip:8000/getToken'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
@@ -28,21 +31,20 @@ Future<List<dynamic>> getDailyQuestions(String type) async {
 
   String token = jsonDecode(tokenRes.body);
 
-
-
   final response = await http.get(
-    Uri.parse('http://192.168.1.11:8000/getQues?exam=ias'),
+    Uri.parse('http://$ip:8000/getQues?exam=jeeAdv'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
       'Authorization': "Token $token"
     },
   );
 
-
+  questionStatements = <dynamic>[];
+  allOptions = <dynamic>[];
 
   for (var id in jsonDecode(response.body)) {
     final ques = await http.get(
-      Uri.parse('http://192.168.1.11:8000/getQuesByID?quesID=$id'),
+      Uri.parse('http://$ip:8000/getQuesByID?quesID=$id'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
         'Authorization': "Token $token"
@@ -56,11 +58,11 @@ Future<List<dynamic>> getDailyQuestions(String type) async {
 
   limit = questionStatements.length;
 
+  // print(questionStatements);
+  // print(allOptions);
+
   if (type == 'dailyQuestions') return questionStatements;
   if (type == 'allOptions') return allOptions;
-
-
-
 
   List<dynamic> json = jsonDecode(response.body);
 
@@ -70,7 +72,9 @@ Future<List<dynamic>> getDailyQuestions(String type) async {
 
 
 class DailyQuestions extends StatefulWidget {
-  const DailyQuestions({Key? key}) : super(key: key);
+  const DailyQuestions({Key? key, required this.exam}) : super(key: key);
+
+  final String exam;
 
   @override
   _DailyQuestionsState createState() => _DailyQuestionsState();
@@ -85,11 +89,12 @@ class _DailyQuestionsState extends State<DailyQuestions> {
     super.didChangeDependencies();
     final adState = Provider.of<AdState>(context);
 
+
     adState.initialization.then((status) {
       setState(() {
         banner = BannerAd(
             adUnitId: adState.bannerAdUnitId,
-            size: AdSize.banner,
+            size: const AdSize(height: 150, width: 360),
             request: const AdRequest(),
             listener: adState.listener
         )..load();
@@ -126,7 +131,7 @@ class _DailyQuestionsState extends State<DailyQuestions> {
                             scrollDirection: Axis.horizontal,
                             children: [
                               for (var i=0; i < limit; i++) Padding(
-                                padding: const EdgeInsets.only(left: 20, top: 100, bottom: 100),
+                                padding: const EdgeInsets.only(left: 20, top: 50, bottom: 20),
                                 child: ElevatedButton(
                                   child: Text(questionStatements[i]),
                                   onPressed: (){
@@ -137,7 +142,7 @@ class _DailyQuestionsState extends State<DailyQuestions> {
                                   },
                                   style: ElevatedButton.styleFrom(
                                       fixedSize: const Size(250, 20),
-                                      primary: Colors.white,
+                                      primary: Colors.grey,
                                       onPrimary: Colors.black,
                                       alignment: Alignment.center
                                   ),
@@ -148,7 +153,7 @@ class _DailyQuestionsState extends State<DailyQuestions> {
                         ),
                         if (banner == null) const Text("yo")
                         else SizedBox(
-                            height: 50,
+                            height: 150,
                             child: AdWidget(ad: banner!)
                         )
                       ],
