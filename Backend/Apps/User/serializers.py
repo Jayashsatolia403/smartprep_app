@@ -24,4 +24,6 @@ class RegisterationSerializer(serializers.ModelSerializer):
         
         NewUser.set_password(password)
         NewUser.save()
+
+        print(NewUser)
         return NewUser

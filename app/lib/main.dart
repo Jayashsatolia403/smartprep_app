@@ -1,3 +1,4 @@
+import 'package:app/splashscreen/splashscreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -8,8 +9,10 @@ import 'package:app/tests/daily_questions.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 
-import 'package:app/jee/jee_homepage.dart';
+import 'package:app/home/home.dart';
 import 'package:app/jee/jee_tests.dart';
+
+import 'package:app/exam_select/select_exam.dart';
 
 
 
@@ -55,7 +58,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: white,
           fontFamily: 'OpenSans'
       ),
-      home: const JeeTests(),
+      home: const Splash(),
     );
   }
 }

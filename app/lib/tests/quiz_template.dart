@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import 'package:provider/provider.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -99,7 +100,8 @@ class CustomRadioState extends State<CustomRadio> {
                                 widget.statement,
                                 style: const TextStyle(
                                   fontSize: 18,
-                                )
+                                ),
+                              // textAlign: TextAlign.left,
                             )
                         ),
                         InkWell(
@@ -111,6 +113,11 @@ class CustomRadioState extends State<CustomRadio> {
                                 element.isSelected = false;
                               }
                               sampleData[index].isSelected = true;
+
+                              for (var i=0; i < widget.options.length; i++) {
+                                sampleData[i].isCorrect = widget.options[i][1];
+                              }
+
                             });
                           },
                           child: RadioItem(sampleData[index]),
@@ -170,14 +177,26 @@ class RadioItem extends StatelessWidget {
                       fontSize: 18.0)),
             ),
             decoration: BoxDecoration(
-              color: _item.isSelected
-                  ? Colors.blueAccent
-                  : Colors.transparent,
+              color: (() {
+                if (_item.isCorrect) {
+                  return Colors.lightBlueAccent;
+                } else if (_item.isSelected) {
+                  return Colors.red;
+                } else {
+                  return Colors.transparent;
+                }
+              }()),
               border: Border.all(
                   width: 1.0,
-                  color: _item.isSelected
-                      ? Colors.blueAccent
-                      : Colors.grey),
+                  color: (() {
+                    if (_item.isCorrect) {
+                      return Colors.lightBlueAccent;
+                    } else if (_item.isSelected) {
+                      return Colors.red;
+                    } else {
+                      return Colors.black;
+                    }
+                  }()),),
               borderRadius: const BorderRadius.all(Radius.circular(2.0)),
             ),
           ),
@@ -186,16 +205,25 @@ class RadioItem extends StatelessWidget {
           ),
           Expanded(
             child: Text(_item.text, style: TextStyle(
-                fontSize: 17,
-                backgroundColor: (() {
-                  if (!_item.isCorrect && _item.isSelected) {
-                    return Colors.red;
-                  } else if (_item.isCorrect) {
-                    return Colors.lightBlueAccent;
-                  } else {
-                    return Colors.white;
-                  }
-                }())
+              fontSize: 17,
+              // backgroundColor: (() {
+              //   if (!_item.isCorrect && _item.isSelected) {
+              //     return Colors.red;
+              //   } else if (_item.isCorrect) {
+              //     return Colors.lightBlueAccent;
+              //   } else {
+              //     return Colors.white;
+              //   }
+              // }()),
+              color: (() {
+                if (!_item.isCorrect && _item.isSelected) {
+                  return Colors.red;
+                } else if (_item.isCorrect) {
+                  return Colors.lightBlueAccent;
+                } else {
+                  return Colors.black;
+                }
+              }()),
             )),
           )
         ],

@@ -1,4 +1,5 @@
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 
 from .serializers import RegisterationSerializer
@@ -6,16 +7,19 @@ from .serializers import RegisterationSerializer
 from rest_framework.authtoken.models import Token
 
 
+@permission_classes([IsAuthenticatedOrReadOnly])
 @api_view(["POST", ])
 def registrationView(request):
     serializer = RegisterationSerializer(data=request.data)
     data = {}
 
     if serializer.is_valid():
-        serializer.save()
-        data = "Registration Successful! You can login to system now."
+        f = serializer.save()
+        token = Token.objects.filter(user=f)[0]
+        data = {"name": f.name, "token": str(token.key)}
     else:
         data = serializer.errors
+
 
     return Response(data)
 

@@ -1,37 +1,38 @@
+import 'package:app/exam_select/select_exam.dart';
+import 'package:app/jee/jee_tests.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'package:shared_preferences/shared_preferences.dart';
 
-String token = "";
-String name = "";
+import 'package:app/jee/jee_tests.dart';
 
-const MaterialColor white = MaterialColor(
+String username = "";
 
-  0xEAF7F1F8,
-  <int, Color>{
-    50: Color(0xEAF7F1F8),
-    100: Color(0xEAF7F1F8),
-    200: Color(0xEAF7F1F8),
-    300: Color(0xEAF7F1F8),
-    400: Color(0xEAF7F1F8),
-    500: Color(0xEAF7F1F8),
-    600: Color(0xEAF7F1F8),
-    700: Color(0xEAF7F1F8),
-    800: Color(0xEAF7F1F8),
-    900: Color(0xEAF7F1F8),
-  },
-);
+String greet() {
+  var now = DateTime.now();
 
+  if (now.hour < 12) {
+    return 'Good Morning';
+  } else if (now.hour < 17) {
+    return 'Good Afternoon';
+  } else if (now.hour < 20) {
+    return 'Good Evening';
+  } else {
+    return 'Good Night';
+  }
+}
 
 Future<String> getName() async {
   final prefs = await SharedPreferences.getInstance();
 
-  token = prefs.getString('token') as String;
-  name = prefs.getString('name') as String;
+  final name = prefs.getString('name') ?? "User";
+
+  username = name;
 
   return name;
 }
+
+
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -41,25 +42,98 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  String greetMessage = greet();
+
   @override
   Widget build(BuildContext context) {
-    Future<String> _name = getName();
-    return FutureBuilder<String> (
-        future: _name,
-        builder: (BuildContext context, AsyncSnapshot<String> snapShot) {
-          if (snapShot.hasData) {
-            return SafeArea(
-                child: Scaffold(
-                  backgroundColor: white,
-                  appBar: AppBar(
-                    backgroundColor: white,
-                    title: Image.asset('assets/images/logo9.png', height: 190),
+    Future<String> name = getName();
+
+
+    return FutureBuilder<String>(
+      future: name,
+      builder: (BuildContext context, AsyncSnapshot<String> snapShot) {
+        return Scaffold(
+          appBar: AppBar(
+            backgroundColor: Colors.deepPurpleAccent,
+            title: Image.asset("assets/images/logo14.png", height:60),
+            toolbarHeight: 80,
+          ),
+          drawer: Drawer(
+            child: ListView(
+              padding: EdgeInsets.zero,
+              children: [
+                const DrawerHeader(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
                   ),
-                  body: SafeArea(child: SingleChildScrollView(
+                  child: Text('SmartPrep'),
+                ),
+                ListTile(
+                  title: const Text('Choose Exam'),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const SelectExam())
+                    );
+                  },
+                ),
+                ListTile(
+                  title: const Text('Item 2'),
+                  onTap: () {},
+                ),
+              ],
+            ),
+          ),
+          body: SafeArea(child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
                     child: Column(
-                      children: [Text('Welcome $name', textAlign: TextAlign.center, )],
-                    ),
-                  ),),
+                      children: [
+                        if (snapShot.hasData) Text(
+                            '$greetMessage $username',
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontSize: 17,
+                              color: Colors.black,
+                            )
+                        )
+                        else Text(
+                            '$greetMessage User',
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontSize: 17,
+                              color: Colors.black,
+                            )
+                        ),
+                        ElevatedButton(
+                          onPressed: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => const JeeTests())
+                          ),
+                          child: const Text("Go to JEE Section"),
+                          style: ButtonStyle(foregroundColor: MaterialStateProperty.all<Color>(Colors.black)),
+                        )
+                      ],
+                    )
+                )
+              ],
+            ),
+          ),),
+        );
+      }
+    );
+
+    return SafeArea(
+        child: Scaffold(
+            body: Container(
+                child: Scaffold(
+                  appBar: AppBar(
+                    backgroundColor: Colors.deepPurpleAccent,
+                    title: Image.asset("assets/images/logo14.png", height:60),
+                    toolbarHeight: 80,
+                  ),
                   drawer: Drawer(
                     child: ListView(
                       padding: EdgeInsets.zero,
@@ -81,13 +155,40 @@ class _HomeState extends State<Home> {
                       ],
                     ),
                   ),
+                  body: SafeArea(child: Container(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
+                            child: Column(
+                              children: [
+                                Text(
+                                  '$greetMessage User',
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                    fontSize: 17,
+                                    color: Colors.black,
+                                  )
+                              ),
+                                ElevatedButton(
+                                    onPressed: () => Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) => const JeeTests())
+                                    ),
+                                    child: const Text("Go to JEE Section"),
+                                  style: ButtonStyle(foregroundColor: MaterialStateProperty.all<Color>(Colors.black)),
+                                )
+                              ],
+                            )
+                          )
+                        ],
+                      ),
+                    ),
+                  ),),
                 )
-            );
-          }
-          else {
-            return const Text("");
-          }
-        }
+            )
+        )
     );
   }
 }

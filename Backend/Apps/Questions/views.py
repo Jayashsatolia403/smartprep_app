@@ -16,6 +16,7 @@ import random
 @permission_classes([IsAuthenticated])
 @api_view(['GET', ])
 def getDailyQuestions(request):
+
     result = []
     user = request.user
     examTitle = request.GET['exam']
@@ -70,8 +71,8 @@ def getDailyQuestions(request):
 
     subjects = list(exam.subjects.all()) # Access all subject related to exam
 
-    updateDailyQuestionsDB = DailyQuestions(user = request.user, date = date, exam = exam) # Add new entry in Daily Questions Table
-    updateDailyQuestionsDB.save()
+    addDailyQuestion = DailyQuestions(user = request.user, date = date, exam = exam) # Add new entry in Daily Questions Table
+    addDailyQuestion.save()
 
     addPracticeQuestions = PracticeQuestions.objects.filter(user = request.user)
     if len(addPracticeQuestions) == 0:
@@ -98,10 +99,8 @@ def getDailyQuestions(request):
                 break
 
             ques.seenBy.add(request.user) # Marking as seen in Questions DB Table
-            # ques.save()
 
-
-            updateDailyQuestionsDB.questions.add(ques) # Storing Questions to show as Prev Seen Questions
+            addDailyQuestion.questions.add(ques) # Storing Questions to show as Prev Seen Questions
 
             addPracticeQuestions.questions.add(ques) # Adding Questions to Use as Practice Questions
 
@@ -120,6 +119,7 @@ def getDailyQuestions(request):
 
 @api_view(['POST', ])
 def addQuestion(request):
+
     try:
         optionSerializer = AddOptionsSerializer(data=request.data)
 

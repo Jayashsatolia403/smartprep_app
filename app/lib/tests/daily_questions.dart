@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:app/ad_state.dart';
 
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'quiz_template.dart';
 import 'package:provider/provider.dart';
@@ -14,25 +15,21 @@ import 'package:flutter/services.dart' show rootBundle;
 
 
 
-List<dynamic> allOptions = <dynamic>[];
-List<dynamic> questionStatements = <dynamic>[];
-int limit = 0;
 
-
-Future<List<dynamic>> getDailyQuestions(String type) async {
+Future<List<dynamic>> getDailyQuestions() async {
   String ip = await rootBundle.loadString('assets/text/ip.txt');
+  List<dynamic> allOptions = <dynamic>[];
+  List<dynamic> questionStatements = <dynamic>[];
+  List<dynamic> result = <dynamic>[];
 
-  final tokenRes = await http.get(
-    Uri.parse('http://$ip:8000/getToken'),
-    headers: <String, String>{
-      'Content-Type': 'application/json; charset=UTF-8',
-    },
-  );
 
-  String token = jsonDecode(tokenRes.body);
+  final prefs = await SharedPreferences.getInstance();
+  String? token = prefs.getString("token");
+  String? exam_name = prefs.getString("exam_name");
+
 
   final response = await http.get(
-    Uri.parse('http://$ip:8000/getQues?exam=jeeAdv'),
+    Uri.parse('http://$ip:8000/getQues?exam=$exam_name'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
       'Authorization': "Token $token"
@@ -56,17 +53,11 @@ Future<List<dynamic>> getDailyQuestions(String type) async {
     allOptions.add(jsonDecode(ques.body)['options']);
   }
 
-  limit = questionStatements.length;
+  result.add(questionStatements);
+  result.add(allOptions);
 
-  // print(questionStatements);
-  // print(allOptions);
 
-  if (type == 'dailyQuestions') return questionStatements;
-  if (type == 'allOptions') return allOptions;
-
-  List<dynamic> json = jsonDecode(response.body);
-
-  return json;
+  return result;
 }
 
 
@@ -82,7 +73,6 @@ class DailyQuestions extends StatefulWidget {
 
 class _DailyQuestionsState extends State<DailyQuestions> {
   BannerAd? banner;
-
 
   @override
   void didChangeDependencies() {
@@ -108,9 +98,8 @@ class _DailyQuestionsState extends State<DailyQuestions> {
 
   @override
   Widget build(BuildContext context) {
-    Future<List<dynamic>> _dailyQuestions = getDailyQuestions("dailyQuestions");
-    int limit = questionStatements.length;
 
+    Future<List<dynamic>> _dailyQuestions = getDailyQuestions();
 
 
     return FutureBuilder<List<dynamic>> (
@@ -130,21 +119,26 @@ class _DailyQuestionsState extends State<DailyQuestions> {
                           child: ListView(
                             scrollDirection: Axis.horizontal,
                             children: [
-                              for (var i=0; i < limit; i++) Padding(
+                              for (var i=0; i < snapShot.data![0].length; i++) Padding(
                                 padding: const EdgeInsets.only(left: 20, top: 50, bottom: 20),
                                 child: ElevatedButton(
-                                  child: Text(questionStatements[i]),
+                                  child: Text(snapShot.data![0][i], style: const TextStyle(color: Colors.white)),
                                   onPressed: (){
                                     Navigator.push(
                                       context,
-                                      MaterialPageRoute(builder: (context) => CustomRadio(options: allOptions[i], statement: questionStatements[i],)),
+                                      MaterialPageRoute(builder: (context) =>
+                                        CustomRadio(
+                                          options: snapShot.data![1][i],
+                                          statement: snapShot.data![0][i],
+                                        )
+                                      ),
                                     );
                                   },
                                   style: ElevatedButton.styleFrom(
-                                      fixedSize: const Size(250, 20),
-                                      primary: Colors.grey,
-                                      onPrimary: Colors.black,
-                                      alignment: Alignment.center
+                                    fixedSize: const Size(250, 20),
+                                    primary: Colors.black,
+                                    onPrimary: Colors.black,
+                                    alignment: Alignment.center
                                   ),
                                 ),
                               )

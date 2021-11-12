@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'dart:convert';
 
@@ -10,14 +11,21 @@ import 'package:app/home/home.dart';
 
 
 Future<String> registerUser(String name, String email, String password, String password2) async {
+  String ip = await rootBundle.loadString('assets/text/ip.txt');
+
+  // print(name);
+  // print(email);
+  // print(password);
+  // print(password2);
+
   final response = await http.post(
-    Uri.parse('http://192.168.1.5:8000/register/'),
+    Uri.parse('http://$ip:8000/register/'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
     body: jsonEncode(<String, String>{
       'name': name,
-      'username': email,
+      'email': email,
       'password': password,
       'password2': password2
     }),
@@ -28,6 +36,8 @@ Future<String> registerUser(String name, String email, String password, String p
     final prefs = await SharedPreferences.getInstance();
 
     Map<String, dynamic> json = jsonDecode(response.body);
+
+    print(json);
 
     prefs.setString('token', json['token']);
     prefs.setString('name', json['name']);

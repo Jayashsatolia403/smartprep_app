@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -10,8 +11,10 @@ import 'package:app/home/home.dart';
 
 
 Future<String> loginUser(String email, String password) async {
+  String ip = await rootBundle.loadString('assets/text/ip.txt');
+
   final response = await http.post(
-    Uri.parse('http://192.168.1.5:8000/login/'),
+    Uri.parse('http://$ip:8000/login/'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
@@ -22,10 +25,13 @@ Future<String> loginUser(String email, String password) async {
   );
 
 
+
   if (response.statusCode == 200) {
     final prefs = await SharedPreferences.getInstance();
 
     Map<String, dynamic> json = jsonDecode(response.body);
+
+    print(json);
 
     prefs.setString('token', json['token']);
     prefs.setString('name', json['name']);
