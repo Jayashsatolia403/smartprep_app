@@ -25,11 +25,11 @@ Future<List<dynamic>> getDailyQuestions() async {
 
   final prefs = await SharedPreferences.getInstance();
   String? token = prefs.getString("token");
-  String? exam_name = prefs.getString("exam_name");
+  String? examName = prefs.getString("exam_name");
 
 
   final response = await http.get(
-    Uri.parse('http://$ip:8000/getQues?exam=$exam_name'),
+    Uri.parse('http://$ip:8000/getQues?exam=$examName'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
       'Authorization': "Token $token"

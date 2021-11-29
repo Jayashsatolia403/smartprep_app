@@ -13,10 +13,8 @@ import 'package:app/home/home.dart';
 Future<String> registerUser(String name, String email, String password, String password2) async {
   String ip = await rootBundle.loadString('assets/text/ip.txt');
 
-  // print(name);
-  // print(email);
-  // print(password);
-  // print(password2);
+  // ignore: avoid_print
+  print(ip);
 
   final response = await http.post(
     Uri.parse('http://$ip:8000/register/'),

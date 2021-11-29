@@ -44,12 +44,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => RegisterPage()),
+                    MaterialPageRoute(builder: (context) => const RegisterPage()),
                   );
                 },
                 child: const Text('SignUp', style: TextStyle(fontSize: 20)),
                 style: ElevatedButton.styleFrom(
-                    fixedSize: Size(100, 50),
+                    fixedSize: const Size(100, 50),
                     primary: Colors.black,
                     onPrimary: Colors.white,
                     alignment: Alignment.center
