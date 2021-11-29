@@ -231,7 +231,7 @@ for exam in allExams:
 # Setup Questions DB Table : Working
 
 
-url = "http://127.0.0.1:8000/addQues/"
+url = "https://smartprep-app.herokuapp.com/addQues/"
 token = str(Token.objects.all()[0])
 
 correctOptions = ['T', 'F', 'F', 'F']
@@ -264,11 +264,11 @@ for i in Questions.objects.all():
 
 # Get Question of The Day : Working
 
-url = "http://127.0.0.1:8000/getQuesOfDay?subject={}"
+url = "https://smartprep-app.herokuapp.com/getQuesOfDay?subject={}"
 
 
 for i in subjects:
-    f = re.get("http://127.0.0.1:8000/getQuesOfDay?subject={}".format(i[0]), headers={'Authorization': "Token {}".format(token)})
+    f = re.get("https://smartprep-app.herokuapp.com/getQuesOfDay?subject={}".format(i[0]), headers={'Authorization': "Token {}".format(token)})
 
     print(json.loads(f.text))
 
@@ -276,10 +276,10 @@ for i in subjects:
 
 # Get Daily Questions : Working
 
-# url = "http://127.0.0.1:8000/getQues?exam={}"
+# url = "https://smartprep-app.herokuapp.com/getQues?exam={}"
 
 # for i in exams:
-#     f = re.get("http://127.0.0.1:8000/getQues?exam={}".format(i[0]), headers={'Authorization': "Token {}".format(token)})
+#     f = re.get("https://smartprep-app.herokuapp.com/getQues?exam={}".format(i[0]), headers={'Authorization': "Token {}".format(token)})
 
 #     print(json.loads(f.text))
 
