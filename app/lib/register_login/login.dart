@@ -8,23 +8,16 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:app/home/home.dart';
 
-
-
 Future<String> loginUser(String email, String password) async {
-  String ip = await rootBundle.loadString('assets/text/ip.txt');
+  String url = await rootBundle.loadString('assets/text/url.txt');
 
   final response = await http.post(
-    Uri.parse('http://$ip:8000/login/'),
+    Uri.parse('$url/login/'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
-    body: jsonEncode(<String, String>{
-      'username': email,
-      'password': password
-    }),
+    body: jsonEncode(<String, String>{'username': email, 'password': password}),
   );
-
-
 
   if (response.statusCode == 200) {
     final prefs = await SharedPreferences.getInstance();
@@ -37,15 +30,12 @@ Future<String> loginUser(String email, String password) async {
     prefs.setString('name', json['name']);
 
     return json['name'];
-  }
-  else if (response.statusCode == 400) {
+  } else if (response.statusCode == 400) {
     return "Error";
-  }
-  else {
+  } else {
     return "Unknown";
   }
 }
-
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -55,16 +45,12 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-
   final _formKey = GlobalKey<FormState>();
-
-
 
   @override
   Widget build(BuildContext context) {
     String email = "";
     String password1 = "";
-
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -74,7 +60,8 @@ class _LoginPageState extends State<LoginPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
                 child: TextFormField(
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -90,11 +77,13 @@ class _LoginPageState extends State<LoginPage> {
                     labelText: 'Email',
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8.0),
-                      borderSide: const BorderSide(width: 1, color: Colors.blue),
+                      borderSide:
+                          const BorderSide(width: 1, color: Colors.blue),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8.0),
-                      borderSide: const BorderSide(width: 1, color: Colors.grey),
+                      borderSide:
+                          const BorderSide(width: 1, color: Colors.grey),
                     ),
                     fillColor: Colors.white,
                     filled: true,
@@ -106,7 +95,8 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
                 child: TextFormField(
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -122,11 +112,13 @@ class _LoginPageState extends State<LoginPage> {
                     labelText: 'Password',
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8.0),
-                      borderSide: const BorderSide(width: 1, color: Colors.blue),
+                      borderSide:
+                          const BorderSide(width: 1, color: Colors.blue),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8.0),
-                      borderSide: const BorderSide(width: 1, color: Colors.grey),
+                      borderSide:
+                          const BorderSide(width: 1, color: Colors.grey),
                     ),
                     fillColor: Colors.white,
                     filled: true,
@@ -153,8 +145,7 @@ class _LoginPageState extends State<LoginPage> {
                         );
 
                         ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                      }
-                      else if (response == "Invalid") {
+                      } else if (response == "Invalid") {
                         final snackBar = SnackBar(
                           content: const Text('Invalid Information!'),
                           action: SnackBarAction(
@@ -164,8 +155,7 @@ class _LoginPageState extends State<LoginPage> {
                         );
 
                         ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                      }
-                      else {
+                      } else {
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => const Home()),
@@ -178,8 +168,7 @@ class _LoginPageState extends State<LoginPage> {
                       fixedSize: const Size(100, 50),
                       primary: Colors.black,
                       onPrimary: Colors.white,
-                      alignment: Alignment.center
-                  ),
+                      alignment: Alignment.center),
                 ),
               ),
             ],

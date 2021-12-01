@@ -3,21 +3,20 @@ import 'package:flutter/services.dart';
 
 import 'dart:convert';
 
-
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:app/home/home.dart';
 
-
-Future<String> registerUser(String name, String email, String password, String password2) async {
-  String ip = await rootBundle.loadString('assets/text/ip.txt');
+Future<String> registerUser(
+    String name, String email, String password, String password2) async {
+  String url = await rootBundle.loadString('assets/text/url.txt');
 
   // ignore: avoid_print
-  print(ip);
+  print(url);
 
   final response = await http.post(
-    Uri.parse('http://$ip:8000/register/'),
+    Uri.parse('$url/register/'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
@@ -29,28 +28,21 @@ Future<String> registerUser(String name, String email, String password, String p
     }),
   );
 
-
   if (response.statusCode == 200) {
     final prefs = await SharedPreferences.getInstance();
 
     Map<String, dynamic> json = jsonDecode(response.body);
 
-    print(json);
-
     prefs.setString('token', json['token']);
     prefs.setString('name', json['name']);
 
     return json['name'];
-  }
-  else if (response.statusCode == 400) {
+  } else if (response.statusCode == 400) {
     return "Error";
-  }
-  else {
+  } else {
     return "Error";
   }
 }
-
-
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -60,9 +52,7 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-
   final _formKey = GlobalKey<FormState>();
-
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +69,8 @@ class _RegisterPageState extends State<RegisterPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
                 child: TextFormField(
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -95,11 +86,13 @@ class _RegisterPageState extends State<RegisterPage> {
                     labelText: 'Name',
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8.0),
-                      borderSide: const BorderSide(width: 1, color: Colors.blue),
+                      borderSide:
+                          const BorderSide(width: 1, color: Colors.blue),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8.0),
-                      borderSide: const BorderSide(width: 1, color: Colors.grey),
+                      borderSide:
+                          const BorderSide(width: 1, color: Colors.grey),
                     ),
                     fillColor: Colors.white,
                     filled: true,
@@ -111,7 +104,8 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
                 child: TextFormField(
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -127,11 +121,13 @@ class _RegisterPageState extends State<RegisterPage> {
                     labelText: 'Email',
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8.0),
-                      borderSide: const BorderSide(width: 1, color: Colors.blue),
+                      borderSide:
+                          const BorderSide(width: 1, color: Colors.blue),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8.0),
-                      borderSide: const BorderSide(width: 1, color: Colors.grey),
+                      borderSide:
+                          const BorderSide(width: 1, color: Colors.grey),
                     ),
                     fillColor: Colors.white,
                     filled: true,
@@ -143,7 +139,8 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
                 child: TextFormField(
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -159,11 +156,13 @@ class _RegisterPageState extends State<RegisterPage> {
                     labelText: 'Password',
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8.0),
-                      borderSide: const BorderSide(width: 1, color: Colors.blue),
+                      borderSide:
+                          const BorderSide(width: 1, color: Colors.blue),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8.0),
-                      borderSide: const BorderSide(width: 1, color: Colors.grey),
+                      borderSide:
+                          const BorderSide(width: 1, color: Colors.grey),
                     ),
                     fillColor: Colors.white,
                     filled: true,
@@ -175,7 +174,8 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
                 child: TextFormField(
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -191,11 +191,13 @@ class _RegisterPageState extends State<RegisterPage> {
                     labelText: 'Confirm Password',
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8.0),
-                      borderSide: const BorderSide(width: 1, color: Colors.blue),
+                      borderSide:
+                          const BorderSide(width: 1, color: Colors.blue),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8.0),
-                      borderSide: const BorderSide(width: 1, color: Colors.grey),
+                      borderSide:
+                          const BorderSide(width: 1, color: Colors.grey),
                     ),
                     fillColor: Colors.white,
                     filled: true,
@@ -211,7 +213,8 @@ class _RegisterPageState extends State<RegisterPage> {
                 child: ElevatedButton(
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
-                      String response = await registerUser(name, email, password1, password2);
+                      String response =
+                          await registerUser(name, email, password1, password2);
                       if (response == "Error") {
                         final snackBar = SnackBar(
                           content: const Text('Invalid Information!'),
@@ -224,8 +227,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         );
 
                         ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                      }
-                      else {
+                      } else {
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => const Home()),
@@ -238,8 +240,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       fixedSize: const Size(100, 50),
                       primary: Colors.black,
                       onPrimary: Colors.white,
-                      alignment: Alignment.center
-                  ),
+                      alignment: Alignment.center),
                 ),
               ),
             ],

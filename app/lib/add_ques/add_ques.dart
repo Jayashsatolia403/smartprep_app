@@ -1,13 +1,15 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
 
-
-
-Future<bool> addQuestion(String statement, List<String> options, String subject, List<String> correctOptions) async {
+Future<bool> addQuestion(String statement, List<String> options, String subject,
+    List<String> correctOptions) async {
   String content = "";
+
+  String url = await rootBundle.loadString('assets/text/url.txt');
 
   for (String s in options) {
     content += ">>\$\$\$";
@@ -22,7 +24,7 @@ Future<bool> addQuestion(String statement, List<String> options, String subject,
   print(content);
 
   final response = await http.post(
-    Uri.parse('http://192.168.43.210:8000/addQues/'),
+    Uri.parse('$url/addQues/'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
       'Authorization': "Token 0f3cce84ab32c90afbdf467297608ff9afee3847"
@@ -41,8 +43,6 @@ Future<bool> addQuestion(String statement, List<String> options, String subject,
   return false;
 }
 
-
-
 class AddQuestions extends StatefulWidget {
   const AddQuestions({Key? key}) : super(key: key);
 
@@ -58,9 +58,7 @@ class _AddQuestionsState extends State<AddQuestions> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          title: Text("Add Question")
-      ),
+      appBar: AppBar(title: Text("Add Question")),
       body: ListView(
         children: [
           Padding(
