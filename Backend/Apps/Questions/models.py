@@ -139,3 +139,8 @@ class PracticeQuestions(models.Model):
     correctQuestions = ArrayField(models.CharField(max_length=50, blank=True, null=True), blank=True, null=True)
     wrongQuestions = ArrayField(models.CharField(max_length=50, null=True, blank=True), null=True, blank=True)
     unansweredQuesions = ArrayField(models.CharField(max_length=50, null=True, blank=True), blank=True, null=True)
+
+
+class QuestionBookmarks(models.Model):
+    user = models.OneToOneField(User, related_name="bookmarked_user", on_delete=models.CASCADE)
+    questions = models.ManyToManyField(Questions, related_name="bookmarked_questions", blank=True)

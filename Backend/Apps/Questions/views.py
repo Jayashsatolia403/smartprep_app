@@ -4,7 +4,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from .serializers import AddOptionsSerializer, AddQuestionSerializer
-from .models import DailyQuestions, Exams, Questions, QuestionsOfTheDays, Subjects, PracticeQuestions, PrevQuesOfDays
+from .models import DailyQuestions, Exams, QuestionBookmarks, Questions, QuestionsOfTheDays, Subjects, PracticeQuestions, PrevQuesOfDays
 
 from datetime import datetime
 import random
@@ -246,22 +246,47 @@ def getQuestionByID(request):
 
 @api_view(['GET', ])
 def getPracticeQuestions(request):
-    limit = request.GET['limit']
+    try:
+        limit = request.GET['limit']
 
-    result = []
+        result = []
 
-    prevQuesObjects = PracticeQuestions.objects.filter(user=request.user)
+        prevQuesObjects = PracticeQuestions.objects.filter(user=request.user)
 
-    for i in prevQuesObjects:
-        for ques in i.questions.all():
-            result.append(ques.uuid)
+        for i in prevQuesObjects:
+            for ques in i.questions.all():
+                result.append(ques.uuid)
 
-    return Response(result[:int(limit)])
+        return Response(result[:int(limit)])
+    except:
+        return Response("Error")
+
+
 
 
 @api_view(['GET', ])
-def getIP(request):
-    import socket 
-    ip = socket.gethostbyname(socket.gethostname())
+def bookmark_question(request):
+    try:
+        user = request.user
+        ques_id = request.GET['ques_id']
 
-    return Response(ip)
+        question = Questions.objects.get(uuid=ques_id)
+
+        question_bookmark = QuestionBookmarks.objects.filter(user=user)
+
+        if not question_bookmark:
+            question_bookmark = QuestionBookmarks(
+                user=user
+            )
+
+            question_bookmark.save()
+
+            question_bookmark.add(question)
+
+            question_bookmark.save()
+        
+        else:
+            question_bookmark.add(question)
+            question_bookmark.save()
+    except:
+        return Response("Invalid Request")

@@ -10,19 +10,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 // bool isAuthenticated = false;
 
 Future<bool> checkAuth() async {
-
   final prefs = await SharedPreferences.getInstance();
 
   final counter = prefs.getString('token') ?? "isGood";
 
   // final name = prefs.getString('name') ?? "Good";
 
-  print("I Am Going to Print Counter. Be Ready!");
-  print(counter);
-
-
   if (counter != "isGood") {
-    print("I Have Token");
     return true;
   }
 
@@ -38,33 +32,30 @@ class Splash extends StatelessWidget {
 
     Future<bool> _isAuth = checkAuth();
 
-    return FutureBuilder<bool> (
+    return FutureBuilder<bool>(
         future: _isAuth,
         builder: (BuildContext context, AsyncSnapshot<bool> snapShot) {
           if (snapShot.hasData) {
             if (snapShot.data == true) {
               return SplashScreen(
-              seconds: 5,
-              navigateAfterSeconds: const Home(),
-              image: Image.asset('assets/images/logo6.png'),
-              photoSize: 100.0,
-              loaderColor: Colors.blue,
-            );
+                seconds: 5,
+                navigateAfterSeconds: const Home(),
+                image: Image.asset('assets/images/logo6.png'),
+                photoSize: 100.0,
+                loaderColor: Colors.blue,
+              );
             } else {
               return SplashScreen(
-              seconds: 1,
-              navigateAfterSeconds: MyHomePage(),
-              image: Image.asset('assets/images/logo8.png'),
-              photoSize: 100.0,
-              loaderColor: Colors.blue,
-            );
+                seconds: 1,
+                navigateAfterSeconds: MyHomePage(),
+                image: Image.asset('assets/images/logo8.png'),
+                photoSize: 100.0,
+                loaderColor: Colors.blue,
+              );
             }
-          }
-          else {
+          } else {
             return const Text("Going Good!");
           }
-        }
-    );
+        });
   }
 }
-

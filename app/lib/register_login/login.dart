@@ -26,19 +26,16 @@ Future<String> loginUser(String email, String password) async {
 
     String token = json['token'];
 
-
     prefs.setString('token', token);
 
-    final get_name = await http.get(
-      Uri.parse('$url/get_name?token=$token'),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      }
-    )
+    final getName = await http
+        .get(Uri.parse('$url/get_name?token=$token'), headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    });
 
-    String name = jsonDecode(get_name.body);
+    String name = jsonDecode(getName.body);
 
-    prefs.setString('name',name);
+    prefs.setString('name', name);
 
     return name;
   } else if (response.statusCode == 400) {

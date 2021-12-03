@@ -1,6 +1,6 @@
 from django.urls import path
 
-from.views import addQuestion, getIP, getPracticeQuestions, getQuestionByID
+from.views import addQuestion, bookmark_question, getPracticeQuestions, getQuestionByID
 from .views import rateQuestion, getQuestionOfTheDay, getDailyQuestions
 
 urlpatterns = [
@@ -10,5 +10,5 @@ urlpatterns = [
     path('getQues', getDailyQuestions, name='getDailyQuestions'),
     path('getQuesByID', getQuestionByID, name='getQuesByID'),
     path('getPracticeQues', getPracticeQuestions, name='getPracticeQues'),
-    path('getIP', getIP, name='getIP')
+    path('bookmark_ques', bookmark_question, name='bookmark_question')
 ]
