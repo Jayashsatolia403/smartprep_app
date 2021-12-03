@@ -23,8 +23,13 @@ def registrationView(request):
 
     return Response(data)
 
-@api_view(['GET', ])
-def getToken(request):
-    token = Token.objects.all()[0]
 
-    return Response(str(token))
+
+@api_view(['GET', ])
+def get_name(request):
+    
+    token_id = request.GET['token']
+
+    token = Token.objects.get(key=token_id)
+
+    return Response(token.user.name)

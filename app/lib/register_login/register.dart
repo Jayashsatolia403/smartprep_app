@@ -10,38 +10,35 @@ import 'package:app/home/home.dart';
 
 Future<String> registerUser(
     String name, String email, String password, String password2) async {
-  String url = await rootBundle.loadString('assets/text/url.txt');
+      String url = await rootBundle.loadString('assets/text/url.txt');
 
-  // ignore: avoid_print
-  print(url);
+      final response = await http.post(
+        Uri.parse('$url/register/'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, String>{
+          'name': name,
+          'email': email,
+          'password': password,
+          'password2': password2
+        }),
+      );
 
-  final response = await http.post(
-    Uri.parse('$url/register/'),
-    headers: <String, String>{
-      'Content-Type': 'application/json; charset=UTF-8',
-    },
-    body: jsonEncode(<String, String>{
-      'name': name,
-      'email': email,
-      'password': password,
-      'password2': password2
-    }),
-  );
+      if (response.statusCode == 200) {
+        final prefs = await SharedPreferences.getInstance();
 
-  if (response.statusCode == 200) {
-    final prefs = await SharedPreferences.getInstance();
+        Map<String, dynamic> json = jsonDecode(response.body);
 
-    Map<String, dynamic> json = jsonDecode(response.body);
+        prefs.setString('token', json['token']);
+        prefs.setString('name', json['name']);
 
-    prefs.setString('token', json['token']);
-    prefs.setString('name', json['name']);
-
-    return json['name'];
-  } else if (response.statusCode == 400) {
-    return "Error";
-  } else {
-    return "Error";
-  }
+        return json['name'];
+      } else if (response.statusCode == 400) {
+        return "Error";
+      } else {
+        return "Error";
+      }
 }
 
 class RegisterPage extends StatefulWidget {
