@@ -1,8 +1,8 @@
+import 'package:app/premium/premium.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'ad_state.dart';
-
 
 // import 'package:app/tests/daily_questions.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -13,20 +13,16 @@ import 'package:provider/provider.dart';
 
 // import 'package:app/exam_select/select_exam.dart';
 
-import 'home/homepage.dart';
-
-
+// import 'home/homepage.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   final initFuture = MobileAds.instance.initialize();
   final adState = AdState(initFuture);
-  runApp(
-      Provider.value(
-        value: adState,
-        builder: (context, child) => const MyApp(),
-      )
-  );
+  runApp(Provider.value(
+    value: adState,
+    builder: (context, child) => const MyApp(),
+  ));
 }
 
 const MaterialColor white = MaterialColor(
@@ -55,12 +51,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData(
-          primarySwatch: white,
-          fontFamily: 'OpenSans'
-      ),
-      home: MyHomePage(),
+      theme: ThemeData(primarySwatch: white, fontFamily: 'OpenSans'),
+      home: const Premium(),
     );
   }
 }
-

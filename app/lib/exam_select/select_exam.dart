@@ -20,10 +20,13 @@ var examNames = {
   'NTPC': 'ntpc'
 };
 
+String username = "User";
+
 Future<String> getName() async {
   final prefs = await SharedPreferences.getInstance();
 
   String name = prefs.getString("name") ?? "User";
+  username = name;
 
   return name;
 }
@@ -61,7 +64,7 @@ class SelectExam extends StatefulWidget {
 class _SelectExamState extends State<SelectExam> {
   String name = "Jayash Satolia";
 
-  Future<String> _getName = getName();
+  final Future<String> _getName = getName();
 
   @override
   Widget build(BuildContext context) {
@@ -71,22 +74,29 @@ class _SelectExamState extends State<SelectExam> {
           return Scaffold(
             body: ListView(
               children: [
+                const Padding(
+                    padding: EdgeInsets.fromLTRB(20, 30, 0, 10),
+                    child: Text(
+                      "👋",
+                      style:
+                          TextStyle(fontWeight: FontWeight.w800, fontSize: 25),
+                    )),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 10, 0, 0),
+                  padding: const EdgeInsets.fromLTRB(20, 10, 0, 0),
                   child: Text(
-                    snapShot.hasData ? 'Hello $snapShot.val()!' : "Hello User!",
+                    snapShot.hasData ? 'Hello $username!' : "Hello User!",
                     style: const TextStyle(
                         fontWeight: FontWeight.w800, fontSize: 25),
                   ),
                 ),
                 const Padding(
-                    padding: EdgeInsets.fromLTRB(10, 0, 0, 20),
+                    padding: EdgeInsets.fromLTRB(20, 0, 0, 20),
                     child: Text(
                       "Welcome to Smartprep",
                       style: TextStyle(color: Colors.grey, fontSize: 17),
                     )),
                 const Padding(
-                    padding: EdgeInsets.fromLTRB(10, 20, 0, 30),
+                    padding: EdgeInsets.fromLTRB(20, 20, 0, 30),
                     child: Text(
                       "Choose the exam you are preparing for",
                       style:
@@ -169,98 +179,5 @@ class _SelectExamState extends State<SelectExam> {
             ),
           );
         });
-
-    return Scaffold(
-      body: ListView(
-        children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(10, 10, 0, 0),
-            child: Text(
-              "Hello $name!",
-              style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 25),
-            ),
-          ),
-          const Padding(
-              padding: EdgeInsets.fromLTRB(10, 0, 0, 20),
-              child: Text(
-                "Welcome to Smartprep",
-                style: TextStyle(color: Colors.grey, fontSize: 17),
-              )),
-          const Padding(
-              padding: EdgeInsets.fromLTRB(10, 20, 0, 30),
-              child: Text(
-                "Choose the exam you are preparing for",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-              )),
-          for (var i = 0; i < exam_names.length / 2; i++)
-            Row(
-              children: [
-                Padding(
-                    padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
-                    child: OutlinedButton(
-                      onPressed: () {
-                        updateExamDetails(exam_names[i * 2]);
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const Home()));
-                      },
-                      child: Text(
-                        exam_names[i * 2],
-                        style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                            color: Colors.black),
-                      ),
-                      style: ButtonStyle(
-                          foregroundColor:
-                              MaterialStateProperty.all(Colors.lightBlueAccent),
-                          backgroundColor:
-                              MaterialStateProperty.all(Colors.white),
-                          overlayColor: MaterialStateProperty.all(Colors.blue),
-                          shadowColor: MaterialStateProperty.all(Colors.black),
-                          shape: MaterialStateProperty.all(
-                            RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0)),
-                          ),
-                          fixedSize:
-                              MaterialStateProperty.all(const Size(130, 80))),
-                    )),
-                Padding(
-                    padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
-                    child: OutlinedButton(
-                      onPressed: () {
-                        updateExamDetails(exam_names[i * 2 + 1]);
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const Home()));
-                      },
-                      child: Text(
-                        exam_names[i * 2 + 1],
-                        style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                            color: Colors.black),
-                      ),
-                      style: ButtonStyle(
-                          foregroundColor:
-                              MaterialStateProperty.all(Colors.lightBlueAccent),
-                          backgroundColor:
-                              MaterialStateProperty.all(Colors.white),
-                          overlayColor: MaterialStateProperty.all(Colors.blue),
-                          shadowColor: MaterialStateProperty.all(Colors.black),
-                          shape: MaterialStateProperty.all(
-                            RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0)),
-                          ),
-                          fixedSize:
-                              MaterialStateProperty.all(const Size(130, 80))),
-                    ))
-              ],
-            )
-        ],
-      ),
-    );
   }
 }
