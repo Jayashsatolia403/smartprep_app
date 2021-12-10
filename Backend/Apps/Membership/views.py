@@ -64,8 +64,8 @@ def checkout(request):
             }],
             mode='subscription',
             allow_promotion_codes=True,
-            success_url='http://127.0.0.1:8000/payments/success?sessionId={CHECKOUT_SESSION_ID}',
-            cancel_url='http://127.0.0.1:8000/payments/cancel',
+            success_url='https://smartprep-app.herokuapp.com/payments/success?sessionId={CHECKOUT_SESSION_ID}',
+            cancel_url='https://smartprep-app.herokuapp.com/payments/cancel',
         )
 
         newSession = SessionUser(user = request.user, sessionID = session.id)
