@@ -171,6 +171,7 @@ class CustomRadioState extends State<CustomRadio> {
 
 class RadioItem extends StatelessWidget {
   final RadioModel _item;
+  // ignore: use_key_in_widget_constructors
   const RadioItem(this._item);
   @override
   Widget build(BuildContext context) {

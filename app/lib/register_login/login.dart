@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:app/exam_select/select_exam.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -7,6 +8,7 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:app/home/home.dart';
+import 'package:app/config.dart';
 
 Future<String> loginUser(String email, String password) async {
   String url = await rootBundle.loadString('assets/text/url.txt');
@@ -67,6 +69,9 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              const SizedBox(
+                height: 80,
+              ),
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
@@ -166,7 +171,11 @@ class _LoginPageState extends State<LoginPage> {
                       } else {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => const Home()),
+                          MaterialPageRoute(
+                              builder: (context) => SelectExam(
+                                    data: Config(
+                                        username: response, examname: "Exam"),
+                                  )),
                         );
                       }
                     }

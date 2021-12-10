@@ -2,6 +2,7 @@ import 'package:app/home/home.dart';
 import 'package:flutter/material.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:app/config.dart';
 
 var examNames = {
   'IAS': 'ias',
@@ -19,17 +20,6 @@ var examNames = {
   'CAT': 'cat',
   'NTPC': 'ntpc'
 };
-
-String username = "User";
-
-Future<String> getName() async {
-  final prefs = await SharedPreferences.getInstance();
-
-  String name = prefs.getString("name") ?? "User";
-  username = name;
-
-  return name;
-}
 
 updateExamDetails(String examName) async {
   final prefs = await SharedPreferences.getInstance();
@@ -55,129 +45,120 @@ List<String> exam_names = <String>[
 ];
 
 class SelectExam extends StatefulWidget {
-  const SelectExam({Key? key}) : super(key: key);
+  const SelectExam({Key? key, required this.data}) : super(key: key);
+  final Config data;
 
   @override
   _SelectExamState createState() => _SelectExamState();
 }
 
 class _SelectExamState extends State<SelectExam> {
-  String name = "Jayash Satolia";
-
-  final Future<String> _getName = getName();
-
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<String>(
-        future: _getName,
-        builder: (BuildContext context, AsyncSnapshot<String> snapShot) {
-          return Scaffold(
-            body: ListView(
+    return Scaffold(
+      body: ListView(
+        children: [
+          const Padding(
+              padding: EdgeInsets.fromLTRB(20, 30, 0, 10),
+              child: Text(
+                "👋",
+                style: TextStyle(fontWeight: FontWeight.w800, fontSize: 25),
+              )),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(20, 10, 0, 0),
+            child: Text(
+              'Hello ${widget.data.username}!',
+              style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 25),
+            ),
+          ),
+          const Padding(
+              padding: EdgeInsets.fromLTRB(20, 0, 0, 20),
+              child: Text(
+                "Welcome to Smartprep",
+                style: TextStyle(color: Colors.grey, fontSize: 17),
+              )),
+          const Padding(
+              padding: EdgeInsets.fromLTRB(20, 20, 0, 30),
+              child: Text(
+                "Choose the exam you are preparing for",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+              )),
+          for (var i = 0; i < exam_names.length / 2; i++)
+            Row(
               children: [
-                const Padding(
-                    padding: EdgeInsets.fromLTRB(20, 30, 0, 10),
-                    child: Text(
-                      "👋",
-                      style:
-                          TextStyle(fontWeight: FontWeight.w800, fontSize: 25),
+                Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
+                    child: OutlinedButton(
+                      onPressed: () {
+                        updateExamDetails(exam_names[i * 2]);
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Home(
+                                    data: Config(
+                                        username: widget.data.username,
+                                        examname: exam_names[i * 2]))));
+                      },
+                      child: Text(
+                        exam_names[i * 2],
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                            color: Colors.black),
+                      ),
+                      style: ButtonStyle(
+                          foregroundColor:
+                              MaterialStateProperty.all(Colors.lightBlueAccent),
+                          backgroundColor:
+                              MaterialStateProperty.all(Colors.white),
+                          overlayColor: MaterialStateProperty.all(Colors.blue),
+                          shadowColor: MaterialStateProperty.all(Colors.black),
+                          shape: MaterialStateProperty.all(
+                            RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0)),
+                          ),
+                          fixedSize:
+                              MaterialStateProperty.all(const Size(130, 80))),
                     )),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 10, 0, 0),
-                  child: Text(
-                    snapShot.hasData ? 'Hello $username!' : "Hello User!",
-                    style: const TextStyle(
-                        fontWeight: FontWeight.w800, fontSize: 25),
-                  ),
-                ),
-                const Padding(
-                    padding: EdgeInsets.fromLTRB(20, 0, 0, 20),
-                    child: Text(
-                      "Welcome to Smartprep",
-                      style: TextStyle(color: Colors.grey, fontSize: 17),
-                    )),
-                const Padding(
-                    padding: EdgeInsets.fromLTRB(20, 20, 0, 30),
-                    child: Text(
-                      "Choose the exam you are preparing for",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                    )),
-                for (var i = 0; i < exam_names.length / 2; i++)
-                  Row(
-                    children: [
-                      Padding(
-                          padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
-                          child: OutlinedButton(
-                            onPressed: () {
-                              updateExamDetails(exam_names[i * 2]);
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const Home()));
-                            },
-                            child: Text(
-                              exam_names[i * 2],
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20,
-                                  color: Colors.black),
-                            ),
-                            style: ButtonStyle(
-                                foregroundColor: MaterialStateProperty.all(
-                                    Colors.lightBlueAccent),
-                                backgroundColor:
-                                    MaterialStateProperty.all(Colors.white),
-                                overlayColor:
-                                    MaterialStateProperty.all(Colors.blue),
-                                shadowColor:
-                                    MaterialStateProperty.all(Colors.black),
-                                shape: MaterialStateProperty.all(
-                                  RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(10.0)),
-                                ),
-                                fixedSize: MaterialStateProperty.all(
-                                    const Size(130, 80))),
-                          )),
-                      Padding(
-                          padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
-                          child: OutlinedButton(
-                            onPressed: () {
-                              updateExamDetails(exam_names[i * 2 + 1]);
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const Home()));
-                            },
-                            child: Text(
-                              exam_names[i * 2 + 1],
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20,
-                                  color: Colors.black),
-                            ),
-                            style: ButtonStyle(
-                                foregroundColor: MaterialStateProperty.all(
-                                    Colors.lightBlueAccent),
-                                backgroundColor:
-                                    MaterialStateProperty.all(Colors.white),
-                                overlayColor:
-                                    MaterialStateProperty.all(Colors.blue),
-                                shadowColor:
-                                    MaterialStateProperty.all(Colors.black),
-                                shape: MaterialStateProperty.all(
-                                  RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(10.0)),
-                                ),
-                                fixedSize: MaterialStateProperty.all(
-                                    const Size(130, 80))),
-                          ))
-                    ],
-                  )
+                    padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
+                    child: OutlinedButton(
+                      onPressed: () {
+                        updateExamDetails(exam_names[i * 2 + 1]);
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Home(
+                                      data: Config(
+                                          username: widget.data.username,
+                                          examname: exam_names[i * 2 + 1]),
+                                    )));
+                      },
+                      child: Text(
+                        exam_names[i * 2 + 1],
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                            color: Colors.black),
+                      ),
+                      style: ButtonStyle(
+                          foregroundColor:
+                              MaterialStateProperty.all(Colors.lightBlueAccent),
+                          backgroundColor:
+                              MaterialStateProperty.all(Colors.white),
+                          overlayColor: MaterialStateProperty.all(Colors.blue),
+                          shadowColor: MaterialStateProperty.all(Colors.black),
+                          shape: MaterialStateProperty.all(
+                            RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0)),
+                          ),
+                          fixedSize:
+                              MaterialStateProperty.all(const Size(130, 80))),
+                    ))
               ],
-            ),
-          );
-        });
+            )
+        ],
+      ),
+    );
   }
 }

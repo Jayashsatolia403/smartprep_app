@@ -2,10 +2,7 @@ import 'package:app/exam_select/select_exam.dart';
 import 'package:app/jee/jee_tests.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-String username = "User";
-String exam_name = "";
+import 'package:app/config.dart';
 
 String greet() {
   var now = DateTime.now();
@@ -21,22 +18,9 @@ String greet() {
   }
 }
 
-Future<String> getName() async {
-  final prefs = await SharedPreferences.getInstance();
-
-  final name = prefs.getString('name') ?? "User";
-
-  final exam = prefs.getString("exam_name");
-
-  exam_name = exam!;
-
-  username = name;
-
-  return name;
-}
-
 class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+  const Home({Key? key, required this.data}) : super(key: key);
+  final Config data;
 
   @override
   _HomeState createState() => _HomeState();
@@ -47,109 +31,99 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    Future<String> name = getName();
-
-    return FutureBuilder<String>(
-        future: name,
-        builder: (BuildContext context, AsyncSnapshot<String> snapShot) {
-          return Scaffold(
-            appBar: AppBar(
-              backgroundColor: Colors.deepPurpleAccent,
-              title: Image.asset("assets/images/logo14.png", height: 60),
-              toolbarHeight: 80,
-            ),
-            drawer: Drawer(
-              child: ListView(
-                padding: EdgeInsets.zero,
-                children: [
-                  Container(
-                      child: DrawerHeader(
-                        decoration: const BoxDecoration(color: Colors.white),
-                        child: Column(children: [
-                          Text(username,
-                              style: const TextStyle(
-                                fontSize: 30,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              textAlign: TextAlign.left),
-                          ListTile(
-                            leading: const Icon(Icons.person),
-                            title: const Text("Your Profile",
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 17)),
-                            onTap: () {},
-                          )
-                        ]),
-                      ),
-                      height: 150),
-                  ListTile(
-                    title: Text(exam_name,
-                        style:
-                            const TextStyle(color: Colors.white, fontSize: 17)),
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const SelectExam()));
-                    },
-                    tileColor: Colors.deepPurpleAccent,
-                  ),
-                  ListTile(
-                    title: const Text('Explore Premium',
-                        style: TextStyle(color: Colors.white, fontSize: 17)),
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const SelectExam()));
-                    },
-                    tileColor: Colors.deepPurpleAccent,
-                    // leading: const Icon(Icons.),
-                  ),
-                ],
-              ),
-            ),
-            body: SafeArea(
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 25),
-                        child: Column(
-                          children: [
-                            if (snapShot.hasData)
-                              Text('$greetMessage $username',
-                                  textAlign: TextAlign.center,
-                                  style: const TextStyle(
-                                    fontSize: 17,
-                                    color: Colors.black,
-                                  ))
-                            else
-                              Text('$greetMessage User',
-                                  textAlign: TextAlign.center,
-                                  style: const TextStyle(
-                                    fontSize: 17,
-                                    color: Colors.black,
-                                  )),
-                            ElevatedButton(
-                              onPressed: () => Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const JeeTests())),
-                              child: const Text("Go to JEE Section"),
-                              style: ButtonStyle(
-                                  foregroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          Colors.black)),
-                            )
-                          ],
-                        ))
-                  ],
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.deepPurpleAccent,
+        title: Image.asset("assets/images/logo14.png", height: 60),
+        toolbarHeight: 80,
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            // ignore: sized_box_for_whitespace
+            Container(
+                child: DrawerHeader(
+                  decoration: const BoxDecoration(color: Colors.white),
+                  child: Column(children: [
+                    Text(widget.data.username,
+                        style: const TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        textAlign: TextAlign.left),
+                    ListTile(
+                      leading: const Icon(Icons.person),
+                      title: const Text("Your Profile",
+                          style: TextStyle(color: Colors.black, fontSize: 17)),
+                      onTap: () {},
+                    )
+                  ]),
                 ),
-              ),
+                height: 150),
+            ListTile(
+              title: Text(widget.data.examname,
+                  style: const TextStyle(color: Colors.white, fontSize: 17)),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => SelectExam(
+                              data: widget.data,
+                            )));
+              },
+              tileColor: Colors.deepPurpleAccent,
             ),
-          );
-        });
+            ListTile(
+              title: const Text('Explore Premium',
+                  style: TextStyle(color: Colors.white, fontSize: 17)),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => SelectExam(
+                              data: widget.data,
+                            )));
+              },
+              tileColor: Colors.deepPurpleAccent,
+              // leading: const Icon(Icons.),
+            ),
+          ],
+        ),
+      ),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
+                  child: Column(
+                    children: [
+                      Text('$greetMessage ${widget.data.username}',
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            fontSize: 17,
+                            color: Colors.black,
+                          )),
+                      ElevatedButton(
+                        onPressed: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Tests(
+                                      data: widget.data,
+                                    ))),
+                        child: Text("Go to ${widget.data.examname} Section"),
+                        style: ButtonStyle(
+                            foregroundColor:
+                                MaterialStateProperty.all<Color>(Colors.black)),
+                      )
+                    ],
+                  ))
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

@@ -1,61 +1,78 @@
-// import 'package:flutter/cupertino.dart';
-// import 'package:flutter/material.dart';
-// import 'package:app/home/home.dart';
+import 'package:app/exam_select/select_exam.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:app/home/home.dart';
 
-// import 'package:app/home/homepage.dart';
+import 'package:app/home/homepage.dart';
 
-// import 'package:splashscreen/splashscreen.dart';
-// import 'package:shared_preferences/shared_preferences.dart';
+// ignore: import_of_legacy_library_into_null_safe
+import 'package:splashscreen/splashscreen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-// // bool isAuthenticated = false;
+import '../config.dart';
 
-// Future<bool> checkAuth() async {
-//   final prefs = await SharedPreferences.getInstance();
+Future<List<String>> checkAuth() async {
+  final prefs = await SharedPreferences.getInstance();
 
-//   final counter = prefs.getString('token') ?? "isGood";
+  String name = prefs.getString('name') ?? "User";
+  String exam = prefs.getString('exam_name') ?? "Exam";
 
-//   // final name = prefs.getString('name') ?? "Good";
+  return <String>[name, exam];
+}
 
-//   if (counter != "isGood") {
-//     return true;
-//   }
+class Splash extends StatelessWidget {
+  const Splash({Key? key}) : super(key: key);
 
-//   return false;
-// }
+  @override
+  Widget build(BuildContext context) {
+    // COMPLETE: Check if user is Authenticated.
 
-// class Splash extends StatelessWidget {
-//   const Splash({Key? key}) : super(key: key);
+    Future<List<String>> _isAuth = checkAuth();
 
-//   @override
-//   Widget build(BuildContext context) {
-//     // COMPLETE: Check if user is Authenticated.
-
-//     Future<bool> _isAuth = checkAuth();
-
-//     return FutureBuilder<bool>(
-//         future: _isAuth,
-//         builder: (BuildContext context, AsyncSnapshot<bool> snapShot) {
-//           if (snapShot.hasData) {
-//             if (snapShot.data == true) {
-//               return SplashScreen(
-//                 seconds: 5,
-//                 navigateAfterSeconds: const Home(),
-//                 image: Image.asset('assets/images/logo6.png'),
-//                 photoSize: 100.0,
-//                 loaderColor: Colors.blue,
-//               );
-//             } else {
-//               return SplashScreen(
-//                 seconds: 1,
-//                 navigateAfterSeconds: MyHomePage(),
-//                 image: Image.asset('assets/images/logo8.png'),
-//                 photoSize: 100.0,
-//                 loaderColor: Colors.blue,
-//               );
-//             }
-//           } else {
-//             return const Text("Going Good!");
-//           }
-//         });
-//   }
-// }
+    return FutureBuilder<List<String>>(
+        future: _isAuth,
+        builder: (BuildContext context, AsyncSnapshot<List<String>> snapShot) {
+          if (snapShot.hasData) {
+            if (snapShot.data?[0] != "User" && snapShot.data?[1] != "Exam") {
+              return SplashScreen(
+                seconds: 5,
+                navigateAfterSeconds: Home(
+                  data: Config(
+                      username: snapShot.data![0], examname: snapShot.data![1]),
+                ),
+                image: Image.asset('assets/images/logo6.png'),
+                photoSize: 100.0,
+                loaderColor: Colors.blue,
+              );
+            } else if (snapShot.data?[0] != "User") {
+              return SplashScreen(
+                seconds: 5,
+                navigateAfterSeconds: SelectExam(
+                    data: Config(
+                        username: snapShot.data![0],
+                        examname: snapShot.data![1])),
+                image: Image.asset('assets/images/logo6.png'),
+                photoSize: 100.0,
+                loaderColor: Colors.blue,
+              );
+            } else {
+              return SplashScreen(
+                seconds: 5,
+                navigateAfterSeconds: const MyHomePage(),
+                image: Image.asset('assets/images/logo6.png'),
+                photoSize: 100.0,
+                loaderColor: Colors.blue,
+              );
+            }
+          } else {
+            return SplashScreen(
+              seconds: 5,
+              navigateAfterSeconds: const MyHomePage(),
+              image: Image.asset('assets/images/logo6.png'),
+              photoSize: 100.0,
+              loaderColor: Colors.blue,
+            );
+          }
+        });
+  }
+}

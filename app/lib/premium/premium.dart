@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'package:toggle_switch/toggle_switch.dart';
+
 String dropdownValue = 'jee';
 
 Future<String> getExamName() async {
@@ -11,10 +13,19 @@ Future<String> getExamName() async {
   return dropdownValue;
 }
 
-List<Widget> plans = const <Widget>[
-  Text("Standard"),
-  Text("Good"),
-  Text("Ultimate")
+List<Widget> plans = <Widget>[
+  Container(
+    child: const Text(
+      "Standard",
+      style: TextStyle(fontSize: 18),
+      // textAlign: Alignment.center,
+    ),
+    color: Colors.blue,
+    height: 100,
+    width: 170,
+  )
+  // Text("Good"),
+  // Text("Ultimate")
 ];
 
 List<bool> plansSelected = const <bool>[false, false, true];
@@ -61,7 +72,7 @@ class Premium extends StatefulWidget {
 }
 
 class _PremiumState extends State<Premium> {
-  final List<bool> _selections = List.generate(3, (index) => false);
+  final List<bool> _selections = List.generate(1, (index) => false);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -121,17 +132,21 @@ class _PremiumState extends State<Premium> {
                           child: Text(value)));
                 }).toList(),
               )),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: ToggleButtons(
-              children: plans,
-              isSelected: _selections,
-              onPressed: (int index) => {
-                setState(() {
-                  _selections[index] = !_selections[index];
-                })
-              },
-            ),
+          ToggleButtons(
+            children: plans,
+            isSelected: _selections,
+            onPressed: (int index) => {
+              setState(() {
+                _selections[index] = !_selections[index];
+              })
+            },
+            color: Colors.black,
+            borderColor: Colors.deepPurple,
+            selectedColor: Colors.white,
+            selectedBorderColor: Colors.deepPurple,
+            fillColor: Colors.deepPurple,
+            // borderWidth: 10,
+            // borderRadius: BorderRadius.circular(50)
           )
         ],
       ),
