@@ -31,7 +31,7 @@ def success(request):
 
         user.save()
         
-        user.premiumExams.append(exam)
+        user.premiumExams.append("{exam}")
         
         user.save()
     
