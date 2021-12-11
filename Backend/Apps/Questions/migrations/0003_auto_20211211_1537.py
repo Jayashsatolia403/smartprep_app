@@ -278,7 +278,7 @@ def load_initial_data(apps, schema_editor):
 
             question.save()
 
-            subject = Subjects.objects.get(name=i)
+            subject = Subjects.objects.get(name=i[0])
 
             subject.questions.add(question)
             subject.save()
