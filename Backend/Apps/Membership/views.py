@@ -30,6 +30,10 @@ def success(request):
             user.membershipOf100 = True
 
         user.save()
+        
+        user.premiumExams.append(exam)
+        
+        user.save()
     
     return response.HttpResponse("<h1>Payment SuccessFul. Enjoy your membership. You can return to SmartPrep App now.</h1>")
 
