@@ -55,7 +55,7 @@ class _TestsState extends State<Tests> {
             Align(
                 alignment: Alignment.topLeft,
                 child: Text(
-                  "Take ${widget.data.examname} Tests anytime, anywhere",
+                  "High Quality Questions for ${widget.data.examname}",
                   style: const TextStyle(color: Colors.white, fontSize: 13),
                 )),
           ],

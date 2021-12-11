@@ -7,7 +7,6 @@ import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:app/home/home.dart';
 import 'package:app/config.dart';
 
 Future<String> loginUser(String email, String password) async {

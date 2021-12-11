@@ -1,5 +1,6 @@
 import 'package:app/exam_select/select_exam.dart';
 import 'package:app/jee/jee_tests.dart';
+import 'package:app/premium/premium.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:app/config.dart';
@@ -81,7 +82,7 @@ class _HomeState extends State<Home> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => SelectExam(
+                        builder: (context) => Premium(
                               data: widget.data,
                             )));
               },
