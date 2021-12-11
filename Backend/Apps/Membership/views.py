@@ -15,6 +15,7 @@ stripe.api_key = "sk_test_51IVaTrCRUp8Jfn8foA5gnvdrrYy8wy2hqemRpXhq6yeBtOq5WC3cb
 def success(request):
     if 'sessionId' in request.GET:
         exam = request.GET['exam']
+        print(exam)
         session = stripe.checkout.Session.retrieve(request.GET['sessionId'],)
         print(session.amount_subtotal)
         user = SessionUser.objects.get(sessionID = request.GET['sessionId']).user
@@ -31,7 +32,7 @@ def success(request):
 
         user.save()
         
-        user.premiumExams.append('{exam}')
+        user.premiumExams.append('{}'.format(exam))
         
         user.save()
     
@@ -70,7 +71,7 @@ def checkout(request):
             }],
             mode='subscription',
             allow_promotion_codes=True,
-            success_url='https://smartprep-app.herokuapp.com/payments/success?sessionId={CHECKOUT_SESSION_ID}&exam={exam}',
+            success_url='https://smartprep-app.herokuapp.com/payments/success?sessionId={CHECKOUT_SESSION_ID}&exam='+exam,
             cancel_url='https://smartprep-app.herokuapp.com/payments/cancel',
         )
 
