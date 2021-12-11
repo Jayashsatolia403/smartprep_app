@@ -16,7 +16,7 @@ def registrationView(request):
     if serializer.is_valid():
         f = serializer.save()
         token = Token.objects.filter(user=f)[0]
-        data = {"name": f.name, "token": str(token.key)}
+        data = {"name": f.name, "token": str(token.key), "email": str(f.email)}
     else:
         data = serializer.errors
 
@@ -32,4 +32,4 @@ def get_name(request):
 
     token = Token.objects.get(key=token_id)
 
-    return Response(token.user.name)
+    return Response([token.user.name, token.user.email])

@@ -16,8 +16,9 @@ Future<List<String>> checkAuth() async {
 
   String name = prefs.getString('name') ?? "User";
   String exam = prefs.getString('exam_name') ?? "Exam";
+  String email = prefs.getString('email') ?? "email@email.com";
 
-  return <String>[name, exam];
+  return <String>[name, exam, email];
 }
 
 class Splash extends StatelessWidget {
@@ -38,7 +39,9 @@ class Splash extends StatelessWidget {
                 seconds: 5,
                 navigateAfterSeconds: Home(
                   data: Config(
-                      username: snapShot.data![0], examname: snapShot.data![1]),
+                      username: snapShot.data![0],
+                      examname: snapShot.data![1],
+                      email: snapShot.data![2]),
                 ),
                 image: Image.asset('assets/images/logo6.png'),
                 photoSize: 100.0,
@@ -50,7 +53,8 @@ class Splash extends StatelessWidget {
                 navigateAfterSeconds: SelectExam(
                     data: Config(
                         username: snapShot.data![0],
-                        examname: snapShot.data![1])),
+                        examname: snapShot.data![1],
+                        email: snapShot.data![2])),
                 image: Image.asset('assets/images/logo6.png'),
                 photoSize: 100.0,
                 loaderColor: Colors.blue,

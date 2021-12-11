@@ -1,5 +1,6 @@
 class Config {
   String username = "User";
   String examname = "Exam";
-  Config({required this.username, required this.examname});
+  String email = "email@email.com";
+  Config({required this.username, required this.examname, required this.email});
 }

@@ -97,7 +97,8 @@ class _SelectExamState extends State<SelectExam> {
                                 builder: (context) => Home(
                                     data: Config(
                                         username: widget.data.username,
-                                        examname: exam_names[i * 2]))));
+                                        examname: exam_names[i * 2],
+                                        email: widget.data.email))));
                       },
                       child: Text(
                         exam_names[i * 2],
@@ -131,7 +132,8 @@ class _SelectExamState extends State<SelectExam> {
                                 builder: (context) => Home(
                                       data: Config(
                                           username: widget.data.username,
-                                          examname: exam_names[i * 2 + 1]),
+                                          examname: exam_names[i * 2 + 1],
+                                          email: widget.data.email),
                                     )));
                       },
                       child: Text(

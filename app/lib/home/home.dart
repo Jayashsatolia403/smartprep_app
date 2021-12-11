@@ -1,6 +1,7 @@
 import 'package:app/exam_select/select_exam.dart';
 import 'package:app/jee/jee_tests.dart';
 import 'package:app/premium/premium.dart';
+import 'package:app/profile/profile_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:app/config.dart';
@@ -57,7 +58,14 @@ class _HomeState extends State<Home> {
                       leading: const Icon(Icons.person),
                       title: const Text("Your Profile",
                           style: TextStyle(color: Colors.black, fontSize: 17)),
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Profile(
+                                      data: widget.data,
+                                    )));
+                      },
                     )
                   ]),
                 ),

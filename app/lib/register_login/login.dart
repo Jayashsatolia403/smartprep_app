@@ -9,7 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:app/config.dart';
 
-Future<String> loginUser(String email, String password) async {
+Future<List<String>> loginUser(String email, String password) async {
   String url = await rootBundle.loadString('assets/text/url.txt');
 
   final response = await http.post(
@@ -34,15 +34,18 @@ Future<String> loginUser(String email, String password) async {
       'Content-Type': 'application/json; charset=UTF-8',
     });
 
-    String name = jsonDecode(getName.body);
+    final name = jsonDecode(getName.body);
 
-    prefs.setString('name', name);
+    print(name);
 
-    return name;
+    prefs.setString('name', name[0]);
+    prefs.setString('email', name[1]);
+
+    return <String>[name[0], name[1]];
   } else if (response.statusCode == 400) {
-    return "Error";
+    return <String>["Error"];
   } else {
-    return "Unknown";
+    return <String>["Unknown"];
   }
 }
 
@@ -146,8 +149,8 @@ class _LoginPageState extends State<LoginPage> {
                 child: ElevatedButton(
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
-                      String response = await loginUser(email, password1);
-                      if (response == "Error") {
+                      List<String> response = await loginUser(email, password1);
+                      if (response[0] == "Error") {
                         final snackBar = SnackBar(
                           content: const Text('Incorrect Email or Password!'),
                           action: SnackBarAction(
@@ -157,7 +160,7 @@ class _LoginPageState extends State<LoginPage> {
                         );
 
                         ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                      } else if (response == "Invalid") {
+                      } else if (response[0] == "Invalid") {
                         final snackBar = SnackBar(
                           content: const Text('Invalid Information!'),
                           action: SnackBarAction(
@@ -173,7 +176,9 @@ class _LoginPageState extends State<LoginPage> {
                           MaterialPageRoute(
                               builder: (context) => SelectExam(
                                     data: Config(
-                                        username: response, examname: "Exam"),
+                                        username: response[0],
+                                        examname: "Exam",
+                                        email: response[1]),
                                   )),
                         );
                       }

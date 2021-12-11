@@ -389,7 +389,11 @@ class _PremiumState extends State<Premium> {
               String url = await rootBundle.loadString('assets/text/url.txt');
               final prefs = await SharedPreferences.getInstance();
               String? token = prefs.getString("token");
-              print(dropdownValue);
+
+              if (dropdownValue == 'default') {
+                dropdownValue = widget.data.examname;
+              }
+
               final response = await http.get(
                 Uri.parse(
                     '$url/payments/checkout?amount=30&exam=$dropdownValue'),
