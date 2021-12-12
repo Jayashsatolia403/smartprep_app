@@ -1,3 +1,5 @@
+import 'package:app/config.dart';
+import 'package:app/home/home.dart';
 import 'package:app/premium/premium.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +9,37 @@ import 'ad_state.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 
+import 'add_ques/add_ques.dart';
 import 'splashscreen/splashscreen.dart';
+
+List<String> alphabets = <String>[
+  'A',
+  'B',
+  'C',
+  'D',
+  'E',
+  'F',
+  'G',
+  'H',
+  'I',
+  'J',
+  'K',
+  'L',
+  'M',
+  'N',
+  'O',
+  'P',
+  'Q',
+  'R',
+  'S',
+  'T',
+  'U',
+  'V',
+  'W',
+  'X',
+  'Y',
+  'Z'
+];
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -42,6 +74,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<RadioModel> optionsData = <RadioModel>[];
+
+    for (var i = 0; i < 26; i++) {
+      optionsData.add(RadioModel(false, alphabets[i], ""));
+    }
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',

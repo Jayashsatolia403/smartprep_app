@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:app/home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -13,14 +14,6 @@ import 'package:app/config.dart';
 String dropdownValue = 'default';
 
 final List<bool> _selections = List.generate(3, (index) => false);
-
-Future<String> getExamName() async {
-  final prefs = await SharedPreferences.getInstance();
-
-  dropdownValue = prefs.getString("exam_name")!;
-
-  return dropdownValue;
-}
 
 List<Widget> plans = <Widget>[
   Container(
@@ -410,6 +403,13 @@ class _PremiumState extends State<Premium> {
               } else {
                 throw 'Could not launch $url';
               }
+
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => Home(
+                            data: widget.data,
+                          )));
             },
             child: const Text('Pay', style: TextStyle(fontSize: 20)),
             style: ElevatedButton.styleFrom(

@@ -1,10 +1,40 @@
+import 'package:app/add_ques/add_ques.dart';
 import 'package:app/exam_select/select_exam.dart';
-import 'package:app/jee/jee_tests.dart';
+import 'package:app/test_page/tests.dart';
 import 'package:app/premium/premium.dart';
 import 'package:app/profile/profile_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:app/config.dart';
+
+List<String> alphabets = <String>[
+  'A',
+  'B',
+  'C',
+  'D',
+  'E',
+  'F',
+  'G',
+  'H',
+  'I',
+  'J',
+  'K',
+  'L',
+  'M',
+  'N',
+  'O',
+  'P',
+  'Q',
+  'R',
+  'S',
+  'T',
+  'U',
+  'V',
+  'W',
+  'X',
+  'Y',
+  'Z'
+];
 
 String greet() {
   var now = DateTime.now();
@@ -33,6 +63,12 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    List<RadioModel> optionsData = <RadioModel>[];
+
+    for (var i = 0; i < 26; i++) {
+      optionsData.add(RadioModel(false, alphabets[i], ""));
+    }
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.deepPurpleAccent,
@@ -92,6 +128,23 @@ class _HomeState extends State<Home> {
                     MaterialPageRoute(
                         builder: (context) => Premium(
                               data: widget.data,
+                            )));
+              },
+              tileColor: Colors.deepPurpleAccent,
+              // leading: const Icon(Icons.),
+            ),
+            ListTile(
+              title: const Text('Explore Premium',
+                  style: TextStyle(color: Colors.white, fontSize: 17)),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => AddQuestions(
+                              data: widget.data,
+                              val: 2,
+                              quesStatement: "",
+                              optionsData: optionsData,
                             )));
               },
               tileColor: Colors.deepPurpleAccent,
