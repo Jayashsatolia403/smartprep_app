@@ -290,3 +290,22 @@ def bookmark_question(request):
             question_bookmark.save()
     except:
         return Response("Invalid Request")
+
+
+@api_view(['GET', ])
+def get_bookmarked_questions(request):
+    try:
+        user = request.user
+
+        bookmarked_questions = QuestionBookmarks.objects.filter(user=user)
+
+        if not bookmarked_questions:
+            bookmarked_question = QuestionBookmarks(user = request.user)
+            bookmarked_question.save()
+        else:
+            bookmarked_question = bookmarked_questions[0]
+
+        return Response([i.uuid for i in bookmark_question.questions.all()])
+
+    except:
+        return Response("Invalid Request")
