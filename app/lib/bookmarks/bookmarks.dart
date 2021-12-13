@@ -11,18 +11,18 @@ import 'package:http/http.dart' as http;
 import '../ad_state.dart';
 import '../config.dart';
 
-Future<List<dynamic>> getDailyQuestions() async {
+Future<List<dynamic>> getBookmarks() async {
   String url = await rootBundle.loadString('assets/text/url.txt');
+  print(url);
   List<dynamic> allOptions = <dynamic>[];
   List<dynamic> questionStatements = <dynamic>[];
   List<dynamic> result = <dynamic>[];
 
   final prefs = await SharedPreferences.getInstance();
   String? token = prefs.getString("token");
-  String? examName = prefs.getString("exam_name");
 
   final response = await http.get(
-    Uri.parse('$url/get_bookmarked_questions?exam=$examName'),
+    Uri.parse('$url/get_bookmarked_questions'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
       'Authorization': "Token $token"
@@ -47,6 +47,8 @@ Future<List<dynamic>> getDailyQuestions() async {
 
   result.add(questionStatements);
   result.add(allOptions);
+
+  print(result);
 
   return result;
 }
@@ -82,10 +84,10 @@ class _BookmarksState extends State<Bookmarks> {
       });
     }
 
-    Future<List<dynamic>> _dailyQuestions = getDailyQuestions();
+    Future<List<dynamic>> _bookmarks = getBookmarks();
 
     return FutureBuilder<List<dynamic>>(
-        future: _dailyQuestions,
+        future: _bookmarks,
         builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapShot) {
           if (snapShot.hasData) {
             return Scaffold(

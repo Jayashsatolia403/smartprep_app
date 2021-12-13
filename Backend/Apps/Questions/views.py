@@ -294,7 +294,7 @@ def bookmark_question(request):
 
 @api_view(['GET', ])
 def get_bookmarked_questions(request):
-#     try:
+    try:
         user = request.user
 
         bookmarked_questions = QuestionBookmarks.objects.filter(user=user)
@@ -305,7 +305,7 @@ def get_bookmarked_questions(request):
         else:
             bookmarked_question = bookmarked_questions[0]
 
-        return Response([i.uuid for i in bookmark_question.questions.all()])
+        return Response([i.uuid for i in bookmarked_question.questions.all()])
 
-#     except:
-#         return Response("Invalid Request")
+    except:
+        return Response("Invalid Request")

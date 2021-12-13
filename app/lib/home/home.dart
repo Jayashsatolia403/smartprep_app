@@ -1,4 +1,5 @@
 import 'package:app/add_ques/add_ques.dart';
+import 'package:app/bookmarks/bookmarks.dart';
 import 'package:app/exam_select/select_exam.dart';
 import 'package:app/test_page/tests.dart';
 import 'package:app/premium/premium.dart';
@@ -134,7 +135,7 @@ class _HomeState extends State<Home> {
               // leading: const Icon(Icons.),
             ),
             ListTile(
-              title: const Text('Explore Premium',
+              title: const Text('Add Question',
                   style: TextStyle(color: Colors.white, fontSize: 17)),
               onTap: () {
                 Navigator.push(
@@ -145,6 +146,20 @@ class _HomeState extends State<Home> {
                               val: 2,
                               quesStatement: "",
                               optionsData: optionsData,
+                            )));
+              },
+              tileColor: Colors.deepPurpleAccent,
+              // leading: const Icon(Icons.),
+            ),
+            ListTile(
+              title: const Text('Bookmarks',
+                  style: TextStyle(color: Colors.white, fontSize: 17)),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => Bookmarks(
+                              data: widget.data,
                             )));
               },
               tileColor: Colors.deepPurpleAccent,
