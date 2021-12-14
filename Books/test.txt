@@ -1,0 +1,31 @@
+Which of the following combinations has the dimension of electrical resistance ( $\varepsilon_{0}$ is the permittivity of vacuum and $\mu_{0}$ is the permeability of vacuum)?
+(a) $\sqrt{\frac{\mu_{0}}{\varepsilon_{0}}}$
+(b) $\frac{\mu_{0}}{\varepsilon_{0}}$
+(2019 Main, 12 April II)
+In the formula $X=5 Y Z^{2}, X$ and $Z$ have dimensions of capacitance and magnetic field, respectively. What are the dimensions of $Y$ in SI units? $\quad$ (2019 Main, 10 April II)
+(a) $\left[\mathrm{M}^{-1} \mathrm{~L}^{-2} \mathrm{~T}^{4} \mathrm{~A}^{2}\right]$
+(b) $\left[\mathrm{M}^{-2} \mathrm{~L}^{0} \mathrm{~T}^{-4} \mathrm{~A}^{-2}\right]$
+(c) $\left[\mathrm{M}^{-3} \mathrm{~L}^{-2} \mathrm{~T}^{8} \mathrm{~A}^{4}\right]$
+(d) $\left[\mathrm{M}^{-2} \mathrm{~L}^{-2} \mathrm{~T}^{6} \mathrm{~A}^{3}\right]$
+If surface tension $(S)$, moment of inertia $(I)$ and Planck's constant $(h)$, were to be taken as the fundamental units, the dimensional formula for linear momentum would be
+(2019 Main, 8 April II)
+(a) $S^{1 / 2} I^{1 / 2} h^{-1}$
+(b) $S^{3 / 2} I^{1 / 2} h^{0}$
+(c) $S^{1 / 2} I^{1 / 2} h^{0}$
+(d) $S^{1 / 2} I^{3 / 2} h^{-1}$
+In SI units, the dimensions of $\sqrt{\frac{\varepsilon_{0}}{\mu_{0}}}$ is
+(a) $\left[\mathrm{A}^{-1} \mathrm{TML}^{3}\right]$
+(b) $\left[\mathrm{A} \mathrm{T}^{2} \mathrm{M}^{-1} \mathrm{~L}^{-1}\right]$
+(c) $\left[\mathrm{AT}^{-3} \mathrm{ML}^{3 / 2}\right]$
+(d) $\left[\mathrm{A}^{2} \mathrm{I}^{3} \mathrm{M}^{-1} \mathrm{~L}^{-2}\right]$
+Let $l, r, c$, and $v$ represent inductance, resistance, capacitance and voltage, respectively. The dimension of $\frac{l}{r c v}$ in SI units will be
+(a) $\left[\mathrm{LT}^{2}\right]$
+(b) [LTA]
+(c) $\left[\mathrm{A}^{-1}\right]$
+(2019 Main, 12 Jan I)
+If speed $(V)$, acceleration $(A)$ and force $(F)$ are considered as fundamental units, the dimension of Young's modulus will be
+(a) $\left[\mathrm{V}^{4} \mathrm{~A}^{-2} \mathrm{~F}\right]$
+(2019 Main, 11 Jan II)
+(c) $\left[\mathrm{V}^{-2} \mathrm{~A}^{2} \mathrm{~F}^{-2}\right]$
+(b) $\left[\mathrm{V}^{-2} \mathrm{~A}^{2} \mathrm{~F}^{2}\right]$
+(d) $\left[\mathrm{V}^{4} \mathrm{~A}^{2} \mathrm{~F}\right]$ 

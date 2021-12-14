@@ -1,6 +1,7 @@
 import 'package:app/config.dart';
 import 'package:app/home/home.dart';
 import 'package:app/premium/premium.dart';
+import 'package:app/rate/rate_question.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -84,7 +85,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(primarySwatch: white, fontFamily: 'OpenSans'),
-      home: const Splash(),
+      home: const RateQuestion(),
     );
   }
 }

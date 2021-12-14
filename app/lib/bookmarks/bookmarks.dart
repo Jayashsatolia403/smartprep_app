@@ -48,8 +48,6 @@ Future<List<dynamic>> getBookmarks() async {
   result.add(questionStatements);
   result.add(allOptions);
 
-  print(result);
-
   return result;
 }
 
@@ -63,27 +61,27 @@ class Bookmarks extends StatefulWidget {
 }
 
 class _BookmarksState extends State<Bookmarks> {
+  BannerAd? banner;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final adState = Provider.of<AdState>(context);
+
+    adState.initialization.then((status) {
+      setState(() {
+        banner = BannerAd(
+            adUnitId: adState.bannerAdUnitId,
+            size: const AdSize(height: 150, width: 360),
+            request: const AdRequest(),
+            listener: adState.listener)
+          ..load();
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    BannerAd? banner;
-
-    @override
-    void didChangeDependencies() {
-      super.didChangeDependencies();
-      final adState = Provider.of<AdState>(context);
-
-      adState.initialization.then((status) {
-        setState(() {
-          banner = BannerAd(
-              adUnitId: adState.bannerAdUnitId,
-              size: const AdSize(height: 150, width: 360),
-              request: const AdRequest(),
-              listener: adState.listener)
-            ..load();
-        });
-      });
-    }
-
     Future<List<dynamic>> _bookmarks = getBookmarks();
 
     return FutureBuilder<List<dynamic>>(
