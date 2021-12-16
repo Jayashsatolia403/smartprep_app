@@ -1,4 +1,5 @@
 import 'package:app/rate/rate_question.dart';
+import 'package:app/splashscreen/splashscreen.dart';
 import 'package:app/tests/quiz_template.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -80,13 +81,14 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(primarySwatch: white, fontFamily: 'OpenSans'),
-        home: CustomRadio(
-            statement: r'$(\frac{1+i}{1-i})^{n}=1$',
-            options: const [
-              [r'ja', false],
-              [r'$n=40$ and ${Re}(z)=10$', false],
-              [r'$n=40$ and ${Re}(z)=-10$', true],
-              [r'$n=20$ and ${Re}(z)=10$', false]
-            ]));
+        home: const Splash());
   }
 }
+// CustomRadio(
+//             statement: r'$(\frac{1+i}{1-i})^{n}=1$',
+//             options: const [
+//               [r'ja', false],
+//               [r'$n=40$ and ${Re}(z)=10$', false],
+//               [r'$n=40$ and ${Re}(z)=-10$', true],
+//               [r'$n=20$ and ${Re}(z)=10$', false]
+//             ])

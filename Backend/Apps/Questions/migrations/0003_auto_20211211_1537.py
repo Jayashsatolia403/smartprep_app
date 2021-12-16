@@ -230,31 +230,57 @@ def load_initial_data(apps, schema_editor):
 
     correctOptions = [True, False, False, False]
 
-    for count in range(15):
-        for i in subjects:
+    maths_file = open(r"/maths.txt")
 
-            random.shuffle(correctOptions)
+    good_data = []
+
+    while True:
+        statement = maths_file.readline()
+        
+        if not statement:
+            break
+        else:
+            a = maths_file.readline()
+            b = maths_file.readline()
+            c = maths_file.readline()
+            d = maths_file.readline()
+
+
+        data = {"options" : [a, b, c, d],
+                'statement' : statement}
+
+        good_data.append(data)
+
+        maths_file.readline()
+        maths_file.readline()
+
+    for i in subjects:
+
+        random.shuffle(correctOptions)
+        random.shuffle(good_data)
+
+        for data in good_data:
 
             a = Options(
-                content=">>$$${} : This is a sample option A for testing purpose. Try Selecting Any Option and See Magic.$$$<<".format(i[0]),
+                content= data["options"][0],
                 isCorrect=correctOptions[0]
             )
             a.save()
 
             b = Options(
-                content=">>$$${} : This is a sample option B for testing purpose. Try Selecting Any Option and See Magic.$$$<<".format(i[0]),
+                content=data["options"][1],
                 isCorrect=correctOptions[1]
             )
             b.save()
 
             c = Options(
-                content=">>$$${} : This is a sample option C for testing purpose. Try Selecting Any Option and See the Magic.$$$<<".format(i[0]),
+                content=data["options"][2],
                 isCorrect=correctOptions[2]
             )
             c.save()
 
             d = Options(
-                content=">>$$${} : This is a sample option D for testing purpose. Try Selecting Any Option and See the Magic.$$$<<".format(i[0]),
+                content=data["options"][3],
                 isCorrect=correctOptions[3]
             )
             d.save()
@@ -262,8 +288,8 @@ def load_initial_data(apps, schema_editor):
 
             question = Questions(
                 uuid=str(uuid.uuid4()),
-                statement="{} : This is sample question {}. You can choose any Option from given 4 and Correct Answers will be Highlighted by Blue and Incorrect will be highlighted by Red Color".format(i[0],str(count)),
-                subject="{}".format(i[0]),
+                statement=data["statement"],
+                subject=i[0],
                 ratings=5,
                 isExpert=True,
                 difficulty=5
