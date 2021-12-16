@@ -230,7 +230,7 @@ def load_initial_data(apps, schema_editor):
 
     correctOptions = [True, False, False, False]
 
-    maths_file = open(r"/maths.txt")
+    maths_file = open(r"/app/maths.txt")
 
     good_data = []
 
