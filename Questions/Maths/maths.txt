@@ -1,0 +1,36 @@
+1 Let $z \in C$ with ${Im}(z)=10$ and it satisfies $\frac{2 z-n}{2 z+n}=2 i-1$ for some natural number $n$, then 
+(a) $n=20$ and ${Re}(z)=-10$
+(b) $n=40$ and ${Re}(z)=10$
+(c) $n=40$ and ${Re}(z)=-10$
+(d) $n=20$ and ${Re}(z)=10$
+
+
+2 All the points in the set $S=\left\{\frac{\alpha+i}{\alpha-i}: \alpha \in \mathbf{R}\right\}(i=\sqrt{-1})$ lie on a
+(a) circle whose radius is $\sqrt{2}$.
+(2019 Main, 9 April I)
+(b) straight line whose slope is $-1$
+(c) circle whose radius is $1 .$
+(d) straight line whose slope is 1 .
+
+
+3 Let $z \in C$ be such that $|z|<1$. If $\omega=\frac{5+3 z}{5(1-z)}$, then
+(a) $4 {Im}(\omega)>5$
+(b) $5 {Re}(\omega)>1$
+(c) $5 {Im}(\omega)<1$
+(d) $5 {Re}(\omega)>4$
+
+
+$4 {Let}\left(-2-\frac{1}{3} i\right)^{3}=\frac{x+i y}{27}(i=\sqrt{-1})$, where $x$ and $y$ are real numbers, then $y-x$ equals
+(a) 91
+(b) 85
+(c) $-85$
+(d) $-91$
+
+
+
+$\left.\begin{array}{l}\text { (d) }-91 \\ \text { rely imaginary }\end{array}\right\}$
+Then, the sum of the elements in $A$ is (2019 Main, 9 Jan I)
+(a) $\frac{3 \pi}{4}$
+(b) $\frac{5 \pi}{6}$
+(c) $\pi$
+(d) $\frac{2 \pi}{3}$

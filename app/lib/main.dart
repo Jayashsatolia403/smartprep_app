@@ -1,17 +1,10 @@
-import 'package:app/config.dart';
-import 'package:app/home/home.dart';
-import 'package:app/premium/premium.dart';
-import 'package:app/rate/rate_question.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:app/splashscreen/splashscreen.dart';
 import 'package:flutter/material.dart';
 
 import 'ad_state.dart';
 
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
-
-import 'add_ques/add_ques.dart';
-import 'splashscreen/splashscreen.dart';
 
 List<String> alphabets = <String>[
   'A',
@@ -75,17 +68,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<RadioModel> optionsData = <RadioModel>[];
+    // List<RadioModel> optionsData = <RadioModel>[];
 
-    for (var i = 0; i < 26; i++) {
-      optionsData.add(RadioModel(false, alphabets[i], ""));
-    }
+    // for (var i = 0; i < 26; i++) {
+    //   optionsData.add(RadioModel(false, alphabets[i], ""));
+    // }
 
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(primarySwatch: white, fontFamily: 'OpenSans'),
-      home: const RateQuestion(),
-    );
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(primarySwatch: white, fontFamily: 'OpenSans'),
+        home: const Splash());
   }
 }

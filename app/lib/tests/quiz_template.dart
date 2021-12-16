@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:katex_flutter/katex_flutter.dart';
 
 import 'package:provider/provider.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -15,11 +16,12 @@ class RadioModel {
 }
 
 class CustomRadio extends StatefulWidget {
-  const CustomRadio({Key? key, required this.options, required this.statement})
+  CustomRadio({Key? key, required this.options, required this.statement})
       : super(key: key);
 
   final List<dynamic> options;
-  final String statement;
+  // ignore: prefer_typing_uninitialized_variables
+  var statement;
 
   @override
   createState() {
@@ -115,12 +117,11 @@ class CustomRadioState extends State<CustomRadio> {
                 Padding(
                     padding: const EdgeInsets.only(
                         left: 15, top: 20, right: 15, bottom: 30),
-                    child: Text(
-                      widget.statement,
-                      style: const TextStyle(
-                        fontSize: 18,
-                      ),
-                      // textAlign: TextAlign.left,
+                    child: KaTeX(
+                      laTeXCode: Text(widget.statement,
+                          style: const TextStyle(
+                            fontSize: 18,
+                          )),
                     )),
                 InkWell(
                   highlightColor: Colors.red,
@@ -186,8 +187,9 @@ class RadioItem extends StatelessWidget {
             child: Center(
               child: Text(_item.buttonText,
                   style: TextStyle(
-                      color: _item.isSelected ? Colors.white : Colors.black,
-                      //fontWeight: FontWeight.bold,
+                      color: _item.isSelected || _item.isCorrect
+                          ? Colors.white
+                          : Colors.black,
                       fontSize: 18.0)),
             ),
             decoration: BoxDecoration(
@@ -217,18 +219,10 @@ class RadioItem extends StatelessWidget {
           ),
           const SizedBox(width: 20),
           Expanded(
-            child: Text(_item.text,
+              child: KaTeX(
+            laTeXCode: Text(_item.text,
                 style: TextStyle(
                   fontSize: 17,
-                  // backgroundColor: (() {
-                  //   if (!_item.isCorrect && _item.isSelected) {
-                  //     return Colors.red;
-                  //   } else if (_item.isCorrect) {
-                  //     return Colors.lightBlueAccent;
-                  //   } else {
-                  //     return Colors.white;
-                  //   }
-                  // }()),
                   color: (() {
                     if (!_item.isCorrect && _item.isSelected) {
                       return Colors.red;
@@ -239,7 +233,7 @@ class RadioItem extends StatelessWidget {
                     }
                   }()),
                 )),
-          )
+          ))
         ],
       ),
     );
