@@ -28,14 +28,14 @@ def getAllForumMessages(request):
             if request.user == i.sender:
                 result.append({
                     'text': i.text,
-                    'side': 'left',
+                    'side': 'right',
                     'time': i.time,
                     'sender': i.sender.name
                 })
             else:
                 result.append({
                     'text': i.text,
-                    'side': 'right',
+                    'side': 'left',
                     'time': i.time,
                     'sender': i.sender.name
                 })
