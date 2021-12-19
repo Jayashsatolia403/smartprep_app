@@ -48,14 +48,10 @@ def getAllForumMessages(request):
 
 @api_view(['POST', ])
 def sendForumMessage(request):
-<<<<<<< HEAD
-#     try:
-=======
     try:
         forumName = request.data['forum']
 
 
->>>>>>> c7a510f (fixed sendForumMessage method)
         serializer = ForumMessageSerializer(data=request.data, context={'request': request})
     
         print(request.POST)
@@ -71,8 +67,8 @@ def sendForumMessage(request):
             return Response("Success")
         else:
             return "Oops"
-#     except:
-#         return Response("Invalid Request")
+    except:
+        return Response("Invalid Request")
     
 
 
