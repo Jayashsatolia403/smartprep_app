@@ -50,6 +50,8 @@ def getAllForumMessages(request):
 def sendForumMessage(request):
 #     try:
         serializer = ForumMessageSerializer(data=request.data, context={'request': request})
+    
+        print(request.POST)
 
         forumName = request.POST['forum']
         forum = Forum.objects.get(name = forumName)
