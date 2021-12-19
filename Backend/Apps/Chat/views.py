@@ -39,7 +39,7 @@ def getAllForumMessages(request):
 
         result = sorted(result, key= lambda i: i['time'])
 
-        result.reverse()
+        # result.reverse()
 
         return Response(result)
     except:
