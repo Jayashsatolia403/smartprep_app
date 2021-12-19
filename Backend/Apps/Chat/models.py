@@ -1,4 +1,3 @@
-from django.core.checks import messages
 from django.db import models
 
 from Apps.User.models import User

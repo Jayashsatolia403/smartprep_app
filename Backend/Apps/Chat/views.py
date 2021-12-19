@@ -16,7 +16,7 @@ def getAllForumMessages(request):
         result = []
 
         forumName = request.GET['forum']
-        forum = Forum.objects.get(forumName)
+        forum = Forum.objects.get(name=forumName)
 
         messages = list(forum.messages.all())
 

@@ -1,7 +1,4 @@
-import 'package:app/rate/rate_question.dart';
 import 'package:app/splashscreen/splashscreen.dart';
-import 'package:app/tests/quiz_template.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'ad_state.dart';
@@ -9,34 +6,7 @@ import 'ad_state.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 
-List<String> alphabets = <String>[
-  'A',
-  'B',
-  'C',
-  'D',
-  'E',
-  'F',
-  'G',
-  'H',
-  'I',
-  'J',
-  'K',
-  'L',
-  'M',
-  'N',
-  'O',
-  'P',
-  'Q',
-  'R',
-  'S',
-  'T',
-  'U',
-  'V',
-  'W',
-  'X',
-  'Y',
-  'Z'
-];
+import 'package:app/forum /messages.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -71,24 +41,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // List<RadioModel> optionsData = <RadioModel>[];
-
-    // for (var i = 0; i < 26; i++) {
-    //   optionsData.add(RadioModel(false, alphabets[i], ""));
-    // }
-
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(primarySwatch: white, fontFamily: 'OpenSans'),
-        home: const Splash());
+        home: const Messages(
+          forumname: "IAS",
+        ));
   }
 }
-// CustomRadio(
-//             statement: r'$(\frac{1+i}{1-i})^{n}=1$',
-//             options: const [
-//               [r'ja', false],
-//               [r'$n=40$ and ${Re}(z)=10$', false],
-//               [r'$n=40$ and ${Re}(z)=-10$', true],
-//               [r'$n=20$ and ${Re}(z)=10$', false]
-//             ])
