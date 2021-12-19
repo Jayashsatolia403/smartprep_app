@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         theme: ThemeData(primarySwatch: white, fontFamily: 'OpenSans'),
         home: const Messages(
-          forumname: "IAS",
+          forumname: "ias",
         ));
   }
 }

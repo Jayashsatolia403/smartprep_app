@@ -37,6 +37,9 @@ def getAllForumMessages(request):
                     'sender': i.sender.name
                 })
 
+        result = sorted(result, key= lambda i: i['time'])
+
+        result.reverse()
 
         return Response(result)
     except:
@@ -45,7 +48,7 @@ def getAllForumMessages(request):
 
 @api_view(['POST', ])
 def sendForumMessage(request):
-    # try:
+    try:
         serializer = ForumMessageSerializer(data=request.data, context={'request': request})
 
         forumName = request.POST['forum']
@@ -60,8 +63,8 @@ def sendForumMessage(request):
             return Response("Success")
         else:
             return "Oops"
-    # except:
-    #     return Response("Invalid Request")
+    except:
+        return Response("Invalid Request")
     
 
 
