@@ -19,9 +19,6 @@ def getAllForumMessages(request):
         forum = Forum.objects.get(name=forumName)
 
         messages = list(forum.messages.all())
-
-
-        messages.reverse()
         messages = messages[:50]
 
         for i in messages:
