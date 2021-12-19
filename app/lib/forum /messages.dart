@@ -27,7 +27,7 @@ Future<List<ChatMessage>> getMessages(String forumName) async {
 
   final prefs = await SharedPreferences.getInstance();
 
-  String token = prefs.getString('token') ?? "NA";
+  String token = "28eb736ff593553acbe21c3ea5cc8a6b21a46a93";
 
   final response = await http.get(
     Uri.parse('$url/getAllForumMessages?forum=$forumName'),
@@ -52,6 +52,25 @@ Future<List<ChatMessage>> getMessages(String forumName) async {
   return messages;
 }
 
+void sendMessage(String message, String forum) async {
+  String url = await rootBundle.loadString('assets/text/url.txt');
+
+  final prefs = await SharedPreferences.getInstance();
+
+  String token = "28eb736ff593553acbe21c3ea5cc8a6b21a46a93";
+
+  final response = await http.post(
+    Uri.parse('$url/sendForumMessage/'),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+      'Authorization': "Token $token"
+    },
+    body: jsonEncode(<String, String>{'text': message, 'forum': "ias"}),
+  );
+
+  print(jsonDecode(response.body));
+}
+
 class Messages extends StatefulWidget {
   const Messages({Key? key, required this.forumname}) : super(key: key);
 
@@ -63,7 +82,7 @@ class Messages extends StatefulWidget {
 
 class MessagesState extends State<Messages> {
   final Future<List<ChatMessage>> _getMessages = getMessages("ias");
-  List<String> list = ["a", "b", "c"];
+  String message = "";
 
   @override
   Widget build(BuildContext context) {
@@ -143,9 +162,12 @@ class MessagesState extends State<Messages> {
                                 const SizedBox(
                                   width: 15,
                                 ),
-                                const Expanded(
+                                Expanded(
                                   child: TextField(
-                                    decoration: InputDecoration(
+                                    onChanged: (text) {
+                                      message = text;
+                                    },
+                                    decoration: const InputDecoration(
                                         hintText: "Write message...",
                                         hintStyle:
                                             TextStyle(color: Colors.black54),
@@ -156,7 +178,14 @@ class MessagesState extends State<Messages> {
                                   width: 15,
                                 ),
                                 FloatingActionButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    sendMessage(message, widget.forumname);
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => Messages(
+                                                forumname: widget.forumname)));
+                                  },
                                   child: const Icon(
                                     Icons.send,
                                     color: Colors.white,

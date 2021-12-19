@@ -48,12 +48,18 @@ def getAllForumMessages(request):
 
 @api_view(['POST', ])
 def sendForumMessage(request):
+<<<<<<< HEAD
 #     try:
+=======
+    try:
+        forumName = request.data['forum']
+
+
+>>>>>>> c7a510f (fixed sendForumMessage method)
         serializer = ForumMessageSerializer(data=request.data, context={'request': request})
     
         print(request.POST)
 
-        forumName = request.POST['forum']
         forum = Forum.objects.get(name = forumName)
 
         if serializer.is_valid():
