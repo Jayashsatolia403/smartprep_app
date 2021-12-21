@@ -21,5 +21,6 @@ urlpatterns = [
     path('', include('Apps.User.urls')),
     path('', include('Apps.Questions.urls')),
     path('payments/', include('Apps.Membership.urls')),
-    path('', include('Apps.Chat.urls'))
+    path('', include('Apps.Chat.urls')),
+    path('', include('Apps.Article.urls'))
 ]

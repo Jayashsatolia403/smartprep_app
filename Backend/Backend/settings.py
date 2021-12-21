@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'Apps.User',
     'Apps.Questions',
     'Apps.Chat',
-    'Apps.Membership'
+    'Apps.Membership',
+    'Apps.Article'
 ]
 
 
