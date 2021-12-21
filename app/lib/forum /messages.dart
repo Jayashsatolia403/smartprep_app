@@ -27,7 +27,7 @@ Future<List<ChatMessage>> getMessages(String forumName) async {
 
   final prefs = await SharedPreferences.getInstance();
 
-  String token = "28eb736ff593553acbe21c3ea5cc8a6b21a46a93";
+  String token = prefs.getString("token") ?? "NA";
 
   final response = await http.get(
     Uri.parse('$url/getAllForumMessages?forum=$forumName'),
@@ -57,18 +57,19 @@ void sendMessage(String message, String forum) async {
 
   final prefs = await SharedPreferences.getInstance();
 
-  String token = "28eb736ff593553acbe21c3ea5cc8a6b21a46a93";
+  String token = prefs.getString("token") ?? "NA";
 
-  final response = await http.post(
+  await http.post(
     Uri.parse('$url/sendForumMessage/'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
       'Authorization': "Token $token"
     },
-    body: jsonEncode(<String, String>{'text': message, 'forum': "ias"}),
+    body: jsonEncode(<String, String>{
+      'text': message,
+      'forum': forum,
+    }),
   );
-
-  print(jsonDecode(response.body));
 }
 
 class Messages extends StatefulWidget {
@@ -81,11 +82,16 @@ class Messages extends StatefulWidget {
 }
 
 class MessagesState extends State<Messages> {
-  final Future<List<ChatMessage>> _getMessages = getMessages("ias");
-  String message = "";
-
   @override
   Widget build(BuildContext context) {
+    final Future<List<ChatMessage>> _getMessages =
+        getMessages(widget.forumname);
+
+    String message = "";
+
+    final ScrollController _scrollController =
+        ScrollController(initialScrollOffset: 9999999);
+
     return FutureBuilder<List<ChatMessage>>(
         future: _getMessages,
         builder:
@@ -99,6 +105,7 @@ class MessagesState extends State<Messages> {
                   children: [
                     Expanded(
                       child: ListView.builder(
+                        controller: _scrollController,
                         itemCount: snapShot.data!.length,
                         shrinkWrap: true,
                         padding: const EdgeInsets.only(top: 10, bottom: 10),

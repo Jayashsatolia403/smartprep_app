@@ -8,6 +8,8 @@ import 'package:provider/provider.dart';
 
 import 'package:app/forum /messages.dart';
 
+import 'home/slider.dart';
+
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   final initFuture = MobileAds.instance.initialize();
@@ -45,8 +47,6 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(primarySwatch: white, fontFamily: 'OpenSans'),
-        home: const Messages(
-          forumname: "ias",
-        ));
+        home: const Splash());
   }
 }

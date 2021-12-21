@@ -1,12 +1,14 @@
 import 'package:app/add_ques/add_ques.dart';
 import 'package:app/bookmarks/bookmarks.dart';
 import 'package:app/exam_select/select_exam.dart';
+import 'package:app/forum%20/messages.dart';
+import 'package:app/home/slider.dart';
 import 'package:app/test_page/tests.dart';
 import 'package:app/premium/premium.dart';
 import 'package:app/profile/profile_page.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:app/config.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 List<String> alphabets = <String>[
   'A',
@@ -36,6 +38,23 @@ List<String> alphabets = <String>[
   'Y',
   'Z'
 ];
+
+var examNames = {
+  'IAS': 'ias',
+  'JEE': 'jee',
+  'JEE MAINS': 'jeeMains',
+  'JEE ADV': 'jeeAdv',
+  'NEET': 'neet',
+  'RAS': 'ras',
+  'IBPS PO': 'ibpsPO',
+  'IBPS CLERK': 'ibpsClerk',
+  'SSC CHSL': 'sscCHSL',
+  'SSC CGL': 'sscCGL',
+  'NDA': 'nda',
+  'CDS': 'cds',
+  'CAT': 'cat',
+  'NTPC': 'ntpc'
+};
 
 String greet() {
   var now = DateTime.now();
@@ -165,6 +184,20 @@ class _HomeState extends State<Home> {
               tileColor: Colors.deepPurpleAccent,
               // leading: const Icon(Icons.),
             ),
+            ListTile(
+              title: const Text('Forum',
+                  style: TextStyle(color: Colors.white, fontSize: 17)),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => Messages(
+                            forumname:
+                                examNames[widget.data.examname] ?? "ias")));
+              },
+              tileColor: Colors.deepPurpleAccent,
+              // leading: const Icon(Icons.),
+            ),
           ],
         ),
       ),
@@ -183,6 +216,27 @@ class _HomeState extends State<Home> {
                             fontSize: 17,
                             color: Colors.black,
                           )),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(5, 10, 60, 10),
+                        child: ListTile(
+                          title: Row(
+                            children: [
+                              const Text(
+                                "Featured Articles",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 20),
+                              ),
+                              IconButton(
+                                  onPressed: () {},
+                                  icon: const Icon(
+                                    Icons.arrow_right,
+                                    size: 35,
+                                  ))
+                            ],
+                          ),
+                        ),
+                      ),
+                      HomeSlider(),
                       ElevatedButton(
                         onPressed: () => Navigator.push(
                             context,
