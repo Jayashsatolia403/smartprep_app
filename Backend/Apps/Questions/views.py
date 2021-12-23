@@ -309,3 +309,26 @@ def get_bookmarked_questions(request):
 
     except:
         return Response("Invalid Request")
+
+
+
+
+@api_view(['GET',])
+def host_weekly_competition(request):
+    user = request.user
+
+    if not user or not user.is_superuser:
+        return Response("Invalid Request")
+
+    exam_questions = {
+        "ias": 100,
+        "jeeMains": 90,
+        "jeeAdv": 54,
+        "neet": 180,
+
+    }
+
+    
+    exams = Exams.objects.all()
+
+    # for exam in exams:

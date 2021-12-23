@@ -144,3 +144,12 @@ class PracticeQuestions(models.Model):
 class QuestionBookmarks(models.Model):
     user = models.OneToOneField(User, related_name="bookmarked_user", on_delete=models.CASCADE)
     questions = models.ManyToManyField(Questions, related_name="bookmarked_questions", blank=True)
+
+
+
+class WeeklyCompetitions(models.Model):
+    uuid = models.CharField(max_length=50)
+    questions = models.ManyToManyField(Questions, related_name="competition_questions", blank=True)
+    name = models.CharField(max_length=100)
+    date = models.DateField(auto_now_add=True)
+    exam = models.ManyToManyField(Exams, related_name="competitions_exams", blank=True)

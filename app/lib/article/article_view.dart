@@ -16,17 +16,20 @@ class ArticleViewState extends State<ArticleView> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Center(child: Text(widget.data.title)),
+          title: Text(widget.data.title),
         ),
         body: Column(children: [
           Padding(
-            padding: const EdgeInsets.all(0),
-            child: Text(widget.data.date),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(0),
-            child: Text(widget.data.content),
-          )
+              padding: const EdgeInsets.all(0),
+              child: Padding(
+                  padding: const EdgeInsets.fromLTRB(10, 20, 10, 20),
+                  child: SingleChildScrollView(
+                      scrollDirection: Axis.vertical,
+                      child: Flexible(
+                          child: Text(
+                        widget.data.content,
+                        style: const TextStyle(fontSize: 15),
+                      )))))
         ]));
   }
 }

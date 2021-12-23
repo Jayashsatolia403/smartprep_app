@@ -1,4 +1,5 @@
 import 'package:app/add_ques/add_ques.dart';
+import 'package:app/article/articles_home.dart';
 import 'package:app/bookmarks/bookmarks.dart';
 import 'package:app/exam_select/select_exam.dart';
 import 'package:app/forum%20/messages.dart';
@@ -210,12 +211,22 @@ class _HomeState extends State<Home> {
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
                   child: Column(
                     children: [
-                      Text('$greetMessage ${widget.data.username}',
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            fontSize: 17,
-                            color: Colors.black,
-                          )),
+                      Row(
+                        children: [
+                          Text('$greetMessage ${widget.data.username}',
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                fontSize: 17,
+                                color: Colors.black,
+                              )),
+                          const SizedBox(width: 40),
+                          Image.asset(
+                            'assets/images/brain_bulb.jpg',
+                            width: 40,
+                            height: 45,
+                          )
+                        ],
+                      ),
                       Padding(
                         padding: const EdgeInsets.fromLTRB(5, 10, 60, 10),
                         child: ListTile(
@@ -227,7 +238,13 @@ class _HomeState extends State<Home> {
                                     fontWeight: FontWeight.bold, fontSize: 20),
                               ),
                               IconButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const ArticlesHome()));
+                                  },
                                   icon: const Icon(
                                     Icons.arrow_right,
                                     size: 35,
@@ -236,18 +253,44 @@ class _HomeState extends State<Home> {
                           ),
                         ),
                       ),
-                      HomeSlider(),
-                      ElevatedButton(
-                        onPressed: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => Tests(
-                                      data: widget.data,
-                                    ))),
-                        child: Text("Go to ${widget.data.examname} Section"),
-                        style: ButtonStyle(
-                            foregroundColor:
-                                MaterialStateProperty.all<Color>(Colors.black)),
+                      const HomeSlider(),
+                      Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 25, 0, 5),
+                          child: ListTile(
+                            title: const Text(
+                              "Activities for you",
+                              style: TextStyle(
+                                  fontSize: 23, fontWeight: FontWeight.bold),
+                            ),
+                            tileColor: Colors.grey[200],
+                          )),
+                      const ListTile(
+                        title: Text(
+                          "Quote of the Day",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                        subtitle:
+                            Text("Intelligence is Ability to Adapt Change."),
+                      ),
+                      ListTile(
+                        title: const Text(
+                          "Question of the day",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                        tileColor: Colors.blue[100],
+                      ),
+                      ListTile(
+                        title: const Text("Go to Practice Section"),
+                        leading: const Icon(Icons.book),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Tests(
+                                        data: widget.data,
+                                      )));
+                        },
+                        tileColor: Colors.cyan[100],
                       )
                     ],
                   ))
