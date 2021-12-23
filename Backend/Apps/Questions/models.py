@@ -151,5 +151,6 @@ class WeeklyCompetitions(models.Model):
     uuid = models.CharField(max_length=50)
     questions = models.ManyToManyField(Questions, related_name="competition_questions", blank=True)
     name = models.CharField(max_length=100)
-    date = models.DateField(auto_now_add=True)
+    round = models.IntegerField(default=0)
+    date_time = models.DateTimeField(auto_now_add=True)
     exam = models.ManyToManyField(Exams, related_name="competitions_exams", blank=True)

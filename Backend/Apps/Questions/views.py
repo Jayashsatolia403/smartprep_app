@@ -1,10 +1,12 @@
+from django.db.models.fields.json import ContainedBy
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
+from rest_framework import status
 
 from rest_framework.response import Response
 
 from .serializers import AddOptionsSerializer, AddQuestionSerializer
-from .models import DailyQuestions, Exams, QuestionBookmarks, Questions, QuestionsOfTheDays, Subjects, PracticeQuestions, PrevQuesOfDays
+from .models import DailyQuestions, Exams, QuestionBookmarks, Questions, QuestionsOfTheDays, Subjects, PracticeQuestions, PrevQuesOfDays, WeeklyCompetitions
 
 from datetime import datetime
 import random
@@ -16,101 +18,105 @@ import random
 @permission_classes([IsAuthenticated])
 @api_view(['GET', ])
 def getDailyQuestions(request):
+    try:
 
-    result = []
-    user = request.user
-    examTitle = request.GET['exam']
-    exam = Exams.objects.get(name = examTitle)
+        result = []
+        user = request.user
+        examTitle = request.GET['exam']
+        exam = Exams.objects.get(name = examTitle)
 
-    # Check if user is premium or not
+        # Check if user is premium or not
 
-    if user.membershipOf30 and examTitle in user.premiumExams:
-        if examTitle == "jeeAdv":
-            limit = 25
-        else:
-            limit = 30
-    
-    elif user.membershipOf50 and examTitle in user.premiumExams:
-        if examTitle == "jeeAdv":
-            limit = 50
-        else:
-            limit = 60
-    
-    elif user.membershipOf100 and examTitle in user.premiumExams:
-        if examTitle == "jeeAdv":
-            limit = 100
-        else:
-            limit = 120
-    
-    else:
-        if examTitle == "jeeAdv":
-            limit = 3
-        elif examTitle == "jeeMains":
-            limit = 7
-        else:
-            limit = 10
-
-    date = datetime.today().strftime('%Y-%m-%d')
-
-
-    # COMPLETED: Check If Daily Questions are already assigned for particular User
-
-    availableDailyQuestions = DailyQuestions.objects.filter(user=user, date=date, exam=exam)
-
-    if len(availableDailyQuestions) != 0:
-        questions = availableDailyQuestions[0].questions.all()
+        if user.membershipOf30 and examTitle in user.premiumExams:
+            if examTitle == "jeeAdv":
+                limit = 25
+            else:
+                limit = 30
         
-        for ques in questions:
-            result.append(ques.uuid)
+        elif user.membershipOf50 and examTitle in user.premiumExams:
+            if examTitle == "jeeAdv":
+                limit = 50
+            else:
+                limit = 60
+        
+        elif user.membershipOf100 and examTitle in user.premiumExams:
+            if examTitle == "jeeAdv":
+                limit = 100
+            else:
+                limit = 120
+        
+        else:
+            if examTitle == "jeeAdv":
+                limit = 3
+            elif examTitle == "jeeMains":
+                limit = 7
+            else:
+                limit = 10
 
+        date = datetime.today().strftime('%Y-%m-%d')
+
+
+        # COMPLETED: Check If Daily Questions are already assigned for particular User
+
+        availableDailyQuestions = DailyQuestions.objects.filter(user=user, date=date, exam=exam)
+
+        if len(availableDailyQuestions) != 0:
+            questions = availableDailyQuestions[0].questions.all()
+            
+            for ques in questions:
+                result.append(ques.uuid)
+
+
+            return Response(result[:limit])
+        
+        
+
+
+        subjects = list(exam.subjects.all()) # Access all subject related to exam
+
+        addDailyQuestion = DailyQuestions(user = request.user, date = date, exam = exam) # Add new entry in Daily Questions Table
+        addDailyQuestion.save()
+
+        addPracticeQuestions = PracticeQuestions.objects.filter(user = request.user)
+        if len(addPracticeQuestions) == 0:
+            addPracticeQuestions = PracticeQuestions(user = request.user)
+            addPracticeQuestions.save()
+        else:
+            addPracticeQuestions = addPracticeQuestions[0]
+
+        
+
+
+        perSubjectLimit = limit//len(subjects) # Define Each Subject Limit to Serve Questions
+
+
+        random.shuffle(subjects) # Shuffle Subjects to avoid repeatetions
+        count = 1
+
+        for subject in subjects:
+            questions = subject.questions.exclude(seenBy__id = user.id)[:perSubjectLimit if perSubjectLimit != 0 else 1]
+
+            for ques in questions:
+
+                if count > limit: # Limit Questions
+                    break
+
+                ques.seenBy.add(request.user) # Marking as seen in Questions DB Table
+
+                addDailyQuestion.questions.add(ques) # Storing Questions to show as Prev Seen Questions
+
+                addPracticeQuestions.questions.add(ques) # Adding Questions to Use as Practice Questions
+
+                result.append(ques.uuid) # Add UUID of Questions
+                
+                count += 1
+
+            
 
         return Response(result[:limit])
-    
-    
 
-
-    subjects = list(exam.subjects.all()) # Access all subject related to exam
-
-    addDailyQuestion = DailyQuestions(user = request.user, date = date, exam = exam) # Add new entry in Daily Questions Table
-    addDailyQuestion.save()
-
-    addPracticeQuestions = PracticeQuestions.objects.filter(user = request.user)
-    if len(addPracticeQuestions) == 0:
-        addPracticeQuestions = PracticeQuestions(user = request.user)
-        addPracticeQuestions.save()
-    else:
-        addPracticeQuestions = addPracticeQuestions[0]
-
-    
-
-
-    perSubjectLimit = limit//len(subjects) # Define Each Subject Limit to Serve Questions
-
-
-    random.shuffle(subjects) # Shuffle Subjects to avoid repeatetions
-    count = 1
-
-    for subject in subjects:
-        questions = subject.questions.exclude(seenBy__id = user.id)[:perSubjectLimit if perSubjectLimit != 0 else 1]
-
-        for ques in questions:
-
-            if count > limit: # Limit Questions
-                break
-
-            ques.seenBy.add(request.user) # Marking as seen in Questions DB Table
-
-            addDailyQuestion.questions.add(ques) # Storing Questions to show as Prev Seen Questions
-
-            addPracticeQuestions.questions.add(ques) # Adding Questions to Use as Practice Questions
-
-            result.append(ques.uuid) # Add UUID of Questions
-            
-            count += 1
-
-        
-
-    return Response(result[:limit])
+    except:
+        return Response("Invalid Request", status=status.HTTP_400_BAD_REQUEST)
 
 
 
@@ -150,7 +156,7 @@ def addQuestion(request):
         return Response("Success!")
     
     except:
-        return Response("Invalid Request!")
+        return Response("Invalid Request", status=status.HTTP_400_BAD_REQUEST)
 
 
 
@@ -198,7 +204,7 @@ def getQuestionOfTheDay(request):
         return Response("Unknown Error : Don't worry our tech team is working in this issue and will get back to you as soon as possible.")
         
     except:
-        return Response("Invalid Request!")
+        return Response("Error", status=status.HTTP_400_BAD_REQUEST)
 
 
 
@@ -220,7 +226,7 @@ def rateQuestion(request):
         return Response("Success!")
     
     except:
-        return Response("Invalid Request!")
+        return Response("Invalid Request", status=status.HTTP_400_BAD_REQUEST)
 
 
 
@@ -240,7 +246,7 @@ def getQuestionByID(request):
                         "percentCorrect": ques.percentCorrect, "subject": ques.subject})
     
     except:
-        return Response("Invalid UUID")
+        return Response("Invalid UUID", status=status.HTTP_400_BAD_REQUEST)
 
 
 
@@ -259,7 +265,7 @@ def getPracticeQuestions(request):
 
         return Response(result[:int(limit)])
     except:
-        return Response("Error")
+        return Response("Invalid Request", status=status.HTTP_400_BAD_REQUEST)
 
 
 
@@ -289,7 +295,7 @@ def bookmark_question(request):
             question_bookmark.add(question)
             question_bookmark.save()
     except:
-        return Response("Invalid Request")
+        return Response("Invalid Request", status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['GET', ])
@@ -308,7 +314,7 @@ def get_bookmarked_questions(request):
         return Response([i.uuid for i in bookmarked_question.questions.all()])
 
     except:
-        return Response("Invalid Request")
+        return Response("Invalid Request", status=status.HTTP_400_BAD_REQUEST)
 
 
 
@@ -319,9 +325,7 @@ def host_weekly_competition(request):
         user = request.user
 
         if not user or not user.is_superuser:
-            return Response("Invalid Request")
-
-        print("Started Working!")
+            return Response("Invalid Request", status=status.HTTP_400_BAD_REQUEST)
 
         exam_questions = {
             "ias": 100,
@@ -360,22 +364,33 @@ def host_weekly_competition(request):
         exam = exams[0]
 
         for exam in exams:
-            if str(exam.name) not in questions:
+            import uuid
+
+            if exam.name not in questions:
                 continue
 
+            round = WeeklyCompetitions.objects.all()[-1]
+            round = int(round.round)
 
-            subjects = list(exam.subjects.all())
+            competition = WeeklyCompetitions(
+                uuid=str(uuid.uuid4()),
+                name="Smartprep {} Round #{}".format(str(exam.name), str(round+1)),
+                round=round+1,
+                exam=exam
+            )
+
+            competition.save()
+
+
+            subjects = exam.subjects.all()
             
-            limit = exam_questions[str(exam.name)] // len(subjects)
-
-            print(exam_questions[str(exam.name)])
-            print(limit)
+            limit = exam_questions[exam.name] // len(subjects)
 
             count = 0
             idx = 0
 
 
-            for i in range(exam_questions[str(exam.name)]):
+            for i in range(exam_questions[exam.name]):
                 if i >= len(subjects)*(count+1):
                     count += 1
                     idx += 1
@@ -385,16 +400,55 @@ def host_weekly_competition(request):
                 subject = subjects[i]
 
 
-                question = list(subject.questions.all())[idx]
+                question = subject.questions.all()[idx]
                 
-                questions[str(exam.name)].add(question.uuid)
-            
-            print("Done : ", exam.name)
-        
-        print(questions)
+                competition.questions.add(question)
 
+                competition.save()
+
+
+        return Response("Success")
+    
+    except:
+        return Response('Invalid Request', status=status.HTTP_400_BAD_REQUEST)
+
+    
+
+@api_view(['GET',])
+def get_todays_contest(request):
+    try:
+    
+        from datetime import datetime
+
+        exam_name = request.GET['exam']
+        try:
+            exam = Exams.objects.get(name=exam_name)
+        except:
+            return Response("Wrong Exam Name!", status=status.HTTP_400_BAD_REQUEST)
+
+
+        date = datetime.today()
+
+        contest = WeeklyCompetitions.objects.filter(exam=exam, date=date)
+
+        if len(contest) == 0:
+            return Response(
+                "Sorry We don't have any competition for your exam this time but we're working on it and you can expect it very soon from us.", 
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        contest = contest[0]
+
+        questions = []
+
+        for question in contest.questions.all():
+            questions.append(question.uuid)
 
         return Response(questions)
     
     except:
-        return Response('Invalid Request')
+        return Response("Invalid Request", status=status.HTTP_400_BAD_REQUEST)
+
+
+
+  
