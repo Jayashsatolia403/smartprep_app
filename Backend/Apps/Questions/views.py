@@ -315,20 +315,86 @@ def get_bookmarked_questions(request):
 
 @api_view(['GET',])
 def host_weekly_competition(request):
-    user = request.user
+    try:
+        user = request.user
 
-    if not user or not user.is_superuser:
-        return Response("Invalid Request")
+        if not user or not user.is_superuser:
+            return Response("Invalid Request")
 
-    exam_questions = {
-        "ias": 100,
-        "jeeMains": 90,
-        "jeeAdv": 54,
-        "neet": 180,
+        print("Started Working!")
 
-    }
+        exam_questions = {
+            "ias": 100,
+            "jeeMains": 90,
+            "jeeAdv": 54,
+            "neet": 180,
+            "ras": 150,
+            "ibpsPO": 100,
+            "ibpsClerk": 100,
+            "sscCGL": 100,
+            "sscCHSL": 100,
+            "ndaMaths": 120,
+            "ndaGAT": 150,
+            "cat": 90,
+        }
 
+        questions = {
+                "ias": set(),
+                "jeeMains": set(),
+                "jeeAdv": set(),
+                "neet": set(),
+                "ras": set(),
+                "ibpsPO": set(),
+                "ibpsClerk": set(),
+                "sscCGL": set(),
+                "sscCHSL": set(),
+                "ndaMaths": set(),
+                "ndaGAT": set(),
+                "cat": set(),
+            }
+
+
+        
+        exams = Exams.objects.all()
+
+        exam = exams[0]
+
+        for exam in exams:
+            if str(exam.name) not in questions:
+                continue
+
+
+            subjects = list(exam.subjects.all())
+            
+            limit = exam_questions[str(exam.name)] // len(subjects)
+
+            print(exam_questions[str(exam.name)])
+            print(limit)
+
+            count = 0
+            idx = 0
+
+
+            for i in range(exam_questions[str(exam.name)]):
+                if i >= len(subjects)*(count+1):
+                    count += 1
+                    idx += 1
+
+                i = i - len(subjects)*count
+
+                subject = subjects[i]
+
+
+                question = list(subject.questions.all())[idx]
+                
+                questions[str(exam.name)].add(question.uuid)
+            
+            print("Done : ", exam.name)
+        
+        print(questions)
+
+
+        return Response(questions)
     
-    exams = Exams.objects.all()
-
-    # for exam in exams:
+    except:
+        return Response('Invalid Request')
