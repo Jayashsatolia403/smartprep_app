@@ -6,7 +6,7 @@ from rest_framework import status
 from rest_framework.response import Response
 
 from .serializers import AddOptionsSerializer, AddQuestionSerializer
-from .models import DailyQuestions, Exams, QuestionBookmarks, Questions, QuestionsOfTheDays, Subjects, PracticeQuestions, PrevQuesOfDays, WeeklyCompetitions
+from .models import DailyQuestions, Exams, QuestionBookmarks, Questions, QuestionsOfTheDays, Subjects, WeeklyCompetitions
 
 from datetime import datetime
 import random
@@ -77,16 +77,6 @@ def getDailyQuestions(request):
         addDailyQuestion = DailyQuestions(user = request.user, date = date, exam = exam) # Add new entry in Daily Questions Table
         addDailyQuestion.save()
 
-        addPracticeQuestions = PracticeQuestions.objects.filter(user = request.user)
-        if len(addPracticeQuestions) == 0:
-            addPracticeQuestions = PracticeQuestions(user = request.user)
-            addPracticeQuestions.save()
-        else:
-            addPracticeQuestions = addPracticeQuestions[0]
-
-        
-
-
         perSubjectLimit = limit//len(subjects) # Define Each Subject Limit to Serve Questions
 
 
@@ -104,8 +94,6 @@ def getDailyQuestions(request):
                 ques.seenBy.add(request.user) # Marking as seen in Questions DB Table
 
                 addDailyQuestion.questions.add(ques) # Storing Questions to show as Prev Seen Questions
-
-                addPracticeQuestions.questions.add(ques) # Adding Questions to Use as Practice Questions
 
                 result.append(ques.uuid) # Add UUID of Questions
                 
@@ -174,14 +162,12 @@ def getQuestionOfTheDay(request):
             for subject in subjects:
                 for i in subject.questions.all():
                     if (i.ratings > 4.7 and i.difficulty > 4.7) or i.isExpert:
-                        if i not in PrevQuesOfDays.objects.all():
+                        if i not in QuestionsOfTheDays.objects.all():
+                            
                             quesOfDay = QuestionsOfTheDays(date = dateToday)
                             quesOfDay.save()
                             quesOfDay.questions.add(i)
                             quesOfDay.save()
-
-                            savePrevQues = PrevQuesOfDays(question=i)
-                            savePrevQues.save()
 
                             break
 
@@ -197,7 +183,7 @@ def getQuestionOfTheDay(request):
             for ques in questions:
                 if ques.subject == subject:
                     return Response({"uuid": ques.uuid, "statement": ques.statement, 
-                            "options": [(z.content, z.isCorrect) for z in ques.options.all()], 
+                            "options": [(z.content, z.isCorrect, z.uuid) for z in ques.options.all()], 
                             "ratings": ques.ratings, "difficulty" : ques.difficulty, 
                             "percentCorrect": ques.percentCorrect, "subject": subject})
 
@@ -242,7 +228,7 @@ def getQuestionByID(request):
 
         return Response({"uuid": ques.uuid, "statement": ques.statement, 
                         "ratings": ques.ratings, "difficulty" : ques.difficulty, 
-                        "options": [(z.content, z.isCorrect) for z in ques.options.all()], 
+                        "options": [(z.content, z.isCorrect, z.uuid) for z in ques.options.all()], 
                         "percentCorrect": ques.percentCorrect, "subject": ques.subject})
     
     except:
@@ -254,10 +240,11 @@ def getQuestionByID(request):
 def getPracticeQuestions(request):
     try:
         limit = request.GET['limit']
+        exam = request.GET['exam']
 
         result = []
 
-        prevQuesObjects = PracticeQuestions.objects.filter(user=request.user)
+        prevQuesObjects = DailyQuestions.objects.filter(user=request.user, exam=exam)
 
         for i in prevQuesObjects:
             for ques in i.questions.all():
@@ -321,7 +308,7 @@ def get_bookmarked_questions(request):
 
 @api_view(['GET',])
 def host_weekly_competition(request):
-    try:
+    # try:
         user = request.user
 
         if not user or not user.is_superuser:
@@ -369,8 +356,12 @@ def host_weekly_competition(request):
             if exam.name not in questions:
                 continue
 
-            round = WeeklyCompetitions.objects.all()[-1]
-            round = int(round.round)
+            round = WeeklyCompetitions.objects.all()
+            if len(round) == 0:
+                round = 0
+            else:
+                round = round[len(round)-1]
+                round = int(round.round)
 
             competition = WeeklyCompetitions(
                 uuid=str(uuid.uuid4()),
@@ -409,14 +400,14 @@ def host_weekly_competition(request):
 
         return Response("Success")
     
-    except:
-        return Response('Invalid Request', status=status.HTTP_400_BAD_REQUEST)
+    # except:
+    #     return Response('Invalid Request', status=status.HTTP_400_BAD_REQUEST)
 
     
 
 @api_view(['GET',])
 def get_todays_contest(request):
-    try:
+    # try:
     
         from datetime import datetime
 
@@ -429,7 +420,7 @@ def get_todays_contest(request):
 
         date = datetime.today()
 
-        contest = WeeklyCompetitions.objects.filter(exam=exam, date=date)
+        contest = WeeklyCompetitions.objects.filter(exam=exam)
 
         if len(contest) == 0:
             return Response(
@@ -446,9 +437,5 @@ def get_todays_contest(request):
 
         return Response(questions)
     
-    except:
-        return Response("Invalid Request", status=status.HTTP_400_BAD_REQUEST)
-
-
-
-  
+    # except:
+    #     return Response("Invalid Request", status=status.HTTP_400_BAD_REQUEST)

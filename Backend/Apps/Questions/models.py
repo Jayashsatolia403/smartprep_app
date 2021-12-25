@@ -5,6 +5,7 @@ from django.contrib.postgres.fields import ArrayField
 
 
 class Options(models.Model):
+    uuid = models.CharField(max_length=50)
     content = models.CharField(max_length=1000)
     isCorrect = models.BooleanField(default=False)
 
@@ -90,7 +91,7 @@ class Subjects(models.Model):
             ("financeAndAccounts", "financeAndAccounts"),
             ("statistics","statistics")]
 
-
+    uuid = models.CharField(max_length=50)
     name = models.CharField(max_length=100000, choices=choices, default='mathsAdv')
     questions = models.ManyToManyField(Questions, related_name='questions', blank=True)
 
@@ -105,6 +106,7 @@ class Exams(models.Model):
                ("ras","ras"), ("ibpsPO","ibpsPO"), ("ibpsClerk", "ibpsClerk"), ("sscCHSL", "sscCHSL"),
                ("sscCGL", "sscCGL"), ("nda","nda"), ("cds","cds"), ("cat","cat"), ("ntpc","ntpc")]
 
+    uuid =  models.CharField(max_length=50)
     name = models.CharField(max_length=20, choices=choices, null=True, blank=True)
     subjects = models.ManyToManyField(Subjects, related_name="subjects", blank=True)
 
@@ -116,14 +118,13 @@ class Exams(models.Model):
 
 
 class QuestionsOfTheDays(models.Model):
+    uuid =  models.CharField(max_length=50)
     questions = models.ManyToManyField(Questions, related_name="questionsOfTheDays", blank=True)
     date = models.CharField(max_length=20)
 
-class PrevQuesOfDays(models.Model):
-    question = models.ForeignKey(Questions, on_delete=models.CASCADE, null=True, blank=True)
-
 
 class DailyQuestions(models.Model):
+    uuid = models.CharField(max_length=50)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     questions = models.ManyToManyField(Questions, blank=True)
     date = models.CharField(max_length=20)
@@ -132,16 +133,17 @@ class DailyQuestions(models.Model):
     
 
 
-class PracticeQuestions(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
-    questions = models.ManyToManyField(Questions, related_name="practiceQuestions", blank=True)
-    skippedQuestions = ArrayField(models.CharField(max_length=50, null=True, blank=True), null=True, blank=True)
-    correctQuestions = ArrayField(models.CharField(max_length=50, blank=True, null=True), blank=True, null=True)
-    wrongQuestions = ArrayField(models.CharField(max_length=50, null=True, blank=True), null=True, blank=True)
-    unansweredQuesions = ArrayField(models.CharField(max_length=50, null=True, blank=True), blank=True, null=True)
+# class PracticeQuestions(models.Model):
+#     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+#     questions = models.ManyToManyField(Questions, related_name="practiceQuestions", blank=True)
+#     skippedQuestions = ArrayField(models.CharField(max_length=50, null=True, blank=True), null=True, blank=True)
+#     correctQuestions = ArrayField(models.CharField(max_length=50, blank=True, null=True), blank=True, null=True)
+#     wrongQuestions = ArrayField(models.CharField(max_length=50, null=True, blank=True), null=True, blank=True)
+#     unansweredQuesions = ArrayField(models.CharField(max_length=50, null=True, blank=True), blank=True, null=True)
 
 
 class QuestionBookmarks(models.Model):
+    uuid = models.CharField(max_length=50)
     user = models.OneToOneField(User, related_name="bookmarked_user", on_delete=models.CASCADE)
     questions = models.ManyToManyField(Questions, related_name="bookmarked_questions", blank=True)
 
@@ -153,4 +155,4 @@ class WeeklyCompetitions(models.Model):
     name = models.CharField(max_length=100)
     round = models.IntegerField(default=0)
     date_time = models.DateTimeField(auto_now_add=True)
-    exam = models.ManyToManyField(Exams, related_name="competitions_exams", blank=True)
+    exam = models.ForeignKey(Exams, related_name="competitions_exams", on_delete=models.CASCADE, blank=True, null=True)

@@ -65,6 +65,10 @@ dependencies:
 
   carousel_slider: ^4.0.0
 
+  sqflite: ^2.0.1
+
+  uuid: ^3.0.5
+
 
 
 

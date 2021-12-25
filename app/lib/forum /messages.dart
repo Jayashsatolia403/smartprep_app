@@ -210,11 +210,7 @@ class MessagesState extends State<Messages> {
                   ],
                 ));
           } else {
-            return const Center(
-                child: Text(
-              "Problems",
-              style: TextStyle(fontSize: 25),
-            ));
+            return const Center(child: CircularProgressIndicator());
           }
         });
   }

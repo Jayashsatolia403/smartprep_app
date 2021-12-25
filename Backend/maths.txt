@@ -5,7 +5,7 @@ $n=40$ and ${Re}(z)=-10$
 $n=20$ and ${Re}(z)=10$
 
 
-All the points in the set $S=\{\frac{\alpha+i}{\alpha-i}: \alpha \in \mathbf{R}\}(i=\sqrt{-1})$ lie on a
+All the points in the set $S=\{\frac{\alpha+i}{\alpha-i}: \alpha \in {R}\}(i=\sqrt{-1})$ lie on a
 circle whose radius is $\sqrt{2}$.
 straight line whose slope is $-1$
 circle whose radius is $1 .$

@@ -1,4 +1,5 @@
 import 'package:app/tests/daily_questions.dart';
+import 'package:app/weekly_competition/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -81,7 +82,14 @@ class _TestsState extends State<Tests> {
                     padding: const EdgeInsets.symmetric(
                         horizontal: 20, vertical: 20),
                     child: IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const WeeklyCompetitionHome()),
+                          );
+                        },
                         icon: Image.asset(
                             "assets/images/all_india_mock_test.png"),
                         iconSize: 200)),
@@ -93,8 +101,7 @@ class _TestsState extends State<Tests> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                    const DailyQuestions(exam: "jeeMains")),
+                                builder: (context) => const DailyQuestions()),
                           );
                         },
                         icon: Image.asset("assets/images/daily_questions.png"),

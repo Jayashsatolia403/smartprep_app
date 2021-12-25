@@ -2,7 +2,7 @@ import 'dart:convert';
 
 class Question {
   String statement = "Question";
-  List<String> options = [];
+  List<List<String>> options = [];
   Question({required this.statement, required this.options});
 
   Question.fromJson(Map<String, dynamic> json)
@@ -41,29 +41,4 @@ class WeeklyCompetitionQuiz {
 
     return {'questions': jsonQuestions, 'selectedOptions': selectedOptions};
   }
-}
-
-void main() {
-  Map<String, dynamic> json = {
-    "questions": [
-      {
-        "statement": "Ques 1",
-        "options": ['A1', 'B2', 'C', 'D']
-      },
-      {
-        'statement': 'Ques 2',
-        'options': ['A', 'B', 'C', 'D']
-      }
-    ],
-    'selectedOptions': [
-      {'A', 'B'},
-      {'C', 'A'}
-    ]
-  };
-
-  WeeklyCompetitionQuiz quiz = WeeklyCompetitionQuiz.fromJson(json);
-
-  print(quiz.questions[0].statement);
-  print(quiz.questions[0].options);
-  print(quiz.selectedOptions);
 }
