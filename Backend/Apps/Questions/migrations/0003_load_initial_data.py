@@ -230,7 +230,10 @@ def load_initial_data(apps, schema_editor):
 
     correctOptions = [True, False, False, False]
 
-    maths_file = open(r"/home/jayash/Desktop/Projects/smartprep_app/Backend/maths.txt")
+    try:
+        maths_file = open(r"/home/jayash/Desktop/Projects/smartprep_app/Backend/maths.txt")
+    except:
+        maths_file = open(r"/app/maths.txt")
 
     good_data = []
 
