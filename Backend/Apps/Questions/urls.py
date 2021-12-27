@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import addQuestion, bookmark_question, get_bookmarked_questions, get_todays_contest, getPracticeQuestions, getQuestionByID, host_weekly_competition
+from .views import get_todays_contest, addQuestion, bookmark_question, get_bookmarked_questions, getPracticeQuestions, getQuestionByID, host_weekly_competition
 from .views import rateQuestion, getQuestionOfTheDay, getDailyQuestions
 
 urlpatterns = [

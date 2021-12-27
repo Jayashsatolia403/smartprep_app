@@ -1,18 +1,26 @@
+// import 'dart:convert';
+
 import 'package:app/weekly_competition/quiz_config.dart';
+import 'package:app/weekly_competition/quiz_models.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+// import 'package:flutter/services.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:katex_flutter/katex_flutter.dart';
 
 import 'package:provider/provider.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:app/ad_state.dart';
 
+import 'quiz_db.dart';
+import 'quiz_models.dart';
+
 class RadioModel {
   bool isSelected;
   final String buttonText;
   final String text;
+  final String uuid;
 
-  RadioModel(this.isSelected, this.buttonText, this.text);
+  RadioModel(this.isSelected, this.buttonText, this.text, this.uuid);
 }
 
 class CustomRadio extends StatefulWidget {
@@ -79,16 +87,34 @@ class CustomRadioState extends State<CustomRadio> {
     'Z'
   ];
 
+  _initializeData() async {
+    int n = widget.question.options.length;
+
+    for (var i = 0; i < n; i++) {
+      print(widget.question.options);
+      final option =
+          await QuizDatabase.instance.readOptions(widget.question.options[i]);
+
+      print(option.content);
+      setState(() {
+        sampleData.add(RadioModel(
+            option.isSelected, alphabets[i], option.content, option.uuid));
+      });
+    }
+  }
+
   @override
   void initState() {
     super.initState();
 
-    int n = widget.question.options.length;
+    _initializeData();
+  }
 
-    for (var i = 0; i < n; i++) {
-      sampleData
-          .add(RadioModel(false, alphabets[i], widget.question.options[i][0]));
-    }
+  void updateOption(String uuid) async {
+    Options option = await QuizDatabase.instance.readOptions(uuid);
+
+    option.isSelected = true;
+    await QuizDatabase.instance.updateOption(option);
   }
 
   @override
@@ -129,6 +155,7 @@ class CustomRadioState extends State<CustomRadio> {
                         element.isSelected = false;
                       }
                       sampleData[index].isSelected = true;
+                      updateOption(sampleData[index].uuid);
                     });
                   },
                   child: RadioItem(sampleData[index]),
@@ -144,6 +171,7 @@ class CustomRadioState extends State<CustomRadio> {
                     element.isSelected = false;
                   }
                   sampleData[index].isSelected = true;
+                  updateOption(sampleData[index].uuid);
                 });
               },
               child: RadioItem(sampleData[index]),

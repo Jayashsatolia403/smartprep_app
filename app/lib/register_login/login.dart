@@ -29,14 +29,13 @@ Future<List<String>> loginUser(String email, String password) async {
 
     prefs.setString('token', token);
 
-    final getName = await http
-        .get(Uri.parse('$url/get_name?token=$token'), headers: <String, String>{
+    final getName =
+        await http.get(Uri.parse('$url/get_name'), headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
+      'Authorization': "Token $token"
     });
 
     final name = jsonDecode(getName.body);
-
-    print(name);
 
     prefs.setString('name', name[0]);
     prefs.setString('email', name[1]);

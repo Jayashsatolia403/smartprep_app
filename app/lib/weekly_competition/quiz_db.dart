@@ -29,12 +29,15 @@ class QuizDatabase {
   Future _createDB(Database db, int version) async {
     const idType = 'INTEGER PRIMARY KEY AUTOINCREMENT';
     const textType = 'TEXT NOT NULL';
+    const boolType = 'BOOLEAN NOT NULL';
+    const intType = 'INTEGER NOT NULL';
 
     await db.execute('''
   CREATE TABLE $tableOptions (
     ${OptionFields.id} $idType,
     ${OptionFields.uuid} $textType,
-    ${OptionFields.content} $textType
+    ${OptionFields.content} $textType,
+    ${OptionFields.isSelected} $boolType
     )
 ''');
 
@@ -49,7 +52,8 @@ class QuizDatabase {
     await db.execute('''
   CREATE TABLE $tableDate ( 
     ${DateField.id} $idType, 
-    ${DateField.date} $textType
+    ${DateField.date} $textType,
+    ${DateField.pages} $intType
     )
 ''');
 
@@ -91,24 +95,42 @@ class QuizDatabase {
     return qoption.copy(id: id);
   }
 
-  Future<Options> readOptions(int id) async {
+  Future<Options> readOptions(String uuid) async {
     final db = await instance.database;
 
     final maps = await db.query(
       tableOptions,
       columns: OptionFields.values,
-      where: '${OptionFields.id} = ?',
-      whereArgs: [id],
+      where: '${OptionFields.uuid} = ?',
+      whereArgs: [uuid],
     );
 
     if (maps.isNotEmpty) {
       return Options.fromJson(maps.first);
     } else {
-      throw Exception('ID $id not found');
+      return Options(
+          content: 'Invalid', uuid: "Invalid", id: 0, isSelected: false);
     }
   }
 
-  Future<Questions> readQuestions(int id) async {
+  Future<Questions> readQuestionsByUUid(String uuid) async {
+    final db = await instance.database;
+
+    final maps = await db.query(
+      tableQuestions,
+      columns: QuestionFields.values,
+      where: '${QuestionFields.uuid} = ?',
+      whereArgs: [uuid],
+    );
+
+    if (maps.isNotEmpty) {
+      return Questions.fromJson(maps.first);
+    } else {
+      return Questions(statement: 'Invalid', uuid: "Invalid", id: 0);
+    }
+  }
+
+  Future<Questions> readQuestionsById(int id) async {
     final db = await instance.database;
 
     final maps = await db.query(
@@ -121,7 +143,7 @@ class QuizDatabase {
     if (maps.isNotEmpty) {
       return Questions.fromJson(maps.first);
     } else {
-      throw Exception('ID $id not found');
+      return Questions(statement: 'Invalid', uuid: "Invalid", id: 0);
     }
   }
 
@@ -156,6 +178,24 @@ class QuizDatabase {
       return QuestionOptions.fromJson(maps.first);
     } else {
       throw Exception('ID $id not found');
+    }
+  }
+
+  Future<List<QuestionOptions>> readQuestionOptionsFromQuestionId(
+      String questionId) async {
+    final db = await instance.database;
+
+    final maps = await db.query(
+      tableQuestionOptions,
+      columns: QuestionOptionsFields.values,
+      where: '${QuestionOptionsFields.questionId} = ?',
+      whereArgs: [questionId],
+    );
+
+    if (maps.isNotEmpty) {
+      return maps.map((json) => QuestionOptions.fromJson(json)).toList();
+    } else {
+      throw Exception('ID $questionId not found');
     }
   }
 

@@ -1,9 +1,8 @@
-from django.db.models.fields.json import ContainedBy
-from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import api_view
 from rest_framework import status
 
 from rest_framework.response import Response
+from django.core.paginator import InvalidPage, Paginator
 
 from .serializers import AddOptionsSerializer, AddQuestionSerializer
 from .models import DailyQuestions, Exams, QuestionBookmarks, Questions, QuestionsOfTheDays, Subjects, WeeklyCompetitions
@@ -13,9 +12,10 @@ import random
 
 
 
+
+
 # Get Daily Question : Working
 
-@permission_classes([IsAuthenticated])
 @api_view(['GET', ])
 def getDailyQuestions(request):
     try:
@@ -407,11 +407,14 @@ def host_weekly_competition(request):
 
 @api_view(['GET',])
 def get_todays_contest(request):
-    # try:
+    try:
     
         from datetime import datetime
 
         exam_name = request.GET['exam']
+        page = int(request.GET['page'])
+        page_size = int(request.GET['page_size'])
+
         try:
             exam = Exams.objects.get(name=exam_name)
         except:
@@ -430,12 +433,21 @@ def get_todays_contest(request):
 
         contest = contest[0]
 
+        paginator = Paginator(contest.questions.all(), page_size)
+        contest_questions = []
+        
+        try:
+            contest_questions = paginator.page(page)
+        except InvalidPage:
+            return Response("Done")
+
         questions = []
 
-        for question in contest.questions.all():
+
+        for question in contest_questions:
             questions.append(question.uuid)
 
         return Response(questions)
     
-    # except:
-    #     return Response("Invalid Request", status=status.HTTP_400_BAD_REQUEST)
+    except:
+        return Response("Invalid Request", status=status.HTTP_400_BAD_REQUEST)

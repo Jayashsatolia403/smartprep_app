@@ -6,10 +6,6 @@ import 'ad_state.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 
-import 'package:app/forum /messages.dart';
-
-import 'home/slider.dart';
-
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   final initFuture = MobileAds.instance.initialize();

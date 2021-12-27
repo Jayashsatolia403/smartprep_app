@@ -6,11 +6,12 @@ const String tableDate = 'date';
 const String tableQuestionOptions = 'question_options';
 
 class OptionFields {
-  static const List<String> values = [id, uuid, content];
+  static const List<String> values = [id, uuid, content, isSelected];
 
   static const String id = '_id';
   static const String uuid = 'uuid';
   static const String content = 'content';
+  static const String isSelected = 'isSelected';
 }
 
 class QuestionFields {
@@ -22,10 +23,11 @@ class QuestionFields {
 }
 
 class DateField {
-  static const List<String> values = [id, date];
+  static const List<String> values = [id, date, pages];
 
   static const String id = '_id';
   static const String date = 'date';
+  static const String pages = 'pages';
 }
 
 class QuestionOptionsFields {
@@ -41,23 +43,32 @@ class Options {
   int? id;
   String uuid;
   String content;
+  bool isSelected;
 
-  Options({this.id, required this.uuid, required this.content});
+  Options(
+      {this.id,
+      required this.uuid,
+      required this.content,
+      required this.isSelected});
 
-  Options copy({int? id, String? uuid, String? content}) => Options(
-      id: id ?? this.id,
-      uuid: uuid ?? this.uuid,
-      content: content ?? this.content);
+  Options copy({int? id, String? uuid, String? content, bool? isSelected}) =>
+      Options(
+          id: id ?? this.id,
+          uuid: uuid ?? this.uuid,
+          content: content ?? this.content,
+          isSelected: isSelected ?? this.isSelected);
 
   static Options fromJson(Map<String, Object?> json) => Options(
       id: json[OptionFields.id] as int?,
       uuid: json[OptionFields.uuid] as String,
-      content: json[OptionFields.content] as String);
+      content: json[OptionFields.content] as String,
+      isSelected: json[OptionFields.isSelected] == 1);
 
   Map<String, Object?> toJson() => {
         OptionFields.id: id,
         OptionFields.uuid: uuid,
-        OptionFields.content: content
+        OptionFields.content: content,
+        OptionFields.isSelected: isSelected ? 1 : 0
       };
 }
 
@@ -88,18 +99,23 @@ class Questions {
 class Date {
   int? id;
   DateTime date;
+  int pages;
 
-  Date({this.id, required this.date});
+  Date({this.id, required this.date, required this.pages});
 
-  Date copy({int? id, DateTime? date}) =>
-      Date(id: id ?? this.id, date: date ?? this.date);
+  Date copy({int? id, DateTime? date, int? pages}) => Date(
+      id: id ?? this.id, date: date ?? this.date, pages: pages ?? this.pages);
 
   static Date fromJson(Map<String, Object?> json) => Date(
       id: json[DateField.id] as int?,
-      date: DateFormat("yyyy-MM-dd").parse(json['date'].toString()));
+      date: DateFormat("yyyy-MM-dd").parse(json['date'].toString()),
+      pages: json['pages'] as int);
 
-  Map<String, Object?> toJson() =>
-      {DateField.id: id, DateField.date: date.toIso8601String()};
+  Map<String, Object?> toJson() => {
+        DateField.id: id,
+        DateField.date: date.toIso8601String(),
+        DateField.pages: pages
+      };
 }
 
 class QuestionOptions {
