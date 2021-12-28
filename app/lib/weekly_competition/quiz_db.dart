@@ -53,7 +53,8 @@ class QuizDatabase {
   CREATE TABLE $tableDate ( 
     ${DateField.id} $idType, 
     ${DateField.date} $textType,
-    ${DateField.pages} $intType
+    ${DateField.pages} $intType,
+    ${DateField.competitionUuid} $textType
     )
 ''');
 

@@ -29,20 +29,11 @@ Future<List<dynamic>> getBookmarks() async {
     },
   );
 
-  questionStatements = <dynamic>[];
-  allOptions = <dynamic>[];
+  final resJson = jsonDecode(response.body);
 
-  for (var id in jsonDecode(response.body)) {
-    final ques = await http.get(
-      Uri.parse('$url/getQuesByID?quesID=$id'),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-        'Authorization': "Token $token"
-      },
-    );
-
-    questionStatements.add(jsonDecode(ques.body)['statement']);
-    allOptions.add(jsonDecode(ques.body)['options']);
+  for (var id in resJson) {
+    questionStatements.add([id['statement'], id['uuid']]);
+    allOptions.add(id['options']);
   }
 
   result.add(questionStatements);
@@ -116,7 +107,9 @@ class _BookmarksState extends State<Bookmarks> {
                                     MaterialPageRoute(
                                         builder: (context) => CustomRadio(
                                               options: snapShot.data![1][i],
-                                              statement: snapShot.data![0][i],
+                                              statement: snapShot.data![0][i]
+                                                  [0],
+                                              quesUUid: snapShot.data![0][i][1],
                                             )),
                                   );
                                 },

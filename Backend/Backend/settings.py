@@ -103,28 +103,28 @@ WSGI_APPLICATION = 'Backend.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'questions',
-#         'USER': 'postgres',
-#         'PASSWORD': 'J',
-#         'HOST': 'localhost',
-#         'PORT': 5432
-#     }
-# }
-
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd9qp2r7gjckrjg',
-        'USER': 'zprlsdhzfnvhhp',
-        'PASSWORD': '1c457471d584eb68bf7a2d6af828c90168ad18701c33bc64c435d85f39b25cc3',
-        'HOST': 'ec2-54-235-45-88.compute-1.amazonaws.com',
+        'NAME': 'questions',
+        'USER': 'postgres',
+        'PASSWORD': 'J',
+        'HOST': 'localhost',
         'PORT': 5432
     }
 }
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'd9qp2r7gjckrjg',
+#         'USER': 'zprlsdhzfnvhhp',
+#         'PASSWORD': '1c457471d584eb68bf7a2d6af828c90168ad18701c33bc64c435d85f39b25cc3',
+#         'HOST': 'ec2-54-235-45-88.compute-1.amazonaws.com',
+#         'PORT': 5432
+#     }
+# }
 
 
 db_from_env = dj_database_url.config(conn_max_age=500, ssl_require=True)

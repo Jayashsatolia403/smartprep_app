@@ -31,19 +31,38 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
   int currentPage = 1;
   bool done = false;
   late Future<bool> myFuture;
-  int totalPages = 10;
+  Map<String, int> totalPages = {
+    "ias": 10,
+    "jee": 6,
+    "jeeMains": 9,
+    "jeeAdv": 6,
+    "neet": 18,
+    "ras": 15,
+    "ibpsPO": 10,
+    "ibpsClerk": 10,
+    "sscCGL": 10,
+    "sscCHSL": 10,
+    "ndaMaths": 12,
+    "ndaGAT": 15,
+    "cdsEnglish": 10,
+    "cdsGk": 10,
+    "cdsMaths": 10,
+    "cat": 9,
+    "ntpc": 10
+  };
 
   Future<bool> getQuesFromDatabase() async {
     try {
-      print("Started Fetching from Database...");
+      if (questions.length >= currentPage * 10) {
+        currentPage++;
+        return true;
+      }
       DateTime now = DateTime.now();
       final dbDate = await QuizDatabase.instance.readAllDate();
       if (dbDate[0].date == DateTime(now.year, now.month, now.day)) {
-        print(currentPage);
         for (var j = (currentPage - 1) * 10 + 1;
             j < (currentPage) * 10 + 1;
             j++) {
-          print(j);
           final i = await QuizDatabase.instance.readQuestionsById(j);
 
           Question configQuestion =
@@ -61,13 +80,9 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
           setState(() {
             questions.add(configQuestion);
           });
-          print("Working!");
         }
 
         currentPage++;
-
-        print(
-            "Fetched Questions from Database! Range = ${(currentPage - 2) * 10} : ${(currentPage - 1) * 10}");
       } else {
         return false;
       }
@@ -81,10 +96,16 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
   }
 
   Future<bool> getQuestions(bool isRefresh) async {
+    String url = await rootBundle.loadString('assets/text/url.txt');
+
+    final prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString("token");
+    String examName = prefs.getString("exam_name") ?? "Exam";
+
     if (isRefresh) {
       currentPage = 1;
       questions = [];
-    } else if (currentPage >= totalPages) {
+    } else if (currentPage > (totalPages[examName] as int)) {
       _refreshController.loadNoData();
       return false;
     }
@@ -98,12 +119,6 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
       }
     }
 
-    String url = await rootBundle.loadString('assets/text/url.txt');
-
-    final prefs = await SharedPreferences.getInstance();
-    String? token = prefs.getString("token");
-    String? examName = prefs.getString("exam_name");
-
     final response = await http.get(
       Uri.parse(
           '$url/get_todays_contest?exam=$examName&page=$currentPage&page_size=10'),
@@ -113,43 +128,41 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
       },
     );
 
-    for (var uuid in jsonDecode(response.body)) {
-      final ques = await http.get(
-        Uri.parse('$url/getQuesByID?quesID=$uuid'),
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-          'Authorization': "Token $token"
-        },
-      );
+    final resJson = jsonDecode(response.body);
 
-      final jsonResponse = jsonDecode(ques.body);
+    String competitionUuid = resJson['uuid'];
 
+    for (var ques in resJson['questions']) {
       // Adding Question to quiz_config
-      Question question =
-          Question(statement: jsonResponse['statement'], options: []);
+      Question question = Question(statement: ques['statement'], options: []);
 
       // Adding Question to Database
       Questions dbQuestion =
-          Questions(uuid: uuid, statement: jsonResponse['statement']);
+          Questions(uuid: ques['uuid'], statement: ques['statement']);
+
+      print(dbQuestion.statement);
 
       await QuizDatabase.instance.createQuestion(dbQuestion);
 
-      for (var optn in jsonResponse['options']) {
+      for (var optn in ques['options']) {
+        print(optn);
         // Adding Option to Database
         Options dbOption =
-            Options(uuid: optn[2], content: optn[0], isSelected: false);
+            Options(uuid: optn[1], content: optn[0], isSelected: false);
         await QuizDatabase.instance.createOption(dbOption);
 
         // Adding Options to Question of quiz_config
-        question.options.add(optn[2]);
+        question.options.add(optn[1]);
 
         // Adding QuestionOptions to Database
         QuestionOptions dbQuestionOptions = QuestionOptions(
             uuid: const Uuid().v4(),
-            questionId: jsonResponse['uuid'],
-            optionId: optn[2]);
+            questionId: ques['uuid'],
+            optionId: optn[1]);
 
         await QuizDatabase.instance.createQuestionOptions(dbQuestionOptions);
+
+        print("Done!");
       }
 
       setState(() {
@@ -167,7 +180,9 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
     } else {
       final now = DateTime.now();
       await QuizDatabase.instance.createDate(Date(
-          date: DateTime(now.year, now.month, now.day), pages: currentPage));
+          date: DateTime(now.year, now.month, now.day),
+          pages: currentPage,
+          competitionUuid: competitionUuid));
     }
 
     return true;
@@ -218,14 +233,6 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
                         child: SmartRefresher(
                       controller: _refreshController,
                       enablePullUp: true,
-                      onRefresh: () async {
-                        final result = await getQuestions(true);
-                        if (result) {
-                          _refreshController.refreshCompleted();
-                        } else {
-                          _refreshController.refreshFailed();
-                        }
-                      },
                       onLoading: () async {
                         final result = await getQuestions(false);
                         if (result) {

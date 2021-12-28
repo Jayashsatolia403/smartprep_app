@@ -104,7 +104,8 @@ class Subjects(models.Model):
 class Exams(models.Model):
     choices = [("ias", "ias"),("jee", "jee"),("jeeMains","jeeMains"),("jeeAdv","jeeAdv"),("neet","neet"),
                ("ras","ras"), ("ibpsPO","ibpsPO"), ("ibpsClerk", "ibpsClerk"), ("sscCHSL", "sscCHSL"),
-               ("sscCGL", "sscCGL"), ("nda","nda"), ("cds","cds"), ("cat","cat"), ("ntpc","ntpc")]
+               ("sscCGL", "sscCGL"), ("nda","nda"), ("cds","cds"), ("cat","cat"), ("ntpc","ntpc"), 
+               ("cdsEnglish", "cdsEnglish"), ("cdsGk","cdsGk"), ("cdsMaths","cdsMaths")]
 
     uuid =  models.CharField(max_length=50)
     name = models.CharField(max_length=20, choices=choices, null=True, blank=True)

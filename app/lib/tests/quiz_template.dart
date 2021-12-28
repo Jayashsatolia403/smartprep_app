@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:katex_flutter/katex_flutter.dart';
+import 'package:http/http.dart' as http;
 
 import 'package:provider/provider.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:app/ad_state.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class RadioModel {
   bool isSelected;
@@ -16,12 +20,17 @@ class RadioModel {
 }
 
 class CustomRadio extends StatefulWidget {
-  CustomRadio({Key? key, required this.options, required this.statement})
+  CustomRadio(
+      {Key? key,
+      required this.options,
+      required this.statement,
+      required this.quesUUid})
       : super(key: key);
 
   final List<dynamic> options;
   // ignore: prefer_typing_uninitialized_variables
   var statement;
+  String quesUUid;
 
   @override
   createState() {
@@ -30,6 +39,82 @@ class CustomRadio extends StatefulWidget {
 }
 
 class CustomRadioState extends State<CustomRadio> {
+  Future<bool?> showRatingsPage(BuildContext context, String uuid) async {
+    double difficultyRating = 1;
+    double qualityRating = 1;
+
+    return showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+              actions: [
+                ElevatedButton(
+                    style: ButtonStyle(
+                        foregroundColor:
+                            MaterialStateProperty.all<Color>(Colors.blue),
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Colors.blue),
+                        shadowColor:
+                            MaterialStateProperty.all<Color>(Colors.blue),
+                        overlayColor:
+                            MaterialStateProperty.all<Color>(Colors.blue)),
+                    onPressed: () async {
+                      String url =
+                          await rootBundle.loadString('assets/text/url.txt');
+                      final prefs = await SharedPreferences.getInstance();
+                      String? token = prefs.getString("token");
+
+                      await http.get(
+                        Uri.parse(
+                            '$url/rateQues?id=$uuid&difficulty=$difficultyRating&ratings=$qualityRating'),
+                        headers: <String, String>{
+                          'Content-Type': 'application/json; charset=UTF-8',
+                          'Authorization': "Token $token"
+                        },
+                      );
+                      Navigator.pop(context);
+                    },
+                    child: const Text(
+                      "Submit",
+                      style: TextStyle(color: Colors.white, fontSize: 17),
+                    ))
+              ],
+              title: Column(
+                children: [
+                  const Text("Quality"),
+                  RatingBar.builder(
+                    initialRating: 3,
+                    minRating: 1,
+                    direction: Axis.horizontal,
+                    itemCount: 5,
+                    itemPadding: const EdgeInsets.symmetric(horizontal: 1),
+                    itemBuilder: (context, _) => const Icon(
+                      Icons.star,
+                      color: Colors.amber,
+                    ),
+                    onRatingUpdate: (rating) {
+                      qualityRating = rating;
+                    },
+                  ),
+                  const Text("Difficulty"),
+                  RatingBar.builder(
+                    initialRating: 3,
+                    minRating: 1,
+                    direction: Axis.horizontal,
+                    itemCount: 5,
+                    itemPadding: const EdgeInsets.symmetric(horizontal: 1),
+                    itemBuilder: (context, _) => const Icon(
+                      Icons.star,
+                      color: Colors.amber,
+                    ),
+                    onRatingUpdate: (rating) {
+                      difficultyRating = rating;
+                    },
+                  )
+                ],
+              ),
+            ));
+  }
+
   BannerAd? banner;
 
   @override
@@ -96,34 +181,58 @@ class CustomRadioState extends State<CustomRadio> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          "All Questions",
-          style: TextStyle(color: Colors.white),
-        ),
-        backgroundColor: Colors.deepPurple,
-        iconTheme: const IconThemeData(
-          color: Colors.white, //change your color here
-        ),
-      ),
-      body: Column(children: [
-        Expanded(
-            child: ListView.builder(
-          itemCount: sampleData.length,
-          itemBuilder: (BuildContext context, int index) {
-            if (index == 0) {
-              return Column(children: [
-                Padding(
-                    padding: const EdgeInsets.only(
-                        left: 15, top: 20, right: 15, bottom: 30),
-                    child: KaTeX(
-                      laTeXCode: Text(widget.statement,
-                          style: const TextStyle(
-                            fontSize: 18,
-                          )),
-                    )),
-                InkWell(
+    return WillPopScope(
+        onWillPop: () async {
+          showRatingsPage(context, "");
+          return false;
+        },
+        child: Scaffold(
+          appBar: AppBar(
+            title: const Text(
+              "All Questions",
+              style: TextStyle(color: Colors.white),
+            ),
+            backgroundColor: Colors.deepPurple,
+            iconTheme: const IconThemeData(
+              color: Colors.white, //change your color here
+            ),
+          ),
+          body: Column(children: [
+            Expanded(
+                child: ListView.builder(
+              itemCount: sampleData.length,
+              itemBuilder: (BuildContext context, int index) {
+                if (index == 0) {
+                  return Column(children: [
+                    Padding(
+                        padding: const EdgeInsets.only(
+                            left: 15, top: 20, right: 15, bottom: 30),
+                        child: KaTeX(
+                          laTeXCode: Text(widget.statement,
+                              style: const TextStyle(
+                                fontSize: 18,
+                              )),
+                        )),
+                    InkWell(
+                      highlightColor: Colors.red,
+                      splashColor: Colors.blueAccent,
+                      onTap: () {
+                        setState(() {
+                          for (var element in sampleData) {
+                            element.isSelected = false;
+                          }
+                          sampleData[index].isSelected = true;
+
+                          for (var i = 0; i < widget.options.length; i++) {
+                            sampleData[i].isCorrect = widget.options[i][1];
+                          }
+                        });
+                      },
+                      child: RadioItem(sampleData[index]),
+                    )
+                  ]);
+                }
+                return InkWell(
                   highlightColor: Colors.red,
                   splashColor: Colors.blueAccent,
                   onTap: () {
@@ -139,34 +248,15 @@ class CustomRadioState extends State<CustomRadio> {
                     });
                   },
                   child: RadioItem(sampleData[index]),
-                )
-              ]);
-            }
-            return InkWell(
-              highlightColor: Colors.red,
-              splashColor: Colors.blueAccent,
-              onTap: () {
-                setState(() {
-                  for (var element in sampleData) {
-                    element.isSelected = false;
-                  }
-                  sampleData[index].isSelected = true;
-
-                  for (var i = 0; i < widget.options.length; i++) {
-                    sampleData[i].isCorrect = widget.options[i][1];
-                  }
-                });
+                );
               },
-              child: RadioItem(sampleData[index]),
-            );
-          },
-        )),
-        if (banner == null)
-          const Text("yo")
-        else
-          SizedBox(height: 100, child: AdWidget(ad: banner!))
-      ]),
-    );
+            )),
+            if (banner == null)
+              const Text("yo")
+            else
+              SizedBox(height: 100, child: AdWidget(ad: banner!))
+          ]),
+        ));
   }
 }
 

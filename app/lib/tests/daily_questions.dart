@@ -12,46 +12,6 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import 'package:flutter/services.dart' show rootBundle;
 
-Future<List<dynamic>> getDailyQuestions() async {
-  String url = await rootBundle.loadString('assets/text/url.txt');
-  List<dynamic> allOptions = <dynamic>[];
-  List<dynamic> questionStatements = <dynamic>[];
-  List<dynamic> result = <dynamic>[];
-
-  final prefs = await SharedPreferences.getInstance();
-  String? token = prefs.getString("token");
-  String? examName = prefs.getString("exam_name");
-
-  final response = await http.get(
-    Uri.parse('$url/getQues?exam=$examName'),
-    headers: <String, String>{
-      'Content-Type': 'application/json; charset=UTF-8',
-      'Authorization': "Token $token"
-    },
-  );
-
-  questionStatements = <dynamic>[];
-  allOptions = <dynamic>[];
-
-  for (var id in jsonDecode(response.body)) {
-    final ques = await http.get(
-      Uri.parse('$url/getQuesByID?quesID=$id'),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-        'Authorization': "Token $token"
-      },
-    );
-
-    questionStatements.add(jsonDecode(ques.body)['statement']);
-    allOptions.add(jsonDecode(ques.body)['options']);
-  }
-
-  result.add(questionStatements);
-  result.add(allOptions);
-
-  return result;
-}
-
 class DailyQuestions extends StatefulWidget {
   const DailyQuestions({Key? key}) : super(key: key);
 
@@ -60,6 +20,44 @@ class DailyQuestions extends StatefulWidget {
 }
 
 class _DailyQuestionsState extends State<DailyQuestions> {
+  Future<List<dynamic>> getDailyQuestions() async {
+    String url = await rootBundle.loadString('assets/text/url.txt');
+    List<dynamic> allOptions = <dynamic>[];
+    List<dynamic> questionStatements = <dynamic>[];
+    List<dynamic> result = <dynamic>[];
+
+    final prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString("token");
+    String? examName = prefs.getString("exam_name");
+
+    final response = await http.get(
+      Uri.parse('$url/getQues?exam=$examName'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': "Token $token"
+      },
+    );
+
+    final resJson = jsonDecode(response.body);
+
+    for (var id in resJson) {
+      questionStatements.add([id['statement'], id['uuid']]);
+      allOptions.add(id['options']);
+    }
+
+    result.add(questionStatements);
+    result.add(allOptions);
+
+    return result;
+  }
+
+  late Future<List<dynamic>> _dailyQuestions;
+
+  @override
+  void initState() {
+    _dailyQuestions = getDailyQuestions();
+  }
+
   BannerAd? banner;
 
   @override
@@ -81,8 +79,6 @@ class _DailyQuestionsState extends State<DailyQuestions> {
 
   @override
   Widget build(BuildContext context) {
-    Future<List<dynamic>> _dailyQuestions = getDailyQuestions();
-
     return FutureBuilder<List<dynamic>>(
         future: _dailyQuestions,
         builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapShot) {
@@ -106,7 +102,7 @@ class _DailyQuestionsState extends State<DailyQuestions> {
                               padding: const EdgeInsets.only(
                                   left: 20, top: 50, bottom: 20),
                               child: ElevatedButton(
-                                child: Text(snapShot.data![0][i],
+                                child: Text(snapShot.data![0][i][0],
                                     style:
                                         const TextStyle(color: Colors.white)),
                                 onPressed: () {
@@ -115,7 +111,9 @@ class _DailyQuestionsState extends State<DailyQuestions> {
                                     MaterialPageRoute(
                                         builder: (context) => CustomRadio(
                                               options: snapShot.data![1][i],
-                                              statement: snapShot.data![0][i],
+                                              statement: snapShot.data![0][i]
+                                                  [0],
+                                              quesUUid: snapShot.data![0][i][1],
                                             )),
                                   );
                                 },

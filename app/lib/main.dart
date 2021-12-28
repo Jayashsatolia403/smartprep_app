@@ -1,3 +1,4 @@
+import 'package:app/rate/rate_question.dart';
 import 'package:app/splashscreen/splashscreen.dart';
 import 'package:flutter/material.dart';
 

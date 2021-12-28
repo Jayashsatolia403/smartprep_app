@@ -86,16 +86,19 @@ def getDailyQuestions(request):
         for subject in subjects:
             questions = subject.questions.exclude(seenBy__id = user.id)[:perSubjectLimit if perSubjectLimit != 0 else 1]
 
-            for ques in questions:
+            for question in questions:
 
                 if count > limit: # Limit Questions
                     break
 
-                ques.seenBy.add(request.user) # Marking as seen in Questions DB Table
+                question.seenBy.add(request.user) # Marking as seen in Questions DB Table
 
-                addDailyQuestion.questions.add(ques) # Storing Questions to show as Prev Seen Questions
+                addDailyQuestion.questions.add(question)
 
-                result.append(ques.uuid) # Add UUID of Questions
+                result.append({"uuid": question.uuid, "statement": question.statement, 
+                        "ratings": question.ratings, "difficulty" : question.difficulty, 
+                        "options": [(z.content, z.isCorrect) for z in question.options.all()], 
+                        "percentCorrect": question.percentCorrect, "subject": question.subject}) 
                 
                 count += 1
 
@@ -298,7 +301,10 @@ def get_bookmarked_questions(request):
         else:
             bookmarked_question = bookmarked_questions[0]
 
-        return Response([i.uuid for i in bookmarked_question.questions.all()])
+        return Response([{"uuid": question.uuid, "statement": question.statement, 
+                        "ratings": question.ratings, "difficulty" : question.difficulty, 
+                        "options": [(z.content, z.isCorrect) for z in question.options.all()], 
+                        "percentCorrect": question.percentCorrect, "subject": question.subject} for question in bookmarked_question.questions.all()])
 
     except:
         return Response("Invalid Request", status=status.HTTP_400_BAD_REQUEST)
@@ -308,7 +314,7 @@ def get_bookmarked_questions(request):
 
 @api_view(['GET',])
 def host_weekly_competition(request):
-    # try:
+    try:
         user = request.user
 
         if not user or not user.is_superuser:
@@ -316,6 +322,7 @@ def host_weekly_competition(request):
 
         exam_questions = {
             "ias": 100,
+            "jee": 60,
             "jeeMains": 90,
             "jeeAdv": 54,
             "neet": 180,
@@ -324,24 +331,25 @@ def host_weekly_competition(request):
             "ibpsClerk": 100,
             "sscCGL": 100,
             "sscCHSL": 100,
-            "ndaMaths": 120,
-            "ndaGAT": 150,
+            "nda": 150,
             "cat": 90,
+            "ntpc": 100
         }
 
         questions = {
-                "ias": set(),
-                "jeeMains": set(),
-                "jeeAdv": set(),
-                "neet": set(),
-                "ras": set(),
-                "ibpsPO": set(),
-                "ibpsClerk": set(),
-                "sscCGL": set(),
-                "sscCHSL": set(),
-                "ndaMaths": set(),
-                "ndaGAT": set(),
-                "cat": set(),
+            "ias": set(),
+            "jee": set(),
+            "jeeMains": set(),
+            "jeeAdv": set(),
+            "neet": set(),
+            "ras": set(),
+            "ibpsPO": set(),
+            "ibpsClerk": set(),
+            "sscCGL": set(),
+            "sscCHSL": set(),
+            "nda": set(),
+            "cat": set(),
+            "ntpc": set()
             }
 
 
@@ -400,15 +408,14 @@ def host_weekly_competition(request):
 
         return Response("Success")
     
-    # except:
-    #     return Response('Invalid Request', status=status.HTTP_400_BAD_REQUEST)
+    except:
+        return Response('Invalid Request', status=status.HTTP_400_BAD_REQUEST)
 
     
 
 @api_view(['GET',])
 def get_todays_contest(request):
     try:
-    
         from datetime import datetime
 
         exam_name = request.GET['exam']
@@ -433,7 +440,7 @@ def get_todays_contest(request):
 
         contest = contest[0]
 
-        paginator = Paginator(contest.questions.all(), page_size)
+        paginator = Paginator(contest.questions.all().order_by('id'), page_size)
         contest_questions = []
         
         try:
@@ -445,9 +452,19 @@ def get_todays_contest(request):
 
 
         for question in contest_questions:
-            questions.append(question.uuid)
+            questions.append({"uuid": question.uuid, "statement": question.statement, 
+                        "ratings": question.ratings, "difficulty" : question.difficulty, 
+                        "options": [(z.content, z.uuid) for z in question.options.all()], 
+                        "percentCorrect": question.percentCorrect, "subject": question.subject})
 
-        return Response(questions)
+        
+        competition = {"uuid": contest.uuid, "questions" : questions}
+
+
+        return Response(competition)
     
     except:
         return Response("Invalid Request", status=status.HTTP_400_BAD_REQUEST)
+
+
+
