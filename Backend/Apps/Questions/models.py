@@ -1,3 +1,5 @@
+from os import readlink
+import re
 from django.db import models
 from Apps.User.models import User
 from django.contrib.postgres.fields import ArrayField
@@ -131,17 +133,6 @@ class DailyQuestions(models.Model):
     date = models.CharField(max_length=20)
     exam = models.ForeignKey(Exams, on_delete=models.CASCADE, blank=True, null=True)
     updateTime = models.IntegerField(null=True, blank=True)
-    
-
-
-# class PracticeQuestions(models.Model):
-#     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
-#     questions = models.ManyToManyField(Questions, related_name="practiceQuestions", blank=True)
-#     skippedQuestions = ArrayField(models.CharField(max_length=50, null=True, blank=True), null=True, blank=True)
-#     correctQuestions = ArrayField(models.CharField(max_length=50, blank=True, null=True), blank=True, null=True)
-#     wrongQuestions = ArrayField(models.CharField(max_length=50, null=True, blank=True), null=True, blank=True)
-#     unansweredQuesions = ArrayField(models.CharField(max_length=50, null=True, blank=True), blank=True, null=True)
-
 
 class QuestionBookmarks(models.Model):
     uuid = models.CharField(max_length=50)
@@ -157,3 +148,19 @@ class WeeklyCompetitions(models.Model):
     round = models.IntegerField(default=0)
     date_time = models.DateTimeField(auto_now_add=True)
     exam = models.ForeignKey(Exams, related_name="competitions_exams", on_delete=models.CASCADE, blank=True, null=True)
+
+
+
+class Submissions(models.Model):
+    uuid = models.CharField(max_length=50)
+    user = models.ForeignKey(User, related_name="submissionUser", on_delete=models.CASCADE)
+    question = models.ForeignKey(Questions, related_name="submissionQuestion", on_delete=models.CASCADE)
+    selected_options = models.ManyToManyField(Options, related_name="submissionSelectedOptions", blank=True)
+
+
+class WeeklyCompetitionResult(models.Model):
+    user = models.ForeignKey(User, related_name="resultUser", on_delete=models.CASCADE)
+    competition = models.ForeignKey(WeeklyCompetitions, related_name='weeklyCompetitions', on_delete=models.CASCADE)
+    submissions = models.ManyToManyField(Submissions, related_name="weeklyCompetitionSubmissions", blank=True)
+    correct_options = models.IntegerField(default=0)
+

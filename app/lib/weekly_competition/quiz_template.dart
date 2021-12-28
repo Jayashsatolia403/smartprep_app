@@ -91,11 +91,9 @@ class CustomRadioState extends State<CustomRadio> {
     int n = widget.question.options.length;
 
     for (var i = 0; i < n; i++) {
-      print(widget.question.options);
       final option =
           await QuizDatabase.instance.readOptions(widget.question.options[i]);
 
-      print(option.content);
       setState(() {
         sampleData.add(RadioModel(
             option.isSelected, alphabets[i], option.content, option.uuid));
@@ -111,6 +109,11 @@ class CustomRadioState extends State<CustomRadio> {
   }
 
   void updateOption(String uuid) async {
+    for (var i in sampleData) {
+      Options option = await QuizDatabase.instance.readOptions(uuid);
+      option.isSelected = false;
+      await QuizDatabase.instance.updateOption(option);
+    }
     Options option = await QuizDatabase.instance.readOptions(uuid);
 
     option.isSelected = true;

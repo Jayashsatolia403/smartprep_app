@@ -1,6 +1,8 @@
+from io import SEEK_END
 from rest_framework import serializers
+from rest_framework.utils import field_mapping
 
-from .models import Options, Questions
+from .models import Options, Questions, QuestionsOfTheDays, Submissions, WeeklyCompetitionResult, WeeklyCompetitions
 
 import uuid
 
@@ -89,3 +91,54 @@ class AddQuestionSerializer(serializers.ModelSerializer):
 
         newQuestion.save()
         return newQuestion
+
+
+class SubmitContestSerializer(serializers.ModelSerializer):
+
+    def submit(self):
+        competition_uuid = self.validated_data['uuid']
+        selected_options = self.validated_data['options']
+        user = self.context['request'].user
+
+        competition = WeeklyCompetitions.objects.get(uuid=competition_uuid)
+        competition_questions = competition.questions.all()
+
+        competition_result = WeeklyCompetitionResult.objects.get(user, competition=competition)
+
+        if competition_result:
+            competition_result.delete()
+
+        competition_result = WeeklyCompetitionResult(user = user, competition=competition)
+        competition_result.save()
+
+
+        for i in range(selected_options):
+            correct = True
+            submission = Submissions(
+                question = competition_questions[i],
+                user = user,
+                uuid = str(uuid.uuid4())
+            )
+
+            submission.save()
+
+            for option_uuid in selected_options[i]:
+                if option_uuid:
+                    option = Options.objects.get(uuid = option_uuid)
+
+                    if option.isCorrect == False:
+                        correct = False
+
+                    submission.selected_options.add(option)
+                    submission.save()
+                else:
+                    correct = False
+
+            if correct:
+                competition_result.correct += 1
+                competition_result.save()
+
+            competition_result.submissions.add(submission)
+        
+
+        return competition_result

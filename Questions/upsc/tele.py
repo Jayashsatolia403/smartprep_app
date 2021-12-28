@@ -21,8 +21,8 @@ async def main():
     # print(me.phone)
 
     # You can print all the dialogs/conversations that you are part of:
-    async for dialog in client.iter_dialogs():
-        print(dialog.name, 'has ID', dialog.id)
+    # async for dialog in client.iter_dialogs():
+    #     print(dialog.name, 'has ID', dialog.id)
 
     # You can send messages to yourself...
     # await client.send_message('me', 'Hello, myself!')
@@ -51,36 +51,55 @@ async def main():
     # await client.send_file('me', '/home/me/Pictures/holidays.jpg')
 
     # You can print the message history of any chat:
-    count = 0
-    async for message in client.iter_messages(-1001239140977):
+    count = 1
+    async for message in client.iter_messages(-1001269029231):
 
         if (message.poll):
 
-            print(" >> \n")
-            print(message)
+            try:
 
-            # print("\n \n \n \n \n")
+                file = open("questions_cp_2.txt", "a")
 
-            # question = message.poll.poll.question
-            # answers = []
 
-            # for i in message.poll.poll.answers:
-            #     answers.append([i.text, i.option])
+                question = message.poll.poll.question
+                answers = []
+                correct_answers = []
+
+                for i in message.poll.poll.answers:
+                    answer = str(i.text)
+                    answer = answer.replace("\n", "ignore_new_line")
+                    answers.append(answer)
+                
+
+                for i in message.poll.results.results: 
+                    if i.correct:
+                        correct_answers.append(str(i.option)[-2])
+                
+                count += 1
+
+                question = question.replace("\n", "ignore_new_line")
+
+                file.write(question)
+                file.write("\n")
+                file.write(str(len(answers)))
+                file.write("\n")
+                
+                for ans in answers:
+                    file.write(ans)
+                    file.write("\n")
+
+                
+                for correct_answer in correct_answers:
+                    file.write(correct_answer)
+                    file.write(" ")
+                
+                file.write("\n\n")
+
+                print("Success")
+
             
-            # print(question, "\n")
-            
-            # for i in answers:
-            #     print(i)
-
-            # for i in message.poll.results.results: 
-            #     if i.correct:
-            #         print("\n", i.option, " : ")
-            
-            # print("\n \n \n \n \n")
-            # count += 1
-
-            # if (count == 2):
-            break
+            except:
+                print(">>> Unanswered Question")
 
         # x = message.poll
 
@@ -96,6 +115,42 @@ async def main():
 
 with client:
     client.loop.run_until_complete(main())
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # MessageMediaPoll(

@@ -42,11 +42,7 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
     "ibpsClerk": 10,
     "sscCGL": 10,
     "sscCHSL": 10,
-    "ndaMaths": 12,
-    "ndaGAT": 15,
-    "cdsEnglish": 10,
-    "cdsGk": 10,
-    "cdsMaths": 10,
+    "nda": 15,
     "cat": 9,
     "ntpc": 10
   };
@@ -145,7 +141,6 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
       await QuizDatabase.instance.createQuestion(dbQuestion);
 
       for (var optn in ques['options']) {
-        print(optn);
         // Adding Option to Database
         Options dbOption =
             Options(uuid: optn[1], content: optn[0], isSelected: false);
@@ -161,8 +156,6 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
             optionId: optn[1]);
 
         await QuizDatabase.instance.createQuestionOptions(dbQuestionOptions);
-
-        print("Done!");
       }
 
       setState(() {
@@ -210,6 +203,7 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
     myFuture = getQuestions(false);
   }
 
+  // ignore: prefer_final_fields
   RefreshController _refreshController =
       RefreshController(initialRefresh: true);
 

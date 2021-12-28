@@ -4,8 +4,8 @@ from rest_framework import status
 from rest_framework.response import Response
 from django.core.paginator import InvalidPage, Paginator
 
-from .serializers import AddOptionsSerializer, AddQuestionSerializer
-from .models import DailyQuestions, Exams, QuestionBookmarks, Questions, QuestionsOfTheDays, Subjects, WeeklyCompetitions
+from .serializers import AddOptionsSerializer, AddQuestionSerializer, SubmitContestSerializer
+from .models import DailyQuestions, Exams, QuestionBookmarks, Questions, QuestionsOfTheDays, Subjects, WeeklyCompetitionResult, WeeklyCompetitions
 
 from datetime import datetime
 import random
@@ -468,3 +468,101 @@ def get_todays_contest(request):
 
 
 
+@api_view(['GET', ])
+def get_practice_questions(request):
+    try:
+        user = request.user
+
+        examName = request.GET['exam']
+        page = int(request.GET['page'])
+
+        if user.isFree:
+            try:
+                practice_questions = DailyQuestions.objects.filter(exam=examName).order_by('id')[page-1]
+            except:
+                return Response("Invalid Request", status=status.HTTP_400_BAD_REQUEST)
+
+
+            return Response([{"uuid": question.uuid, "statement": question.statement, 
+                            "ratings": question.ratings, "difficulty" : question.difficulty, 
+                            "options": [(z.content, z.isCorrect) for z in question.options.all()], 
+                            "percentCorrect": question.percentCorrect, "subject": question.subject} for question in practice_questions.questions.all()])
+
+    except:
+        return Response("Invalid Request", status=status.HTTP_400_BAD_REQUEST)
+
+
+
+@api_view(['GET', ])
+def get_previous_contests(request):
+    user = request.user
+    page = request.GET['page']
+    page_size = request.GET['page_size']
+
+    competitions = WeeklyCompetitions.objects.filter(user=request.user).order_by('id')
+
+    paginator = Paginator(competitions, page_size)
+
+    competitions_list = []
+
+    try:
+        competitions_list = paginator.page(page)
+    except InvalidPage:
+        return Response("Done")
+
+    return Response([[competition.name, competition.uuid] for competition in competitions_list])
+
+
+@api_view(['GET', ])
+def get_competition_by_uuid(request):
+    uuid = request.GET['uuid']
+    page = request.GET['page']
+    page_size = request.GET['page_size']
+
+    competition_result = WeeklyCompetitionResult.objects.get(uuid=uuid)
+
+    if not competition_result:
+        return Response("Bad Request", status=status.HTTP_400_BAD_REQUEST)
+
+    paginator = Paginator(competition_result.submissions.all().order_by('id'), page_size)
+
+    contest_submissions = []
+        
+    try:
+        contest_submissions = paginator.page(page)
+    except InvalidPage:
+        return Response("Done")
+
+
+    questions = []
+
+
+    for submission in contest_submissions:
+        questions.append({"uuid": submission.question.uuid, "statement": submission.question.statement, 
+                    "ratings": submission.question.ratings, "difficulty" : submission.question.difficulty, 
+                    "options": [(z.content, z.uuid, z.isCorrect, z in submission.selected_options.all()) for z in submission.question.options.all()], 
+                    "percentCorrect": submission.question.percentCorrect, "subject": submission.question.subject})
+
+    
+    competition = {"uuid": uuid, "questions" : questions}
+
+
+    return Response(competition)
+
+
+@api_view(['GET', ])
+def submit_contest(request):
+
+    try:
+
+        serializer = SubmitContestSerializer(data=request.data, context={'request': request})
+
+        data = {}
+
+        if serializer.is_valid():
+            data['correct_options'] = serializer.correct
+
+        return Response("Done!")
+    
+    except:
+        return Response("Invalid Request", status=status.HTTP_400_BAD_REQUEST)
