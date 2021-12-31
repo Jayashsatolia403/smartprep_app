@@ -348,6 +348,20 @@ class QuizDatabase {
     );
   }
 
+  Future<bool> deleteEverything() async {
+    try {
+      await deleteAllDates();
+      await deleteAllOptions();
+      await deleteAllQuestions();
+      await deleteAllQuestionOptions();
+
+      return true;
+    } catch (e) {
+      print(e);
+      return false;
+    }
+  }
+
   Future close() async {
     final db = await instance.database;
 

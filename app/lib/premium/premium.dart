@@ -161,14 +161,21 @@ class _PremiumState extends State<Premium> {
       ),
       body: ListView(
         children: [
+          const Padding(
+            padding: EdgeInsets.all(5),
+            child: Text(
+              "Choose Subject: ",
+              style: TextStyle(fontSize: 17, color: Colors.black),
+            ),
+          ),
           Padding(
-              padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+              padding: const EdgeInsets.fromLTRB(20, 10, 20, 20),
               child: DropdownButton(
                 value: dropdownValue,
                 icon: const Icon(Icons.arrow_downward),
                 iconSize: 24,
                 elevation: 16,
-                style: const TextStyle(color: Colors.deepPurple),
+                style: const TextStyle(color: Colors.deepPurple, fontSize: 18),
                 underline: Container(
                   height: 2,
                   color: Colors.deepPurpleAccent,
@@ -182,8 +189,8 @@ class _PremiumState extends State<Premium> {
                   return DropdownMenuItem<String>(
                       value: examNameValues[value],
                       child: Padding(
-                          padding: const EdgeInsets.fromLTRB(130, 0, 110, 0),
-                          child: Text(value)));
+                          padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                          child: Center(child: Text(value))));
                 }).toList(),
               )),
           SingleChildScrollView(

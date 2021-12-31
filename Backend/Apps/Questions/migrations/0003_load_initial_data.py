@@ -12,7 +12,7 @@ from Apps.Questions.models import Questions
 
 def load_initial_data(apps, schema_editor):
 
-    iasSubjects = ["currentAffairsWorld", 
+    iasSubjects = ["currentAffairsWorldHard", 
                    "currentAffairsIndiaEasy", 
                    "currentAffairsIndiaHard", 
                    "geographyIndEasy", 
@@ -41,6 +41,7 @@ def load_initial_data(apps, schema_editor):
 
     rasSubjects = ["currentAffairsIndiaEasy", 
                     "currentAffairsIndiaHard", 
+                    "currentAffairsWorldEasy", 
                     "geographyIndEasy", 
                     "geographyWorld",
                     "polityIndEasy",
@@ -80,7 +81,8 @@ def load_initial_data(apps, schema_editor):
     cdsSubjects = ["reasoningEasy", 
                     "reasoningHard", 
                     "currentAffairsIndiaEasy", 
-                    "englishLangAndComprehension",
+                    "englishLangAndComprehensionHard",
+                    "englishLangAndComprehensionEasy",
                     "geographyIndEasy", 
                     "polityIndEasy", 
                     "historyIndEasy", 
@@ -88,7 +90,7 @@ def load_initial_data(apps, schema_editor):
                     "cdsMaths", 
                     "environmentAndEcologyEasy"]
 
-    ibpsPOSubjects = ["englishLangAndComprehension", 
+    ibpsPOSubjects = ["englishLangAndComprehensionHard", 
                         "quantAptHard", 
                         "reasoningHard", 
                         "reasoningEasy", 
@@ -98,7 +100,8 @@ def load_initial_data(apps, schema_editor):
                         "basicComputer",
                         "financeAndAccounts"]
 
-    ibpsClerkSubjects = ["englishLangAndComprehension", 
+    ibpsClerkSubjects = ["englishLangAndComprehensionEasy",
+                            "englishLangAndComprehensionHard", 
                             "quantAptEasy", 
                             "quantAptHard",
                             "reasoningEasy", 
@@ -113,7 +116,8 @@ def load_initial_data(apps, schema_editor):
                         "geographyIndEasy",
                         "polityIndEasy",
                         "quantAptEasy",
-                        "englishLangAndComprehension",
+                        "englishLangAndComprehensionHard",
+                        "englishLangAndComprehensionEasy",
                         "financeAndAccounts",
                         "statistics"]
 
@@ -124,7 +128,9 @@ def load_initial_data(apps, schema_editor):
                         "geographyIndEasy",
                         "polityIndEasy",
                         "quantAptEasy",
-                        "englishLangAndComprehension"]
+                        "englishLangAndComprehensionEasy",
+                        "englishLangAndComprehensionHard"
+                        ]
 
     ntpcSubjects = ["reasoningHard", 
             "reasoningEasy", 
@@ -133,71 +139,237 @@ def load_initial_data(apps, schema_editor):
             "geographyIndEasy",
             "polityIndEasy",
             "quantAptEasy",
-            "englishLangAndComprehension"]
+            "englishLangAndComprehensionEasy"]
 
-    catSubjects = ["reasoningHard"]
+
+
+    reet1Subjects = []
+    reet2Subjects = []
+
+
+
+    sipaper1Subjects = ["hindi"]
+
+    sipaper2Subjects = [
+            "reasoningEasy",
+            "reasoningHard",
+            "quantAptEasy",
+            "currentAffairsIndiaEasy",
+            "currentAffairsRajHard",
+            "currentAffairsRajEasy",
+            "currentAffairsWorldEasy",
+            "geographyIndEasy",
+            "polityIndEasy",
+            "economyIndGen",
+            "economyIndBudgetAndSchemes",
+            "historyIndEasy",
+            "generalScience",
+            "geographyRajEasy",
+            "geographyRajHard",
+            "historyRajEasy",
+            "historyRajHard",
+            "artAndCultureRaj",
+            "economyRajHard",
+            "economyRajEasy",
+    ]
+
+    patwariSubjects = [
+            "hindi",
+            "reasoningEasy",
+            "reasoningHard",
+            "quantAptEasy",
+            "currentAffairsIndiaEasy",
+            "currentAffairsRajHard",
+            "currentAffairsRajEasy",
+            "currentAffairsWorldEasy",
+            "englishLangAndComprehensionEasy",
+            "basicComputer",
+            "geographyIndEasy",
+            "polityIndEasy",
+            "economyIndGen",
+            "economyIndBudgetAndSchemes",
+            "historyIndEasy",
+            "generalScience",
+            "geographyRajEasy",
+            "geographyRajHard",
+            "historyRajEasy",
+            "historyRajHard",
+            "artAndCultureRaj",
+            "economyRajHard",
+            "economyRajEasy",
+    ]
+
+    grade2ndSubjects = [
+            "teachingApt",
+            "currentAffairsIndiaEasy",
+            "currentAffairsRajHard",
+            "currentAffairsRajEasy",
+            "currentAffairsWorldEasy",
+            "geographyIndEasy",
+            "polityIndEasy",
+            "economyIndGen",
+            "economyIndBudgetAndSchemes",
+            "historyIndEasy",
+            "generalScience",
+            "geographyRajEasy",
+            "geographyRajHard",
+            "historyRajEasy",
+            "historyRajHard",
+            "artAndCultureRaj",
+            "economyRajHard",
+            "economyRajEasy",
+    ]
+
+    grade2ndScienceSubjects = ["bio", "physicsMains", "chemMains"]
+
+    grade2ndSSSubjects = [
+            "staticGK",
+            "geographyIndEasy", 
+            "geographyWorld",
+            "polityIndEasy",
+            "geographyIndHard", 
+            "polityIndHard", 
+            "economyIndGen", 
+            "historyIndEasy",
+            "historyIndHard",
+            "artAndCultureInd", 
+            "constitutionAndGovernance",
+            "geographyRajHard", 
+            "historyRajHard", 
+            "artAndCultureRaj", 
+            "polityRajHard", 
+            "currentAffairsRajHard",
+            "artAndCultureInd", 
+    ]
+
+    sscGDSubjects = [
+            "rpcGKInd",
+            "hindi",
+            "rpcReasoning",
+            "gdQuantApt"
+    ]
+
+    sscMTSSubjects = [
+            "gdQuantApt",
+            "rpcGKInd",
+            "rpcReasoning",
+            "englishLangAndComprehensionEasy"
+    ]
+
+    rajPoliceConstSubjects = [
+            "rpcGKInd",
+            "rpcReasoning",
+            "rpcGKRaj",
+            "basicComputer"
+    ]
+
+    rajLDCSubjects = [
+            "hindi",
+            "reasoningEasy",
+            "reasoningHard",
+            "quantAptEasy",
+            "currentAffairsIndiaEasy",
+            "currentAffairsRajHard",
+            "currentAffairsRajEasy",
+            "currentAffairsWorldEasy",
+            "englishLangAndComprehensionEasy",
+            "basicComputer",
+            "geographyIndEasy",
+            "polityIndEasy",
+            "economyIndGen",
+            "economyIndBudgetAndSchemes",
+            "historyIndEasy",
+            "generalScience",
+            "geographyRajEasy",
+            "geographyRajHard",
+            "historyRajEasy",
+            "historyRajHard",
+            "artAndCultureRaj",
+            "economyRajHard",
+            "economyRajEasy",
+    ]
+
+    rrbGDSubjects = [
+            "gdQuantApt",
+            "rpcGKInd",
+            "rpcReasoning",
+    ]
 
     exams = [("ias", "ias"),("jee", "jee"),("jeeMains","jeeMains"),("jeeAdv","jeeAdv"),("neet","neet"),
-            ("ras","ras"), ("ibpsPO","ibpsPO"), ("ibpsClerk", "ibpsClerk"), ("sscCHSL", "sscCHSL"),
-            ("sscCGL", "sscCGL"), ("nda","nda"), ("cds","cds"), ("cat","cat"), ("ntpc","ntpc")]
+             ("ras","ras"), ("ibpsPO","ibpsPO"), ("ibpsClerk", "ibpsClerk"), ("sscCHSL", "sscCHSL"),
+             ("sscCGL", "sscCGL"), ("nda","nda"), ("cds","cds"), ("ntpc","ntpc"), 
+             ("reet1", "reet1"), ("reet2", "reet2"), ("patwari", 'patwari'), ("grade2nd", "grade2nd"), 
+             ("grade2ndScience", "grade2ndScience"), ("grade2ndSS", "grade2ndSS"), ("sscGD", "sscGD"), ("sscMTS", "sscMTS"),
+             ("rajPoliceConst", "rajPoliceConst"), ("rajLDC", "rajLDC"), ("rrbGD", "rrbGD"), ("sipaper1", "sipaper1"), ("sipaper2", "sipaper2")]
 
     subjects = [("physicsAdv", "physicsAdv"), 
-                ("mathsAdv","mathsAdv"),
-                ("chemAdv","chemAdv"),
-                ("physicsMains","physicsMains"), 
-                ("mathsMains", "mathsMains"),
-                ("chemMains","chemMains"),
-                ("bio", "bio"),
-                ("reasoningHard", "reasoningHard"),
-                ("reasoningEasy","reasoningEasy"),
-                ("currentAffairsWorld", "currentAffairsWorld"),
-                ("currentAffairsIndiaEasy", "currentAffairsIndiaEasy"),
-                ("currentAffairsIndiaHard", "currentAffairsIndiaHard"),
-                ("quantAptHard", "quantAptHard"),
-                ("quantAptEasy", "quantAptEasy"),
-                ("englishLangAndComprehension","englishLangAndComprehension"),
-                ("basicComputer", "basicComputer"),
-                ("economyAndBanking", "economyAndBanking"), 
-                ("geographyIndHard", "geographyIndHard"),
-                ("geographyIndEasy", "geographyIndEasy"),
-                ("geographyWorld","geographyWorld"),
-                ("polityIndEasy", "polityIndEasy"),
-                ("polityIndHard", "polityIndHard"),
-                ("economyIndGen", "economyIndGen"),
-                ("economyIndBudgetAndSchemes", "economyIndBudgetAndSchemes"),
-                ("environmentAndEcologyEasy","environmentAndEcologyEasy"),
-                ("environmentAndEcologyHard","environmentAndEcologyHard"),
-                ("historyIndEasy", "historyIndEasy"),
-                ("historyIndHard", "historyIndHard"),
-                ("historyWorld", "historyWorld"),
-                ("InternationalRelationAndSecurity", "InternationalRelationAndSecurity"),
-                ("sciAndTechEasy","sciAndTechEasy"), 
-                ("sciAndTechHard","sciAndTechHard"), 
-                ("generalScience", "generalScience"), 
-                ("geographyRajEasy", "geographyRajEasy"),
-                ("geographyRajHard", "geographyRajHard"),
-                ("historyRajEasy", "historyRajEasy"), 
-                ("historyRajHard", "historyRajHard"), 
-                ("artAndCultureRaj", "artAndCultureRaj"), 
-                ("polityRajHard", "polityRajHard"),
-                ("polityRajEasy", "polityRajEasy"),
-                ("currentAffairsRajHard", "currentAffairsRajHard"), 
-                ("currentAffairsRajEasy", "currentAffairsRajEasy"),
-                ("artAndCultureInd", "artAndCultureInd"), 
-                ("economyRajHard", "economyRajHard"), 
-                ("economyRajEasy", "economyRajEasy"), 
-                ("constitutionAndGovernance", "constitutionAndGovernance"), 
-                ("decisionMaking","decisionMaking"),
-                ("ndaPhysics", "ndaPhysics"),
-                ("ndaHistory", "ndaHistory"),
-                ("ndaChemistry","ndaChemistry"),
-                ("ndaMaths","ndaMaths"),
-                ("cdsMaths","cdsMaths"),
-                ("currentEvents", "currentEvents"),
-                ("dataAnalysisAndInterpretation", "dataAnalysisAndInterpretation"),
-                ("financialAwareness", "financialAwareness"),
-                ("financeAndAccounts", "financeAndAccounts"),
-                ("statistics","statistics")]
+            ("mathsAdv","mathsAdv"),
+            ("chemAdv","chemAdv"),
+            ("physicsMains","physicsMains"), 
+            ("mathsMains", "mathsMains"),
+            ("chemMains","chemMains"),
+            ("bio", "bio"),
+            ("reasoningHard", "reasoningHard"),
+            ("reasoningEasy","reasoningEasy"),
+            ("currentAffairsWorldEasy", "currentAffairsWorldEasy"),
+            ("currentAffairsWorldHard", "currentAffairsWorldHard"),
+            ("currentAffairsIndiaEasy", "currentAffairsIndiaEasy"),
+            ("currentAffairsIndiaHard", "currentAffairsIndiaHard"),
+            ("quantAptHard", "quantAptHard"),
+            ("quantAptEasy", "quantAptEasy"),
+            ("englishLangAndComprehensionEasy","englishLangAndComprehensionEasy"),
+            ("englishLangAndComprehensionHard","englishLangAndComprehensionHard"),
+            ("basicComputer", "basicComputer"),
+            ("economyAndBanking", "economyAndBanking"), 
+            ("geographyIndHard", "geographyIndHard"),
+            ("geographyIndEasy", "geographyIndEasy"),
+            ("geographyWorld","geographyWorld"),
+            ("polityIndEasy", "polityIndEasy"),
+            ("polityIndHard", "polityIndHard"),
+            ("economyIndGen", "economyIndGen"),
+            ("economyIndBudgetAndSchemes", "economyIndBudgetAndSchemes"),
+            ("environmentAndEcologyEasy","environmentAndEcologyEasy"),
+            ("environmentAndEcologyHard","environmentAndEcologyHard"),
+            ("historyIndEasy", "historyIndEasy"),
+            ("historyIndHard", "historyIndHard"),
+            ("historyWorld", "historyWorld"),
+            ("InternationalRelationAndSecurity", "InternationalRelationAndSecurity"),
+            ("sciAndTechEasy","sciAndTechEasy"), 
+            ("sciAndTechHard","sciAndTechHard"), 
+            ("generalScience", "generalScience"), 
+            ("geographyRajEasy", "geographyRajEasy"),
+            ("geographyRajHard", "geographyRajHard"),
+            ("historyRajEasy", "historyRajEasy"), 
+            ("historyRajHard", "historyRajHard"), 
+            ("artAndCultureRaj", "artAndCultureRaj"), 
+            ("polityRajHard", "polityRajHard"),
+            ("polityRajEasy", "polityRajEasy"),
+            ("currentAffairsRajHard", "currentAffairsRajHard"), 
+            ("currentAffairsRajEasy", "currentAffairsRajEasy"),
+            ("artAndCultureInd", "artAndCultureInd"), 
+            ("economyRajHard", "economyRajHard"), 
+            ("economyRajEasy", "economyRajEasy"), 
+            ("constitutionAndGovernance", "constitutionAndGovernance"), 
+            ("decisionMaking","decisionMaking"),
+            ("ndaPhysics", "ndaPhysics"),
+            ("ndaHistory", "ndaHistory"),
+            ("ndaChemistry","ndaChemistry"),
+            ("ndaMaths","ndaMaths"),
+            ("cdsMaths","cdsMaths"),
+            ("currentEvents", "currentEvents"),
+            ("dataAnalysisAndInterpretation", "dataAnalysisAndInterpretation"),
+            ("financialAwareness", "financialAwareness"),
+            ("financeAndAccounts", "financeAndAccounts"),
+            ("statistics","statistics"),
+            ("childDevelopmentAndEdu", "childDevelopmentAndEdu"),
+            ("teachingApt", "teachingApt"),
+            ("hindi", "hindi"),
+            ("staticGK", "staticGK"),
+            ("rpcGKInd", "rpcGKInd"),
+            ("rpcGKRaj", "rpcGKRaj"),
+            ("rpcReasoning", "rpcReasoning"),
+            ('gdQuantApt', "gdQuantApt")]
+
 
     Questions = apps.get_model('Questions', 'Questions')
     Subjects = apps.get_model('Questions', 'Subjects')
@@ -208,10 +380,14 @@ def load_initial_data(apps, schema_editor):
         subject = Subjects(name=i[0])
         subject.save()
 
+
     
     d = {"ias": iasSubjects, "jee": jeeSubjects, "jeeMains": jeeMainsSubjects, "jeeAdv": jeeAdvSubjects,
          "neet": neetSubjects, "ras": rasSubjects, "nda": ndaSubjects, "cds": cdsSubjects, "ibpsPO": ibpsPOSubjects,
-         "ibpsClerk": ibpsClerkSubjects, "sscCGL": sscCGLSubjects, "sscCHSL": sscCHSLSubjects, "ntpc": ntpcSubjects, "cat": catSubjects}
+         "ibpsClerk": ibpsClerkSubjects, "sscCGL": sscCGLSubjects, "sscCHSL": sscCHSLSubjects, "ntpc": ntpcSubjects,
+         "reet1": reet1Subjects, "reet2": reet2Subjects, "patwari": patwariSubjects, "grade2nd": grade2ndSubjects, 
+         "grade2ndScience": grade2ndScienceSubjects, "grade2ndSS": grade2ndSSSubjects, "sscGD": sscGDSubjects, "sscMTS": sscMTSSubjects,
+         "rajPoliceConst": rajPoliceConstSubjects, "rajLDC": rajLDCSubjects, "rrbGD": rrbGDSubjects, "sipaper1": sipaper1Subjects, "sipaper2": sipaper2Subjects}
 
     
     for i in exams:
@@ -221,10 +397,10 @@ def load_initial_data(apps, schema_editor):
     
     allExams = Exams.objects.all()
 
-
     for exam in allExams:
         for i in d[str(exam.name)]:
             subject = Subjects.objects.get(name = i)
+
             exam.subjects.add(subject)
             exam.save()
 

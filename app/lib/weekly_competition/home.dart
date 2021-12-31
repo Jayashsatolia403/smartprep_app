@@ -1,5 +1,6 @@
 import 'package:app/weekly_competition/quiz_models.dart';
 import 'package:app/weekly_competition/quiz_template.dart';
+import 'package:app/weekly_competition/result.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -30,7 +31,9 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
   List<Question> questions = [];
   int currentPage = 1;
   bool done = false;
+  String competitionUuid = "";
   late Future<bool> myFuture;
+
   Map<String, int> totalPages = {
     "ias": 10,
     "jee": 6,
@@ -48,6 +51,7 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
   };
 
   Future<bool> getQuesFromDatabase() async {
+    print("Getting Accessed");
     try {
       if (questions.length >= currentPage * 10) {
         currentPage++;
@@ -107,8 +111,12 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
     }
 
     final dbDate = await QuizDatabase.instance.readAllDate();
-    if (dbDate.isNotEmpty && dbDate[0].pages >= currentPage) {
-      print("Trying to Fetch Data from Database...");
+
+    final now = DateTime.now();
+    if (dbDate.isNotEmpty &&
+        dbDate[0].date != DateTime(now.year, now.month, now.day)) {
+      await QuizDatabase.instance.deleteEverything();
+    } else if (dbDate.isNotEmpty && dbDate[0].pages >= currentPage) {
       final res = await getQuesFromDatabase();
       if (res) {
         return true;
@@ -126,7 +134,9 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
 
     final resJson = jsonDecode(response.body);
 
-    String competitionUuid = resJson['uuid'];
+    setState(() {
+      competitionUuid = resJson['uuid'];
+    });
 
     for (var ques in resJson['questions']) {
       // Adding Question to quiz_config
@@ -135,8 +145,6 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
       // Adding Question to Database
       Questions dbQuestion =
           Questions(uuid: ques['uuid'], statement: ques['statement']);
-
-      print(dbQuestion.statement);
 
       await QuizDatabase.instance.createQuestion(dbQuestion);
 
@@ -215,13 +223,77 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
           if (snapShot.hasData) {
             return Scaffold(
                 appBar: AppBar(
-                  title: const Text("Weekly Competitions",
-                      style: TextStyle(color: Colors.white)),
+                  title: Column(children: [
+                    const Text("Weekly Competitions",
+                        style: TextStyle(color: Colors.white)),
+                    ElevatedButton(
+                        onPressed: () async {
+                          print("Working");
+                          List<List<String>> submitOptions = [];
+
+                          final dbQuestions =
+                              await QuizDatabase.instance.readAllQuestions();
+
+                          print(dbQuestions);
+
+                          for (var dbQuestion in dbQuestions) {
+                            final getDbQuestionOptions = await QuizDatabase
+                                .instance
+                                .readQuestionOptionsFromQuestionId(
+                                    dbQuestion.uuid);
+
+                            submitOptions.add([]);
+                            print("Till Here");
+
+                            for (var j in getDbQuestionOptions) {
+                              final getDbOption = await QuizDatabase.instance
+                                  .readOptions(j.optionId);
+
+                              if (getDbOption.isSelected) {
+                                submitOptions[submitOptions.length - 1]
+                                    .add(getDbOption.uuid);
+
+                                print(getDbOption.uuid);
+                              }
+                            }
+                          }
+
+                          var data = {
+                            "uuid": competitionUuid,
+                            "options": submitOptions
+                          };
+
+                          String url = await rootBundle
+                              .loadString('assets/text/url.txt');
+
+                          final prefs = await SharedPreferences.getInstance();
+                          String? token = prefs.getString("token");
+                          String examName =
+                              prefs.getString("exam_name") ?? "Exam";
+                          final response = await http.post(
+                              Uri.parse('$url/submit_contest/'),
+                              headers: <String, String>{
+                                'Content-Type':
+                                    'application/json; charset=UTF-8',
+                                'Authorization': "Token $token"
+                              },
+                              body: jsonEncode(
+                                  {"data": jsonEncode(data).toString()}));
+
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Result(
+                                    correctOptions: jsonDecode(
+                                        response.body)["correct_options"])),
+                          );
+                        },
+                        child: const Text("Submit"))
+                  ]),
                   backgroundColor: Colors.purple,
                   toolbarHeight: 100,
                 ),
-                body: Scaffold(
-                    body: Column(
+                body: Column(
                   children: [
                     Expanded(
                         child: SmartRefresher(
@@ -271,7 +343,7 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
                     else
                       SizedBox(height: 150, child: AdWidget(ad: banner!))
                   ],
-                )));
+                ));
           } else {
             return const Center(child: CircularProgressIndicator());
           }

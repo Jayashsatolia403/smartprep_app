@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:katex_flutter/katex_flutter.dart';
 import 'package:http/http.dart' as http;
+
 import 'package:provider/provider.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:app/ad_state.dart';
@@ -25,9 +26,7 @@ class CustomRadio extends StatefulWidget {
       required this.statement,
       required this.quesUUid,
       required this.qualityRating,
-      required this.difficultyRating,
-      required this.isRated,
-      required this.createdBy})
+      required this.difficultyRating})
       : super(key: key);
 
   final List<dynamic> options;
@@ -36,8 +35,6 @@ class CustomRadio extends StatefulWidget {
   String quesUUid;
   double qualityRating;
   double difficultyRating;
-  bool isRated;
-  String createdBy;
 
   @override
   createState() {
@@ -46,7 +43,7 @@ class CustomRadio extends StatefulWidget {
 }
 
 class CustomRadioState extends State<CustomRadio> {
-  bool isBookmarked = false;
+  bool isRated = false;
   Future<bool?> showRatingsPage(BuildContext context, String uuid) async {
     double difficultyRating = 1;
     double qualityRating = 1;
@@ -83,7 +80,7 @@ class CustomRadioState extends State<CustomRadio> {
                       );
 
                       setState(() {
-                        widget.isRated = true;
+                        isRated = true;
                       });
                       Navigator.pop(context);
                     },
@@ -198,8 +195,8 @@ class CustomRadioState extends State<CustomRadio> {
   Widget build(BuildContext context) {
     return WillPopScope(
         onWillPop: () async {
-          if (!widget.isRated) await showRatingsPage(context, widget.quesUUid);
-          return widget.isRated;
+          await showRatingsPage(context, widget.quesUUid);
+          return isRated;
         },
         child: Scaffold(
           appBar: AppBar(
@@ -220,78 +217,44 @@ class CustomRadioState extends State<CustomRadio> {
                 if (index == 0) {
                   return Column(children: [
                     Padding(
+                      padding: const EdgeInsets.all(15),
+                      child: Row(
+                        children: [
+                          const Text("Quaity : "),
+                          for (var i = 0; i < 5; i++)
+                            Icon(
+                              Icons.star,
+                              color: (widget.qualityRating > i)
+                                  ? Colors.amber
+                                  : Colors.white,
+                            )
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(15),
+                      child: Row(
+                        children: [
+                          const Text("Difficulty : "),
+                          for (var i = 0; i < 5; i++)
+                            Icon(
+                              Icons.star,
+                              color: (widget.difficultyRating > i)
+                                  ? Colors.amber
+                                  : Colors.white,
+                            )
+                        ],
+                      ),
+                    ),
+                    Padding(
                         padding: const EdgeInsets.only(
-                            left: 15, top: 20, right: 15, bottom: 5),
+                            left: 15, top: 20, right: 15, bottom: 30),
                         child: KaTeX(
                           laTeXCode: Text(widget.statement,
                               style: const TextStyle(
                                 fontSize: 18,
                               )),
                         )),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 10, 0, 20),
-                      child: Row(children: [
-                        Row(
-                          children: [
-                            const Text(
-                              "Quality : ",
-                              // style: TextStyle(fontSize: 12),
-                            ),
-                            for (var i = 0; i < 5; i++)
-                              Icon(
-                                Icons.star,
-                                color: (widget.qualityRating > i)
-                                    ? Colors.amber
-                                    : Colors.white,
-                              )
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            const Text("Difficulty : "),
-                            for (var i = 0; i < 5; i++)
-                              Icon(
-                                Icons.star,
-                                color: (widget.difficultyRating > i)
-                                    ? Colors.amber
-                                    : Colors.white,
-                              )
-                          ],
-                        ),
-                      ]),
-                    ),
-                    Padding(
-                        padding: const EdgeInsets.all(8),
-                        child: Row(children: [
-                          const Text("Bookmark Question"),
-                          IconButton(
-                              onPressed: () async {
-                                String url = await rootBundle
-                                    .loadString('assets/text/url.txt');
-                                final prefs =
-                                    await SharedPreferences.getInstance();
-                                String? token = prefs.getString("token");
-                                await http.get(
-                                  Uri.parse(
-                                      '$url/bookmark_ques?uuid=${widget.quesUUid}'),
-                                  headers: <String, String>{
-                                    'Content-Type':
-                                        'application/json; charset=UTF-8',
-                                    'Authorization': "Token $token"
-                                  },
-                                );
-
-                                setState(() {
-                                  isBookmarked = true;
-                                });
-                              },
-                              icon: Icon(
-                                Icons.star,
-                                color: (isBookmarked
-                                    ? Colors.amber
-                                    : Colors.white),
-                              ))
-                        ])),
                     InkWell(
                       highlightColor: Colors.red,
                       splashColor: Colors.blueAccent,

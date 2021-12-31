@@ -25,5 +25,9 @@ class RegisterationSerializer(serializers.ModelSerializer):
         NewUser.set_password(password)
         NewUser.save()
 
+        from datetime import date
+
+        NewUser.addedQuestionDate = date.today()
+
         print(NewUser)
         return NewUser

@@ -1,6 +1,8 @@
 import 'dart:convert';
 
-import 'package:app/tests/quiz_template.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
+
+import 'quiz_template.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -10,37 +12,6 @@ import 'package:http/http.dart' as http;
 
 import '../ad_state.dart';
 import '../config.dart';
-
-Future<List<dynamic>> getBookmarks() async {
-  String url = await rootBundle.loadString('assets/text/url.txt');
-  print(url);
-  List<dynamic> allOptions = <dynamic>[];
-  List<dynamic> questionStatements = <dynamic>[];
-  List<dynamic> result = <dynamic>[];
-
-  final prefs = await SharedPreferences.getInstance();
-  String? token = prefs.getString("token");
-
-  final response = await http.get(
-    Uri.parse('$url/get_bookmarked_questions'),
-    headers: <String, String>{
-      'Content-Type': 'application/json; charset=UTF-8',
-      'Authorization': "Token $token"
-    },
-  );
-
-  final resJson = jsonDecode(response.body);
-
-  for (var id in resJson) {
-    questionStatements.add([id['statement'], id['uuid']]);
-    allOptions.add(id['options']);
-  }
-
-  result.add(questionStatements);
-  result.add(allOptions);
-
-  return result;
-}
 
 class Bookmarks extends StatefulWidget {
   Bookmarks({Key? key, required this.data}) : super(key: key);
@@ -52,6 +23,48 @@ class Bookmarks extends StatefulWidget {
 }
 
 class _BookmarksState extends State<Bookmarks> {
+  int currentPage = 1;
+  // ignore: prefer_final_fields
+  RefreshController _refreshController =
+      RefreshController(initialRefresh: true);
+  late Future<bool> myFuture;
+
+  List<dynamic> allOptions = <dynamic>[];
+  List<dynamic> questionStatements = <dynamic>[];
+
+  Future<bool> getBookmarks() async {
+    String url = await rootBundle.loadString('assets/text/url.txt');
+
+    final prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString("token");
+
+    final response = await http.get(
+      Uri.parse('$url/get_bookmarked_questions?page=$currentPage&page_size=10'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': "Token $token"
+      },
+    );
+
+    final resJson = jsonDecode(response.body);
+
+    if (resJson == "Done") {
+      _refreshController.loadNoData();
+      return false;
+    }
+
+    for (var id in resJson) {
+      questionStatements
+          .add([id['statement'], id['uuid'], id['ratings'], id['difficulty']]);
+      allOptions.add(id['options']);
+    }
+    setState(() {
+      currentPage++;
+    });
+
+    return true;
+  }
+
   BannerAd? banner;
 
   @override
@@ -72,12 +85,15 @@ class _BookmarksState extends State<Bookmarks> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    Future<List<dynamic>> _bookmarks = getBookmarks();
+  void initState() {
+    myFuture = getBookmarks();
+  }
 
-    return FutureBuilder<List<dynamic>>(
-        future: _bookmarks,
-        builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapShot) {
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<bool>(
+        future: myFuture,
+        builder: (BuildContext context, AsyncSnapshot<bool> snapShot) {
           if (snapShot.hasData) {
             return Scaffold(
                 appBar: AppBar(
@@ -90,37 +106,54 @@ class _BookmarksState extends State<Bookmarks> {
                     body: Column(
                   children: [
                     Expanded(
-                      child: ListView(
-                        scrollDirection: Axis.horizontal,
-                        children: [
-                          for (var i = 0; i < snapShot.data![0].length; i++)
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 20, top: 50, bottom: 20),
-                              child: ElevatedButton(
-                                child: Text(snapShot.data![0][i],
-                                    style:
-                                        const TextStyle(color: Colors.white)),
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => CustomRadio(
-                                              options: snapShot.data![1][i],
-                                              statement: snapShot.data![0][i]
-                                                  [0],
-                                              quesUUid: snapShot.data![0][i][1],
-                                            )),
-                                  );
-                                },
-                                style: ElevatedButton.styleFrom(
-                                    fixedSize: const Size(250, 20),
-                                    primary: Colors.black,
-                                    onPrimary: Colors.black,
-                                    alignment: Alignment.center),
-                              ),
-                            )
-                        ],
+                      child: SmartRefresher(
+                        controller: _refreshController,
+                        enablePullUp: true,
+                        onLoading: () async {
+                          final result = await getBookmarks();
+                          if (result) {
+                            _refreshController.loadComplete();
+                          } else {
+                            _refreshController.loadFailed();
+                          }
+                        },
+                        child: ListView(
+                          scrollDirection: Axis.horizontal,
+                          children: [
+                            for (var i = 0; i < questionStatements.length; i++)
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 20, top: 50, bottom: 20),
+                                child: ElevatedButton(
+                                  child: Text(questionStatements[i][0],
+                                      style:
+                                          const TextStyle(color: Colors.white)),
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => CustomRadio(
+                                                options: allOptions[i],
+                                                statement: questionStatements[i]
+                                                    [0],
+                                                quesUUid: questionStatements[i]
+                                                    [1],
+                                                qualityRating:
+                                                    questionStatements[i][2],
+                                                difficultyRating:
+                                                    questionStatements[i][3],
+                                              )),
+                                    );
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                      fixedSize: const Size(250, 20),
+                                      primary: Colors.black,
+                                      onPrimary: Colors.black,
+                                      alignment: Alignment.center),
+                                ),
+                              )
+                          ],
+                        ),
                       ),
                     ),
                     if (banner == null)
@@ -130,8 +163,99 @@ class _BookmarksState extends State<Bookmarks> {
                   ],
                 )));
           } else {
-            return const Text("Problems");
+            return const Center(child: CircularProgressIndicator());
           }
         });
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Future<List<dynamic>> getBookmarks() async {
+//   String url = await rootBundle.loadString('assets/text/url.txt');
+//   print(url);
+//   List<dynamic> allOptions = <dynamic>[];
+//   List<dynamic> questionStatements = <dynamic>[];
+//   List<dynamic> result = <dynamic>[];
+
+//   final prefs = await SharedPreferences.getInstance();
+//   String? token = prefs.getString("token");
+
+//   final response = await http.get(
+//     Uri.parse('$url/get_bookmarked_questions'),
+//     headers: <String, String>{
+//       'Content-Type': 'application/json; charset=UTF-8',
+//       'Authorization': "Token $token"
+//     },
+//   );
+
+//   final resJson = jsonDecode(response.body);
+
+//   print(resJson);
+
+//   for (var id in resJson) {
+//     questionStatements
+//         .add([id['statement'], id['uuid'], id['ratings'], id['difficulty']]);
+//     allOptions.add(id['options']);
+//   }
+
+//   result.add(questionStatements);
+//   result.add(allOptions);
+
+//   print("\n\n");
+//   print(result);
+
+//   return result;
+// }

@@ -44,12 +44,14 @@ class Subjects(models.Model):
             ("bio", "bio"),
             ("reasoningHard", "reasoningHard"),
             ("reasoningEasy","reasoningEasy"),
-            ("currentAffairsWorld", "currentAffairsWorld"),
+            ("currentAffairsWorldEasy", "currentAffairsWorldEasy"),
+            ("currentAffairsWorldHard", "currentAffairsWorldHard"),
             ("currentAffairsIndiaEasy", "currentAffairsIndiaEasy"),
             ("currentAffairsIndiaHard", "currentAffairsIndiaHard"),
             ("quantAptHard", "quantAptHard"),
             ("quantAptEasy", "quantAptEasy"),
-            ("englishLangAndComprehension","englishLangAndComprehension"),
+            ("englishLangAndComprehensionEasy","englishLangAndComprehensionEasy"),
+            ("englishLangAndComprehensionHard","englishLangAndComprehensionHard"),
             ("basicComputer", "basicComputer"),
             ("economyAndBanking", "economyAndBanking"), 
             ("geographyIndHard", "geographyIndHard"),
@@ -91,7 +93,16 @@ class Subjects(models.Model):
             ("dataAnalysisAndInterpretation", "dataAnalysisAndInterpretation"),
             ("financialAwareness", "financialAwareness"),
             ("financeAndAccounts", "financeAndAccounts"),
-            ("statistics","statistics")]
+            ("statistics","statistics"),
+            ("childDevelopmentAndEdu", "childDevelopmentAndEdu"),
+            ("teachingApt", "teachingApt"),
+            ("hindi", "hindi"),
+            ("staticGK", "staticGK"),
+            ("rpcGKInd", "rpcGKInd"),
+            ("rpcGKRaj", "rpcGKRaj"),
+            ("rpcReasoning", "rpcReasoning"),
+            ('gdQuantApt', "gdQuantApt")
+]
 
     uuid = models.CharField(max_length=50)
     name = models.CharField(max_length=100000, choices=choices, default='mathsAdv')
@@ -106,8 +117,10 @@ class Subjects(models.Model):
 class Exams(models.Model):
     choices = [("ias", "ias"),("jee", "jee"),("jeeMains","jeeMains"),("jeeAdv","jeeAdv"),("neet","neet"),
                ("ras","ras"), ("ibpsPO","ibpsPO"), ("ibpsClerk", "ibpsClerk"), ("sscCHSL", "sscCHSL"),
-               ("sscCGL", "sscCGL"), ("nda","nda"), ("cds","cds"), ("cat","cat"), ("ntpc","ntpc"), 
-               ("cdsEnglish", "cdsEnglish"), ("cdsGk","cdsGk"), ("cdsMaths","cdsMaths")]
+               ("sscCGL", "sscCGL"), ("nda","nda"), ("cds","cds"), ("ntpc","ntpc"), 
+               ("reet1", "reet1"), ("reet2", "reet2"), ("patwati", 'patwari'), ("grade2nd", "grade2nd"), 
+               ("grade2ndScience", "grade2ndScience"), ("grade2ndSS", "grade2ndSS"), ("sscGD", "sscGD"), ("sscMTS", "sscMTS"),
+               ("rajPoliceConst", "rajPoliceConst"), ("rajLDC", "rajLDC"), ("rrbGD", "rrbGD"), ("sipaper1", "sipaper1"), ("sipaper2", "sipaper2")]
 
     uuid =  models.CharField(max_length=50)
     name = models.CharField(max_length=20, choices=choices, null=True, blank=True)
@@ -164,3 +177,12 @@ class WeeklyCompetitionResult(models.Model):
     submissions = models.ManyToManyField(Submissions, related_name="weeklyCompetitionSubmissions", blank=True)
     correct_options = models.IntegerField(default=0)
 
+
+
+class ReportedQuestions(models.Model):
+    questions = models.ManyToManyField(Questions, related_name="reportedQuestions", blank=True)
+
+class Feedback(models.Model):
+    uuid = models.CharField(max_length=50, null=True)
+    text = models.TextField(null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="feedbackUser")

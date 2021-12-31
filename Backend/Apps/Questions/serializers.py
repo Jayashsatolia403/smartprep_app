@@ -89,30 +89,58 @@ class AddQuestionSerializer(serializers.ModelSerializer):
             percentCorrect = 0
         )
 
+        from datetime import date
+        user = self.context['request'].user
+        user.addedQuestionDate = date.today()
+        user.save()
+
         newQuestion.save()
         return newQuestion
 
 
 class SubmitContestSerializer(serializers.ModelSerializer):
 
-    def submit(self):
-        competition_uuid = self.validated_data['uuid']
-        selected_options = self.validated_data['options']
+    class Meta:
+        model = WeeklyCompetitionResult
+        fields = []
+
+
+    def save(self):
+        """
+            Input Type: {
+                "uuid": String,
+                "options": [[selected options uuids], [selected options uuids], [], []]
+            }
+        """
+
+        import json
+
+        data = json.loads(self.context['useful_data']['data'])
+
+        
+
+
+        competition_uuid = data['uuid']
+        selected_options = data['options']
         user = self.context['request'].user
 
         competition = WeeklyCompetitions.objects.get(uuid=competition_uuid)
         competition_questions = competition.questions.all()
 
-        competition_result = WeeklyCompetitionResult.objects.get(user, competition=competition)
-
-        if competition_result:
+        try:
+            competition_result = WeeklyCompetitionResult.objects.get(user=user, competition=competition)
             competition_result.delete()
+        except:
+            print("Good News")
+
+        print(data)
+
 
         competition_result = WeeklyCompetitionResult(user = user, competition=competition)
         competition_result.save()
 
 
-        for i in range(selected_options):
+        for i in range(len(selected_options)):
             correct = True
             submission = Submissions(
                 question = competition_questions[i],
@@ -121,13 +149,14 @@ class SubmitContestSerializer(serializers.ModelSerializer):
             )
 
             submission.save()
+            correct = False
 
             for option_uuid in selected_options[i]:
                 if option_uuid:
                     option = Options.objects.get(uuid = option_uuid)
 
-                    if option.isCorrect == False:
-                        correct = False
+                    if option.isCorrect == True:
+                        correct = True
 
                     submission.selected_options.add(option)
                     submission.save()
@@ -135,7 +164,7 @@ class SubmitContestSerializer(serializers.ModelSerializer):
                     correct = False
 
             if correct:
-                competition_result.correct += 1
+                competition_result.correct_options += 1
                 competition_result.save()
 
             competition_result.submissions.add(submission)

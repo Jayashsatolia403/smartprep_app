@@ -48,7 +48,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     isFree = models.BooleanField(default=True)
     language = models.CharField(max_length=10, null=True, blank=True)
 
-    premiumExams = ArrayField(models.CharField(max_length=20, null=True, blank=True), null=True, default=list)
+    premiumExams = ArrayField(models.CharField(max_length=20, null=True, blank=True), null=True, default=list, blank=True)
+    addedQuestionDate = models.DateField(null=True, blank=True)
 
     created_at = models.DateTimeField(auto_now_add=True, null=True)
     updated_at = models.DateTimeField(auto_now=True)

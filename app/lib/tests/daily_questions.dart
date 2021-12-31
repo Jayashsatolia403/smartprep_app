@@ -21,6 +21,7 @@ class DailyQuestions extends StatefulWidget {
 
 class _DailyQuestionsState extends State<DailyQuestions> {
   Future<List<dynamic>> getDailyQuestions() async {
+    print("Starting");
     String url = await rootBundle.loadString('assets/text/url.txt');
     List<dynamic> allOptions = <dynamic>[];
     List<dynamic> questionStatements = <dynamic>[];
@@ -41,7 +42,14 @@ class _DailyQuestionsState extends State<DailyQuestions> {
     final resJson = jsonDecode(response.body);
 
     for (var id in resJson) {
-      questionStatements.add([id['statement'], id['uuid']]);
+      questionStatements.add([
+        id['statement'],
+        id['uuid'],
+        id['ratings'],
+        id['difficulty'],
+        id['isRated'],
+        id['createdBy']
+      ]);
       allOptions.add(id['options']);
     }
 
@@ -110,11 +118,16 @@ class _DailyQuestionsState extends State<DailyQuestions> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => CustomRadio(
-                                              options: snapShot.data![1][i],
-                                              statement: snapShot.data![0][i]
-                                                  [0],
-                                              quesUUid: snapShot.data![0][i][1],
-                                            )),
+                                            options: snapShot.data![1][i],
+                                            statement: snapShot.data![0][i][0],
+                                            quesUUid: snapShot.data![0][i][1],
+                                            qualityRating: snapShot.data![0][i]
+                                                [2],
+                                            difficultyRating: snapShot.data![0]
+                                                [i][3],
+                                            isRated: snapShot.data![0][i][4],
+                                            createdBy: snapShot.data![0][i]
+                                                [5])),
                                   );
                                 },
                                 style: ElevatedButton.styleFrom(

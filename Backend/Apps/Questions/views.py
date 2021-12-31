@@ -1,3 +1,6 @@
+from os import stat
+import re
+from django.core import paginator
 from rest_framework.decorators import api_view
 from rest_framework import status
 
@@ -63,8 +66,12 @@ def getDailyQuestions(request):
         if len(availableDailyQuestions) != 0:
             questions = availableDailyQuestions[0].questions.all()
             
-            for ques in questions:
-                result.append(ques.uuid)
+            for question in questions:
+                result.append({"uuid": question.uuid, "statement": question.statement, 
+                        "ratings": question.ratings, "difficulty" : question.difficulty, 
+                        "options": [(z.content, z.isCorrect) for z in question.options.all()], 
+                        "percentCorrect": question.percentCorrect, "subject": question.subject, "isRated": request.user in question.ratedBy.all(),
+                        "createdBy": "Smartprep Team" if question.isExpert else question.createdBy.name})
 
 
             return Response(result[:limit])
@@ -84,7 +91,10 @@ def getDailyQuestions(request):
         count = 1
 
         for subject in subjects:
-            questions = subject.questions.exclude(seenBy__id = user.id)[:perSubjectLimit if perSubjectLimit != 0 else 1]
+            try:
+                questions = subject.questions.exclude(seenBy__id = user.id)[:perSubjectLimit if perSubjectLimit != 0 else 1]
+            except:
+                continue
 
             for question in questions:
 
@@ -98,7 +108,8 @@ def getDailyQuestions(request):
                 result.append({"uuid": question.uuid, "statement": question.statement, 
                         "ratings": question.ratings, "difficulty" : question.difficulty, 
                         "options": [(z.content, z.isCorrect) for z in question.options.all()], 
-                        "percentCorrect": question.percentCorrect, "subject": question.subject}) 
+                        "percentCorrect": question.percentCorrect, "subject": question.subject, "isRated": request.user in question.ratedBy.all(),
+                        "createdBy": "Smartprep Team" if question.isExpert else question.createdBy.name}) 
                 
                 count += 1
 
@@ -118,7 +129,7 @@ def getDailyQuestions(request):
 def addQuestion(request):
 
     try:
-        optionSerializer = AddOptionsSerializer(data=request.data)
+        optionSerializer = AddOptionsSerializer(data=request.data, context = {"request": request})
 
         if optionSerializer.is_valid():
             options = optionSerializer.save()
@@ -188,7 +199,8 @@ def getQuestionOfTheDay(request):
                     return Response({"uuid": ques.uuid, "statement": ques.statement, 
                             "options": [(z.content, z.isCorrect, z.uuid) for z in ques.options.all()], 
                             "ratings": ques.ratings, "difficulty" : ques.difficulty, 
-                            "percentCorrect": ques.percentCorrect, "subject": subject})
+                            "percentCorrect": ques.percentCorrect, "subject": subject, "isRated": request.user in ques.ratedBy.all(),
+                            "createdBy": "Smartprep Team" if ques.isExpert else ques.createdBy.name})
 
         return Response("Unknown Error : Don't worry our tech team is working in this issue and will get back to you as soon as possible.")
         
@@ -206,10 +218,10 @@ def rateQuestion(request):
         difficulty = request.GET['difficulty']
         ratings = request.GET['ratings']
 
-        question = Questions.objects.get(id = questionId)
+        question = Questions.objects.get(uuid = questionId)
         question.ratedBy.add(request.user)
-        question.ratings = (question.ratings + int(ratings))/ len(question.ratedBy.all())
-        question.difficulty = (question.difficulty + int(difficulty))/ len(question.ratedBy.all())
+        question.ratings = (question.ratings + float(ratings))/ (len(question.ratedBy.all())+1)
+        question.difficulty = (question.difficulty + float(difficulty))/ (len(question.ratedBy.all())+1)
         question.save()
 
         return Response("Success!")
@@ -239,24 +251,6 @@ def getQuestionByID(request):
 
 
 
-@api_view(['GET', ])
-def getPracticeQuestions(request):
-    try:
-        limit = request.GET['limit']
-        exam = request.GET['exam']
-
-        result = []
-
-        prevQuesObjects = DailyQuestions.objects.filter(user=request.user, exam=exam)
-
-        for i in prevQuesObjects:
-            for ques in i.questions.all():
-                result.append(ques.uuid)
-
-        return Response(result[:int(limit)])
-    except:
-        return Response("Invalid Request", status=status.HTTP_400_BAD_REQUEST)
-
 
 
 
@@ -264,9 +258,11 @@ def getPracticeQuestions(request):
 def bookmark_question(request):
     try:
         user = request.user
-        ques_id = request.GET['ques_id']
+        ques_id = request.GET['uuid']
 
         question = Questions.objects.get(uuid=ques_id)
+
+        print(question)
 
         question_bookmark = QuestionBookmarks.objects.filter(user=user)
 
@@ -276,14 +272,14 @@ def bookmark_question(request):
             )
 
             question_bookmark.save()
-
-            question_bookmark.add(question)
-
-            question_bookmark.save()
-        
         else:
-            question_bookmark.add(question)
-            question_bookmark.save()
+            question_bookmark = question_bookmark[0]
+
+        question_bookmark.questions.add(question)
+
+        question_bookmark.save()
+
+
     except:
         return Response("Invalid Request", status=status.HTTP_400_BAD_REQUEST)
 
@@ -292,19 +288,32 @@ def bookmark_question(request):
 def get_bookmarked_questions(request):
     try:
         user = request.user
+        page = request.GET['page']
+        page_size = request.GET['page_size']
 
         bookmarked_questions = QuestionBookmarks.objects.filter(user=user)
 
         if not bookmarked_questions:
-            bookmarked_question = QuestionBookmarks(user = request.user)
-            bookmarked_question.save()
+            bookmarked_questions = QuestionBookmarks(user = request.user)
+            bookmarked_questions.save()
         else:
-            bookmarked_question = bookmarked_questions[0]
+            bookmarked_questions = bookmarked_questions[0]
+        
+        bookmarked_questions = bookmarked_questions.questions.all().order_by('-id')
+
+        paginator = Paginator(bookmarked_questions, page_size)
+
+        try:
+            result = paginator.page(page)
+        except InvalidPage:
+            return Response("Done", status=status.HTTP_404_NOT_FOUND)
+
 
         return Response([{"uuid": question.uuid, "statement": question.statement, 
                         "ratings": question.ratings, "difficulty" : question.difficulty, 
                         "options": [(z.content, z.isCorrect) for z in question.options.all()], 
-                        "percentCorrect": question.percentCorrect, "subject": question.subject} for question in bookmarked_question.questions.all()])
+                        "percentCorrect": question.percentCorrect, "subject": question.subject, 
+                        "isRated": request.user in question.ratedBy.all()} for question in result])
 
     except:
         return Response("Invalid Request", status=status.HTTP_400_BAD_REQUEST)
@@ -364,7 +373,7 @@ def host_weekly_competition(request):
             if exam.name not in questions:
                 continue
 
-            round = WeeklyCompetitions.objects.all()
+            round = WeeklyCompetitions.objects.filter(exam=exam)
             if len(round) == 0:
                 round = 0
             else:
@@ -478,7 +487,7 @@ def get_practice_questions(request):
 
         if user.isFree:
             try:
-                practice_questions = DailyQuestions.objects.filter(exam=examName).order_by('id')[page-1]
+                practice_questions = DailyQuestions.objects.filter(exam=examName).order_by('-id')[page-1]
             except:
                 return Response("Invalid Request", status=status.HTTP_400_BAD_REQUEST)
 
@@ -495,11 +504,11 @@ def get_practice_questions(request):
 
 @api_view(['GET', ])
 def get_previous_contests(request):
-    user = request.user
+    exam = request.GET['exam']
     page = request.GET['page']
     page_size = request.GET['page_size']
 
-    competitions = WeeklyCompetitions.objects.filter(user=request.user).order_by('id')
+    competitions = WeeklyCompetitions.objects.filter(exam=Exams.objects.get(name=exam)).order_by('id')
 
     paginator = Paginator(competitions, page_size)
 
@@ -508,7 +517,7 @@ def get_previous_contests(request):
     try:
         competitions_list = paginator.page(page)
     except InvalidPage:
-        return Response("Done")
+        return Response("Done", status=status.HTTP_404_NOT_FOUND)
 
     return Response([[competition.name, competition.uuid] for competition in competitions_list])
 
@@ -519,17 +528,17 @@ def get_competition_by_uuid(request):
     page = request.GET['page']
     page_size = request.GET['page_size']
 
-    competition_result = WeeklyCompetitionResult.objects.get(uuid=uuid)
-
-    if not competition_result:
+    try:
+        competition = WeeklyCompetitions.objects.get(uuid=uuid)
+    except:
         return Response("Bad Request", status=status.HTTP_400_BAD_REQUEST)
 
-    paginator = Paginator(competition_result.submissions.all().order_by('id'), page_size)
+    paginator = Paginator(competition.questions.all().order_by('id'), page_size)
 
-    contest_submissions = []
+    contest_questions = []
         
     try:
-        contest_submissions = paginator.page(page)
+        contest_questions = paginator.page(page)
     except InvalidPage:
         return Response("Done")
 
@@ -537,11 +546,11 @@ def get_competition_by_uuid(request):
     questions = []
 
 
-    for submission in contest_submissions:
-        questions.append({"uuid": submission.question.uuid, "statement": submission.question.statement, 
-                    "ratings": submission.question.ratings, "difficulty" : submission.question.difficulty, 
-                    "options": [(z.content, z.uuid, z.isCorrect, z in submission.selected_options.all()) for z in submission.question.options.all()], 
-                    "percentCorrect": submission.question.percentCorrect, "subject": submission.question.subject})
+    for question in contest_questions:
+        questions.append({"uuid": question.uuid, "statement": question.statement, 
+                        "ratings": question.ratings, "difficulty" : question.difficulty, 
+                        "options": [(z.content, z.isCorrect) for z in question.options.all()], 
+                        "percentCorrect": question.percentCorrect, "subject": question.subject, "isRated": request.user in question.ratedBy.all()})
 
     
     competition = {"uuid": uuid, "questions" : questions}
@@ -550,19 +559,48 @@ def get_competition_by_uuid(request):
     return Response(competition)
 
 
-@api_view(['GET', ])
+@api_view(['POST', ])
 def submit_contest(request):
-
     try:
-
-        serializer = SubmitContestSerializer(data=request.data, context={'request': request})
+        serializer = SubmitContestSerializer(data=request.data, context={'request': request, "useful_data": request.data})
 
         data = {}
 
         if serializer.is_valid():
-            data['correct_options'] = serializer.correct
+            res = serializer.save()
+            data['correct_options'] = res.correct_options
 
-        return Response("Done!")
+        else:
+            print(serializer.errors)
+
+        return Response(data)
     
+    except:
+        return Response("Invalid Request", status=status.HTTP_400_BAD_REQUEST)
+
+
+
+@api_view(['GET', ])
+def get_questions_by_ad(request):
+    try:
+        user = request.user
+    except:
+        return Response("Invalid Request", status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET', ])
+def has_user_added_question_today(request):
+    try:
+        from datetime import date
+
+        user = request.user
+        date = date.today()
+
+        if user.addedQuestionDate == date:
+            return Response(True)
+        else:
+            return Response(False)
+
+
     except:
         return Response("Invalid Request", status=status.HTTP_400_BAD_REQUEST)
