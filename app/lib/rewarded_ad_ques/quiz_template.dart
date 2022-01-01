@@ -18,8 +18,8 @@ class RadioModel {
   RadioModel(this.isSelected, this.buttonText, this.text, this.isCorrect);
 }
 
-class JeeCustomRadio extends StatefulWidget {
-  JeeCustomRadio(
+class CustomRadio extends StatefulWidget {
+  CustomRadio(
       {Key? key,
       required this.options,
       required this.statement,
@@ -41,13 +41,12 @@ class JeeCustomRadio extends StatefulWidget {
 
   @override
   createState() {
-    return JeeCustomRadioState();
+    return CustomRadioState();
   }
 }
 
-class JeeCustomRadioState extends State<JeeCustomRadio> {
+class CustomRadioState extends State<CustomRadio> {
   bool isBookmarked = false;
-  bool isAnswered = false;
   Future<bool?> showRatingsPage(BuildContext context, String uuid) async {
     double difficultyRating = 1;
     double qualityRating = 1;
@@ -71,6 +70,8 @@ class JeeCustomRadioState extends State<JeeCustomRadio> {
                           await rootBundle.loadString('assets/text/url.txt');
                       final prefs = await SharedPreferences.getInstance();
                       String? token = prefs.getString("token");
+
+                      print("Working Exactly Fine!");
 
                       await http.get(
                         Uri.parse(
@@ -296,52 +297,41 @@ class JeeCustomRadioState extends State<JeeCustomRadio> {
                       splashColor: Colors.blueAccent,
                       onTap: () {
                         setState(() {
+                          for (var element in sampleData) {
+                            element.isSelected = false;
+                          }
                           sampleData[index].isSelected = true;
+
+                          for (var i = 0; i < widget.options.length; i++) {
+                            sampleData[i].isCorrect = widget.options[i][1];
+                          }
                         });
                       },
-                      child: RadioItem(sampleData[index], isAnswered),
+                      child: RadioItem(sampleData[index]),
                     )
                   ]);
-                } else if (index == sampleData.length - 1) {
-                  return Column(
-                    children: [
-                      InkWell(
-                        highlightColor: Colors.red,
-                        splashColor: Colors.blueAccent,
-                        onTap: () {
-                          setState(() {
-                            sampleData[index].isSelected = true;
-                          });
-                        },
-                        child: RadioItem(sampleData[index], isAnswered),
-                      ),
-                      ElevatedButton(
-                          onPressed: () {
-                            setState(() {
-                              isAnswered = true;
-                              for (var i = 0; i < widget.options.length; i++) {
-                                sampleData[i].isCorrect = widget.options[i][1];
-                              }
-                            });
-                          },
-                          child: const Text("Check Answer"))
-                    ],
-                  );
                 }
                 return InkWell(
                   highlightColor: Colors.red,
                   splashColor: Colors.blueAccent,
                   onTap: () {
                     setState(() {
+                      for (var element in sampleData) {
+                        element.isSelected = false;
+                      }
                       sampleData[index].isSelected = true;
+
+                      for (var i = 0; i < widget.options.length; i++) {
+                        sampleData[i].isCorrect = widget.options[i][1];
+                      }
                     });
                   },
-                  child: RadioItem(sampleData[index], isAnswered),
+                  child: RadioItem(sampleData[index]),
                 );
               },
             )),
             if (banner == null)
-              const Text("Loading Ad")
+              const Text("yo")
             else
               SizedBox(height: 100, child: AdWidget(ad: banner!))
           ]),
@@ -351,9 +341,8 @@ class JeeCustomRadioState extends State<JeeCustomRadio> {
 
 class RadioItem extends StatelessWidget {
   final RadioModel _item;
-  final bool isAnswered;
   // ignore: use_key_in_widget_constructors
-  const RadioItem(this._item, this.isAnswered);
+  const RadioItem(this._item);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -375,11 +364,9 @@ class RadioItem extends StatelessWidget {
             decoration: BoxDecoration(
               color: (() {
                 if (_item.isCorrect) {
-                  return Colors.lightGreenAccent;
-                } else if (_item.isSelected && isAnswered) {
-                  return Colors.red;
-                } else if (_item.isSelected) {
                   return Colors.lightBlueAccent;
+                } else if (_item.isSelected) {
+                  return Colors.red;
                 } else {
                   return Colors.transparent;
                 }
@@ -389,10 +376,8 @@ class RadioItem extends StatelessWidget {
                 color: (() {
                   if (_item.isCorrect) {
                     return Colors.lightBlueAccent;
-                  } else if (_item.isSelected && isAnswered) {
-                    return Colors.red;
                   } else if (_item.isSelected) {
-                    return Colors.lightBlueAccent;
+                    return Colors.red;
                   } else {
                     return Colors.black;
                   }

@@ -1,8 +1,9 @@
 import 'package:app/splashscreen/splashscreen.dart';
+import 'package:app/weekly_competition/previous_competitions.dart';
 import 'package:flutter/material.dart';
 
-class ErrorPage extends StatelessWidget {
-  const ErrorPage({Key? key}) : super(key: key);
+class Unavailable extends StatelessWidget {
+  const Unavailable({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,7 @@ class ErrorPage extends StatelessWidget {
           ),
           const Center(
               child: Text(
-            "Internal Server Error",
+            "Contest Not Available",
             style: TextStyle(
                 color: Colors.red, fontSize: 18, fontWeight: FontWeight.bold),
           )),
@@ -23,13 +24,15 @@ class ErrorPage extends StatelessWidget {
               padding: EdgeInsets.all(10),
               child: Center(
                   child: Text(
-                "Sorry for inconvenience! Our Team is Working on this issue. We will fix it as soon as possible. Thank you for your patience",
+                "Dear Student, Weekly contests are only available on Sundays. If you are looking for previous competitions Click Below.",
                 style: TextStyle(fontSize: 16),
               ))),
           ElevatedButton(
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const Splash()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const PreviousCompetitions()));
               },
               child: const Text("Back to Home")),
         ],

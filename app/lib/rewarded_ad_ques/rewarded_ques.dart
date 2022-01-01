@@ -13,16 +13,16 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import 'package:flutter/services.dart' show rootBundle;
 
-class DailyQuestions extends StatefulWidget {
-  const DailyQuestions({Key? key}) : super(key: key);
+class RewardedQuestions extends StatefulWidget {
+  const RewardedQuestions({Key? key}) : super(key: key);
 
   @override
-  _DailyQuestionsState createState() => _DailyQuestionsState();
+  _RewardedQuestionsState createState() => _RewardedQuestionsState();
 }
 
-class _DailyQuestionsState extends State<DailyQuestions> {
+class _RewardedQuestionsState extends State<RewardedQuestions> {
   String exam = "";
-  Future<List<dynamic>> getDailyQuestions() async {
+  Future<List<dynamic>> getRewardedQuestions() async {
     String url = await rootBundle.loadString('assets/text/url.txt');
     List<dynamic> allOptions = <dynamic>[];
     List<dynamic> questionStatements = <dynamic>[];
@@ -37,7 +37,7 @@ class _DailyQuestionsState extends State<DailyQuestions> {
     });
 
     final response = await http.get(
-      Uri.parse('$url/getQues?exam=$examName'),
+      Uri.parse('$url/get_questions_by_ad?exam=$examName'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
         'Authorization': "Token $token"
@@ -64,11 +64,12 @@ class _DailyQuestionsState extends State<DailyQuestions> {
     return result;
   }
 
-  late Future<List<dynamic>> _dailyQuestions;
+  // ignore: non_constant_identifier_names
+  late Future<List<dynamic>> _RewardedQuestions;
 
   @override
   void initState() {
-    _dailyQuestions = getDailyQuestions();
+    _RewardedQuestions = getRewardedQuestions();
   }
 
   BannerAd? banner;
@@ -93,12 +94,12 @@ class _DailyQuestionsState extends State<DailyQuestions> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<dynamic>>(
-        future: _dailyQuestions,
+        future: _RewardedQuestions,
         builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapShot) {
           if (snapShot.hasData) {
             return Scaffold(
                 appBar: AppBar(
-                  title: const Text("Daily Questions",
+                  title: const Text("Rewarded Questions",
                       style: TextStyle(color: Colors.white)),
                   backgroundColor: Colors.purple,
                   toolbarHeight: 100,

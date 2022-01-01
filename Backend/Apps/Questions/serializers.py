@@ -1,8 +1,10 @@
 from io import SEEK_END
+from django.contrib.postgres import fields
+from django.db import models
 from rest_framework import serializers
 from rest_framework.utils import field_mapping
 
-from .models import Options, Questions, QuestionsOfTheDays, Submissions, WeeklyCompetitionResult, WeeklyCompetitions
+from .models import Complaints, Feedback, Options, Questions, QuestionsOfTheDays, Submissions, WeeklyCompetitionResult, WeeklyCompetitions
 
 import uuid
 
@@ -41,9 +43,7 @@ class AddOptionsSerializer(serializers.ModelSerializer):
 
             elif s[i:i+5] == "$$$<<" and isOpen:
                 result.append(s[start:i])
-            
-            if s[i] == "<":
-                end = i
+                end = i+5
 
         
         return [result, end+1]
@@ -58,10 +58,10 @@ class AddOptionsSerializer(serializers.ModelSerializer):
         end = parsedContent[1]
         isCorrects = data[end:].rstrip().lstrip().split()
 
-        print(contents, isCorrects)
 
         for a in range(len(contents)):
             newOption = Options(
+                uuid = str(uuid.uuid4()),
                 content = contents[a],
                 isCorrect = True if isCorrects[a] == "T" else False
             )
@@ -132,14 +132,14 @@ class SubmitContestSerializer(serializers.ModelSerializer):
         except:
             print("Good News")
 
-        print(data)
-
 
         competition_result = WeeklyCompetitionResult(user = user, competition=competition)
         competition_result.save()
 
+        print(len(competition_questions))
 
-        for i in range(len(selected_options)):
+
+        for i in range(len(competition_questions)):
             correct = True
             submission = Submissions(
                 question = competition_questions[i],
@@ -170,3 +170,41 @@ class SubmitContestSerializer(serializers.ModelSerializer):
         
 
         return competition_result
+
+
+
+class AddFeedbackSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Feedback
+        fields = ['subject', 'text']
+
+    
+    def save(self):
+        newFeedback = Feedback(
+            uuid = str(uuid.uuid4()),
+            subject = self.validated_data['subject'],
+            text = self.validated_data['text']
+        )
+
+        newFeedback.save()
+
+        return newFeedback
+
+class AddComplaintsSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Complaints
+        fields = ['subject', 'text']
+
+    
+    def save(self):
+        newComplaints = Complaints(
+            uuid = str(uuid.uuid4()),
+            subject = self.validated_data['subject'],
+            text = self.validated_data['text']
+        )
+
+        newComplaints.save()
+
+        return newComplaints

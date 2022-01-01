@@ -189,8 +189,51 @@ List<String> ntpcSubjects = [
   "ntpcMisc"
 ];
 
-List<String> reet1Subjects = ["reet1Misc"];
-List<String> reet2Subjects = ["reet2Misc"];
+List<String> reet1Subjects = [
+  "reet1Misc",
+  "childDevelopmentAndEdu",
+  "hindi",
+  "englishLangAndComprehensionEasy",
+  "quantAptEasy",
+  "generalScience"
+];
+
+List<String> reet2Subjects = [
+  "reet2Misc",
+  "childDevelopmentAndEdu",
+  "hindi",
+  "englishLangAndComprehensionEasy",
+  "staticGK",
+  "geographyIndEasy",
+  "geographyWorld",
+  "polityIndEasy",
+  "geographyIndHard",
+  "polityIndHard",
+  "economyIndGen",
+  "historyIndEasy",
+  "historyIndHard",
+  "artAndCultureInd",
+  "constitutionAndGovernance",
+  "geographyRajHard",
+  "historyRajHard",
+  "artAndCultureRaj",
+  "polityRajHard",
+  "currentAffairsRajHard",
+  "artAndCultureInd",
+  "grade2ndSSMisc"
+];
+
+List<String> reet2ScienceSubjects = [
+  "reet2ScienceMisc",
+  "quantAptEasy",
+  "quantAptHard",
+  "childDevelopmentAndEdu",
+  "hindi",
+  "englishLangAndComprehensionEasy",
+  "bio",
+  "grade2ndScienceMisc",
+  "generalScience"
+];
 
 List<String> sipaper1Subjects = ["hindi"];
 
@@ -430,6 +473,7 @@ var examSubjectsRelation = {
   "ntpc": ntpcSubjects,
   "reet1": reet1Subjects,
   "reet2": reet2Subjects,
+  "reet2Science": reet2ScienceSubjects,
   "patwari": patwariSubjects,
   "grade2nd": grade2ndSubjects,
   "grade2ndScience": grade2ndScienceSubjects,
@@ -458,7 +502,8 @@ var examValues = {
   'CDS': 'cds',
   'NTPC': 'ntpc',
   "REET LEVEL 1": "reet1",
-  "REET LEVEL 2": "reet2",
+  "REET LEVEL 2 Social Science": "reet2",
+  "REET LEVEL 2 Science": "reet2Science",
   "PATWARI": "patwari",
   "2nd Grade Paper 1": "grade2nd",
   "2nd Grade Science": "grade2ndScience",
@@ -488,6 +533,7 @@ var dropDownValues = {
   "ntpc": "ntpcMisc",
   "reet1": "reet1Misc",
   "reet2": "reet2Misc",
+  "reet2Science": "reet2ScienceMisc",
   "patwati": "patwatiMisc",
   "grade2nd": "grade2ndMisc",
   "grade2ndScience": "grade2ndScienceMisc",
@@ -519,14 +565,10 @@ Future<bool> addQuestion(String statement, List<String> options, String subject,
     content += "\$\$\$<< ";
   }
 
-  print(' >> $content');
-
   for (String s in correctOptions) {
     content += s;
     content += " ";
   }
-
-  print(content);
 
   final response = await http.post(
     Uri.parse('$url/addQues/'),
@@ -576,7 +618,7 @@ class _AddQuestionsState extends State<AddQuestions> {
   void initState() {
     super.initState();
 
-    dropdownValue = dropDownValues[examValues[widget.data.examname]] ?? "";
+    dropdownValue = dropDownValues[widget.data.examname] ?? "";
 
     for (var i = 0; i < widget.val; i++) {
       sampleData.add(AddQuesModel(widget.optionsData[i].isSelected,
@@ -586,6 +628,7 @@ class _AddQuestionsState extends State<AddQuestions> {
 
   @override
   Widget build(BuildContext context) {
+    print(examSubjectsRelation[widget.data.examname]);
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -599,7 +642,7 @@ class _AddQuestionsState extends State<AddQuestions> {
           const Padding(
             padding: EdgeInsets.all(5),
             child: Text(
-              "Choose Subject: ",
+              "Add Your Best Questions of the Day to help the community. \n\nChoose Subject: ",
               style: TextStyle(fontSize: 17, color: Colors.black),
             ),
           ),
@@ -607,7 +650,10 @@ class _AddQuestionsState extends State<AddQuestions> {
               padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
               child: DropdownButton(
                 value: dropdownValue,
-                icon: const Icon(Icons.arrow_downward),
+                icon: const Icon(
+                  Icons.arrow_drop_down,
+                  size: 40,
+                ),
                 iconSize: 24,
                 elevation: 16,
                 style: const TextStyle(color: Colors.deepPurple, fontSize: 18),
@@ -621,7 +667,7 @@ class _AddQuestionsState extends State<AddQuestions> {
                   });
                 },
                 borderRadius: BorderRadius.circular(10),
-                items: examSubjectsRelation[examValues[widget.data.examname]]
+                items: examSubjectsRelation[widget.data.examname]
                     ?.map<DropdownMenuItem<String>>((String value) {
                   return DropdownMenuItem<String>(
                       value: value,
@@ -761,6 +807,13 @@ class _AddQuestionsState extends State<AddQuestions> {
               for (var j = 0; j < widget.val; j++) {
                 options.add(widget.optionsData[j].text);
               }
+
+              print("\n\n\n\n\n\n\n\n\n\n\n\n");
+
+              print(options);
+              print(correctOptions);
+
+              print("\n\n\n\n\n\n\n\n\n\n\n\n");
 
               bool isAdded = await addQuestion(
                   widget.quesStatement, options, dropdownValue, correctOptions);

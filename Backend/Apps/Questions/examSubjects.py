@@ -138,8 +138,49 @@ ntpcSubjects = ["reasoningHard",
 
 
 
-reet1Subjects = ["reet1Misc"]
-reet2Subjects = ["reet2Misc"]
+reet1Subjects = [
+        "reet1Misc",
+        "childDevelopmentAndEdu",
+        "hindi",
+        "englishLangAndComprehensionEasy",
+        "quantAptEasy",
+        "generalScience"]
+
+reet2Subjects = [
+        "reet2Misc",
+        "childDevelopmentAndEdu",
+        "hindi",
+        "englishLangAndComprehensionEasy",
+        "staticGK",
+        "geographyIndEasy", 
+        "geographyWorld",
+        "polityIndEasy",
+        "geographyIndHard", 
+        "polityIndHard", 
+        "economyIndGen", 
+        "historyIndEasy",
+        "historyIndHard",
+        "artAndCultureInd", 
+        "constitutionAndGovernance",
+        "geographyRajHard", 
+        "historyRajHard", 
+        "artAndCultureRaj", 
+        "polityRajHard", 
+        "currentAffairsRajHard",
+        "artAndCultureInd", 
+        "grade2ndSSMisc"]
+
+reet2ScienceSubjects = [
+        "reet2ScienceMisc",
+        "quantAptEasy",
+        "quantAptHard",
+        "childDevelopmentAndEdu",
+        "hindi",
+        "englishLangAndComprehensionEasy",
+        "bio", 
+        "grade2ndScienceMisc",
+        "generalScience"
+]
 
 
 
@@ -155,8 +196,8 @@ sipaper2Subjects = [
         "currentAffairsWorldEasy",
         "geographyIndEasy",
         "polityIndEasy",
-        "economyIndGen"
-        "economyIndBudgetAndSchemes"
+        "economyIndGen",
+        "economyIndBudgetAndSchemes",
         "historyIndEasy",
         "generalScience",
         "geographyRajEasy",
@@ -182,8 +223,8 @@ patwariSubjects = [
         "basicComputer",
         "geographyIndEasy",
         "polityIndEasy",
-        "economyIndGen"
-        "economyIndBudgetAndSchemes"
+        "economyIndGen",
+        "economyIndBudgetAndSchemes",
         "historyIndEasy",
         "generalScience",
         "geographyRajEasy",
@@ -204,8 +245,8 @@ grade2ndSubjects = [
         "currentAffairsWorldEasy",
         "geographyIndEasy",
         "polityIndEasy",
-        "economyIndGen"
-        "economyIndBudgetAndSchemes"
+        "economyIndGen",
+        "economyIndBudgetAndSchemes",
         "historyIndEasy",
         "generalScience",
         "geographyRajEasy",
@@ -221,7 +262,7 @@ grade2ndSubjects = [
 grade2ndScienceSubjects = ["bio", "physicsMains", "chemMains", "grade2ndScienceMisc"]
 
 grade2ndSSSubjects = [
-        "staticGK"
+        "staticGK",
         "geographyIndEasy", 
         "geographyWorld",
         "polityIndEasy",
@@ -278,8 +319,8 @@ rajLDCSubjects = [
         "basicComputer",
         "geographyIndEasy",
         "polityIndEasy",
-        "economyIndGen"
-        "economyIndBudgetAndSchemes"
+        "economyIndGen",
+        "economyIndBudgetAndSchemes",
         "historyIndEasy",
         "generalScience",
         "geographyRajEasy",

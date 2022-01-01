@@ -23,18 +23,18 @@ class RadioModel {
   RadioModel(this.isSelected, this.buttonText, this.text, this.uuid);
 }
 
-class CustomRadio extends StatefulWidget {
-  CustomRadio({Key? key, required this.question}) : super(key: key);
+class JeeCustomRadio extends StatefulWidget {
+  JeeCustomRadio({Key? key, required this.question}) : super(key: key);
 
   Question question;
 
   @override
   createState() {
-    return CustomRadioState();
+    return JeeCustomRadioState();
   }
 }
 
-class CustomRadioState extends State<CustomRadio> {
+class JeeCustomRadioState extends State<JeeCustomRadio> {
   BannerAd? banner;
 
   @override
@@ -162,9 +162,6 @@ class CustomRadioState extends State<CustomRadio> {
               splashColor: Colors.blueAccent,
               onTap: () {
                 setState(() {
-                  for (var element in sampleData) {
-                    element.isSelected = false;
-                  }
                   sampleData[index].isSelected = true;
                   updateOption(sampleData[index].uuid);
                 });

@@ -151,8 +151,49 @@ def load_initial_data(apps, schema_editor):
 
 
 
-    reet1Subjects = ["reet1Misc"]
-    reet2Subjects = ["reet2Misc"]
+    reet1Subjects = [
+            "reet1Misc",
+            "childDevelopmentAndEdu",
+            "hindi",
+            "englishLangAndComprehensionEasy",
+            "quantAptEasy",
+            "generalScience"]
+
+    reet2Subjects = [
+            "reet2Misc",
+            "childDevelopmentAndEdu",
+            "hindi",
+            "englishLangAndComprehensionEasy",
+            "staticGK",
+            "geographyIndEasy", 
+            "geographyWorld",
+            "polityIndEasy",
+            "geographyIndHard", 
+            "polityIndHard", 
+            "economyIndGen", 
+            "historyIndEasy",
+            "historyIndHard",
+            "artAndCultureInd", 
+            "constitutionAndGovernance",
+            "geographyRajHard", 
+            "historyRajHard", 
+            "artAndCultureRaj", 
+            "polityRajHard", 
+            "currentAffairsRajHard",
+            "artAndCultureInd", 
+            "grade2ndSSMisc"]
+
+    reet2ScienceSubjects = [
+            "reet2ScienceMisc",
+            "quantAptEasy",
+            "quantAptHard",
+            "childDevelopmentAndEdu",
+            "hindi",
+            "englishLangAndComprehensionEasy",
+            "bio", 
+            "grade2ndScienceMisc",
+            "generalScience"
+    ]
 
 
 
@@ -206,7 +247,7 @@ def load_initial_data(apps, schema_editor):
             "artAndCultureRaj",
             "economyRajHard",
             "economyRajEasy",
-            "patwariMisc",
+            "patwariMisc"
     ]
 
     grade2ndSubjects = [
@@ -312,12 +353,13 @@ def load_initial_data(apps, schema_editor):
             "rrbGDMisc"
     ]
 
+
     exams = [("ias", "ias"),("jee", "jee"),("jeeMains","jeeMains"),("jeeAdv","jeeAdv"),("neet","neet"),
-             ("ras","ras"), ("ibpsPO","ibpsPO"), ("ibpsClerk", "ibpsClerk"), ("sscCHSL", "sscCHSL"),
-             ("sscCGL", "sscCGL"), ("nda","nda"), ("cds","cds"), ("ntpc","ntpc"), 
-             ("reet1", "reet1"), ("reet2", "reet2"), ("patwari", 'patwari'), ("grade2nd", "grade2nd"), 
-             ("grade2ndScience", "grade2ndScience"), ("grade2ndSS", "grade2ndSS"), ("sscGD", "sscGD"), ("sscMTS", "sscMTS"),
-             ("rajPoliceConst", "rajPoliceConst"), ("rajLDC", "rajLDC"), ("rrbGD", "rrbGD"), ("sipaper1", "sipaper1"), ("sipaper2", "sipaper2")]
+               ("ras","ras"), ("ibpsPO","ibpsPO"), ("ibpsClerk", "ibpsClerk"), ("sscCHSL", "sscCHSL"),
+               ("sscCGL", "sscCGL"), ("nda","nda"), ("cds","cds"), ("ntpc","ntpc"), 
+               ("reet1", "reet1"), ("reet2", "reet2"), ("reet2Science", "reet2Science"), ("patwari", 'patwari'), ("grade2nd", "grade2nd"), 
+               ("grade2ndScience", "grade2ndScience"), ("grade2ndSS", "grade2ndSS"), ("sscGD", "sscGD"), ("sscMTS", "sscMTS"),
+               ("rajPoliceConst", "rajPoliceConst"), ("rajLDC", "rajLDC"), ("rrbGD", "rrbGD"), ("sipaper1", "sipaper1"), ("sipaper2", "sipaper2")]
 
     subjects = [("physicsAdv", "physicsAdv"), 
             ("mathsAdv","mathsAdv"),
@@ -412,6 +454,7 @@ def load_initial_data(apps, schema_editor):
             ("rrbGDMisc", "rrbGDMisc"),
             ("sipaper1Misc", "sipaper1Misc"),
             ("sipaper2Misc", "sipaper2Misc"),
+            ("reet2ScienceMisc", "reet2ScienceMisc")
 ]
 
 
@@ -429,7 +472,7 @@ def load_initial_data(apps, schema_editor):
     d = {"ias": iasSubjects, "jee": jeeSubjects, "jeeMains": jeeMainsSubjects, "jeeAdv": jeeAdvSubjects,
          "neet": neetSubjects, "ras": rasSubjects, "nda": ndaSubjects, "cds": cdsSubjects, "ibpsPO": ibpsPOSubjects,
          "ibpsClerk": ibpsClerkSubjects, "sscCGL": sscCGLSubjects, "sscCHSL": sscCHSLSubjects, "ntpc": ntpcSubjects,
-         "reet1": reet1Subjects, "reet2": reet2Subjects, "patwari": patwariSubjects, "grade2nd": grade2ndSubjects, 
+         "reet1": reet1Subjects, "reet2": reet2Subjects, "reet2Science": reet2ScienceSubjects, "patwari": patwariSubjects, "grade2nd": grade2ndSubjects, 
          "grade2ndScience": grade2ndScienceSubjects, "grade2ndSS": grade2ndSSSubjects, "sscGD": sscGDSubjects, "sscMTS": sscMTSSubjects,
          "rajPoliceConst": rajPoliceConstSubjects, "rajLDC": rajLDCSubjects, "rrbGD": rrbGDSubjects, "sipaper1": sipaper1Subjects, "sipaper2": sipaper2Subjects}
 
@@ -443,11 +486,7 @@ def load_initial_data(apps, schema_editor):
 
     for exam in allExams:
         for i in d[str(exam.name)]:
-            # try:
             subject = Subjects.objects.get(name = i)
-            # except:
-            #     print(exam.name)
-            #     print(i)
 
             exam.subjects.add(subject)
             exam.save()
@@ -552,7 +591,7 @@ def load_initial_data(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('Questions', '0002_initial'),
+        ('Questions', '0001_initial'),
     ]
 
     operations = [

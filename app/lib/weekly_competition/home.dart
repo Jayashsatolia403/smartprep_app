@@ -1,3 +1,5 @@
+import 'package:app/error_page/unavailable.dart';
+import 'package:app/weekly_competition/jee_adv_quiz_template.dart';
 import 'package:app/weekly_competition/quiz_models.dart';
 import 'package:app/weekly_competition/quiz_template.dart';
 import 'package:app/weekly_competition/result.dart';
@@ -32,6 +34,8 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
   bool done = false;
   String competitionUuid = "";
   late Future<bool> myFuture;
+  bool na = false;
+  String exam = "";
 
   Map<String, int> totalPages = {
     "ias": 10,
@@ -46,7 +50,21 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
     "sscCHSL": 10,
     "nda": 15,
     "cat": 9,
-    "ntpc": 10
+    "ntpc": 10,
+    "reet1": 15,
+    "reet2": 15,
+    "reet2Science": 15,
+    "patwari": 15,
+    "grade2nd": 10,
+    "grade2ndScience": 15,
+    "grade2ndSS": 15,
+    "sscGD": 10,
+    "sscMTS": 10,
+    "rajPoliceConst": 15,
+    "rajLDC": 15,
+    "rrbGD": 15,
+    "sipaper1": 10,
+    "sipaper2": 10
   };
 
   Future<bool> getQuesFromDatabase() async {
@@ -101,6 +119,10 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
     String? token = prefs.getString("token");
     String examName = prefs.getString("exam_name") ?? "Exam";
 
+    setState(() {
+      exam = examName;
+    });
+
     if (isRefresh) {
       currentPage = 1;
       questions = [];
@@ -132,6 +154,14 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
     );
 
     final resJson = jsonDecode(response.body);
+
+    if (response.statusCode == 404) {
+      setState(() {
+        na = true;
+      });
+
+      return false;
+    }
 
     setState(() {
       competitionUuid = resJson['uuid'];
@@ -220,134 +250,145 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
         future: myFuture,
         builder: (BuildContext context, AsyncSnapshot<bool> snapShot) {
           if (snapShot.hasData) {
-            return Scaffold(
-                appBar: AppBar(
-                  title: Column(children: [
-                    const Text("Weekly Competitions",
-                        style: TextStyle(color: Colors.white)),
-                    ElevatedButton(
-                        onPressed: () async {
-                          String url = await rootBundle
-                              .loadString('assets/text/url.txt');
+            if (snapShot.data == true) {
+              return Scaffold(
+                  appBar: AppBar(
+                    title: Column(children: [
+                      const Text("Weekly Competitions",
+                          style: TextStyle(color: Colors.white)),
+                      ElevatedButton(
+                          onPressed: () async {
+                            String url = await rootBundle
+                                .loadString('assets/text/url.txt');
 
-                          final prefs = await SharedPreferences.getInstance();
-                          String? token = prefs.getString("token");
-                          String examName =
-                              prefs.getString("exam_name") ?? "Exam";
+                            final prefs = await SharedPreferences.getInstance();
+                            String? token = prefs.getString("token");
+                            String examName =
+                                prefs.getString("exam_name") ?? "Exam";
 
-                          List<List<String>> submitOptions = [];
+                            List<List<String>> submitOptions = [];
 
-                          for (var i = 0;
-                              i < (totalPages[examName] ?? 100) * 10;
-                              i++) {
-                            submitOptions.add([]);
-                          }
-                          int count = 0;
-                          final dbQuestions =
-                              await QuizDatabase.instance.readAllQuestions();
+                            for (var i = 0;
+                                i < (totalPages[examName] ?? 100) * 10;
+                                i++) {
+                              submitOptions.add([]);
+                            }
+                            int count = 0;
+                            final dbQuestions =
+                                await QuizDatabase.instance.readAllQuestions();
 
-                          for (var dbQuestion in dbQuestions) {
-                            final getDbQuestionOptions = await QuizDatabase
-                                .instance
-                                .readQuestionOptionsFromQuestionId(
-                                    dbQuestion.uuid);
+                            for (var dbQuestion in dbQuestions) {
+                              final getDbQuestionOptions = await QuizDatabase
+                                  .instance
+                                  .readQuestionOptionsFromQuestionId(
+                                      dbQuestion.uuid);
 
-                            for (var j in getDbQuestionOptions) {
-                              final getDbOption = await QuizDatabase.instance
-                                  .readOptions(j.optionId);
+                              for (var j in getDbQuestionOptions) {
+                                final getDbOption = await QuizDatabase.instance
+                                    .readOptions(j.optionId);
 
-                              if (getDbOption.isSelected) {
-                                submitOptions[count].add(getDbOption.uuid);
+                                if (getDbOption.isSelected) {
+                                  submitOptions[count].add(getDbOption.uuid);
+                                }
                               }
+
+                              count += 1;
                             }
 
-                            count += 1;
-                          }
+                            var data = {
+                              "uuid": competitionUuid,
+                              "options": submitOptions
+                            };
 
-                          var data = {
-                            "uuid": competitionUuid,
-                            "options": submitOptions
-                          };
-
-                          print("\n\n\n\n\n\n");
-                          print(data);
-                          print("\n\n\n\n\n\n");
-
-                          final response = await http.post(
-                              Uri.parse('$url/submit_contest/'),
-                              headers: <String, String>{
-                                'Content-Type':
-                                    'application/json; charset=UTF-8',
-                                'Authorization': "Token $token"
-                              },
-                              body: jsonEncode(
-                                  {"data": jsonEncode(data).toString()}));
-
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => Result(
-                                    correctOptions: jsonDecode(
-                                            response.body)["correct_options"]
-                                        .toString())),
-                          );
-                        },
-                        child: const Text("Submit"))
-                  ]),
-                  backgroundColor: Colors.purple,
-                  toolbarHeight: 100,
-                ),
-                body: Column(
-                  children: [
-                    Expanded(
-                        child: SmartRefresher(
-                      controller: _refreshController,
-                      enablePullUp: true,
-                      onLoading: () async {
-                        final result = await getQuestions(false);
-                        if (result) {
-                          _refreshController.loadComplete();
-                        } else {
-                          _refreshController.loadFailed();
-                        }
-                      },
-                      child: ListView(
-                        scrollDirection: Axis.horizontal,
-                        children: [
-                          for (var i = 0; i < questions.length; i++)
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 20, top: 50, bottom: 20),
-                              child: ElevatedButton(
-                                child: Text(
-                                    'Q.${i + 1}  ${questions[i].statement}',
-                                    style:
-                                        const TextStyle(color: Colors.white)),
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => CustomRadio(
-                                              question: questions[i],
-                                            )),
-                                  );
+                            final response = await http.post(
+                                Uri.parse('$url/submit_contest/'),
+                                headers: <String, String>{
+                                  'Content-Type':
+                                      'application/json; charset=UTF-8',
+                                  'Authorization': "Token $token"
                                 },
-                                style: ElevatedButton.styleFrom(
-                                    fixedSize: const Size(250, 20),
-                                    primary: Colors.black,
-                                    onPrimary: Colors.black,
-                                    alignment: Alignment.center),
-                              ),
-                            )
-                        ],
-                      ),
-                    )),
-                    if (banner == null)
-                      const Text("yo")
-                    else
-                      SizedBox(height: 150, child: AdWidget(ad: banner!))
-                  ],
-                ));
+                                body: jsonEncode(
+                                    {"data": jsonEncode(data).toString()}));
+
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Result(
+                                      correctOptions: jsonDecode(
+                                              response.body)["correct_options"]
+                                          .toString())),
+                            );
+                          },
+                          child: const Text("Submit"))
+                    ]),
+                    backgroundColor: Colors.purple,
+                    toolbarHeight: 100,
+                  ),
+                  body: Column(
+                    children: [
+                      Expanded(
+                          child: SmartRefresher(
+                        controller: _refreshController,
+                        enablePullUp: true,
+                        onLoading: () async {
+                          final result = await getQuestions(false);
+                          if (result) {
+                            _refreshController.loadComplete();
+                          } else {
+                            _refreshController.loadFailed();
+                          }
+                        },
+                        child: ListView(
+                          scrollDirection: Axis.horizontal,
+                          children: [
+                            for (var i = 0; i < questions.length; i++)
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 20, top: 50, bottom: 20),
+                                child: ElevatedButton(
+                                  child: Text(
+                                      'Q.${i + 1}  ${questions[i].statement}',
+                                      style:
+                                          const TextStyle(color: Colors.white)),
+                                  onPressed: () {
+                                    if (exam == "jeeAdv") {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                JeeCustomRadio(
+                                                  question: questions[i],
+                                                )),
+                                      );
+                                    } else {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => CustomRadio(
+                                                  question: questions[i],
+                                                )),
+                                      );
+                                    }
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                      fixedSize: const Size(250, 20),
+                                      primary: Colors.black,
+                                      onPrimary: Colors.black,
+                                      alignment: Alignment.center),
+                                ),
+                              )
+                          ],
+                        ),
+                      )),
+                      if (banner == null)
+                        const Text("yo")
+                      else
+                        SizedBox(height: 150, child: AdWidget(ad: banner!))
+                    ],
+                  ));
+            } else {
+              return const Unavailable();
+            }
           } else {
             return const Center(child: CircularProgressIndicator());
           }

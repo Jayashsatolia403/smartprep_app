@@ -90,8 +90,11 @@ class _PreviousCompetitionsState extends State<PreviousCompetitions> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => PreviousCompetitionView(
-                                compUuid: previousCompetitions[index][1])));
+                          builder: (context) => PreviousCompetitionView(
+                            compUuid: previousCompetitions[index][1],
+                            compName: previousCompetitions[index][0],
+                          ),
+                        ));
                   },
                 );
               },

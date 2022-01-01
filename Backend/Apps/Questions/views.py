@@ -2,13 +2,13 @@ from os import stat
 import re
 from django.core import paginator
 from rest_framework.decorators import api_view
-from rest_framework import status
+from rest_framework import serializers, status
 
 from rest_framework.response import Response
 from django.core.paginator import InvalidPage, Paginator
 
-from .serializers import AddOptionsSerializer, AddQuestionSerializer, SubmitContestSerializer
-from .models import DailyQuestions, Exams, QuestionBookmarks, Questions, QuestionsOfTheDays, Subjects, WeeklyCompetitionResult, WeeklyCompetitions
+from .serializers import AddComplaintsSerializer, AddFeedbackSerializer, AddOptionsSerializer, AddQuestionSerializer, SubmitContestSerializer
+from .models import DailyQuestions, Exams, QuestionBookmarks, Questions, QuestionsOfTheDays, ReportedQuestions, Subjects, WeeklyCompetitionResult, WeeklyCompetitions
 
 from datetime import datetime
 import random
@@ -175,7 +175,7 @@ def getQuestionOfTheDay(request):
         exam_name = request.GET['exam']
 
         dateToday = datetime.today().strftime('%Y-%m-%d')
-
+        print(exam_name)
         
 
         exam = Exams.objects.get(name=exam_name)
@@ -351,13 +351,6 @@ def host_weekly_competition(request):
         if not user or not user.is_superuser:
             return Response("Invalid Request", status=status.HTTP_400_BAD_REQUEST)
 
-        [("ias", "ias"),("jee", "jee"),("jeeMains","jeeMains"),("jeeAdv","jeeAdv"),("neet","neet"),
-               ("ras","ras"), ("ibpsPO","ibpsPO"), ("ibpsClerk", "ibpsClerk"), ("sscCHSL", "sscCHSL"),
-               ("sscCGL", "sscCGL"), ("nda","nda"), ("cds","cds"), ("ntpc","ntpc"), 
-               ("reet1", "reet1"), ("reet2", "reet2"), ("patwari", 'patwari'), ("grade2nd", "grade2nd"), 
-               ("grade2ndScience", "grade2ndScience"), ("grade2ndSS", "grade2ndSS"), ("sscGD", "sscGD"), ("sscMTS", "sscMTS"),
-               ("rajPoliceConst", "rajPoliceConst"), ("rajLDC", "rajLDC"), ("rrbGD", "rrbGD"), ("sipaper1", "sipaper1"), ("sipaper2", "sipaper2")]
-
         exam_questions = {
             "ias": 100,
             "jee": 60,
@@ -371,7 +364,21 @@ def host_weekly_competition(request):
             "sscCHSL": 100,
             "nda": 150,
             "cat": 90,
-            "ntpc": 100
+            "ntpc": 100,
+            "reet1": 150,
+            "reet2": 150,
+            "reet2Science": 150,
+            "patwari": 150,
+            "grade2nd": 100,
+            "grade2ndScience": 150,
+            "grade2ndSS": 150,
+            "sscGD": 100,
+            "sscMTS": 100,
+            "rajPoliceConst": 150,
+            "rajLDC": 150,
+            "rrbGD": 150,
+            "sipaper1": 100,
+            "sipaper2": 100
         }
 
         questions = {
@@ -387,7 +394,21 @@ def host_weekly_competition(request):
             "sscCHSL": set(),
             "nda": set(),
             "cat": set(),
-            "ntpc": set()
+            "ntpc": set(),
+            "reet1": set(),
+            "reet2": set(),
+            "reet2Science": set(),
+            "patwari": set(),
+            "grade2nd": set(),
+            "grade2ndScience": set(),
+            "grade2ndSS": set(),
+            "sscGD": set(),
+            "sscMTS": set(),
+            "rajPoliceConst": set(),
+            "rajLDC": set(),
+            "rrbGD": set(),
+            "sipaper1": set(),
+            "sipaper2": set()
             }
 
 
@@ -409,11 +430,12 @@ def host_weekly_competition(request):
                 round = round[len(round)-1]
                 round = int(round.round)
 
+
             competition = WeeklyCompetitions(
                 uuid=str(uuid.uuid4()),
                 name="Smartprep {} Round #{}".format(str(exam.name), str(round+1)),
                 round=round+1,
-                exam=exam
+                exam=exam,
             )
 
             competition.save()
@@ -468,12 +490,12 @@ def get_todays_contest(request):
 
         date = datetime.today()
 
-        contest = WeeklyCompetitions.objects.filter(exam=exam)
+        contest = WeeklyCompetitions.objects.filter(exam=exam, date=date)
 
         if len(contest) == 0:
             return Response(
-                "Sorry We don't have any competition for your exam this time but we're working on it and you can expect it very soon from us.", 
-                status=status.HTTP_400_BAD_REQUEST
+                "NA", 
+                status=status.HTTP_404_NOT_FOUND
             )
 
         contest = contest[0]
@@ -590,7 +612,7 @@ def get_competition_by_uuid(request):
 
 @api_view(['POST', ])
 def submit_contest(request):
-    try:
+    # try:
         serializer = SubmitContestSerializer(data=request.data, context={'request': request, "useful_data": request.data})
 
         data = {}
@@ -604,8 +626,8 @@ def submit_contest(request):
 
         return Response(data)
     
-    except:
-        return Response("Invalid Request", status=status.HTTP_400_BAD_REQUEST)
+    # except:
+    #     return Response("Invalid Request", status=status.HTTP_400_BAD_REQUEST)
 
 
 
@@ -613,8 +635,44 @@ def submit_contest(request):
 def get_questions_by_ad(request):
     try:
         user = request.user
+
+        result = []
+
+        exam_name = request.GET['exam']
+        exam = Exams.objects.get(name=exam_name)
+
+        subjects = list(exam.subjects.all()) # Access all subject related to exam
+
+        random.shuffle(subjects) # Shuffle Subjects to avoid repeatetions
+        count = 1
+
+        for subject in subjects:
+            if (count == 4):
+                break
+
+
+            try:
+                question = subject.questions.exclude(seenBy__id = user.id)[1]
+            except:
+                continue
+
+            question.seenBy.add(request.user) # Marking as seen in Questions DB Table
+
+
+            result.append({"uuid": question.uuid, "statement": question.statement, 
+                    "ratings": question.ratings, "difficulty" : question.difficulty, 
+                    "options": [(z.content, z.isCorrect) for z in question.options.all()], 
+                    "percentCorrect": question.percentCorrect, "subject": question.subject, "isRated": request.user in question.ratedBy.all(),
+                    "createdBy": "Smartprep Team" if question.isExpert else question.createdBy.name}) 
+            
+            count += 1
+
+            
+
+        return Response(result)
+
     except:
-        return Response("Invalid Request", status=status.HTTP_400_BAD_REQUEST)
+        return Response("Error", status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['GET', ])
@@ -633,3 +691,53 @@ def has_user_added_question_today(request):
 
     except:
         return Response("Invalid Request", status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['POST', ])
+def give_feedback(request):
+
+    serializer = AddFeedbackSerializer(data = request.data)
+
+    if serializer.is_valid():
+        feedback = serializer.save()
+
+        feedback.user = request.user
+
+        feedback.save()
+    else:
+        return Response("Error", status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    
+    return Response("Thank You for your time")
+
+
+
+@api_view(['POST', ])
+def make_complaint(request):
+
+    serializer = AddComplaintsSerializer(data = request.data)
+
+    if serializer.is_valid():
+        complaint = serializer.save()
+
+        complaint.user = request.user
+
+        complaint.save()
+    else:
+        return Response("Error", status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    
+    return Response("Thank You for your time")
+
+
+@api_view(['GET', ])
+def report_question(request):
+    
+    user = request.user
+
+    uuid = request.GET['uuid']
+    question = Questions.objects.get(uuid=uuid)
+
+    report = ReportedQuestions(user = user, question=question)
+
+    report.save()
+
+    return Response("Thanks")

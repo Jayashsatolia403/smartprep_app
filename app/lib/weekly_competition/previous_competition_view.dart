@@ -12,10 +12,12 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'previous_competition_quiz_template.dart';
 
 class PreviousCompetitionView extends StatefulWidget {
-  const PreviousCompetitionView({Key? key, required this.compUuid})
+  const PreviousCompetitionView(
+      {Key? key, required this.compUuid, required this.compName})
       : super(key: key);
 
   final String compUuid;
+  final String compName;
 
   @override
   _PreviousCompetitionViewState createState() =>
@@ -40,10 +42,23 @@ class _PreviousCompetitionViewState extends State<PreviousCompetitionView> {
     "sscCHSL": 10,
     "nda": 15,
     "cat": 9,
-    "ntpc": 10
+    "ntpc": 10,
+    "reet1": 15,
+    "reet2": 15,
+    "reet2Science": 15,
+    "patwari": 15,
+    "grade2nd": 10,
+    "grade2ndScience": 15,
+    "grade2ndSS": 15,
+    "sscGD": 10,
+    "sscMTS": 10,
+    "rajPoliceConst": 15,
+    "rajLDC": 15,
+    "rrbGD": 15,
+    "sipaper1": 10,
+    "sipaper2": 10
   };
-
-  Future<bool> getQuestions(bool isRefresh, String competitionUuid) async {
+  Future<bool> getQuestions(String competitionUuid) async {
     String url = await rootBundle.loadString('assets/text/url.txt');
 
     final prefs = await SharedPreferences.getInstance();
@@ -98,7 +113,7 @@ class _PreviousCompetitionViewState extends State<PreviousCompetitionView> {
 
   @override
   void initState() {
-    getQuestions(false, widget.compUuid);
+    getQuestions(widget.compUuid);
   }
 
   // ignore: prefer_final_fields
@@ -109,47 +124,58 @@ class _PreviousCompetitionViewState extends State<PreviousCompetitionView> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Daily Questions",
-              style: TextStyle(color: Colors.white)),
+          title: Text(widget.compName, style: TextStyle(color: Colors.white)),
           backgroundColor: Colors.purple,
           toolbarHeight: 100,
         ),
-        body: Scaffold(
-            body: Column(
+        body: Column(
           children: [
             Expanded(
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: [
-                  for (var i = 0; i < questionStatements.length; i++)
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(left: 20, top: 50, bottom: 20),
-                      child: ElevatedButton(
-                        child: Text(questionStatements[i][0],
-                            style: const TextStyle(color: Colors.white)),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => CustomRadio(
-                                      options: allOptions[i],
-                                      statement: questionStatements[i][0],
-                                      quesUUid: questionStatements[i][1],
-                                      qualityRating: questionStatements[i][2],
-                                      difficultyRating: questionStatements[i]
-                                          [3],
-                                    )),
-                          );
-                        },
-                        style: ElevatedButton.styleFrom(
-                            fixedSize: const Size(250, 20),
-                            primary: Colors.black,
-                            onPrimary: Colors.black,
-                            alignment: Alignment.center),
-                      ),
-                    )
-                ],
+              child: SmartRefresher(
+                controller: _refreshController,
+                enablePullUp: true,
+                onLoading: () async {
+                  final result = await getQuestions(widget.compUuid);
+                  print("\n\n\n\n\n\n\n  Working Perfactly \n\n\n\n\n\n\n");
+                  if (result) {
+                    _refreshController.loadComplete();
+                  } else {
+                    _refreshController.loadFailed();
+                  }
+                },
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    for (var i = 0; i < questionStatements.length; i++)
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            left: 20, top: 50, bottom: 20),
+                        child: ElevatedButton(
+                          child: Text(questionStatements[i][0],
+                              style: const TextStyle(color: Colors.white)),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => CustomRadio(
+                                        options: allOptions[i],
+                                        statement: questionStatements[i][0],
+                                        quesUUid: questionStatements[i][1],
+                                        qualityRating: questionStatements[i][2],
+                                        difficultyRating: questionStatements[i]
+                                            [3],
+                                      )),
+                            );
+                          },
+                          style: ElevatedButton.styleFrom(
+                              fixedSize: const Size(250, 20),
+                              primary: Colors.black,
+                              onPrimary: Colors.black,
+                              alignment: Alignment.center),
+                        ),
+                      )
+                  ],
+                ),
               ),
             ),
             if (banner == null)
@@ -157,7 +183,7 @@ class _PreviousCompetitionViewState extends State<PreviousCompetitionView> {
             else
               SizedBox(height: 150, child: AdWidget(ad: banner!))
           ],
-        )));
+        ));
   }
 }
 

@@ -5,8 +5,11 @@ import 'package:app/article/articles_home.dart';
 import 'package:app/bookmarks/bookmarks.dart';
 import 'package:app/error_page/error_page.dart';
 import 'package:app/exam_select/select_exam.dart';
+import 'package:app/feedback_complaint/complaint.dart';
+import 'package:app/feedback_complaint/feedback.dart';
 import 'package:app/forum%20/messages.dart';
 import 'package:app/home/slider.dart';
+import 'package:app/rewarded_ad_ques/rewarded_ques.dart';
 import 'package:app/test_page/tests.dart';
 import 'package:app/premium/premium.dart';
 import 'package:app/profile/profile_page.dart';
@@ -18,35 +21,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
-
-var examvalues = {
-  'IAS': 'ias',
-  'JEE': 'jee',
-  'JEE MAINS': 'jeeMains',
-  'JEE ADV': 'jeeAdv',
-  'NEET': 'neet',
-  'RAS': 'ras',
-  'IBPS PO': 'ibpsPO',
-  'IBPS CLERK': 'ibpsClerk',
-  'SSC CHSL': 'sscCHSL',
-  'SSC CGL': 'sscCGL',
-  'NDA': 'nda',
-  'CDS': 'cds',
-  'NTPC': 'ntpc',
-  "REET LEVEL 1": "reet1",
-  "REET LEVEL 2": "reet2",
-  "PATWARI": "patwari",
-  "2nd Grade Paper 1": "grade2nd",
-  "2nd Grade Science": "grade2ndScience",
-  "2nd Grade Social Science ": "grade2ndSS",
-  "SSC GD": "sscGD",
-  "SSC MTS": "sscMTS",
-  "Rajasthan Police Constable": "rajPoliceConst",
-  "Rajasthan LDC": "rajLDC",
-  "RRB GD": "rrbGD",
-  "SI Paper 1": "sipaper1",
-  "SI Paper 2": "sipaper2"
-};
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 List<String> alphabets = <String>[
   'A',
@@ -119,6 +94,32 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   String greetMessage = greet();
   late Future<bool> _isAddedQuestion;
+
+  late RewardedAd rewardedAd;
+
+  void loadVideoAd() async {
+    RewardedAd.load(
+        adUnitId: RewardedAd.testAdUnitId,
+        request: const AdRequest(),
+        rewardedAdLoadCallback:
+            RewardedAdLoadCallback(onAdLoaded: (RewardedAd ad) {
+          rewardedAd = ad;
+        }, onAdFailedToLoad: (LoadAdError error) {
+          loadVideoAd();
+        }));
+  }
+
+  void showVideoAd() {
+    loadVideoAd();
+    rewardedAd.show(onUserEarnedReward: (RewardedAd ad, RewardItem rpoint) {
+      print("Reward Earned ${rpoint.amount}");
+    });
+
+    rewardedAd.fullScreenContentCallback = FullScreenContentCallback(
+      onAdFailedToShowFullScreenContent: (ad, error) => print(error),
+      onAdShowedFullScreenContent: (ad) => print("Working"),
+    );
+  }
 
   Future<bool> isAddedQuestion() async {
     String url = await rootBundle.loadString('assets/text/url.txt');
@@ -286,6 +287,32 @@ class _HomeState extends State<Home> {
                         tileColor: Colors.deepPurpleAccent,
                         // leading: const Icon(Icons.),
                       ),
+                      ListTile(
+                        title: const Text('Feedback',
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 17)),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const GiveFeedback()));
+                        },
+                        tileColor: Colors.deepPurpleAccent,
+                        // leading: const Icon(Icons.),
+                      ),
+                      ListTile(
+                        title: const Text('Complaint',
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 17)),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const MakeComplaint()));
+                        },
+                        tileColor: Colors.deepPurpleAccent,
+                        // leading: const Icon(Icons.),
+                      ),
                     ],
                   ),
                 ),
@@ -428,6 +455,19 @@ class _HomeState extends State<Home> {
                                                 )));
                                   },
                                   tileColor: Colors.cyan[100],
+                                ),
+                                ListTile(
+                                  title: const Text("Rewarded Questions"),
+                                  leading: const Icon(Icons.book),
+                                  onTap: () {
+                                    showVideoAd();
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const RewardedQuestions()));
+                                  },
+                                  tileColor: Colors.blue[100],
                                 )
                               ],
                             ))

@@ -130,6 +130,7 @@ class Subjects(models.Model):
             ("rrbGDMisc", "rrbGDMisc"),
             ("sipaper1Misc", "sipaper1Misc"),
             ("sipaper2Misc", "sipaper2Misc"),
+            ("reet2ScienceMisc", "reet2ScienceMisc")
 ]
 
     uuid = models.CharField(max_length=50)
@@ -146,7 +147,7 @@ class Exams(models.Model):
     choices = [("ias", "ias"),("jee", "jee"),("jeeMains","jeeMains"),("jeeAdv","jeeAdv"),("neet","neet"),
                ("ras","ras"), ("ibpsPO","ibpsPO"), ("ibpsClerk", "ibpsClerk"), ("sscCHSL", "sscCHSL"),
                ("sscCGL", "sscCGL"), ("nda","nda"), ("cds","cds"), ("ntpc","ntpc"), 
-               ("reet1", "reet1"), ("reet2", "reet2"), ("patwari", 'patwari'), ("grade2nd", "grade2nd"), 
+               ("reet1", "reet1"), ("reet2", "reet2"), ("reet2Science", "reet2Science"), ("patwari", 'patwari'), ("grade2nd", "grade2nd"), 
                ("grade2ndScience", "grade2ndScience"), ("grade2ndSS", "grade2ndSS"), ("sscGD", "sscGD"), ("sscMTS", "sscMTS"),
                ("rajPoliceConst", "rajPoliceConst"), ("rajLDC", "rajLDC"), ("rrbGD", "rrbGD"), ("sipaper1", "sipaper1"), ("sipaper2", "sipaper2")]
 
@@ -188,7 +189,7 @@ class WeeklyCompetitions(models.Model):
     questions = models.ManyToManyField(Questions, related_name="competition_questions", blank=True)
     name = models.CharField(max_length=100)
     round = models.IntegerField(default=0)
-    date_time = models.DateTimeField(auto_now_add=True)
+    date = models.DateField(auto_now_add=True)
     exam = models.ForeignKey(Exams, related_name="competitions_exams", on_delete=models.CASCADE, blank=True, null=True)
 
 
@@ -209,9 +210,18 @@ class WeeklyCompetitionResult(models.Model):
 
 
 class ReportedQuestions(models.Model):
-    questions = models.ManyToManyField(Questions, related_name="reportedQuestions", blank=True)
+    question = models.ForeignKey(Questions, related_name="reported_question", on_delete=models.CASCADE)
+    user = models.ForeignKey(User, related_name="reporting_user", on_delete=models.CASCADE)
 
 class Feedback(models.Model):
     uuid = models.CharField(max_length=50, null=True)
+    subject = models.CharField(max_length=1000, null=True, blank=True)
     text = models.TextField(null=True, blank=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="feedbackUser")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="feedbackUser", null=True, blank=True)
+
+
+class Complaints(models.Model):
+    uuid = models.CharField(max_length=50)
+    subject = models.CharField(max_length=1000, null=True, blank=True)
+    text = models.TextField(null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="complaintUser", null=True, blank=True)
