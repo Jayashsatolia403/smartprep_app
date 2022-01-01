@@ -8,15 +8,352 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../config.dart';
 
-class RadioModel {
+class AddQuesModel {
   bool isSelected;
   String buttonText;
   String text;
 
-  RadioModel(this.isSelected, this.buttonText, this.text);
+  AddQuesModel(this.isSelected, this.buttonText, this.text);
 }
 
-List<String> subjects = <String>[
+List<String> iasSubjects = [
+  "currentAffairsWorldHard",
+  "currentAffairsIndiaEasy",
+  "currentAffairsIndiaHard",
+  "geographyIndEasy",
+  "geographyIndHard",
+  "geographyWorld",
+  "polityIndEasy",
+  "polityIndHard",
+  "economyIndGen",
+  "economyIndBudgetAndSchemes",
+  "environmentAndEcologyHard",
+  "environmentAndEcologyEasy",
+  "historyIndEasy",
+  "historyIndHard",
+  "historyWorld",
+  "InternationalRelationAndSecurity",
+  "sciAndTechHard",
+  "artAndCultureInd",
+  "constitutionAndGovernance",
+  "decisionMaking",
+  "iasMisc"
+];
+
+List<String> jeeSubjects = [
+  "physicsAdv",
+  "mathsAdv",
+  "chemAdv",
+  "physicsMains",
+  "mathsMains",
+  "chemMains",
+  "jeeMisc"
+];
+List<String> jeeAdvSubjects = [
+  "physicsAdv",
+  "mathsAdv",
+  "chemAdv",
+  "jeeAdvMisc"
+];
+List<String> jeeMainsSubjects = [
+  "physicsMains",
+  "mathsMains",
+  "chemMains",
+  "jeeMainsMisc"
+];
+
+List<String> neetSubjects = ["physicsMains", "bio", "chemMains", "neetMisc"];
+
+List<String> rasSubjects = [
+  "currentAffairsIndiaEasy",
+  "currentAffairsIndiaHard",
+  "currentAffairsWorldEasy",
+  "geographyIndEasy",
+  "geographyWorld",
+  "polityIndEasy",
+  "geographyIndHard",
+  "polityIndHard",
+  "economyIndGen",
+  "economyIndBudgetAndSchemes",
+  "environmentAndEcologyHard",
+  "environmentAndEcologyEasy",
+  "historyIndEasy",
+  "historyIndHard",
+  "sciAndTechEasy",
+  "sciAndTechHard",
+  "artAndCultureInd",
+  "constitutionAndGovernance",
+  "geographyRajEasy",
+  "geographyRajHard",
+  "historyRajHard",
+  "historyRajEasy",
+  "artAndCultureRaj",
+  "polityRajEasy",
+  "polityRajHard",
+  "currentAffairsRajHard",
+  "currentAffairsRajEasy",
+  "artAndCultureInd",
+  "economyRajHard",
+  "economyRajEasy",
+  "reasoningHard",
+  "reasoningEasy",
+  "rasMisc"
+];
+
+List<String> ndaSubjects = [
+  "ndaPhysics",
+  "ndaHistory",
+  "ndaChemistry",
+  "ndaMaths",
+  "currentEvents",
+  "ndaMisc"
+];
+
+List<String> cdsSubjects = [
+  "reasoningEasy",
+  "reasoningHard",
+  "currentAffairsIndiaEasy",
+  "englishLangAndComprehensionHard",
+  "englishLangAndComprehensionEasy",
+  "geographyIndEasy",
+  "polityIndEasy",
+  "historyIndEasy",
+  "sciAndTechEasy",
+  "cdsMaths",
+  "environmentAndEcologyEasy",
+  "cdsMisc"
+];
+
+List<String> ibpsPOSubjects = [
+  "englishLangAndComprehensionHard",
+  "quantAptHard",
+  "reasoningHard",
+  "reasoningEasy",
+  "economyAndBanking",
+  "dataAnalysisAndInterpretation",
+  "financialAwareness",
+  "basicComputer",
+  "financeAndAccounts",
+  "ibpsPOMisc"
+];
+
+List<String> ibpsClerkSubjects = [
+  "englishLangAndComprehensionEasy",
+  "englishLangAndComprehensionHard",
+  "quantAptEasy",
+  "quantAptHard",
+  "reasoningEasy",
+  "financialAwareness",
+  "basicComputer",
+  "financeAndAccounts",
+  "ibpsClerkMisc"
+];
+
+List<String> sscCGLSubjects = [
+  "reasoningHard",
+  "reasoningEasy",
+  "historyIndEasy",
+  "currentAffairsIndiaEasy",
+  "geographyIndEasy",
+  "polityIndEasy",
+  "quantAptEasy",
+  "englishLangAndComprehensionHard",
+  "englishLangAndComprehensionEasy",
+  "financeAndAccounts",
+  "statistics",
+  "sscCGLMisc"
+];
+
+List<String> sscCHSLSubjects = [
+  "reasoningHard",
+  "reasoningEasy",
+  "historyIndEasy",
+  "currentAffairsIndiaEasy",
+  "geographyIndEasy",
+  "polityIndEasy",
+  "quantAptEasy",
+  "englishLangAndComprehensionEasy",
+  "englishLangAndComprehensionHard",
+  "sscCHSLMisc"
+];
+
+List<String> ntpcSubjects = [
+  "reasoningHard",
+  "reasoningEasy",
+  "historyIndEasy",
+  "currentAffairsIndiaEasy",
+  "geographyIndEasy",
+  "polityIndEasy",
+  "quantAptEasy",
+  "englishLangAndComprehensionEasy",
+  "ntpcMisc"
+];
+
+List<String> reet1Subjects = ["reet1Misc"];
+List<String> reet2Subjects = ["reet2Misc"];
+
+List<String> sipaper1Subjects = ["hindi"];
+
+List<String> sipaper2Subjects = [
+  "reasoningEasy",
+  "reasoningHard",
+  "quantAptEasy",
+  "currentAffairsIndiaEasy",
+  "currentAffairsRajHard",
+  "currentAffairsRajEasy",
+  "currentAffairsWorldEasy",
+  "geographyIndEasy",
+  "polityIndEasy",
+  "economyIndGen"
+      "economyIndBudgetAndSchemes"
+      "historyIndEasy",
+  "generalScience",
+  "geographyRajEasy",
+  "geographyRajHard",
+  "historyRajEasy",
+  "historyRajHard",
+  "artAndCultureRaj",
+  "economyRajHard",
+  "economyRajEasy",
+  "sipaper2Misc"
+];
+
+List<String> patwariSubjects = [
+  "hindi",
+  "reasoningEasy",
+  "reasoningHard",
+  "quantAptEasy",
+  "currentAffairsIndiaEasy",
+  "currentAffairsRajHard",
+  "currentAffairsRajEasy",
+  "currentAffairsWorldEasy",
+  "englishLangAndComprehensionEasy",
+  "basicComputer",
+  "geographyIndEasy",
+  "polityIndEasy",
+  "economyIndGen"
+      "economyIndBudgetAndSchemes"
+      "historyIndEasy",
+  "generalScience",
+  "geographyRajEasy",
+  "geographyRajHard",
+  "historyRajEasy",
+  "historyRajHard",
+  "artAndCultureRaj",
+  "economyRajHard",
+  "economyRajEasy",
+  "patwariMisc"
+];
+
+List<String> grade2ndSubjects = [
+  "teachingApt",
+  "currentAffairsIndiaEasy",
+  "currentAffairsRajHard",
+  "currentAffairsRajEasy",
+  "currentAffairsWorldEasy",
+  "geographyIndEasy",
+  "polityIndEasy",
+  "economyIndGen"
+      "economyIndBudgetAndSchemes"
+      "historyIndEasy",
+  "generalScience",
+  "geographyRajEasy",
+  "geographyRajHard",
+  "historyRajEasy",
+  "historyRajHard",
+  "artAndCultureRaj",
+  "economyRajHard",
+  "economyRajEasy",
+  "grade2ndMisc"
+];
+
+List<String> grade2ndScienceSubjects = [
+  "bio",
+  "physicsMains",
+  "chemMains",
+  "grade2ndScienceMisc"
+];
+
+List<String> grade2ndSSSubjects = [
+  "staticGK"
+      "geographyIndEasy",
+  "geographyWorld",
+  "polityIndEasy",
+  "geographyIndHard",
+  "polityIndHard",
+  "economyIndGen",
+  "historyIndEasy",
+  "historyIndHard",
+  "artAndCultureInd",
+  "constitutionAndGovernance",
+  "geographyRajHard",
+  "historyRajHard",
+  "artAndCultureRaj",
+  "polityRajHard",
+  "currentAffairsRajHard",
+  "artAndCultureInd",
+  "grade2ndSSMisc"
+];
+
+List<String> sscGDSubjects = [
+  "rpcGKInd",
+  "hindi",
+  "rpcReasoning",
+  "gdQuantApt",
+  "sscGDMisc"
+];
+
+List<String> sscMTSSubjects = [
+  "gdQuantApt",
+  "rpcGKInd",
+  "rpcReasoning",
+  "englishLangAndComprehensionEasy",
+  "sscMTSMisc"
+];
+
+List<String> rajPoliceConstSubjects = [
+  "rpcGKInd",
+  "rpcReasoning",
+  "rpcGKRaj",
+  "basicComputer",
+  "rajPoliceConstMisc"
+];
+
+List<String> rajLDCSubjects = [
+  "hindi",
+  "reasoningEasy",
+  "reasoningHard",
+  "quantAptEasy",
+  "currentAffairsIndiaEasy",
+  "currentAffairsRajHard",
+  "currentAffairsRajEasy",
+  "currentAffairsWorldEasy",
+  "englishLangAndComprehensionEasy",
+  "basicComputer",
+  "geographyIndEasy",
+  "polityIndEasy",
+  "economyIndGen"
+      "economyIndBudgetAndSchemes"
+      "historyIndEasy",
+  "generalScience",
+  "geographyRajEasy",
+  "geographyRajHard",
+  "historyRajEasy",
+  "historyRajHard",
+  "artAndCultureRaj",
+  "economyRajHard",
+  "economyRajEasy",
+  "rajLDCMisc"
+];
+
+List<String> rrbGDSubjects = [
+  "gdQuantApt",
+  "rpcGKInd",
+  "rpcReasoning",
+  "rrbGDMisc"
+];
+
+List<String> subjectsSubjects = <String>[
   'Physics Hard',
   'Maths Hard',
   'Chemistry Hard',
@@ -77,68 +414,92 @@ List<String> subjects = <String>[
   'None'
 ];
 
-var subjectValues = {
-  'Physics Hard': 'physicsAdv',
-  'Maths Hard': 'mathsAdv',
-  'Chemistry Hard': 'chemAdv',
-  'Physics Medium': 'physicsMains',
-  'Maths Medium': 'mathsMains',
-  'Chemistry Medium': 'chemMains',
-  'Bio': 'bio',
-  'Reasoning Hard': 'reasoningHard',
-  'Reasoning Easy': 'reasoningEasy',
-  'Current Affairs World': 'currentAffairsWorld',
-  'Current Affairs India Easy': 'currentAffairsIndiaEasy',
-  'Current Affairs India Hard': 'currentAffairsIndiaHard',
-  'Quantitive Aptitude Hard': 'quantAptHard',
-  'Quantitive Aptitude Easy': 'quantAptEasy',
-  'English Language And Comprehension': 'englishLangAndComprehension',
-  'Basic Computer': 'basicComputer',
-  'Economy And Banking': 'economyAndBanking',
-  'geographyIndHard': 'geographyIndHard',
-  'Geography India Easy': 'geographyIndEasy',
-  'Geography World': 'geographyWorld',
-  'Polity India Easy': 'polityIndEasy',
-  'Polity India Hard': 'polityIndHard',
-  'Economy India General': 'economyIndGen',
-  'Economy India Budget And Schemes': 'economyIndBudgetAndSchemes',
-  'Environment And Ecology Easy': 'environmentAndEcologyEasy',
-  'Environment And Ecology Hard': 'environmentAndEcologyHard',
-  'History India Easy': 'historyIndEasy',
-  'History India Hard': 'historyIndHard',
-  'History World': 'historyWorld',
-  'International Relation And Security': 'InternationalRelationAndSecurity',
-  'Science And Technology Easy': 'sciAndTechEasy',
-  'Science And Technology Hard': 'sciAndTechHard',
-  'General Science': 'generalScience',
-  'Geography Rajasthan Easy': 'geographyRajEasy',
-  'Geography Rajasthan Hard': 'geographyRajHard',
-  'History Rajasthan Easy': 'historyRajEasy',
-  'History Rajasthan Hard': 'historyRajHard',
-  'Art And Culture Rajasthan': 'artAndCultureRaj',
-  'Polity Rajasthan Hard': 'polityRajHard',
-  'Polity Rajasthan Easy': 'polityRajEasy',
-  'Current Affairs Rajasthan Hard': 'currentAffairsRajHard',
-  'Current Affairs Rajasthan Easy': 'currentAffairsRajEasy',
-  'Art And Culture India': 'artAndCultureInd',
-  'Economy Rajasthan Hard': 'economyRajHard',
-  'Economy Rajasthan Easy': 'economyRajEasy',
-  'Constitution And Governance': 'constitutionAndGovernance',
-  'Decision Making': 'decisionMaking',
-  'NDA Physics': 'ndaPhysics',
-  'NDA History': 'ndaHistory',
-  'NDA Chemistry': 'ndaChemistry',
-  'NDA Maths': 'ndaMaths',
-  'CDSMaths': 'cdsMaths',
-  'Current Events': 'currentEvents',
-  'Data Analysis And Interpretation': 'dataAnalysisAndInterpretation',
-  'Financial Awareness': 'financialAwareness',
-  'Finance And Accounts': 'financeAndAccounts',
-  'Statistics': 'statistics',
-  'None': 'none'
+var examSubjectsRelation = {
+  "ias": iasSubjects,
+  "jee": jeeSubjects,
+  "jeeMains": jeeMainsSubjects,
+  "jeeAdv": jeeAdvSubjects,
+  "neet": neetSubjects,
+  "ras": rasSubjects,
+  "nda": ndaSubjects,
+  "cds": cdsSubjects,
+  "ibpsPO": ibpsPOSubjects,
+  "ibpsClerk": ibpsClerkSubjects,
+  "sscCGL": sscCGLSubjects,
+  "sscCHSL": sscCHSLSubjects,
+  "ntpc": ntpcSubjects,
+  "reet1": reet1Subjects,
+  "reet2": reet2Subjects,
+  "patwari": patwariSubjects,
+  "grade2nd": grade2ndSubjects,
+  "grade2ndScience": grade2ndScienceSubjects,
+  "grade2ndSS": grade2ndSSSubjects,
+  "sscGD": sscGDSubjects,
+  "sscMTS": sscMTSSubjects,
+  "rajPoliceConst": rajPoliceConstSubjects,
+  "rajLDC": rajLDCSubjects,
+  "rrbGD": rrbGDSubjects,
+  "sipaper1": sipaper1Subjects,
+  "sipaper2": sipaper2Subjects
 };
 
-String dropdownValue = 'none';
+var examValues = {
+  'IAS': 'ias',
+  'JEE': 'jee',
+  'JEE MAINS': 'jeeMains',
+  'JEE ADV': 'jeeAdv',
+  'NEET': 'neet',
+  'RAS': 'ras',
+  'IBPS PO': 'ibpsPO',
+  'IBPS CLERK': 'ibpsClerk',
+  'SSC CHSL': 'sscCHSL',
+  'SSC CGL': 'sscCGL',
+  'NDA': 'nda',
+  'CDS': 'cds',
+  'NTPC': 'ntpc',
+  "REET LEVEL 1": "reet1",
+  "REET LEVEL 2": "reet2",
+  "PATWARI": "patwari",
+  "2nd Grade Paper 1": "grade2nd",
+  "2nd Grade Science": "grade2ndScience",
+  "2nd Grade Social Science ": "grade2ndSS",
+  "SSC GD": "sscGD",
+  "SSC MTS": "sscMTS",
+  "Rajasthan Police Constable": "rajPoliceConst",
+  "Rajasthan LDC": "rajLDC",
+  "RRB GD": "rrbGD",
+  "SI Paper 1": "sipaper1",
+  "SI Paper 2": "sipaper2"
+};
+
+var dropDownValues = {
+  "ias": "iasMisc",
+  "jee": "jeeMisc",
+  "jeeMains": "jeeMainsMisc",
+  "jeeAdv": "jeeAdvMisc",
+  "neet": "neetMisc",
+  "ras": "rasMisc",
+  "ibpsPO": "ibpsPOMisc",
+  "ibpsClerk": "ibpsClerkMisc",
+  "sscCHSL": "sscCHSLMisc",
+  "sscCGL": "sscCGLMisc",
+  "nda": "ndaMisc",
+  "cds": "cdsMisc",
+  "ntpc": "ntpcMisc",
+  "reet1": "reet1Misc",
+  "reet2": "reet2Misc",
+  "patwati": "patwatiMisc",
+  "grade2nd": "grade2ndMisc",
+  "grade2ndScience": "grade2ndScienceMisc",
+  "grade2ndSS": "grade2ndSSMisc",
+  "sscGD": "sscGDMisc",
+  "sscMTS": "sscMTSMisc",
+  "rajPoliceConst": "rajPoliceConstMisc",
+  "rajLDC": "rajLDCMisc",
+  "rrbGD": "rrbGDMisc",
+  "sipaper1": "sipaper1Misc",
+  "sipaper2": "sipaper2Misc",
+};
 
 Future<bool> addQuestion(String statement, List<String> options, String subject,
     List<String> correctOptions) async {
@@ -187,6 +548,8 @@ Future<bool> addQuestion(String statement, List<String> options, String subject,
   return false;
 }
 
+String dropdownValue = "";
+
 // ignore: must_be_immutable
 class AddQuestions extends StatefulWidget {
   AddQuestions(
@@ -200,21 +563,23 @@ class AddQuestions extends StatefulWidget {
   Config data;
   int val;
   String quesStatement;
-  List<RadioModel> optionsData;
+  List<AddQuesModel> optionsData;
 
   @override
   _AddQuestionsState createState() => _AddQuestionsState();
 }
 
 class _AddQuestionsState extends State<AddQuestions> {
-  List<RadioModel> sampleData = <RadioModel>[];
+  List<AddQuesModel> sampleData = <AddQuesModel>[];
 
   @override
   void initState() {
     super.initState();
 
+    dropdownValue = dropDownValues[examValues[widget.data.examname]] ?? "";
+
     for (var i = 0; i < widget.val; i++) {
-      sampleData.add(RadioModel(widget.optionsData[i].isSelected,
+      sampleData.add(AddQuesModel(widget.optionsData[i].isSelected,
           widget.optionsData[i].buttonText, widget.optionsData[i].text));
     }
   }
@@ -256,9 +621,10 @@ class _AddQuestionsState extends State<AddQuestions> {
                   });
                 },
                 borderRadius: BorderRadius.circular(10),
-                items: subjects.map<DropdownMenuItem<String>>((String value) {
+                items: examSubjectsRelation[examValues[widget.data.examname]]
+                    ?.map<DropdownMenuItem<String>>((String value) {
                   return DropdownMenuItem<String>(
-                      value: subjectValues[value],
+                      value: value,
                       child: Padding(
                           padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                           child: Center(
@@ -432,7 +798,7 @@ class _AddQuestionsState extends State<AddQuestions> {
 }
 
 class RadioItem extends StatelessWidget {
-  final RadioModel _item;
+  final AddQuesModel _item;
   // ignore: use_key_in_widget_constructors
   const RadioItem(this._item);
   @override
@@ -478,3 +844,82 @@ class RadioItem extends StatelessWidget {
     );
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// var subjectValues = {
+//   'Physics Hard': 'physicsAdv',
+//   'Maths Hard': 'mathsAdv',
+//   'Chemistry Hard': 'chemAdv',
+//   'Physics Medium': 'physicsMains',
+//   'Maths Medium': 'mathsMains',
+//   'Chemistry Medium': 'chemMains',
+//   'Bio': 'bio',
+//   'Reasoning Hard': 'reasoningHard',
+//   'Reasoning Easy': 'reasoningEasy',
+//   'Current Affairs World Easy': 'currentAffairsWorldEasy',
+//   'Current Affairs World Hard': 'currentAffairsWorldHard',
+//   'Current Affairs India Easy': 'currentAffairsIndiaEasy',
+//   'Current Affairs India Hard': 'currentAffairsIndiaHard',
+//   'Quantitive Aptitude Hard': 'quantAptHard',
+//   'Quantitive Aptitude Easy': 'quantAptEasy',
+//   'English Language And Comprehension Easy': 'englishLangAndComprehensionEasy',
+//   'English Language And Comprehension Hard': 'englishLangAndComprehensionHard',
+//   'Basic Computer': 'basicComputer',
+//   'Economy And Banking': 'economyAndBanking',
+//   'geographyIndHard': 'geographyIndHard',
+//   'Geography India Easy': 'geographyIndEasy',
+//   'Geography World': 'geographyWorld',
+//   'Polity India Easy': 'polityIndEasy',
+//   'Polity India Hard': 'polityIndHard',
+//   'Economy India General': 'economyIndGen',
+//   'Economy India Budget And Schemes': 'economyIndBudgetAndSchemes',
+//   'Environment And Ecology Easy': 'environmentAndEcologyEasy',
+//   'Environment And Ecology Hard': 'environmentAndEcologyHard',
+//   'History India Easy': 'historyIndEasy',
+//   'History India Hard': 'historyIndHard',
+//   'History World': 'historyWorld',
+//   'International Relation And Security': 'InternationalRelationAndSecurity',
+//   'Science And Technology Easy': 'sciAndTechEasy',
+//   'Science And Technology Hard': 'sciAndTechHard',
+//   'General Science': 'generalScience',
+//   'Geography Rajasthan Easy': 'geographyRajEasy',
+//   'Geography Rajasthan Hard': 'geographyRajHard',
+//   'History Rajasthan Easy': 'historyRajEasy',
+//   'History Rajasthan Hard': 'historyRajHard',
+//   'Art And Culture Rajasthan': 'artAndCultureRaj',
+//   'Polity Rajasthan Hard': 'polityRajHard',
+//   'Polity Rajasthan Easy': 'polityRajEasy',
+//   'Current Affairs Rajasthan Hard': 'currentAffairsRajHard',
+//   'Current Affairs Rajasthan Easy': 'currentAffairsRajEasy',
+//   'Art And Culture India': 'artAndCultureInd',
+//   'Economy Rajasthan Hard': 'economyRajHard',
+//   'Economy Rajasthan Easy': 'economyRajEasy',
+//   'Constitution And Governance': 'constitutionAndGovernance',
+//   'Decision Making': 'decisionMaking',
+//   'NDA Physics': 'ndaPhysics',
+//   'NDA History': 'ndaHistory',
+//   'NDA Chemistry': 'ndaChemistry',
+//   'NDA Maths': 'ndaMaths',
+//   'CDSMaths': 'cdsMaths',
+//   'Current Events': 'currentEvents',
+//   'Data Analysis And Interpretation': 'dataAnalysisAndInterpretation',
+//   'Financial Awareness': 'financialAwareness',
+//   'Finance And Accounts': 'financeAndAccounts',
+//   'Statistics': 'statistics',
+//   'None': 'none'
+// };

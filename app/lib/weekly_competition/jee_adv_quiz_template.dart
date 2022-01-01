@@ -109,11 +109,6 @@ class CustomRadioState extends State<CustomRadio> {
   }
 
   void updateOption(String uuid) async {
-    for (var i in sampleData) {
-      Options option = await QuizDatabase.instance.readOptions(i.uuid);
-      option.isSelected = false;
-      await QuizDatabase.instance.updateOption(option);
-    }
     Options option = await QuizDatabase.instance.readOptions(uuid);
 
     option.isSelected = true;
@@ -154,9 +149,6 @@ class CustomRadioState extends State<CustomRadio> {
                   splashColor: Colors.blueAccent,
                   onTap: () {
                     setState(() {
-                      for (var element in sampleData) {
-                        element.isSelected = false;
-                      }
                       sampleData[index].isSelected = true;
                       updateOption(sampleData[index].uuid);
                     });

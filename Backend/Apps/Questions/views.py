@@ -129,7 +129,7 @@ def getDailyQuestions(request):
 def addQuestion(request):
 
     try:
-        optionSerializer = AddOptionsSerializer(data=request.data, context = {"request": request})
+        optionSerializer = AddOptionsSerializer(data=request.data)
 
         if optionSerializer.is_valid():
             options = optionSerializer.save()
@@ -152,6 +152,11 @@ def addQuestion(request):
                 
                 question.save()
 
+                from datetime import date
+                user = request.user
+                user.addedQuestionDate = date.today()
+                user.save()
+
         else:
             print(optionSerializer.errors)
 
@@ -167,43 +172,58 @@ def addQuestion(request):
 @api_view(['GET', ])
 def getQuestionOfTheDay(request):
     try:
+        exam_name = request.GET['exam']
+
         dateToday = datetime.today().strftime('%Y-%m-%d')
-        questions = QuestionsOfTheDays.objects.filter(date=dateToday)
 
-        if len(questions) == 0:
-            subjects = Subjects.objects.all()
+        
+
+        exam = Exams.objects.get(name=exam_name)
+
+        try:
+            quesOfDay = QuestionsOfTheDays.objects.get(date = dateToday, exam=exam)
+            ques = quesOfDay.question
+
+
+            return Response({"uuid": ques.uuid, "statement": ques.statement, 
+                    "options": [(z.content, z.isCorrect) for z in ques.options.all()], 
+                    "ratings": ques.ratings, "difficulty" : ques.difficulty, 
+                    "percentCorrect": ques.percentCorrect, "subject": ques.subject, "isRated": request.user in ques.ratedBy.all(),
+                    "createdBy": "Smartprep Team" if ques.isExpert else ques.createdBy.name})
+        except:
+
+            subjects = list(exam.subjects.all())
+
+            random.shuffle(subjects)
             
-            for subject in subjects:
-                for i in subject.questions.all():
-                    if (i.ratings > 4.7 and i.difficulty > 4.7) or i.isExpert:
-                        if i not in QuestionsOfTheDays.objects.all():
-                            
-                            quesOfDay = QuestionsOfTheDays(date = dateToday)
-                            quesOfDay.save()
-                            quesOfDay.questions.add(i)
-                            quesOfDay.save()
+            subject = subjects[0]
 
-                            break
+            for i in subject.questions.all():
+                if (i.ratings > 4.7 and i.difficulty > 4.7) or i.isExpert:
+                    if i not in QuestionsOfTheDays.objects.all():
 
-        
-        subject = request.GET['subject']
-        
-        quesOfDays = QuestionsOfTheDays.objects.filter(date = dateToday)
+                        import uuid
+                        
+                        quesOfDay = QuestionsOfTheDays(date = dateToday, uuid = str(uuid.uuid4()), exam=exam)
+                        quesOfDay.save()
+                        quesOfDay.question = i
+                        quesOfDay.save()
+
+                        break
+
+            
+            
+            quesOfDay = QuestionsOfTheDays.objects.get(date = dateToday, exam=exam)
+
+            ques = quesOfDay.question
 
 
-        for i in quesOfDays:
-            questions = i.questions.all()
-
-            for ques in questions:
-                if ques.subject == subject:
-                    return Response({"uuid": ques.uuid, "statement": ques.statement, 
-                            "options": [(z.content, z.isCorrect, z.uuid) for z in ques.options.all()], 
-                            "ratings": ques.ratings, "difficulty" : ques.difficulty, 
-                            "percentCorrect": ques.percentCorrect, "subject": subject, "isRated": request.user in ques.ratedBy.all(),
-                            "createdBy": "Smartprep Team" if ques.isExpert else ques.createdBy.name})
-
-        return Response("Unknown Error : Don't worry our tech team is working in this issue and will get back to you as soon as possible.")
-        
+            return Response({"uuid": ques.uuid, "statement": ques.statement, 
+                        "options": [(z.content, z.isCorrect) for z in ques.options.all()], 
+                        "ratings": ques.ratings, "difficulty" : ques.difficulty, 
+                        "percentCorrect": ques.percentCorrect, "subject": subject.name, "isRated": request.user in ques.ratedBy.all(),
+                        "createdBy": "Smartprep Team" if ques.isExpert else ques.createdBy.name})
+  
     except:
         return Response("Error", status=status.HTTP_400_BAD_REQUEST)
 
@@ -279,6 +299,8 @@ def bookmark_question(request):
 
         question_bookmark.save()
 
+        return Response("Success")
+
 
     except:
         return Response("Invalid Request", status=status.HTTP_400_BAD_REQUEST)
@@ -328,6 +350,13 @@ def host_weekly_competition(request):
 
         if not user or not user.is_superuser:
             return Response("Invalid Request", status=status.HTTP_400_BAD_REQUEST)
+
+        [("ias", "ias"),("jee", "jee"),("jeeMains","jeeMains"),("jeeAdv","jeeAdv"),("neet","neet"),
+               ("ras","ras"), ("ibpsPO","ibpsPO"), ("ibpsClerk", "ibpsClerk"), ("sscCHSL", "sscCHSL"),
+               ("sscCGL", "sscCGL"), ("nda","nda"), ("cds","cds"), ("ntpc","ntpc"), 
+               ("reet1", "reet1"), ("reet2", "reet2"), ("patwari", 'patwari'), ("grade2nd", "grade2nd"), 
+               ("grade2ndScience", "grade2ndScience"), ("grade2ndSS", "grade2ndSS"), ("sscGD", "sscGD"), ("sscMTS", "sscMTS"),
+               ("rajPoliceConst", "rajPoliceConst"), ("rajLDC", "rajLDC"), ("rrbGD", "rrbGD"), ("sipaper1", "sipaper1"), ("sipaper2", "sipaper2")]
 
         exam_questions = {
             "ias": 100,

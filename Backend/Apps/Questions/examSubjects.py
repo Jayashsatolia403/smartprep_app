@@ -17,13 +17,14 @@ iasSubjects = ["currentAffairsWorldHard",
                    "sciAndTechHard", 
                    "artAndCultureInd", 
                    "constitutionAndGovernance",
-                   "decisionMaking"]
+                   "decisionMaking",
+                   "iasMisc"]
     
-jeeSubjects = ["physicsAdv", "mathsAdv", "chemAdv", "physicsMains", "mathsMains", "chemMains"]
-jeeAdvSubjects = ["physicsAdv", "mathsAdv", "chemAdv"]
-jeeMainsSubjects = ["physicsMains", "mathsMains", "chemMains"]
+jeeSubjects = ["physicsAdv", "mathsAdv", "chemAdv", "physicsMains", "mathsMains", "chemMains", "jeeMisc"]
+jeeAdvSubjects = ["physicsAdv", "mathsAdv", "chemAdv", "jeeAdvMisc"]
+jeeMainsSubjects = ["physicsMains", "mathsMains", "chemMains", "jeeMainsMisc"]
 
-neetSubjects = ["physicsMains", "bio", "chemMains"]
+neetSubjects = ["physicsMains", "bio", "chemMains", "neetMisc"]
 
 rasSubjects = ["currentAffairsIndiaEasy", 
                 "currentAffairsIndiaHard", 
@@ -56,13 +57,15 @@ rasSubjects = ["currentAffairsIndiaEasy",
                 "economyRajHard",
                 "economyRajEasy",
                 "reasoningHard", 
-                "reasoningEasy"]
+                "reasoningEasy",
+                "rasMisc"]
 
 ndaSubjects = ["ndaPhysics", 
                 "ndaHistory", 
                 "ndaChemistry", 
                 "ndaMaths", 
-                "currentEvents"]
+                "currentEvents",
+                "ndaMisc"]
 
 cdsSubjects = ["reasoningEasy", 
                 "reasoningHard", 
@@ -74,7 +77,8 @@ cdsSubjects = ["reasoningEasy",
                 "historyIndEasy", 
                 "sciAndTechEasy", 
                 "cdsMaths", 
-                "environmentAndEcologyEasy"]
+                "environmentAndEcologyEasy",
+                "cdsMisc"]
 
 ibpsPOSubjects = ["englishLangAndComprehensionHard", 
                     "quantAptHard", 
@@ -84,7 +88,8 @@ ibpsPOSubjects = ["englishLangAndComprehensionHard",
                     "dataAnalysisAndInterpretation", 
                     "financialAwareness",
                     "basicComputer",
-                    "financeAndAccounts"]
+                    "financeAndAccounts",
+                    "ibpsPOMisc"]
 
 ibpsClerkSubjects = ["englishLangAndComprehensionEasy",
                         "englishLangAndComprehensionHard", 
@@ -93,7 +98,8 @@ ibpsClerkSubjects = ["englishLangAndComprehensionEasy",
                         "reasoningEasy", 
                         "financialAwareness",
                         "basicComputer",
-                        "financeAndAccounts"]
+                        "financeAndAccounts",
+                        "ibpsClerkMisc"]
 
 sscCGLSubjects = ["reasoningHard", 
                     "reasoningEasy", 
@@ -105,7 +111,8 @@ sscCGLSubjects = ["reasoningHard",
                     "englishLangAndComprehensionHard",
                     "englishLangAndComprehensionEasy",
                     "financeAndAccounts",
-                    "statistics"]
+                    "statistics",
+                    "sscCGLMisc"]
 
 sscCHSLSubjects = ["reasoningHard", 
                     "reasoningEasy", 
@@ -115,7 +122,8 @@ sscCHSLSubjects = ["reasoningHard",
                     "polityIndEasy",
                     "quantAptEasy",
                     "englishLangAndComprehensionEasy",
-                    "englishLangAndComprehensionHard"
+                    "englishLangAndComprehensionHard",
+                    "sscCHSLMisc"
                     ]
 
 ntpcSubjects = ["reasoningHard", 
@@ -125,18 +133,19 @@ ntpcSubjects = ["reasoningHard",
         "geographyIndEasy",
         "polityIndEasy",
         "quantAptEasy",
-        "englishLangAndComprehensionEasy"]
+        "englishLangAndComprehensionEasy",
+        "ntpcMisc"]
 
 
 
-reet1 = []
-reet2 = []
+reet1Subjects = ["reet1Misc"]
+reet2Subjects = ["reet2Misc"]
 
 
 
-sipaper1 = ["hindi"]
+sipaper1Subjects = ["hindi"]
 
-sipaper2 = [
+sipaper2Subjects = [
         "reasoningEasy",
         "reasoningHard",
         "quantAptEasy",
@@ -157,9 +166,10 @@ sipaper2 = [
         "artAndCultureRaj",
         "economyRajHard",
         "economyRajEasy",
+        "sipaper2Misc"
 ]
 
-patwari = [
+patwariSubjects = [
         "hindi",
         "reasoningEasy",
         "reasoningHard",
@@ -183,9 +193,10 @@ patwari = [
         "artAndCultureRaj",
         "economyRajHard",
         "economyRajEasy",
+        "patwariMisc"
 ]
 
-grade2nd = [
+grade2ndSubjects = [
         "teachingApt",
         "currentAffairsIndiaEasy",
         "currentAffairsRajHard",
@@ -204,11 +215,12 @@ grade2nd = [
         "artAndCultureRaj",
         "economyRajHard",
         "economyRajEasy",
+        "grade2ndMisc"
 ]
 
-grade2ndScience = ["bio", "physicsMains", "chemMains"]
+grade2ndScienceSubjects = ["bio", "physicsMains", "chemMains", "grade2ndScienceMisc"]
 
-grade2ndSS = [
+grade2ndSSSubjects = [
         "staticGK"
         "geographyIndEasy", 
         "geographyWorld",
@@ -226,30 +238,34 @@ grade2ndSS = [
         "polityRajHard", 
         "currentAffairsRajHard",
         "artAndCultureInd", 
+        "grade2ndSSMisc"
 ]
 
-sscGD = [
+sscGDSubjects = [
         "rpcGKInd",
         "hindi",
         "rpcReasoning",
-        "gdQuantApt"
+        "gdQuantApt",
+        "sscGDMisc"
 ]
 
-sscMTS = [
+sscMTSSubjects = [
         "gdQuantApt",
         "rpcGKInd",
         "rpcReasoning",
-        "englishLangAndComprehensionEasy"
+        "englishLangAndComprehensionEasy",
+        "sscMTSMisc"
 ]
 
-rajPoliceConst = [
+rajPoliceConstSubjects = [
         "rpcGKInd",
         "rpcReasoning",
         "rpcGKRaj",
-        "basicComputer"
+        "basicComputer",
+        "rajPoliceConstMisc"
 ]
 
-rajLDC = [
+rajLDCSubjects = [
         "hindi",
         "reasoningEasy",
         "reasoningHard",
@@ -273,12 +289,14 @@ rajLDC = [
         "artAndCultureRaj",
         "economyRajHard",
         "economyRajEasy",
+        "rajLDCMisc"
 ]
 
-rrbGD = [
+rrbGDSubjects = [
         "gdQuantApt",
         "rpcGKInd",
         "rpcReasoning",
+        "rrbGDMisc"
 ]
 
 

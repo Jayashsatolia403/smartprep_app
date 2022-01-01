@@ -17,8 +17,20 @@ var examNames = {
   'SSC CGL': 'sscCGL',
   'NDA': 'nda',
   'CDS': 'cds',
-  'CAT': 'cat',
-  'NTPC': 'ntpc'
+  'NTPC': 'ntpc',
+  "REET LEVEL 1": "reet1",
+  "REET LEVEL 2": "reet2",
+  "PATWARI": "patwari",
+  "2nd Grade Paper 1": "grade2nd",
+  "2nd Grade Science": "grade2ndScience",
+  "2nd Grade Social Science ": "grade2ndSS",
+  "SSC GD": "sscGD",
+  "SSC MTS": "sscMTS",
+  "Rajasthan Police Constable": "rajPoliceConst",
+  "Rajasthan LDC": "rajLDC",
+  "RRB GD": "rrbGD",
+  "SI Paper 1": "sipaper1",
+  "SI Paper 2": "sipaper2"
 };
 
 updateExamDetails(String examName) async {
@@ -40,8 +52,20 @@ List<String> exam_names = <String>[
   'SSC CGL',
   'NDA',
   'CDS',
-  'CAT',
-  'NTPC'
+  'NTPC',
+  "REET LEVEL 1",
+  "REET LEVEL 2",
+  "PATWARI",
+  "2nd Grade Paper 1",
+  "2nd Grade Science",
+  "2nd Grade Social Science",
+  "SSC GD",
+  "SSC MTS",
+  "Rajasthan Police Constable",
+  "Rajasthan LDC",
+  "RRB GD",
+  "SI Paper 1",
+  "SI Paper 2"
 ];
 
 class SelectExam extends StatefulWidget {

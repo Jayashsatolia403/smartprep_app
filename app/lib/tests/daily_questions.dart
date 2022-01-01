@@ -20,8 +20,8 @@ class DailyQuestions extends StatefulWidget {
 }
 
 class _DailyQuestionsState extends State<DailyQuestions> {
+  String exam = "";
   Future<List<dynamic>> getDailyQuestions() async {
-    print("Starting");
     String url = await rootBundle.loadString('assets/text/url.txt');
     List<dynamic> allOptions = <dynamic>[];
     List<dynamic> questionStatements = <dynamic>[];
@@ -30,6 +30,8 @@ class _DailyQuestionsState extends State<DailyQuestions> {
     final prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString("token");
     String? examName = prefs.getString("exam_name");
+
+    
 
     final response = await http.get(
       Uri.parse('$url/getQues?exam=$examName'),
@@ -141,7 +143,7 @@ class _DailyQuestionsState extends State<DailyQuestions> {
                       ),
                     ),
                     if (banner == null)
-                      const Text("yo")
+                      const Text("Loading Ad")
                     else
                       SizedBox(height: 150, child: AdWidget(ad: banner!))
                   ],

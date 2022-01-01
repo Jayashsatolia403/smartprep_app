@@ -14,7 +14,6 @@ import '../ad_state.dart';
 import 'quiz_config.dart';
 import 'dart:convert';
 import 'quiz_db.dart';
-import 'quiz_config.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import 'package:uuid/uuid.dart';
@@ -228,41 +227,6 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
                         style: TextStyle(color: Colors.white)),
                     ElevatedButton(
                         onPressed: () async {
-                          print("Working");
-                          List<List<String>> submitOptions = [];
-
-                          final dbQuestions =
-                              await QuizDatabase.instance.readAllQuestions();
-
-                          print(dbQuestions);
-
-                          for (var dbQuestion in dbQuestions) {
-                            final getDbQuestionOptions = await QuizDatabase
-                                .instance
-                                .readQuestionOptionsFromQuestionId(
-                                    dbQuestion.uuid);
-
-                            submitOptions.add([]);
-                            print("Till Here");
-
-                            for (var j in getDbQuestionOptions) {
-                              final getDbOption = await QuizDatabase.instance
-                                  .readOptions(j.optionId);
-
-                              if (getDbOption.isSelected) {
-                                submitOptions[submitOptions.length - 1]
-                                    .add(getDbOption.uuid);
-
-                                print(getDbOption.uuid);
-                              }
-                            }
-                          }
-
-                          var data = {
-                            "uuid": competitionUuid,
-                            "options": submitOptions
-                          };
-
                           String url = await rootBundle
                               .loadString('assets/text/url.txt');
 
@@ -270,6 +234,45 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
                           String? token = prefs.getString("token");
                           String examName =
                               prefs.getString("exam_name") ?? "Exam";
+
+                          List<List<String>> submitOptions = [];
+
+                          for (var i = 0;
+                              i < (totalPages[examName] ?? 100) * 10;
+                              i++) {
+                            submitOptions.add([]);
+                          }
+                          int count = 0;
+                          final dbQuestions =
+                              await QuizDatabase.instance.readAllQuestions();
+
+                          for (var dbQuestion in dbQuestions) {
+                            final getDbQuestionOptions = await QuizDatabase
+                                .instance
+                                .readQuestionOptionsFromQuestionId(
+                                    dbQuestion.uuid);
+
+                            for (var j in getDbQuestionOptions) {
+                              final getDbOption = await QuizDatabase.instance
+                                  .readOptions(j.optionId);
+
+                              if (getDbOption.isSelected) {
+                                submitOptions[count].add(getDbOption.uuid);
+                              }
+                            }
+
+                            count += 1;
+                          }
+
+                          var data = {
+                            "uuid": competitionUuid,
+                            "options": submitOptions
+                          };
+
+                          print("\n\n\n\n\n\n");
+                          print(data);
+                          print("\n\n\n\n\n\n");
+
                           final response = await http.post(
                               Uri.parse('$url/submit_contest/'),
                               headers: <String, String>{
@@ -285,7 +288,8 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
                             MaterialPageRoute(
                                 builder: (context) => Result(
                                     correctOptions: jsonDecode(
-                                        response.body)["correct_options"])),
+                                            response.body)["correct_options"]
+                                        .toString())),
                           );
                         },
                         child: const Text("Submit"))

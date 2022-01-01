@@ -11,7 +11,7 @@ import 'package:http/http.dart' as http;
 
 import 'package:app/config.dart';
 
-String dropdownValue = 'default';
+String dropdownValue = 'ias';
 
 final List<bool> _selections = List.generate(3, (index) => false);
 
@@ -97,9 +97,20 @@ List<String> examNames = <String>[
   'SSC CGL',
   'NDA',
   'CDS',
-  'CAT',
   'NTPC',
-  'DEFAULT'
+  "REET LEVEL 1",
+  "REET LEVEL 2",
+  "PATWARI",
+  "2nd Grade Paper 1",
+  "2nd Grade Science",
+  "2nd Grade Social Science",
+  "SSC GD",
+  "SSC MTS",
+  "Rajasthan Police Constable",
+  "Rajasthan LDC",
+  "RRB GD",
+  "SI Paper 1",
+  "SI Paper 2"
 ];
 
 var examNameValues = {
@@ -115,9 +126,20 @@ var examNameValues = {
   'SSC CGL': 'sscCGL',
   'NDA': 'nda',
   'CDS': 'cds',
-  'CAT': 'cat',
   'NTPC': 'ntpc',
-  'DEFAULT': 'default'
+  "REET LEVEL 1": "reet1",
+  "REET LEVEL 2": "reet2",
+  "PATWARI": "patwari",
+  "2nd Grade Paper 1": "grade2nd",
+  "2nd Grade Science": "grade2ndScience",
+  "2nd Grade Social Science ": "grade2ndSS",
+  "SSC GD": "sscGD",
+  "SSC MTS": "sscMTS",
+  "Rajasthan Police Constable": "rajPoliceConst",
+  "Rajasthan LDC": "rajLDC",
+  "RRB GD": "rrbGD",
+  "SI Paper 1": "sipaper1",
+  "SI Paper 2": "sipaper2"
 };
 
 class Premium extends StatefulWidget {

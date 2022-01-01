@@ -89,11 +89,6 @@ class AddQuestionSerializer(serializers.ModelSerializer):
             percentCorrect = 0
         )
 
-        from datetime import date
-        user = self.context['request'].user
-        user.addedQuestionDate = date.today()
-        user.save()
-
         newQuestion.save()
         return newQuestion
 
@@ -129,6 +124,10 @@ class SubmitContestSerializer(serializers.ModelSerializer):
 
         try:
             competition_result = WeeklyCompetitionResult.objects.get(user=user, competition=competition)
+
+            for s in competition_result.submissions.all():
+                s.delete()
+            
             competition_result.delete()
         except:
             print("Good News")

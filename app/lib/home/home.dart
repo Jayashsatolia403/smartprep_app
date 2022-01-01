@@ -3,12 +3,14 @@ import 'dart:convert';
 import 'package:app/add_ques/add_ques.dart';
 import 'package:app/article/articles_home.dart';
 import 'package:app/bookmarks/bookmarks.dart';
+import 'package:app/error_page/error_page.dart';
 import 'package:app/exam_select/select_exam.dart';
 import 'package:app/forum%20/messages.dart';
 import 'package:app/home/slider.dart';
 import 'package:app/test_page/tests.dart';
 import 'package:app/premium/premium.dart';
 import 'package:app/profile/profile_page.dart';
+import 'package:app/tests/quiz_template.dart';
 import 'package:app/weekly_competition/previous_competitions.dart';
 import 'package:flutter/material.dart';
 import 'package:app/config.dart';
@@ -16,6 +18,35 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
+
+var examvalues = {
+  'IAS': 'ias',
+  'JEE': 'jee',
+  'JEE MAINS': 'jeeMains',
+  'JEE ADV': 'jeeAdv',
+  'NEET': 'neet',
+  'RAS': 'ras',
+  'IBPS PO': 'ibpsPO',
+  'IBPS CLERK': 'ibpsClerk',
+  'SSC CHSL': 'sscCHSL',
+  'SSC CGL': 'sscCGL',
+  'NDA': 'nda',
+  'CDS': 'cds',
+  'NTPC': 'ntpc',
+  "REET LEVEL 1": "reet1",
+  "REET LEVEL 2": "reet2",
+  "PATWARI": "patwari",
+  "2nd Grade Paper 1": "grade2nd",
+  "2nd Grade Science": "grade2ndScience",
+  "2nd Grade Social Science ": "grade2ndSS",
+  "SSC GD": "sscGD",
+  "SSC MTS": "sscMTS",
+  "Rajasthan Police Constable": "rajPoliceConst",
+  "Rajasthan LDC": "rajLDC",
+  "RRB GD": "rrbGD",
+  "SI Paper 1": "sipaper1",
+  "SI Paper 2": "sipaper2"
+};
 
 List<String> alphabets = <String>[
   'A',
@@ -113,10 +144,10 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    List<RadioModel> optionsData = <RadioModel>[];
+    List<AddQuesModel> optionsData = <AddQuesModel>[];
 
     for (var i = 0; i < 26; i++) {
-      optionsData.add(RadioModel(false, alphabets[i], ""));
+      optionsData.add(AddQuesModel(false, alphabets[i], ""));
     }
 
     return FutureBuilder<bool>(
@@ -348,13 +379,41 @@ class _HomeState extends State<Home> {
                                     String? token = prefs.getString("token");
 
                                     final response = await http.get(
-                                      Uri.parse('$url/getQuesOfDay'),
+                                      Uri.parse(
+                                          '$url/getQuesOfDay?exam=${widget.data.examname}'),
                                       headers: <String, String>{
                                         'Content-Type':
                                             'application/json; charset=UTF-8',
                                         'Authorization': "Token $token"
                                       },
                                     );
+
+                                    final resJson = jsonDecode(response.body);
+
+                                    if (response.statusCode == 400 ||
+                                        resJson == "Error") {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const ErrorPage()));
+                                    } else {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => CustomRadio(
+                                                  options: resJson['options'],
+                                                  statement:
+                                                      resJson['statement'],
+                                                  quesUUid: resJson['uuid'],
+                                                  qualityRating:
+                                                      resJson['ratings'],
+                                                  difficultyRating:
+                                                      resJson['difficulty'],
+                                                  isRated: resJson['isRated'],
+                                                  createdBy:
+                                                      resJson['createdBy'])));
+                                    }
                                   },
                                 ),
                                 ListTile(

@@ -12,7 +12,7 @@ class Result extends StatelessWidget {
       body: Center(
         child: Text(
           'Correct Options: $correctOptions',
-          style: TextStyle(fontSize: 25),
+          style: const TextStyle(fontSize: 25),
         ),
       ),
     );

@@ -1,6 +1,8 @@
 from os import readlink
 import re
 from django.db import models
+from django.db.models.fields import BLANK_CHOICE_DASH
+from rest_framework.serializers import ModelSerializer
 from Apps.User.models import User
 from django.contrib.postgres.fields import ArrayField
 
@@ -101,7 +103,33 @@ class Subjects(models.Model):
             ("rpcGKInd", "rpcGKInd"),
             ("rpcGKRaj", "rpcGKRaj"),
             ("rpcReasoning", "rpcReasoning"),
-            ('gdQuantApt', "gdQuantApt")
+            ('gdQuantApt', "gdQuantApt"),
+            ("iasMisc", "iasMisc"),
+            ("jeeMisc", "jeeMisc"),
+            ("jeeMainsMisc", "jeeMainsMisc"),
+            ("jeeAdvMisc", "jeeAdvMisc"),
+            ("neetMisc", "neetMisc"),
+            ("rasMisc", "rasMisc"),
+            ("ibpsPOMisc", "ibpsPOMisc"),
+            ("ibpsClerkMisc", "ibpsClerkMisc"),
+            ("sscCHSLMisc", "sscCHSLMisc"),
+            ("sscCGLMisc", "sscCGLMisc"),
+            ("ndaMisc", "ndaMisc"),
+            ("cdsMisc", "cdsMisc"),
+            ("ntpcMisc", "ntpcMisc"),
+            ("reet1Misc", "reet1Misc"),
+            ("reet2Misc", "reet2Misc"),
+            ("patwariMisc", "patwariMisc"),
+            ("grade2ndMisc", "grade2ndMisc"),
+            ("grade2ndScienceMisc", "grade2ndScienceMisc"),
+            ("grade2ndSSMisc", "grade2ndSSMisc"),
+            ("sscGDMisc", "sscGDMisc"),
+            ("sscMTSMisc", "sscMTSMisc"),
+            ("rajPoliceConstMisc", "rajPoliceConstMisc"),
+            ("rajLDCMisc", "rajLDCMisc"),
+            ("rrbGDMisc", "rrbGDMisc"),
+            ("sipaper1Misc", "sipaper1Misc"),
+            ("sipaper2Misc", "sipaper2Misc"),
 ]
 
     uuid = models.CharField(max_length=50)
@@ -118,7 +146,7 @@ class Exams(models.Model):
     choices = [("ias", "ias"),("jee", "jee"),("jeeMains","jeeMains"),("jeeAdv","jeeAdv"),("neet","neet"),
                ("ras","ras"), ("ibpsPO","ibpsPO"), ("ibpsClerk", "ibpsClerk"), ("sscCHSL", "sscCHSL"),
                ("sscCGL", "sscCGL"), ("nda","nda"), ("cds","cds"), ("ntpc","ntpc"), 
-               ("reet1", "reet1"), ("reet2", "reet2"), ("patwati", 'patwari'), ("grade2nd", "grade2nd"), 
+               ("reet1", "reet1"), ("reet2", "reet2"), ("patwari", 'patwari'), ("grade2nd", "grade2nd"), 
                ("grade2ndScience", "grade2ndScience"), ("grade2ndSS", "grade2ndSS"), ("sscGD", "sscGD"), ("sscMTS", "sscMTS"),
                ("rajPoliceConst", "rajPoliceConst"), ("rajLDC", "rajLDC"), ("rrbGD", "rrbGD"), ("sipaper1", "sipaper1"), ("sipaper2", "sipaper2")]
 
@@ -134,9 +162,10 @@ class Exams(models.Model):
 
 
 class QuestionsOfTheDays(models.Model):
-    uuid =  models.CharField(max_length=50)
-    questions = models.ManyToManyField(Questions, related_name="questionsOfTheDays", blank=True)
-    date = models.CharField(max_length=20)
+    uuid =  models.CharField(max_length=50, null=True)
+    question = models.ForeignKey(Questions, related_name="questionsOfTheDays", blank=True, on_delete=models.CASCADE, null=True)
+    date = models.CharField(max_length=20, null=True)
+    exam = models.ForeignKey(Exams, related_name="quesOfDayExam", blank=True, on_delete=models.CASCADE, null=True)
 
 
 class DailyQuestions(models.Model):

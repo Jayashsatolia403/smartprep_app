@@ -2,12 +2,11 @@
 
 from __future__ import unicode_literals
 
-from django.db import migrations, models
+from django.db import migrations
 
 import random
 import uuid
 
-from Apps.Questions.models import Questions
 
 
 def load_initial_data(apps, schema_editor):
@@ -31,13 +30,14 @@ def load_initial_data(apps, schema_editor):
                    "sciAndTechHard", 
                    "artAndCultureInd", 
                    "constitutionAndGovernance",
-                   "decisionMaking"]
+                   "decisionMaking",
+                   "iasMisc"]
     
-    jeeSubjects = ["physicsAdv", "mathsAdv", "chemAdv", "physicsMains", "mathsMains", "chemMains"]
-    jeeAdvSubjects = ["physicsAdv", "mathsAdv", "chemAdv"]
-    jeeMainsSubjects = ["physicsMains", "mathsMains", "chemMains"]
+    jeeSubjects = ["physicsAdv", "mathsAdv", "chemAdv", "physicsMains", "mathsMains", "chemMains", "jeeMisc"]
+    jeeAdvSubjects = ["physicsAdv", "mathsAdv", "chemAdv", "jeeAdvMisc"]
+    jeeMainsSubjects = ["physicsMains", "mathsMains", "chemMains", "jeeMainsMisc"]
 
-    neetSubjects = ["physicsMains", "bio", "chemMains"]
+    neetSubjects = ["physicsMains", "bio", "chemMains", "neetMisc"]
 
     rasSubjects = ["currentAffairsIndiaEasy", 
                     "currentAffairsIndiaHard", 
@@ -70,13 +70,15 @@ def load_initial_data(apps, schema_editor):
                     "economyRajHard",
                     "economyRajEasy",
                     "reasoningHard", 
-                    "reasoningEasy"]
+                    "reasoningEasy",
+                    "rasMisc"]
 
     ndaSubjects = ["ndaPhysics", 
                     "ndaHistory", 
                     "ndaChemistry", 
                     "ndaMaths", 
-                    "currentEvents"]
+                    "currentEvents",
+                    "ndaMisc"]
 
     cdsSubjects = ["reasoningEasy", 
                     "reasoningHard", 
@@ -88,7 +90,8 @@ def load_initial_data(apps, schema_editor):
                     "historyIndEasy", 
                     "sciAndTechEasy", 
                     "cdsMaths", 
-                    "environmentAndEcologyEasy"]
+                    "environmentAndEcologyEasy",
+                    "cdsMisc"]
 
     ibpsPOSubjects = ["englishLangAndComprehensionHard", 
                         "quantAptHard", 
@@ -98,7 +101,8 @@ def load_initial_data(apps, schema_editor):
                         "dataAnalysisAndInterpretation", 
                         "financialAwareness",
                         "basicComputer",
-                        "financeAndAccounts"]
+                        "financeAndAccounts",
+                        "ibpsPOMisc"]
 
     ibpsClerkSubjects = ["englishLangAndComprehensionEasy",
                             "englishLangAndComprehensionHard", 
@@ -107,7 +111,8 @@ def load_initial_data(apps, schema_editor):
                             "reasoningEasy", 
                             "financialAwareness",
                             "basicComputer",
-                            "financeAndAccounts"]
+                            "financeAndAccounts",
+                            "ibpsClerkMisc"]
 
     sscCGLSubjects = ["reasoningHard", 
                         "reasoningEasy", 
@@ -119,7 +124,8 @@ def load_initial_data(apps, schema_editor):
                         "englishLangAndComprehensionHard",
                         "englishLangAndComprehensionEasy",
                         "financeAndAccounts",
-                        "statistics"]
+                        "statistics",
+                        "sscCGLMisc"]
 
     sscCHSLSubjects = ["reasoningHard", 
                         "reasoningEasy", 
@@ -129,7 +135,8 @@ def load_initial_data(apps, schema_editor):
                         "polityIndEasy",
                         "quantAptEasy",
                         "englishLangAndComprehensionEasy",
-                        "englishLangAndComprehensionHard"
+                        "englishLangAndComprehensionHard",
+                        "sscCHSLMisc"
                         ]
 
     ntpcSubjects = ["reasoningHard", 
@@ -139,12 +146,13 @@ def load_initial_data(apps, schema_editor):
             "geographyIndEasy",
             "polityIndEasy",
             "quantAptEasy",
-            "englishLangAndComprehensionEasy"]
+            "englishLangAndComprehensionEasy",
+            "ntpcMisc"]
 
 
 
-    reet1Subjects = []
-    reet2Subjects = []
+    reet1Subjects = ["reet1Misc"]
+    reet2Subjects = ["reet2Misc"]
 
 
 
@@ -171,6 +179,7 @@ def load_initial_data(apps, schema_editor):
             "artAndCultureRaj",
             "economyRajHard",
             "economyRajEasy",
+            "sipaper2Misc"
     ]
 
     patwariSubjects = [
@@ -197,6 +206,7 @@ def load_initial_data(apps, schema_editor):
             "artAndCultureRaj",
             "economyRajHard",
             "economyRajEasy",
+            "patwariMisc",
     ]
 
     grade2ndSubjects = [
@@ -218,9 +228,10 @@ def load_initial_data(apps, schema_editor):
             "artAndCultureRaj",
             "economyRajHard",
             "economyRajEasy",
+            "grade2ndMisc"
     ]
 
-    grade2ndScienceSubjects = ["bio", "physicsMains", "chemMains"]
+    grade2ndScienceSubjects = ["bio", "physicsMains", "chemMains", "grade2ndScienceMisc"]
 
     grade2ndSSSubjects = [
             "staticGK",
@@ -240,27 +251,31 @@ def load_initial_data(apps, schema_editor):
             "polityRajHard", 
             "currentAffairsRajHard",
             "artAndCultureInd", 
+            "grade2ndSSMisc"
     ]
 
     sscGDSubjects = [
             "rpcGKInd",
             "hindi",
             "rpcReasoning",
-            "gdQuantApt"
+            "gdQuantApt",
+            "sscGDMisc"
     ]
 
     sscMTSSubjects = [
             "gdQuantApt",
             "rpcGKInd",
             "rpcReasoning",
-            "englishLangAndComprehensionEasy"
+            "englishLangAndComprehensionEasy",
+            "sscMTSMisc"
     ]
 
     rajPoliceConstSubjects = [
             "rpcGKInd",
             "rpcReasoning",
             "rpcGKRaj",
-            "basicComputer"
+            "basicComputer",
+            "rajPoliceConstMisc"
     ]
 
     rajLDCSubjects = [
@@ -287,12 +302,14 @@ def load_initial_data(apps, schema_editor):
             "artAndCultureRaj",
             "economyRajHard",
             "economyRajEasy",
+            "rajLDCMisc"
     ]
 
     rrbGDSubjects = [
             "gdQuantApt",
             "rpcGKInd",
             "rpcReasoning",
+            "rrbGDMisc"
     ]
 
     exams = [("ias", "ias"),("jee", "jee"),("jeeMains","jeeMains"),("jeeAdv","jeeAdv"),("neet","neet"),
@@ -368,7 +385,34 @@ def load_initial_data(apps, schema_editor):
             ("rpcGKInd", "rpcGKInd"),
             ("rpcGKRaj", "rpcGKRaj"),
             ("rpcReasoning", "rpcReasoning"),
-            ('gdQuantApt', "gdQuantApt")]
+            ('gdQuantApt', "gdQuantApt"),
+            ("iasMisc", "iasMisc"),
+            ("jeeMisc", "jeeMisc"),
+            ("jeeMainsMisc", "jeeMainsMisc"),
+            ("jeeAdvMisc", "jeeAdvMisc"),
+            ("neetMisc", "neetMisc"),
+            ("rasMisc", "rasMisc"),
+            ("ibpsPOMisc", "ibpsPOMisc"),
+            ("ibpsClerkMisc", "ibpsClerkMisc"),
+            ("sscCHSLMisc", "sscCHSLMisc"),
+            ("sscCGLMisc", "sscCGLMisc"),
+            ("ndaMisc", "ndaMisc"),
+            ("cdsMisc", "cdsMisc"),
+            ("ntpcMisc", "ntpcMisc"),
+            ("reet1Misc", "reet1Misc"),
+            ("reet2Misc", "reet2Misc"),
+            ("patwariMisc", "patwariMisc"),
+            ("grade2ndMisc", "grade2ndMisc"),
+            ("grade2ndScienceMisc", "grade2ndScienceMisc"),
+            ("grade2ndSSMisc", "grade2ndSSMisc"),
+            ("sscGDMisc", "sscGDMisc"),
+            ("sscMTSMisc", "sscMTSMisc"),
+            ("rajPoliceConstMisc", "rajPoliceConstMisc"),
+            ("rajLDCMisc", "rajLDCMisc"),
+            ("rrbGDMisc", "rrbGDMisc"),
+            ("sipaper1Misc", "sipaper1Misc"),
+            ("sipaper2Misc", "sipaper2Misc"),
+]
 
 
     Questions = apps.get_model('Questions', 'Questions')
@@ -399,7 +443,11 @@ def load_initial_data(apps, schema_editor):
 
     for exam in allExams:
         for i in d[str(exam.name)]:
+            # try:
             subject = Subjects.objects.get(name = i)
+            # except:
+            #     print(exam.name)
+            #     print(i)
 
             exam.subjects.add(subject)
             exam.save()
