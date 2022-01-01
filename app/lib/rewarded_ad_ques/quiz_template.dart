@@ -27,7 +27,8 @@ class CustomRadio extends StatefulWidget {
       required this.qualityRating,
       required this.difficultyRating,
       required this.isRated,
-      required this.createdBy})
+      required this.createdBy,
+      required this.explaination})
       : super(key: key);
 
   final List<dynamic> options;
@@ -38,6 +39,7 @@ class CustomRadio extends StatefulWidget {
   double difficultyRating;
   bool isRated;
   String createdBy;
+  String explaination;
 
   @override
   createState() {
@@ -47,6 +49,8 @@ class CustomRadio extends StatefulWidget {
 
 class CustomRadioState extends State<CustomRadio> {
   bool isBookmarked = false;
+  bool isReported = false;
+  bool showExplaination = false;
   Future<bool?> showRatingsPage(BuildContext context, String uuid) async {
     double difficultyRating = 1;
     double qualityRating = 1;
@@ -202,16 +206,6 @@ class CustomRadioState extends State<CustomRadio> {
           return widget.isRated;
         },
         child: Scaffold(
-          appBar: AppBar(
-            title: const Text(
-              "All Questions",
-              style: TextStyle(color: Colors.white),
-            ),
-            backgroundColor: Colors.deepPurple,
-            iconTheme: const IconThemeData(
-              color: Colors.white, //change your color here
-            ),
-          ),
           body: Column(children: [
             Expanded(
                 child: ListView.builder(
@@ -229,7 +223,7 @@ class CustomRadioState extends State<CustomRadio> {
                               )),
                         )),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 10, 0, 20),
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                       child: Row(children: [
                         Row(
                           children: [
@@ -261,36 +255,67 @@ class CustomRadioState extends State<CustomRadio> {
                       ]),
                     ),
                     Padding(
-                        padding: const EdgeInsets.all(8),
+                        padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
                         child: Row(children: [
-                          const Text("Bookmark Question"),
-                          IconButton(
-                              onPressed: () async {
-                                String url = await rootBundle
-                                    .loadString('assets/text/url.txt');
-                                final prefs =
-                                    await SharedPreferences.getInstance();
-                                String? token = prefs.getString("token");
-                                await http.get(
-                                  Uri.parse(
-                                      '$url/bookmark_ques?uuid=${widget.quesUUid}'),
-                                  headers: <String, String>{
-                                    'Content-Type':
-                                        'application/json; charset=UTF-8',
-                                    'Authorization': "Token $token"
-                                  },
-                                );
+                          Row(children: [
+                            const Text("Bookmark Question"),
+                            IconButton(
+                                onPressed: () async {
+                                  String url = await rootBundle
+                                      .loadString('assets/text/url.txt');
+                                  final prefs =
+                                      await SharedPreferences.getInstance();
+                                  String? token = prefs.getString("token");
+                                  await http.get(
+                                    Uri.parse(
+                                        '$url/bookmark_ques?uuid=${widget.quesUUid}'),
+                                    headers: <String, String>{
+                                      'Content-Type':
+                                          'application/json; charset=UTF-8',
+                                      'Authorization': "Token $token"
+                                    },
+                                  );
 
-                                setState(() {
-                                  isBookmarked = true;
-                                });
-                              },
-                              icon: Icon(
-                                Icons.star,
-                                color: (isBookmarked
-                                    ? Colors.amber
-                                    : Colors.white),
-                              ))
+                                  setState(() {
+                                    isBookmarked = true;
+                                  });
+                                },
+                                icon: Icon(
+                                  Icons.star,
+                                  color: (isBookmarked
+                                      ? Colors.amber
+                                      : Colors.red),
+                                ))
+                          ]),
+                          Row(children: [
+                            const Text("Report Question"),
+                            IconButton(
+                                onPressed: () async {
+                                  String url = await rootBundle
+                                      .loadString('assets/text/url.txt');
+                                  final prefs =
+                                      await SharedPreferences.getInstance();
+                                  String? token = prefs.getString("token");
+                                  await http.get(
+                                    Uri.parse(
+                                        '$url/report_question?uuid=${widget.quesUUid}'),
+                                    headers: <String, String>{
+                                      'Content-Type':
+                                          'application/json; charset=UTF-8',
+                                      'Authorization': "Token $token"
+                                    },
+                                  );
+
+                                  setState(() {
+                                    isReported = true;
+                                  });
+                                },
+                                icon: Icon(
+                                  Icons.star,
+                                  color:
+                                      (isReported ? Colors.amber : Colors.red),
+                                ))
+                          ])
                         ])),
                     InkWell(
                       highlightColor: Colors.red,
@@ -305,10 +330,12 @@ class CustomRadioState extends State<CustomRadio> {
                           for (var i = 0; i < widget.options.length; i++) {
                             sampleData[i].isCorrect = widget.options[i][1];
                           }
+
+                          showExplaination = true;
                         });
                       },
                       child: RadioItem(sampleData[index]),
-                    )
+                    ),
                   ]);
                 }
                 return InkWell(
@@ -324,14 +351,28 @@ class CustomRadioState extends State<CustomRadio> {
                       for (var i = 0; i < widget.options.length; i++) {
                         sampleData[i].isCorrect = widget.options[i][1];
                       }
+
+                      showExplaination = true;
                     });
                   },
                   child: RadioItem(sampleData[index]),
                 );
               },
             )),
+            if (showExplaination)
+              Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: Column(children: [
+                    Text(
+                      'Explaination : ${widget.explaination}',
+                      style: const TextStyle(color: Colors.blue, fontSize: 16),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    )
+                  ])),
             if (banner == null)
-              const Text("yo")
+              const Text("Loading Ad...")
             else
               SizedBox(height: 100, child: AdWidget(ad: banner!))
           ]),

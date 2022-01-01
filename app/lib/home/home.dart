@@ -141,6 +141,7 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     _isAddedQuestion = isAddedQuestion();
+    loadVideoAd();
   }
 
   @override
@@ -429,17 +430,20 @@ class _HomeState extends State<Home> {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) => CustomRadio(
-                                                  options: resJson['options'],
-                                                  statement:
-                                                      resJson['statement'],
-                                                  quesUUid: resJson['uuid'],
-                                                  qualityRating:
-                                                      resJson['ratings'],
-                                                  difficultyRating:
-                                                      resJson['difficulty'],
-                                                  isRated: resJson['isRated'],
-                                                  createdBy:
-                                                      resJson['createdBy'])));
+                                                    options: resJson['options'],
+                                                    statement:
+                                                        resJson['statement'],
+                                                    quesUUid: resJson['uuid'],
+                                                    qualityRating:
+                                                        resJson['ratings'],
+                                                    difficultyRating:
+                                                        resJson['difficulty'],
+                                                    isRated: resJson['isRated'],
+                                                    createdBy:
+                                                        resJson['createdBy'],
+                                                    explaination:
+                                                        resJson['explaination'],
+                                                  )));
                                     }
                                   },
                                 ),

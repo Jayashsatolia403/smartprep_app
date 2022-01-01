@@ -37,6 +37,31 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
   bool na = false;
   String exam = "";
 
+  late RewardedAd rewardedAd;
+
+  void loadVideoAd() async {
+    RewardedAd.load(
+        adUnitId: RewardedAd.testAdUnitId,
+        request: const AdRequest(),
+        rewardedAdLoadCallback:
+            RewardedAdLoadCallback(onAdLoaded: (RewardedAd ad) {
+          rewardedAd = ad;
+        }, onAdFailedToLoad: (LoadAdError error) {
+          loadVideoAd();
+        }));
+  }
+
+  void showVideoAd() {
+    rewardedAd.show(onUserEarnedReward: (RewardedAd ad, RewardItem rpoint) {
+      print("Reward Earned ${rpoint.amount}");
+    });
+
+    rewardedAd.fullScreenContentCallback = FullScreenContentCallback(
+      onAdFailedToShowFullScreenContent: (ad, error) => print(error),
+      onAdShowedFullScreenContent: (ad) => print("Working"),
+    );
+  }
+
   Map<String, int> totalPages = {
     "ias": 10,
     "jee": 6,
@@ -68,7 +93,6 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
   };
 
   Future<bool> getQuesFromDatabase() async {
-    print("Getting Accessed");
     try {
       if (questions.length >= currentPage * 10) {
         currentPage++;
@@ -77,6 +101,9 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
       DateTime now = DateTime.now();
       final dbDate = await QuizDatabase.instance.readAllDate();
       if (dbDate[0].date == DateTime(now.year, now.month, now.day)) {
+        setState(() {
+          competitionUuid = dbDate[0].competitionUuid;
+        });
         for (var j = (currentPage - 1) * 10 + 1;
             j < (currentPage) * 10 + 1;
             j++) {
@@ -106,8 +133,6 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
 
       return true;
     } catch (error) {
-      print("ERROR!");
-      print(error);
       return false;
     }
   }
@@ -238,6 +263,7 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
   @override
   void initState() {
     myFuture = getQuestions(false);
+    loadVideoAd();
   }
 
   // ignore: prefer_final_fields
@@ -258,6 +284,7 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
                           style: TextStyle(color: Colors.white)),
                       ElevatedButton(
                           onPressed: () async {
+                            showVideoAd();
                             String url = await rootBundle
                                 .loadString('assets/text/url.txt');
 

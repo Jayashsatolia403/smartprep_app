@@ -27,7 +27,8 @@ class CustomRadio extends StatefulWidget {
       required this.qualityRating,
       required this.difficultyRating,
       required this.isRated,
-      required this.createdBy})
+      required this.createdBy,
+      required this.explaination})
       : super(key: key);
 
   final List<dynamic> options;
@@ -38,6 +39,7 @@ class CustomRadio extends StatefulWidget {
   double difficultyRating;
   bool isRated;
   String createdBy;
+  String explaination;
 
   @override
   createState() {
@@ -48,6 +50,7 @@ class CustomRadio extends StatefulWidget {
 class CustomRadioState extends State<CustomRadio> {
   bool isBookmarked = false;
   bool isReported = false;
+  bool showExplaination = false;
   Future<bool?> showRatingsPage(BuildContext context, String uuid) async {
     double difficultyRating = 1;
     double qualityRating = 1;
@@ -327,10 +330,12 @@ class CustomRadioState extends State<CustomRadio> {
                           for (var i = 0; i < widget.options.length; i++) {
                             sampleData[i].isCorrect = widget.options[i][1];
                           }
+
+                          showExplaination = true;
                         });
                       },
                       child: RadioItem(sampleData[index]),
-                    )
+                    ),
                   ]);
                 }
                 return InkWell(
@@ -346,12 +351,26 @@ class CustomRadioState extends State<CustomRadio> {
                       for (var i = 0; i < widget.options.length; i++) {
                         sampleData[i].isCorrect = widget.options[i][1];
                       }
+
+                      showExplaination = true;
                     });
                   },
                   child: RadioItem(sampleData[index]),
                 );
               },
             )),
+            if (showExplaination)
+              Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: Column(children: [
+                    Text(
+                      'Explaination : ${widget.explaination}',
+                      style: const TextStyle(color: Colors.blue, fontSize: 16),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    )
+                  ])),
             if (banner == null)
               const Text("Loading Ad...")
             else

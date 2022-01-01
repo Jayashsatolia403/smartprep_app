@@ -52,13 +52,13 @@ async def main():
 
     # You can print the message history of any chat:
     count = 1
-    async for message in client.iter_messages(-1001269029231):
+    async for message in client.iter_messages(-1001239140977):
 
         if (message.poll):
 
             try:
 
-                file = open("questions_cp_2.txt", "a")
+                file = open("questions_final.txt", "a")
 
 
                 question = message.poll.poll.question
@@ -93,6 +93,17 @@ async def main():
                     file.write(correct_answer)
                     file.write(" ")
                 
+                file.write("\n")
+
+                try:
+                    solution = str(message.poll.results.solution)
+                    solution = solution.replace("\n", "ignore_new_line")
+                    file.write("y")
+                    file.write("\n")
+                    file.write(solution)
+                except Exception as e:
+                    print(e)
+                
                 file.write("\n\n")
 
                 print("Success")
@@ -100,6 +111,8 @@ async def main():
             
             except:
                 print(">>> Unanswered Question")
+            
+            # break
 
         # x = message.poll
 

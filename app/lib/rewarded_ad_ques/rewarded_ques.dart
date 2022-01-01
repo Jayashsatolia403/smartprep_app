@@ -53,7 +53,8 @@ class _RewardedQuestionsState extends State<RewardedQuestions> {
         id['ratings'],
         id['difficulty'],
         id['isRated'],
-        id['createdBy']
+        id['createdBy'],
+        id['explaination']
       ]);
       allOptions.add(id['options']);
     }
@@ -125,34 +126,44 @@ class _RewardedQuestionsState extends State<RewardedQuestions> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) => JeeCustomRadio(
-                                              options: snapShot.data![1][i],
-                                              statement: snapShot.data![0][i]
-                                                  [0],
-                                              quesUUid: snapShot.data![0][i][1],
-                                              qualityRating: snapShot.data![0]
-                                                  [i][2],
-                                              difficultyRating:
-                                                  snapShot.data![0][i][3],
-                                              isRated: snapShot.data![0][i][4],
-                                              createdBy: snapShot.data![0][i]
-                                                  [5])),
+                                                options: snapShot.data![1][i],
+                                                statement: snapShot.data![0][i]
+                                                    [0],
+                                                quesUUid: snapShot.data![0][i]
+                                                    [1],
+                                                qualityRating: snapShot.data![0]
+                                                    [i][2],
+                                                difficultyRating:
+                                                    snapShot.data![0][i][3],
+                                                isRated: snapShot.data![0][i]
+                                                    [4],
+                                                createdBy: snapShot.data![0][i]
+                                                    [5],
+                                                explaination: snapShot.data![0]
+                                                    [i][6],
+                                              )),
                                     );
                                   } else {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) => CustomRadio(
-                                              options: snapShot.data![1][i],
-                                              statement: snapShot.data![0][i]
-                                                  [0],
-                                              quesUUid: snapShot.data![0][i][1],
-                                              qualityRating: snapShot.data![0]
-                                                  [i][2],
-                                              difficultyRating:
-                                                  snapShot.data![0][i][3],
-                                              isRated: snapShot.data![0][i][4],
-                                              createdBy: snapShot.data![0][i]
-                                                  [5])),
+                                                options: snapShot.data![1][i],
+                                                statement: snapShot.data![0][i]
+                                                    [0],
+                                                quesUUid: snapShot.data![0][i]
+                                                    [1],
+                                                qualityRating: snapShot.data![0]
+                                                    [i][2],
+                                                difficultyRating:
+                                                    snapShot.data![0][i][3],
+                                                isRated: snapShot.data![0][i]
+                                                    [4],
+                                                createdBy: snapShot.data![0][i]
+                                                    [5],
+                                                explaination: snapShot.data![0]
+                                                    [i][6],
+                                              )),
                                     );
                                   }
                                 },

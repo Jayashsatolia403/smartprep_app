@@ -71,7 +71,7 @@ def getDailyQuestions(request):
                         "ratings": question.ratings, "difficulty" : question.difficulty, 
                         "options": [(z.content, z.isCorrect) for z in question.options.all()], 
                         "percentCorrect": question.percentCorrect, "subject": question.subject, "isRated": request.user in question.ratedBy.all(),
-                        "createdBy": "Smartprep Team" if question.isExpert else question.createdBy.name})
+                        "createdBy": "Smartprep Team" if question.isExpert else question.createdBy.name, "explaination": question.explaination})
 
 
             return Response(result[:limit])
@@ -189,7 +189,7 @@ def getQuestionOfTheDay(request):
                     "options": [(z.content, z.isCorrect) for z in ques.options.all()], 
                     "ratings": ques.ratings, "difficulty" : ques.difficulty, 
                     "percentCorrect": ques.percentCorrect, "subject": ques.subject, "isRated": request.user in ques.ratedBy.all(),
-                    "createdBy": "Smartprep Team" if ques.isExpert else ques.createdBy.name})
+                    "createdBy": "Smartprep Team" if ques.isExpert else ques.createdBy.name, "explaination": ques.explaination})
         except:
 
             subjects = list(exam.subjects.all())
@@ -222,7 +222,7 @@ def getQuestionOfTheDay(request):
                         "options": [(z.content, z.isCorrect) for z in ques.options.all()], 
                         "ratings": ques.ratings, "difficulty" : ques.difficulty, 
                         "percentCorrect": ques.percentCorrect, "subject": subject.name, "isRated": request.user in ques.ratedBy.all(),
-                        "createdBy": "Smartprep Team" if ques.isExpert else ques.createdBy.name})
+                        "createdBy": "Smartprep Team" if ques.isExpert else ques.createdBy.name, "explaination": ques.explaination})
   
     except:
         return Response("Error", status=status.HTTP_400_BAD_REQUEST)
@@ -264,7 +264,7 @@ def getQuestionByID(request):
         return Response({"uuid": ques.uuid, "statement": ques.statement, 
                         "ratings": ques.ratings, "difficulty" : ques.difficulty, 
                         "options": [(z.content, z.isCorrect, z.uuid) for z in ques.options.all()], 
-                        "percentCorrect": ques.percentCorrect, "subject": ques.subject})
+                        "percentCorrect": ques.percentCorrect, "subject": ques.subject, "explaination": ques.explaination})
     
     except:
         return Response("Invalid UUID", status=status.HTTP_400_BAD_REQUEST)
@@ -335,7 +335,7 @@ def get_bookmarked_questions(request):
                         "ratings": question.ratings, "difficulty" : question.difficulty, 
                         "options": [(z.content, z.isCorrect) for z in question.options.all()], 
                         "percentCorrect": question.percentCorrect, "subject": question.subject, 
-                        "isRated": request.user in question.ratedBy.all()} for question in result])
+                        "isRated": request.user in question.ratedBy.all(), "explaination": question.explaination} for question in result])
 
     except:
         return Response("Invalid Request", status=status.HTTP_400_BAD_REQUEST)
@@ -546,7 +546,7 @@ def get_practice_questions(request):
             return Response([{"uuid": question.uuid, "statement": question.statement, 
                             "ratings": question.ratings, "difficulty" : question.difficulty, 
                             "options": [(z.content, z.isCorrect) for z in question.options.all()], 
-                            "percentCorrect": question.percentCorrect, "subject": question.subject} for question in practice_questions.questions.all()])
+                            "percentCorrect": question.percentCorrect, "subject": question.subject, "explaination": question.explaination} for question in practice_questions.questions.all()])
 
     except:
         return Response("Invalid Request", status=status.HTTP_400_BAD_REQUEST)
@@ -601,7 +601,8 @@ def get_competition_by_uuid(request):
         questions.append({"uuid": question.uuid, "statement": question.statement, 
                         "ratings": question.ratings, "difficulty" : question.difficulty, 
                         "options": [(z.content, z.isCorrect) for z in question.options.all()], 
-                        "percentCorrect": question.percentCorrect, "subject": question.subject, "isRated": request.user in question.ratedBy.all()})
+                        "percentCorrect": question.percentCorrect, "subject": question.subject, "isRated": request.user in question.ratedBy.all(), 
+                        "explaination": question.explaination})
 
     
     competition = {"uuid": uuid, "questions" : questions}
@@ -612,7 +613,7 @@ def get_competition_by_uuid(request):
 
 @api_view(['POST', ])
 def submit_contest(request):
-    # try:
+    try:
         serializer = SubmitContestSerializer(data=request.data, context={'request': request, "useful_data": request.data})
 
         data = {}
@@ -626,8 +627,9 @@ def submit_contest(request):
 
         return Response(data)
     
-    # except:
-    #     return Response("Invalid Request", status=status.HTTP_400_BAD_REQUEST)
+    except Exception as e:
+        print(e)
+        return Response("Invalid Request", status=status.HTTP_400_BAD_REQUEST)
 
 
 
@@ -647,7 +649,7 @@ def get_questions_by_ad(request):
         count = 1
 
         for subject in subjects:
-            if (count == 4):
+            if (count == 3):
                 break
 
 
@@ -663,7 +665,7 @@ def get_questions_by_ad(request):
                     "ratings": question.ratings, "difficulty" : question.difficulty, 
                     "options": [(z.content, z.isCorrect) for z in question.options.all()], 
                     "percentCorrect": question.percentCorrect, "subject": question.subject, "isRated": request.user in question.ratedBy.all(),
-                    "createdBy": "Smartprep Team" if question.isExpert else question.createdBy.name}) 
+                    "createdBy": "Smartprep Team" if question.isExpert else question.createdBy.name, "explaination": question.explaination}) 
             
             count += 1
 
@@ -671,7 +673,8 @@ def get_questions_by_ad(request):
 
         return Response(result)
 
-    except:
+    except Exception as e:
+        print(e)
         return Response("Error", status=status.HTTP_400_BAD_REQUEST)
 
 

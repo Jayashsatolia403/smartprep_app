@@ -29,6 +29,7 @@ class Questions(models.Model):
     created_at = models.DateField(auto_now_add=True, null=True)
     isExpert = models.BooleanField(default=False)
     subject = models.CharField(max_length=50, null=True)
+    explaination = models.TextField()
 
 
 

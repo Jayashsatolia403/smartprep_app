@@ -1,3 +1,5 @@
+import 'package:app/tests/jee_adv_quiz_template.dart';
+import 'package:app/tests/quiz_template.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -9,7 +11,6 @@ import 'package:http/http.dart' as http;
 import '../ad_state.dart';
 import 'dart:convert';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'previous_competition_quiz_template.dart';
 
 class PreviousCompetitionView extends StatefulWidget {
   const PreviousCompetitionView(
@@ -29,6 +30,7 @@ class _PreviousCompetitionViewState extends State<PreviousCompetitionView> {
   int currentPage = 1;
   List<dynamic> allOptions = <dynamic>[];
   List<dynamic> questionStatements = <dynamic>[];
+  String exam = "";
   Map<String, int> totalPages = {
     "ias": 10,
     "jee": 6,
@@ -65,6 +67,10 @@ class _PreviousCompetitionViewState extends State<PreviousCompetitionView> {
     String? token = prefs.getString("token");
     String examName = prefs.getString("exam_name") ?? "Exam";
 
+    setState(() {
+      exam = examName;
+    });
+
     if (currentPage > (totalPages[examName] as int)) {
       _refreshController.loadNoData();
       return false;
@@ -83,8 +89,15 @@ class _PreviousCompetitionViewState extends State<PreviousCompetitionView> {
 
     for (var id in resJson['questions']) {
       setState(() {
-        questionStatements.add(
-            [id['statement'], id['uuid'], id['ratings'], id['difficulty']]);
+        questionStatements.add([
+          id['statement'],
+          id['uuid'],
+          id['ratings'],
+          id['difficulty'],
+          id['isRated'],
+          id['createdBy'],
+          id['explaination']
+        ]);
         allOptions.add(id['options']);
       });
     }
@@ -154,18 +167,43 @@ class _PreviousCompetitionViewState extends State<PreviousCompetitionView> {
                           child: Text(questionStatements[i][0],
                               style: const TextStyle(color: Colors.white)),
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => CustomRadio(
-                                        options: allOptions[i],
-                                        statement: questionStatements[i][0],
-                                        quesUUid: questionStatements[i][1],
-                                        qualityRating: questionStatements[i][2],
-                                        difficultyRating: questionStatements[i]
-                                            [3],
-                                      )),
-                            );
+                            if (exam == "jeeAdv") {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => JeeCustomRadio(
+                                          options: allOptions[i],
+                                          statement: questionStatements[i][0],
+                                          quesUUid: questionStatements[i][1],
+                                          qualityRating: questionStatements[i]
+                                              [2],
+                                          difficultyRating:
+                                              questionStatements[i][3],
+                                          isRated: questionStatements[i][4],
+                                          createdBy: questionStatements[i][5],
+                                          explaination: questionStatements[i]
+                                              [6],
+                                        )),
+                              );
+                            } else {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => CustomRadio(
+                                          options: allOptions[i],
+                                          statement: questionStatements[i][0],
+                                          quesUUid: questionStatements[i][1],
+                                          qualityRating: questionStatements[i]
+                                              [2],
+                                          difficultyRating:
+                                              questionStatements[i][3],
+                                          isRated: questionStatements[i][4],
+                                          createdBy: questionStatements[i][5],
+                                          explaination: questionStatements[i]
+                                              [6],
+                                        )),
+                              );
+                            }
                           },
                           style: ElevatedButton.styleFrom(
                               fixedSize: const Size(250, 20),

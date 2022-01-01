@@ -563,7 +563,8 @@ def load_initial_data(apps, schema_editor):
                     subject=i[0],
                     ratings=5,
                     isExpert=True,
-                    difficulty=5
+                    difficulty=5,
+                    explaination = "This is sample Explaination."
                 )
 
                 question.save()

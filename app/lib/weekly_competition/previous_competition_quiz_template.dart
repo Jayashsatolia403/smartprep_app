@@ -4,7 +4,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:katex_flutter/katex_flutter.dart';
 import 'package:http/http.dart' as http;
-
 import 'package:provider/provider.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:app/ad_state.dart';
@@ -26,7 +25,10 @@ class CustomRadio extends StatefulWidget {
       required this.statement,
       required this.quesUUid,
       required this.qualityRating,
-      required this.difficultyRating})
+      required this.difficultyRating,
+      required this.isRated,
+      required this.createdBy,
+      required this.explaination})
       : super(key: key);
 
   final List<dynamic> options;
@@ -35,6 +37,9 @@ class CustomRadio extends StatefulWidget {
   String quesUUid;
   double qualityRating;
   double difficultyRating;
+  bool isRated;
+  String createdBy;
+  String explaination;
 
   @override
   createState() {
@@ -43,7 +48,9 @@ class CustomRadio extends StatefulWidget {
 }
 
 class CustomRadioState extends State<CustomRadio> {
-  bool isRated = false;
+  bool isBookmarked = false;
+  bool isReported = false;
+  bool showExplaination = false;
   Future<bool?> showRatingsPage(BuildContext context, String uuid) async {
     double difficultyRating = 1;
     double qualityRating = 1;
@@ -80,7 +87,7 @@ class CustomRadioState extends State<CustomRadio> {
                       );
 
                       setState(() {
-                        isRated = true;
+                        widget.isRated = true;
                       });
                       Navigator.pop(context);
                     },
@@ -195,20 +202,10 @@ class CustomRadioState extends State<CustomRadio> {
   Widget build(BuildContext context) {
     return WillPopScope(
         onWillPop: () async {
-          await showRatingsPage(context, widget.quesUUid);
-          return isRated;
+          if (!widget.isRated) await showRatingsPage(context, widget.quesUUid);
+          return widget.isRated;
         },
         child: Scaffold(
-          appBar: AppBar(
-            title: const Text(
-              "All Questions",
-              style: TextStyle(color: Colors.white),
-            ),
-            backgroundColor: Colors.deepPurple,
-            iconTheme: const IconThemeData(
-              color: Colors.white, //change your color here
-            ),
-          ),
           body: Column(children: [
             Expanded(
                 child: ListView.builder(
@@ -217,44 +214,109 @@ class CustomRadioState extends State<CustomRadio> {
                 if (index == 0) {
                   return Column(children: [
                     Padding(
-                      padding: const EdgeInsets.all(15),
-                      child: Row(
-                        children: [
-                          const Text("Quaity : "),
-                          for (var i = 0; i < 5; i++)
-                            Icon(
-                              Icons.star,
-                              color: (widget.qualityRating > i)
-                                  ? Colors.amber
-                                  : Colors.white,
-                            )
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(15),
-                      child: Row(
-                        children: [
-                          const Text("Difficulty : "),
-                          for (var i = 0; i < 5; i++)
-                            Icon(
-                              Icons.star,
-                              color: (widget.difficultyRating > i)
-                                  ? Colors.amber
-                                  : Colors.white,
-                            )
-                        ],
-                      ),
-                    ),
-                    Padding(
                         padding: const EdgeInsets.only(
-                            left: 15, top: 20, right: 15, bottom: 30),
+                            left: 15, top: 20, right: 15, bottom: 5),
                         child: KaTeX(
                           laTeXCode: Text(widget.statement,
                               style: const TextStyle(
                                 fontSize: 18,
                               )),
                         )),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                      child: Row(children: [
+                        Row(
+                          children: [
+                            const Text(
+                              "Quality : ",
+                              // style: TextStyle(fontSize: 12),
+                            ),
+                            for (var i = 0; i < 5; i++)
+                              Icon(
+                                Icons.star,
+                                color: (widget.qualityRating > i)
+                                    ? Colors.amber
+                                    : Colors.white,
+                              )
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            const Text("Difficulty : "),
+                            for (var i = 0; i < 5; i++)
+                              Icon(
+                                Icons.star,
+                                color: (widget.difficultyRating > i)
+                                    ? Colors.amber
+                                    : Colors.white,
+                              )
+                          ],
+                        ),
+                      ]),
+                    ),
+                    Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+                        child: Row(children: [
+                          Row(children: [
+                            const Text("Bookmark Question"),
+                            IconButton(
+                                onPressed: () async {
+                                  String url = await rootBundle
+                                      .loadString('assets/text/url.txt');
+                                  final prefs =
+                                      await SharedPreferences.getInstance();
+                                  String? token = prefs.getString("token");
+                                  await http.get(
+                                    Uri.parse(
+                                        '$url/bookmark_ques?uuid=${widget.quesUUid}'),
+                                    headers: <String, String>{
+                                      'Content-Type':
+                                          'application/json; charset=UTF-8',
+                                      'Authorization': "Token $token"
+                                    },
+                                  );
+
+                                  setState(() {
+                                    isBookmarked = true;
+                                  });
+                                },
+                                icon: Icon(
+                                  Icons.star,
+                                  color: (isBookmarked
+                                      ? Colors.amber
+                                      : Colors.red),
+                                ))
+                          ]),
+                          Row(children: [
+                            const Text("Report Question"),
+                            IconButton(
+                                onPressed: () async {
+                                  String url = await rootBundle
+                                      .loadString('assets/text/url.txt');
+                                  final prefs =
+                                      await SharedPreferences.getInstance();
+                                  String? token = prefs.getString("token");
+                                  await http.get(
+                                    Uri.parse(
+                                        '$url/report_question?uuid=${widget.quesUUid}'),
+                                    headers: <String, String>{
+                                      'Content-Type':
+                                          'application/json; charset=UTF-8',
+                                      'Authorization': "Token $token"
+                                    },
+                                  );
+
+                                  setState(() {
+                                    isReported = true;
+                                  });
+                                },
+                                icon: Icon(
+                                  Icons.star,
+                                  color:
+                                      (isReported ? Colors.amber : Colors.red),
+                                ))
+                          ])
+                        ])),
                     InkWell(
                       highlightColor: Colors.red,
                       splashColor: Colors.blueAccent,
@@ -268,10 +330,12 @@ class CustomRadioState extends State<CustomRadio> {
                           for (var i = 0; i < widget.options.length; i++) {
                             sampleData[i].isCorrect = widget.options[i][1];
                           }
+
+                          showExplaination = true;
                         });
                       },
                       child: RadioItem(sampleData[index]),
-                    )
+                    ),
                   ]);
                 }
                 return InkWell(
@@ -287,14 +351,28 @@ class CustomRadioState extends State<CustomRadio> {
                       for (var i = 0; i < widget.options.length; i++) {
                         sampleData[i].isCorrect = widget.options[i][1];
                       }
+
+                      showExplaination = true;
                     });
                   },
                   child: RadioItem(sampleData[index]),
                 );
               },
             )),
+            if (showExplaination)
+              Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: Column(children: [
+                    Text(
+                      'Explaination : ${widget.explaination}',
+                      style: const TextStyle(color: Colors.blue, fontSize: 16),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    )
+                  ])),
             if (banner == null)
-              const Text("yo")
+              const Text("Loading Ad...")
             else
               SizedBox(height: 100, child: AdWidget(ad: banner!))
           ]),
