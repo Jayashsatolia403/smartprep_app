@@ -19,9 +19,12 @@ import 'package:flutter/material.dart';
 import 'package:app/config.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+
+import '../ad_state.dart';
 
 List<String> alphabets = <String>[
   'A',
@@ -99,7 +102,7 @@ class _HomeState extends State<Home> {
 
   void loadVideoAd() async {
     RewardedAd.load(
-        adUnitId: RewardedAd.testAdUnitId,
+        adUnitId: "ca-app-pub-3347710342715984/3851662288",
         request: const AdRequest(),
         rewardedAdLoadCallback:
             RewardedAdLoadCallback(onAdLoaded: (RewardedAd ad) {
@@ -136,6 +139,25 @@ class _HomeState extends State<Home> {
     );
 
     return jsonDecode(response.body);
+  }
+
+  BannerAd? banner;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final adState = Provider.of<AdState>(context);
+
+    adState.initialization.then((status) {
+      setState(() {
+        banner = BannerAd(
+            adUnitId: adState.bannerAdUnitId,
+            size: const AdSize(height: 150, width: 360),
+            request: const AdRequest(),
+            listener: adState.listener)
+          ..load();
+      });
+    });
   }
 
   @override
@@ -238,6 +260,7 @@ class _HomeState extends State<Home> {
                                         val: 2,
                                         quesStatement: "",
                                         optionsData: optionsData,
+                                        quesExplaination: '',
                                       )));
                         },
                         tileColor: Colors.deepPurpleAccent,
@@ -318,7 +341,8 @@ class _HomeState extends State<Home> {
                   ),
                 ),
                 body: SafeArea(
-                  child: SingleChildScrollView(
+                    child: Column(children: [
+                  SingleChildScrollView(
                     child: Column(
                       children: [
                         Padding(
@@ -478,7 +502,11 @@ class _HomeState extends State<Home> {
                       ],
                     ),
                   ),
-                ),
+                  if (banner == null)
+                    const Text("Loading Ad")
+                  else
+                    SizedBox(height: 150, child: AdWidget(ad: banner!))
+                ])),
               );
             } else {
               return AddQuestions(
@@ -486,6 +514,7 @@ class _HomeState extends State<Home> {
                 val: 2,
                 quesStatement: "",
                 optionsData: optionsData,
+                quesExplaination: "",
               );
             }
           } else {

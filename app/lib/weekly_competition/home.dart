@@ -41,7 +41,7 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
 
   void loadVideoAd() async {
     RewardedAd.load(
-        adUnitId: RewardedAd.testAdUnitId,
+        adUnitId: "ca-app-pub-3347710342715984/3851662288",
         request: const AdRequest(),
         rewardedAdLoadCallback:
             RewardedAdLoadCallback(onAdLoaded: (RewardedAd ad) {

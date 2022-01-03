@@ -62,7 +62,14 @@ List<String> jeeMainsSubjects = [
   "jeeMainsMisc"
 ];
 
-List<String> neetSubjects = ["physicsMains", "bio", "chemMains", "neetMisc"];
+List<String> neetSubjects = [
+  "physicsMains",
+  "bio",
+  "chemMains",
+  "neetMisc",
+  "physicsNeet",
+  "chemNeet"
+];
 
 List<String> rasSubjects = [
   "currentAffairsIndiaEasy",
@@ -312,8 +319,8 @@ List<String> grade2ndSubjects = [
 
 List<String> grade2ndScienceSubjects = [
   "bio",
-  "physicsMains",
-  "chemMains",
+  "physicsNeet",
+  "chemNeet",
   "grade2ndScienceMisc"
 ];
 
@@ -548,7 +555,7 @@ var dropDownValues = {
 };
 
 Future<bool> addQuestion(String statement, List<String> options, String subject,
-    List<String> correctOptions) async {
+    List<String> correctOptions, String explaination) async {
   String content = "";
 
   final prefs = await SharedPreferences.getInstance();
@@ -579,7 +586,8 @@ Future<bool> addQuestion(String statement, List<String> options, String subject,
     body: jsonEncode(<String, String>{
       'statement': statement,
       'subject': subject,
-      'content': content
+      'content': content,
+      'explaination': explaination
     }),
   );
 
@@ -599,12 +607,14 @@ class AddQuestions extends StatefulWidget {
       required this.data,
       required this.val,
       required this.quesStatement,
-      required this.optionsData})
+      required this.optionsData,
+      required this.quesExplaination})
       : super(key: key);
 
   Config data;
   int val;
   String quesStatement;
+  String quesExplaination;
   List<AddQuesModel> optionsData;
 
   @override
@@ -628,7 +638,6 @@ class _AddQuestionsState extends State<AddQuestions> {
 
   @override
   Widget build(BuildContext context) {
-    print(examSubjectsRelation[widget.data.examname]);
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -698,6 +707,44 @@ class _AddQuestionsState extends State<AddQuestions> {
                 helperText: "Question",
                 labelText: 'Question',
                 hintText: "Type your Question Here",
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                  borderSide: const BorderSide(width: 1, color: Colors.blue),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                  borderSide: const BorderSide(width: 1, color: Colors.grey),
+                ),
+                fillColor: Colors.white,
+                // filled: true,
+                prefixIcon:
+                    const Icon(Icons.add_box_outlined, color: Colors.grey),
+                hoverColor: Colors.grey,
+              ),
+              autofocus: true,
+              cursorColor: Colors.black,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+            child: TextFormField(
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Explaination cannot be empty.';
+                }
+                return null;
+              },
+              onChanged: (text) {
+                widget.quesExplaination = text;
+              },
+              initialValue: widget.quesStatement,
+              keyboardType: TextInputType.multiline,
+              maxLines: null,
+              decoration: InputDecoration(
+                border: const OutlineInputBorder(),
+                helperText: "Explaination",
+                labelText: 'Explaination',
+                hintText: "Type your Explaination Here",
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8.0),
                   borderSide: const BorderSide(width: 1, color: Colors.blue),
@@ -789,6 +836,7 @@ class _AddQuestionsState extends State<AddQuestions> {
                                   val: widget.val + 1,
                                   optionsData: widget.optionsData,
                                   quesStatement: widget.quesStatement,
+                                  quesExplaination: widget.quesExplaination,
                                 )));
                   },
                   icon: const Icon(Icons.add)),
@@ -808,15 +856,8 @@ class _AddQuestionsState extends State<AddQuestions> {
                 options.add(widget.optionsData[j].text);
               }
 
-              print("\n\n\n\n\n\n\n\n\n\n\n\n");
-
-              print(options);
-              print(correctOptions);
-
-              print("\n\n\n\n\n\n\n\n\n\n\n\n");
-
-              bool isAdded = await addQuestion(
-                  widget.quesStatement, options, dropdownValue, correctOptions);
+              bool isAdded = await addQuestion(widget.quesStatement, options,
+                  dropdownValue, correctOptions, widget.quesExplaination);
 
               if (isAdded) {
                 Navigator.push(
@@ -834,6 +875,7 @@ class _AddQuestionsState extends State<AddQuestions> {
                               val: widget.val + 1,
                               optionsData: widget.optionsData,
                               quesStatement: widget.quesStatement,
+                              quesExplaination: widget.quesExplaination,
                             )));
               }
             },

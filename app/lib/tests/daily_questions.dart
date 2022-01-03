@@ -46,8 +46,6 @@ class _DailyQuestionsState extends State<DailyQuestions> {
 
     final resJson = jsonDecode(response.body);
 
-    print(resJson);
-
     for (var id in resJson) {
       questionStatements.add([
         id['statement'],

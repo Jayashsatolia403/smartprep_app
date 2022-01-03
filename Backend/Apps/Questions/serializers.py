@@ -86,7 +86,8 @@ class AddQuestionSerializer(serializers.ModelSerializer):
             statement = self.validated_data['statement'],
             ratings = 0,
             difficulty = 0,
-            percentCorrect = 0
+            percentCorrect = 0,
+            explaination = self.validated_data['explaination']
         )
 
         newQuestion.save()

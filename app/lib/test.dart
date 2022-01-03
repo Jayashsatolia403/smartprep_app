@@ -1,78 +1,27 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:katex_flutter/katex_flutter.dart';
+import 'package:flutter_tex/flutter_tex.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key}) : super(key: key);
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  final TextEditingController _laTeXInputController = TextEditingController(
-      text: r'What do you think about $L'
-          '\''
-          r' = {L}{\sqrt{1-\frac{v^2}{c^2}}}$ ?'
-          '\n'
-          r'And some display $\LaTeX$: $$\boxed{\rm{A function: } f(x) = \frac{5}{3} \cdot x}$$'
-          '\n'
-          r'$\KaTeX$-Flutter provides easy processing of $LaTeX$ embedded into any text.'
-          '\n'
-          r'This package was developped for testapp.schule education project. Find us on pub.dev/packages/katex_flutter !');
-  late String _laTeX;
-
-  @override
-  void initState() {
-    _renderLaTeX();
-    super.initState();
-  }
+class Test extends StatelessWidget {
+  const Test({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text('KaTeX Flutter Home Page'),
-        ),
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Center(
-            child: Column(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextField(
-                    keyboardType: TextInputType.multiline,
-                    maxLines: null,
-                    decoration: const InputDecoration(
-                        labelText: 'Your LaTeX code here',
-                        helperText:
-                            'Use \$ as delimiter. Use \$\$ for display LaTeX.'),
-                    controller: _laTeXInputController,
-                  ),
-                ),
-                Container(
-                    child: Builder(
-                  builder: (context) => KaTeX(
-                    laTeXCode: Text(_laTeX,
-                        style: Theme.of(context).textTheme.bodyText2),
-                  ),
-                ))
-              ],
-            ),
-          ),
-        ),
-        floatingActionButton: FloatingActionButton.extended(
-          onPressed: _renderLaTeX,
-          tooltip: 'Render again. Only working on mobile platform.',
-          label: const Text('Render LaTeX'),
-          icon: const Icon(Icons.crop_rotate),
-        ));
-  }
-
-  void _renderLaTeX() {
-    setState(() {
-      _laTeX = _laTeXInputController.text;
-    });
+    return const Scaffold(
+        body: Center(
+      child: TeXView(
+        child: TeXViewColumn(children: [
+          TeXViewInkWell(
+            id: "id_0",
+            child: TeXViewColumn(children: [
+              TeXViewDocument(
+                r"""एक लम्ब पिरामिड का आधार एक 14√3 सेमी भुजा वाले समबाहु त्रिकोण पर है यदि पिरामिड का कुल पृष्ठीय क्षेत्रफल 315√3 वर्ग सेमी है तो उसकी ऊंचाई है?""",
+              )
+            ]),
+          )
+        ]),
+      ),
+    ));
   }
 }

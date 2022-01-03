@@ -149,7 +149,6 @@ class _PreviousCompetitionViewState extends State<PreviousCompetitionView> {
                 enablePullUp: true,
                 onLoading: () async {
                   final result = await getQuestions(widget.compUuid);
-                  print("\n\n\n\n\n\n\n  Working Perfactly \n\n\n\n\n\n\n");
                   if (result) {
                     _refreshController.loadComplete();
                   } else {

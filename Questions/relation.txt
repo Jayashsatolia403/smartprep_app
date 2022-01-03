@@ -1,0 +1,30 @@
+chemNeet -> chemNeet
+physicsNeet -> physicsNeet
+bio -> bio
+hindi -> hindi, sipaper1
+english -> englishLangAndComprehension
+quant_apt -> quantAptEasy
+ras -> rasMisc, patwariMisc, siMisc, reet2Misc, grade2ndMisc, rajLDCMisc
+upsc -> iasMisc
+
+
+
+
+
+
+
+
+("ibpsPO","ibpsPO"), 
+("ibpsClerk", "ibpsClerk"), 
+("sscCHSL", "sscCHSL"),
+("sscCGL", "sscCGL"), 
+("nda","nda"), 
+("cds","cds"), 
+("ntpc","ntpc"), 
+
+("reet1", "reet1"), 
+("reet2Science", "reet2Science"), ("patwari", 'patwari'), ("grade2nd", "grade2n
+d"), 
+               ("grade2ndScience", "grade2ndScience"), ("grade2ndSS", "grade2ndSS"), ("sscGD", "sscGD"), ("sscMTS", "sscMTS"),
+               ("rajPoliceConst", "rajPoliceConst"), ("rrbGD", "rrbGD"), ("sipaper1", "sipaper1"), ("sipaper2", 
+"sipaper2")]

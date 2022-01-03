@@ -1,0 +1,11 @@
+A herbarium is a collection of plants, which have been dried, pressed, mounted on herbarium sheets, identified and classified according to some approved system of classification. The storage of herbarium sheets forms a repository for future use. A printed label (7 × 12 cm) giving the following information is fixed on the lower, right corner of herbarium sheet:
+
+(i) Scientific name of plant 
+(ii) Common/vernacular name 
+(iii) Family 
+(iv) Locality 
+(v) Date of collection
+(vi) Collection number 
+(vii) Name of collector 
+(viii) Plant characteristics (optional) 
+(ix) Name of institution (optional).

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tex/flutter_tex.dart';
 
 import 'article_config.dart';
 
@@ -26,10 +27,17 @@ class ArticleViewState extends State<ArticleView> {
                   child: SingleChildScrollView(
                       scrollDirection: Axis.vertical,
                       child: Flexible(
-                          child: Text(
-                        widget.data.content,
-                        style: const TextStyle(fontSize: 15),
-                      )))))
+                        child: TeXView(
+                          child: TeXViewColumn(children: [
+                            TeXViewInkWell(
+                              id: "id_0",
+                              child: TeXViewColumn(children: [
+                                TeXViewDocument(widget.data.content)
+                              ]),
+                            )
+                          ]),
+                        ),
+                      ))))
         ]));
   }
 }

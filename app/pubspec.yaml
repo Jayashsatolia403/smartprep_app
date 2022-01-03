@@ -71,6 +71,8 @@ dependencies:
 
   pull_to_refresh: ^2.0.0
 
+  flutter_tex: ^4.0.3+1
+
 
 
 

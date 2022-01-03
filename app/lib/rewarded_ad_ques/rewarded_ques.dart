@@ -1,13 +1,13 @@
 import 'dart:convert';
 
+import 'package:app/tests/quiz_template.dart';
 import 'package:flutter/material.dart';
 import 'package:app/ad_state.dart';
 
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'jee_adv_quiz_template.dart';
-import 'quiz_template.dart';
+import 'package:app/tests/jee_adv_quiz_template.dart';
 import 'package:provider/provider.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 

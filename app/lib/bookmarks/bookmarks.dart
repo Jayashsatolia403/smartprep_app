@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
+import 'jeeAdv_quiz_template.dart';
 import 'quiz_template.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -32,11 +33,18 @@ class _BookmarksState extends State<Bookmarks> {
   List<dynamic> allOptions = <dynamic>[];
   List<dynamic> questionStatements = <dynamic>[];
 
+  String exam = "Exam";
+
   Future<bool> getBookmarks() async {
     String url = await rootBundle.loadString('assets/text/url.txt');
 
     final prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString("token");
+    String examName = prefs.getString("exam_name") ?? "Exam";
+
+    setState(() {
+      exam = examName;
+    });
 
     final response = await http.get(
       Uri.parse('$url/get_bookmarked_questions?page=$currentPage&page_size=10'),
@@ -54,8 +62,13 @@ class _BookmarksState extends State<Bookmarks> {
     }
 
     for (var id in resJson) {
-      questionStatements
-          .add([id['statement'], id['uuid'], id['ratings'], id['difficulty']]);
+      questionStatements.add([
+        id['statement'],
+        id['uuid'],
+        id['ratings'],
+        id['difficulty'],
+        id['explaination']
+      ]);
       allOptions.add(id['options']);
     }
     setState(() {
@@ -129,6 +142,26 @@ class _BookmarksState extends State<Bookmarks> {
                                       style:
                                           const TextStyle(color: Colors.white)),
                                   onPressed: () {
+                                    if (exam == "jeeAdv") {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                JeeCustomRadio(
+                                                  options: allOptions[i],
+                                                  statement:
+                                                      questionStatements[i][0],
+                                                  quesUUid:
+                                                      questionStatements[i][1],
+                                                  qualityRating:
+                                                      questionStatements[i][2],
+                                                  difficultyRating:
+                                                      questionStatements[i][3],
+                                                  explaination:
+                                                      questionStatements[i][4],
+                                                )),
+                                      );
+                                    }
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
@@ -142,6 +175,8 @@ class _BookmarksState extends State<Bookmarks> {
                                                     questionStatements[i][2],
                                                 difficultyRating:
                                                     questionStatements[i][3],
+                                                explaination:
+                                                    questionStatements[i][4],
                                               )),
                                     );
                                   },

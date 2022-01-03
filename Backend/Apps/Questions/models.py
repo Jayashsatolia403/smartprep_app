@@ -29,7 +29,8 @@ class Questions(models.Model):
     created_at = models.DateField(auto_now_add=True, null=True)
     isExpert = models.BooleanField(default=False)
     subject = models.CharField(max_length=50, null=True)
-    explaination = models.TextField()
+    explaination = models.TextField(null=True, blank=True)
+    topic = models.CharField(max_length=50, null=True, blank=True)
 
 
 
@@ -44,6 +45,8 @@ class Subjects(models.Model):
             ("physicsMains","physicsMains"), 
             ("mathsMains", "mathsMains"),
             ("chemMains","chemMains"),
+            ("physicsNeet", "physicsNeet"),
+            ("chemNeet", "chemNeet"),
             ("bio", "bio"),
             ("reasoningHard", "reasoningHard"),
             ("reasoningEasy","reasoningEasy"),
