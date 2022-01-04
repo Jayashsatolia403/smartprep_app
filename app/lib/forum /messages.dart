@@ -37,7 +37,7 @@ Future<List<ChatMessage>> getMessages(String forumName) async {
     },
   );
 
-  List<dynamic> json = jsonDecode(response.body);
+  List<dynamic> json = jsonDecode(utf8.decode(response.bodyBytes));
 
   for (var i in json) {
     ChatMessage cm = ChatMessage(

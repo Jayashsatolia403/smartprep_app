@@ -23,12 +23,19 @@ class QuestionFields {
 }
 
 class DateField {
-  static const List<String> values = [id, date, pages, competitionUuid];
+  static const List<String> values = [
+    id,
+    date,
+    pages,
+    competitionUuid,
+    examName
+  ];
 
   static const String id = '_id';
   static const String date = 'date';
   static const String pages = 'pages';
   static const String competitionUuid = 'competition_uuid';
+  static const String examName = 'exam_name';
 }
 
 class QuestionOptionsFields {
@@ -102,31 +109,41 @@ class Date {
   DateTime date;
   int pages;
   String competitionUuid;
+  String examName;
 
   Date(
       {this.id,
       required this.date,
       required this.pages,
-      required this.competitionUuid});
+      required this.competitionUuid,
+      required this.examName});
 
-  Date copy({int? id, DateTime? date, int? pages, String? competitionUuid}) =>
+  Date copy(
+          {int? id,
+          DateTime? date,
+          int? pages,
+          String? competitionUuid,
+          String? examName}) =>
       Date(
           id: id ?? this.id,
           date: date ?? this.date,
           pages: pages ?? this.pages,
-          competitionUuid: competitionUuid ?? this.competitionUuid);
+          competitionUuid: competitionUuid ?? this.competitionUuid,
+          examName: examName ?? this.examName);
 
   static Date fromJson(Map<String, Object?> json) => Date(
       id: json[DateField.id] as int?,
       date: DateFormat("yyyy-MM-dd").parse(json[DateField.date].toString()),
       pages: json[DateField.pages] as int,
-      competitionUuid: json[DateField.competitionUuid] as String);
+      competitionUuid: json[DateField.competitionUuid] as String,
+      examName: json[DateField.examName] as String);
 
   Map<String, Object?> toJson() => {
         DateField.id: id,
         DateField.date: date.toIso8601String(),
         DateField.pages: pages,
-        DateField.competitionUuid: competitionUuid
+        DateField.competitionUuid: competitionUuid,
+        DateField.examName: examName
       };
 }
 

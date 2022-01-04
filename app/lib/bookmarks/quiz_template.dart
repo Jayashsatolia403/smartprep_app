@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tex/flutter_tex.dart';
 import 'package:provider/provider.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:app/ad_state.dart';
@@ -115,18 +114,9 @@ class CustomRadioState extends State<CustomRadio> {
             if (index == 0) {
               return Column(children: [
                 Padding(
-                  padding: const EdgeInsets.only(
-                      left: 15, top: 20, right: 15, bottom: 5),
-                  child: TeXView(
-                    child: TeXViewColumn(children: [
-                      TeXViewInkWell(
-                        id: "id_0",
-                        child: TeXViewColumn(
-                            children: [TeXViewDocument(widget.statement)]),
-                      )
-                    ]),
-                  ),
-                ),
+                    padding: const EdgeInsets.only(
+                        left: 15, top: 20, right: 15, bottom: 5),
+                    child: Text(widget.statement)),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                   child: Row(children: [
@@ -204,20 +194,7 @@ class CustomRadioState extends State<CustomRadio> {
         if (showExplaination)
           Padding(
               padding: const EdgeInsets.all(8),
-              child: Column(children: [
-                TeXView(
-                  child: TeXViewColumn(children: [
-                    TeXViewInkWell(
-                      id: "id_0",
-                      child: TeXViewColumn(
-                          children: [TeXViewDocument(widget.explaination)]),
-                    )
-                  ]),
-                ),
-                const SizedBox(
-                  height: 20,
-                )
-              ])),
+              child: Text(widget.explaination)),
         if (banner == null)
           const Text("Loading Ad...")
         else
@@ -276,15 +253,9 @@ class RadioItem extends StatelessWidget {
           ),
           const SizedBox(width: 20),
           Expanded(
-            child: TeXView(
-              child: TeXViewColumn(children: [
-                TeXViewInkWell(
-                  id: "id_0",
-                  child: TeXViewColumn(children: [TeXViewDocument(_item.text)]),
-                )
-              ]),
-            ),
-          )
+              child: Text(
+            _item.text,
+          ))
         ],
       ),
     );

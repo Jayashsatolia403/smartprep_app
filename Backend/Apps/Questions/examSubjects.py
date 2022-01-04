@@ -19,6 +19,8 @@ iasSubjects = ["currentAffairsWorldHard",
                    "constitutionAndGovernance",
                    "decisionMaking",
                    "iasMisc"]
+
+iasHindiSubjects = ["iasMiscHindi"]
     
 jeeSubjects = ["physicsAdv", "mathsAdv", "chemAdv", "physicsMains", "mathsMains", "chemMains", "jeeMisc"]
 jeeAdvSubjects = ["physicsAdv", "mathsAdv", "chemAdv", "jeeAdvMisc"]
@@ -60,11 +62,14 @@ rasSubjects = ["currentAffairsIndiaEasy",
                 "reasoningEasy",
                 "rasMisc"]
 
-ndaSubjects = ["ndaPhysics", 
+rasHindiSubjects = ["rasMiscHindi"]
+
+ndaSubjects = ["physicsNeet", 
                 "ndaHistory", 
-                "ndaChemistry", 
+                "chemNeet", 
                 "ndaMaths", 
                 "currentEvents",
+                "mathsMains",
                 "ndaMisc"]
 
 cdsSubjects = ["reasoningEasy", 
@@ -76,7 +81,8 @@ cdsSubjects = ["reasoningEasy",
                 "polityIndEasy", 
                 "historyIndEasy", 
                 "sciAndTechEasy", 
-                "cdsMaths", 
+                "mathsMains", 
+                "cdsMaths",
                 "environmentAndEcologyEasy",
                 "cdsMisc"]
 
@@ -113,6 +119,8 @@ sscCGLSubjects = ["reasoningHard",
                     "financeAndAccounts",
                     "statistics",
                     "sscCGLMisc"]
+
+sscCGLHindiSubjects = ["sscCGLMiscHindi"]
 
 sscCHSLSubjects = ["reasoningHard", 
                     "reasoningEasy", 

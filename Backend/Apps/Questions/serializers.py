@@ -77,7 +77,7 @@ class AddQuestionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Questions
-        fields = ['statement', 'options']
+        fields = ['statement', 'options', 'explaination']
 
     
     def save(self):

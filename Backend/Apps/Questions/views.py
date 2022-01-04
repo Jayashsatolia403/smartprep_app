@@ -87,31 +87,39 @@ def getDailyQuestions(request):
         perSubjectLimit = limit//len(subjects) # Define Each Subject Limit to Serve Questions
 
 
+
         random.shuffle(subjects) # Shuffle Subjects to avoid repeatetions
         count = 1
 
-        for subject in subjects:
-            try:
-                questions = subject.questions.exclude(seenBy__id = user.id)[:perSubjectLimit if perSubjectLimit != 0 else 1]
-            except:
-                continue
+        break_limit = 0
 
-            for question in questions:
+        while count <= limit:
 
-                if count > limit: # Limit Questions
-                    break
+            if break_limit > 10000:
+                break
 
-                question.seenBy.add(request.user) # Marking as seen in Questions DB Table
+            for subject in subjects:
+                try:
+                    questions = subject.questions.exclude(seenBy__id = user.id)[:perSubjectLimit if perSubjectLimit != 0 else 1]
+                except:
+                    continue
 
-                addDailyQuestion.questions.add(question)
+                for question in questions:
 
-                result.append({"uuid": question.uuid, "statement": question.statement, 
-                        "ratings": question.ratings, "difficulty" : question.difficulty, 
-                        "options": [(z.content, z.isCorrect) for z in question.options.all()], 
-                        "percentCorrect": question.percentCorrect, "subject": question.subject, "isRated": request.user in question.ratedBy.all(),
-                        "createdBy": "Smartprep Team" if question.isExpert else question.createdBy.name}) 
-                
-                count += 1
+                    if count > limit: # Limit Questions
+                        break
+
+                    question.seenBy.add(request.user) # Marking as seen in Questions DB Table
+
+                    addDailyQuestion.questions.add(question)
+
+                    result.append({"uuid": question.uuid, "statement": question.statement, 
+                            "ratings": question.ratings, "difficulty" : question.difficulty, 
+                            "options": [(z.content, z.isCorrect) for z in question.options.all()], 
+                            "percentCorrect": question.percentCorrect, "subject": question.subject, "isRated": request.user in question.ratedBy.all(),
+                            "createdBy": "Smartprep Team" if question.isExpert else question.createdBy.name}) 
+                    
+                    count += 1
 
             
 
@@ -162,7 +170,8 @@ def addQuestion(request):
 
         return Response("Success!")
     
-    except:
+    except Exception as e:
+        print(e)
         return Response("Invalid Request", status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -180,6 +189,8 @@ def getQuestionOfTheDay(request):
 
         exam = Exams.objects.get(name=exam_name)
 
+        print(exam.uuid, " > ", exam.name)
+
         try:
             quesOfDay = QuestionsOfTheDays.objects.get(date = dateToday, exam=exam)
             ques = quesOfDay.question
@@ -191,7 +202,6 @@ def getQuestionOfTheDay(request):
                     "percentCorrect": ques.percentCorrect, "subject": ques.subject, "isRated": request.user in ques.ratedBy.all(),
                     "createdBy": "Smartprep Team" if ques.isExpert else ques.createdBy.name, "explaination": ques.explaination})
         except:
-
             subjects = list(exam.subjects.all())
 
             random.shuffle(subjects)
@@ -217,6 +227,8 @@ def getQuestionOfTheDay(request):
 
             ques = quesOfDay.question
 
+            print("correct till here")
+
 
             return Response({"uuid": ques.uuid, "statement": ques.statement, 
                         "options": [(z.content, z.isCorrect) for z in ques.options.all()], 
@@ -224,7 +236,8 @@ def getQuestionOfTheDay(request):
                         "percentCorrect": ques.percentCorrect, "subject": subject.name, "isRated": request.user in ques.ratedBy.all(),
                         "createdBy": "Smartprep Team" if ques.isExpert else ques.createdBy.name, "explaination": ques.explaination})
   
-    except:
+    except Exception as e:
+        print(e)
         return Response("Error", status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -353,16 +366,18 @@ def host_weekly_competition(request):
 
         exam_questions = {
             "ias": 100,
+            "iasHindi": 100,
             "jee": 60,
             "jeeMains": 90,
             "jeeAdv": 54,
             "neet": 180,
             "ras": 150,
+            "rasHindi": 150,
             "ibpsPO": 100,
             "ibpsClerk": 100,
             "sscCGL": 100,
+            "sscCGLHindi": 100,
             "sscCHSL": 100,
-            "nda": 150,
             "cat": 90,
             "ntpc": 100,
             "reet1": 150,
@@ -383,16 +398,18 @@ def host_weekly_competition(request):
 
         questions = {
             "ias": set(),
+            "iasHindi": set(),
             "jee": set(),
             "jeeMains": set(),
             "jeeAdv": set(),
             "neet": set(),
             "ras": set(),
+            "rasHindi": set(),
             "ibpsPO": set(),
             "ibpsClerk": set(),
             "sscCGL": set(),
+            "sscCGLHindi": set(),
             "sscCHSL": set(),
-            "nda": set(),
             "cat": set(),
             "ntpc": set(),
             "reet1": set(),
@@ -415,10 +432,10 @@ def host_weekly_competition(request):
         
         exams = Exams.objects.all()
 
-        exam = exams[0]
-
         for exam in exams:
             import uuid
+
+            print('Starting for', exam.name)
 
             if exam.name not in questions:
                 continue
@@ -441,29 +458,61 @@ def host_weekly_competition(request):
             competition.save()
 
 
-            subjects = exam.subjects.all()
-            
+            subjects = list(exam.subjects.all())
+
+
             limit = exam_questions[exam.name] // len(subjects)
 
-            count = 0
             idx = 0
+            i = 0
+            limit = 0
+            x = 0
+
+            while i < exam_questions[exam.name]:
+
+                if x == len(subjects):
+                    x = 0
+
+                if len(subjects) == 0:
+                    break
+
+                if limit > 10000:
+                    print("Breaking due to limit exceeed at index :", i)
+                    break
+                else:
+                    limit += 1
 
 
-            for i in range(exam_questions[exam.name]):
-                if i >= len(subjects)*(count+1):
-                    count += 1
+                if i >= len(subjects)*(idx+1):
                     idx += 1
 
-                i = i - len(subjects)*count
 
-                subject = subjects[i]
+                subject = subjects[x]
 
+                try:
+                    subject_questions = list(subject.questions.all())
+                    random.shuffle(subject_questions)
+                    question = subject_questions[idx]
 
-                question = subject.questions.all()[idx]
+                    if question in competition.questions.all():
+                        continue
+                except:
+                    if (len(subjects) != 0):
+                        print(subjects[x].name)
+                        del subjects[x]
+                    else:
+                        print(subjects[x].name, " >> Breaking")
+                        break
+                    continue
+
                 
                 competition.questions.add(question)
 
                 competition.save()
+                i += 1
+                x += 1
+                print([xs.name for xs in subjects])
+
 
 
         return Response("Success")
@@ -648,26 +697,27 @@ def get_questions_by_ad(request):
         random.shuffle(subjects) # Shuffle Subjects to avoid repeatetions
         count = 1
 
-        for subject in subjects:
-            if (count == 3):
-                break
+        while count < 3:
+            for subject in subjects:
+                if (count == 3):
+                    break
 
 
-            try:
-                question = subject.questions.exclude(seenBy__id = user.id)[1]
-            except:
-                continue
+                try:
+                    question = subject.questions.exclude(seenBy__id = user.id)[1]
+                except:
+                    continue
 
-            question.seenBy.add(request.user) # Marking as seen in Questions DB Table
+                question.seenBy.add(request.user) # Marking as seen in Questions DB Table
 
 
-            result.append({"uuid": question.uuid, "statement": question.statement, 
-                    "ratings": question.ratings, "difficulty" : question.difficulty, 
-                    "options": [(z.content, z.isCorrect) for z in question.options.all()], 
-                    "percentCorrect": question.percentCorrect, "subject": question.subject, "isRated": request.user in question.ratedBy.all(),
-                    "createdBy": "Smartprep Team" if question.isExpert else question.createdBy.name, "explaination": question.explaination}) 
-            
-            count += 1
+                result.append({"uuid": question.uuid, "statement": question.statement, 
+                        "ratings": question.ratings, "difficulty" : question.difficulty, 
+                        "options": [(z.content, z.isCorrect) for z in question.options.all()], 
+                        "percentCorrect": question.percentCorrect, "subject": question.subject, "isRated": request.user in question.ratedBy.all(),
+                        "createdBy": "Smartprep Team" if question.isExpert else question.createdBy.name, "explaination": question.explaination}) 
+                
+                count += 1
 
             
 

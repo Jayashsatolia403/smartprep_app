@@ -23,7 +23,7 @@ Future<List<String>> loginUser(String email, String password) async {
   if (response.statusCode == 200) {
     final prefs = await SharedPreferences.getInstance();
 
-    Map<String, dynamic> json = jsonDecode(response.body);
+    Map<String, dynamic> json = jsonDecode(utf8.decode(response.bodyBytes));
 
     String token = json['token'];
 

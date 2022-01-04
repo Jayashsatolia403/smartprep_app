@@ -90,9 +90,7 @@ class Subjects(models.Model):
             ("economyRajEasy", "economyRajEasy"), 
             ("constitutionAndGovernance", "constitutionAndGovernance"), 
             ("decisionMaking","decisionMaking"),
-            ("ndaPhysics", "ndaPhysics"),
             ("ndaHistory", "ndaHistory"),
-            ("ndaChemistry","ndaChemistry"),
             ("ndaMaths","ndaMaths"),
             ("cdsMaths","cdsMaths"),
             ("currentEvents", "currentEvents"),
@@ -134,8 +132,11 @@ class Subjects(models.Model):
             ("rrbGDMisc", "rrbGDMisc"),
             ("sipaper1Misc", "sipaper1Misc"),
             ("sipaper2Misc", "sipaper2Misc"),
-            ("reet2ScienceMisc", "reet2ScienceMisc")
-]
+            ("reet2ScienceMisc", "reet2ScienceMisc"),
+            ("iasMiscHindi", "iasMiscHindi"),
+            ("rasMiscHindi", "rasMiscHindi"),
+            ("sscCGLMiscHindi", "sscCGLMiscHindi")
+    ]
 
     uuid = models.CharField(max_length=50)
     name = models.CharField(max_length=100000, choices=choices, default='mathsAdv')
@@ -148,12 +149,14 @@ class Subjects(models.Model):
 
 
 class Exams(models.Model):
-    choices = [("ias", "ias"),("jee", "jee"),("jeeMains","jeeMains"),("jeeAdv","jeeAdv"),("neet","neet"),
-               ("ras","ras"), ("ibpsPO","ibpsPO"), ("ibpsClerk", "ibpsClerk"), ("sscCHSL", "sscCHSL"),
-               ("sscCGL", "sscCGL"), ("nda","nda"), ("cds","cds"), ("ntpc","ntpc"), 
-               ("reet1", "reet1"), ("reet2", "reet2"), ("reet2Science", "reet2Science"), ("patwari", 'patwari'), ("grade2nd", "grade2nd"), 
+    choices = [("ias", "ias"),("iasHindi", "iasHindi"), ("jee", "jee"),("jeeMains","jeeMains"),("jeeAdv","jeeAdv"),("neet","neet"),
+               ("ras","ras"), ("rasHindi","rasHindi"), ("ibpsPO","ibpsPO"), ("ibpsClerk", "ibpsClerk"), ("sscCHSL", "sscCHSL"),
+               ("sscCGL", "sscCGL"), ("sscCGLHindi", "sscCGLHindi"), ("nda","nda"), ("cds","cds"), ("ntpc","ntpc"), 
+               ("reet1", "reet1"), ("reet2", "reet2"), ("reet2Science", "reet2Science"), 
+               ("patwari", 'patwari'), ("grade2nd", "grade2nd"),
                ("grade2ndScience", "grade2ndScience"), ("grade2ndSS", "grade2ndSS"), ("sscGD", "sscGD"), ("sscMTS", "sscMTS"),
-               ("rajPoliceConst", "rajPoliceConst"), ("rajLDC", "rajLDC"), ("rrbGD", "rrbGD"), ("sipaper1", "sipaper1"), ("sipaper2", "sipaper2")]
+               ("rajPoliceConst", "rajPoliceConst"), ("rajLDC", "rajLDC"), ("rrbGD", "rrbGD"), 
+               ("sipaper1", "sipaper1"), ("sipaper2", "sipaper2")]
 
     uuid =  models.CharField(max_length=50)
     name = models.CharField(max_length=20, choices=choices, null=True, blank=True)

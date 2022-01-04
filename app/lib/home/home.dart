@@ -17,7 +17,6 @@ import 'package:app/tests/quiz_template.dart';
 import 'package:app/weekly_competition/previous_competitions.dart';
 import 'package:flutter/material.dart';
 import 'package:app/config.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -54,24 +53,6 @@ List<String> alphabets = <String>[
   'Y',
   'Z'
 ];
-
-var examNames = {
-  'IAS': 'ias',
-  'JEE': 'jee',
-  'JEE MAINS': 'jeeMains',
-  'JEE ADV': 'jeeAdv',
-  'NEET': 'neet',
-  'RAS': 'ras',
-  'IBPS PO': 'ibpsPO',
-  'IBPS CLERK': 'ibpsClerk',
-  'SSC CHSL': 'sscCHSL',
-  'SSC CGL': 'sscCGL',
-  'NDA': 'nda',
-  'CDS': 'cds',
-  'CAT': 'cat',
-  'NTPC': 'ntpc'
-};
-
 String greet() {
   var now = DateTime.now();
 
@@ -85,6 +66,37 @@ String greet() {
     return 'Good Night';
   }
 }
+
+var examNameValues = {
+  'ias': 'IAS',
+  'iasHindi': 'IAS Hindi Medium',
+  'jee': 'JEE',
+  'jeeMains': 'JEE MAINS',
+  'jeeAdv': 'JEE ADV',
+  'neet': 'NEET',
+  'ras': 'RAS',
+  'rasHindi': 'RAS Hindi Medium',
+  'ibpsPO': 'IBPS PO',
+  'ibpsClerk': 'IBPS CLERK',
+  'sscCHSL': 'SSC CHSL',
+  'sscCGL': 'SSC CGL',
+  'sscCGLHindi': 'SSC CGL Hindi Medium',
+  'ntpc': 'NTPC',
+  'reet1': 'REET LEVEL 1',
+  'reet2': 'REET LEVEL 2 Social Science',
+  'reet2Science': 'REET LEVEL 2 Science',
+  'patwari': 'PATWARI',
+  'grade2nd': '2nd Grade Paper 1',
+  'grade2ndScience': '2nd Grade Science',
+  'grade2ndSS': '2nd Grade Social Science ',
+  'sscGD': 'SSC GD',
+  'sscMTS': 'SSC MTS',
+  'rajPoliceConst': 'Rajasthan Police Constable',
+  'rajLDC': 'Rajasthan LDC',
+  'rrbGD': 'RRB GD',
+  'sipaper1': 'SI Paper 1',
+  'sipaper2': 'SI Paper 2'
+};
 
 class Home extends StatefulWidget {
   const Home({Key? key, required this.data}) : super(key: key);
@@ -102,7 +114,7 @@ class _HomeState extends State<Home> {
 
   void loadVideoAd() async {
     RewardedAd.load(
-        adUnitId: "ca-app-pub-3347710342715984/3851662288",
+        adUnitId: RewardedAd.testAdUnitId,
         request: const AdRequest(),
         rewardedAdLoadCallback:
             RewardedAdLoadCallback(onAdLoaded: (RewardedAd ad) {
@@ -138,7 +150,7 @@ class _HomeState extends State<Home> {
       },
     );
 
-    return jsonDecode(response.body);
+    return jsonDecode(utf8.decode(response.bodyBytes));
   }
 
   BannerAd? banner;
@@ -219,7 +231,8 @@ class _HomeState extends State<Home> {
                           ),
                           height: 150),
                       ListTile(
-                        title: Text(widget.data.examname,
+                        title: Text(
+                            'Change Exam : ${examNameValues[widget.data.examname]}',
                             style: const TextStyle(
                                 color: Colors.white, fontSize: 17)),
                         onTap: () {
@@ -267,14 +280,14 @@ class _HomeState extends State<Home> {
                         // leading: const Icon(Icons.),
                       ),
                       ListTile(
-                        title: const Text('Bookmarks',
+                        title: const Text('Go to Practice Section',
                             style:
                                 TextStyle(color: Colors.white, fontSize: 17)),
                         onTap: () {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => Bookmarks(
+                                  builder: (context) => Tests(
                                         data: widget.data,
                                       )));
                         },
@@ -290,23 +303,7 @@ class _HomeState extends State<Home> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => Messages(
-                                      forumname:
-                                          examNames[widget.data.examname] ??
-                                              "ias")));
-                        },
-                        tileColor: Colors.deepPurpleAccent,
-                        // leading: const Icon(Icons.),
-                      ),
-                      ListTile(
-                        title: const Text('Previous Competition',
-                            style:
-                                TextStyle(color: Colors.white, fontSize: 17)),
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      const PreviousCompetitions()));
+                                      forumname: widget.data.examname)));
                         },
                         tileColor: Colors.deepPurpleAccent,
                         // leading: const Icon(Icons.),
@@ -341,8 +338,7 @@ class _HomeState extends State<Home> {
                   ),
                 ),
                 body: SafeArea(
-                    child: Column(children: [
-                  SingleChildScrollView(
+                  child: SingleChildScrollView(
                     child: Column(
                       children: [
                         Padding(
@@ -440,7 +436,8 @@ class _HomeState extends State<Home> {
                                       },
                                     );
 
-                                    final resJson = jsonDecode(response.body);
+                                    final resJson = jsonDecode(
+                                        utf8.decode(response.bodyBytes));
 
                                     if (response.statusCode == 400 ||
                                         resJson == "Error") {
@@ -496,17 +493,21 @@ class _HomeState extends State<Home> {
                                                 const RewardedQuestions()));
                                   },
                                   tileColor: Colors.blue[100],
-                                )
+                                ),
+                                const SizedBox(
+                                  height: 8,
+                                ),
+                                if (banner == null)
+                                  const Text("Loading Ad")
+                                else
+                                  SizedBox(
+                                      height: 150, child: AdWidget(ad: banner!))
                               ],
                             ))
                       ],
                     ),
                   ),
-                  if (banner == null)
-                    const Text("Loading Ad")
-                  else
-                    SizedBox(height: 150, child: AdWidget(ad: banner!))
-                ])),
+                ),
               );
             } else {
               return AddQuestions(

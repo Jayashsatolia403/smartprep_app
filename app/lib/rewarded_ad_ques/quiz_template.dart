@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:katex_flutter/katex_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -214,14 +213,13 @@ class CustomRadioState extends State<CustomRadio> {
                 if (index == 0) {
                   return Column(children: [
                     Padding(
-                        padding: const EdgeInsets.only(
-                            left: 15, top: 20, right: 15, bottom: 5),
-                        child: KaTeX(
-                          laTeXCode: Text(widget.statement,
-                              style: const TextStyle(
-                                fontSize: 18,
-                              )),
-                        )),
+                      padding: const EdgeInsets.only(
+                          left: 15, top: 20, right: 15, bottom: 5),
+                      child: Text(widget.statement,
+                          style: const TextStyle(
+                            fontSize: 18,
+                          )),
+                    ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                       child: Row(children: [
@@ -429,20 +427,20 @@ class RadioItem extends StatelessWidget {
           ),
           const SizedBox(width: 20),
           Expanded(
-              child: KaTeX(
-            laTeXCode: Text(_item.text,
-                style: TextStyle(
-                  fontSize: 17,
-                  color: (() {
-                    if (!_item.isCorrect && _item.isSelected) {
-                      return Colors.red;
-                    } else if (_item.isCorrect) {
-                      return Colors.lightBlueAccent;
-                    } else {
-                      return Colors.black;
-                    }
-                  }()),
-                )),
+              child: Text(
+            _item.text,
+            style: TextStyle(
+              fontSize: 17,
+              color: (() {
+                if (!_item.isCorrect && _item.isSelected) {
+                  return Colors.red;
+                } else if (_item.isCorrect) {
+                  return Colors.lightBlueAccent;
+                } else {
+                  return Colors.black;
+                }
+              }()),
+            ),
           ))
         ],
       ),

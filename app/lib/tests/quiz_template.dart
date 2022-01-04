@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:flutter_tex/flutter_tex.dart';
-import 'package:katex_flutter/katex_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -112,7 +109,9 @@ class CustomRadioState extends State<CustomRadio> {
                       color: Colors.amber,
                     ),
                     onRatingUpdate: (rating) {
-                      qualityRating = rating;
+                      setState(() {
+                        qualityRating = rating;
+                      });
                     },
                   ),
                   const Text("Difficulty"),
@@ -127,7 +126,9 @@ class CustomRadioState extends State<CustomRadio> {
                       color: Colors.amber,
                     ),
                     onRatingUpdate: (rating) {
-                      difficultyRating = rating;
+                      setState(() {
+                        difficultyRating = rating;
+                      });
                     },
                   )
                 ],
@@ -217,14 +218,9 @@ class CustomRadioState extends State<CustomRadio> {
                     Padding(
                       padding: const EdgeInsets.only(
                           left: 15, top: 20, right: 15, bottom: 5),
-                      child: TeXView(
-                        child: TeXViewColumn(children: [
-                          TeXViewInkWell(
-                            id: "id_0",
-                            child: TeXViewColumn(
-                                children: [TeXViewDocument(widget.statement)]),
-                          )
-                        ]),
+                      child: Text(
+                        widget.statement,
+                        style: const TextStyle(fontSize: 17),
                       ),
                     ),
                     Padding(
@@ -367,20 +363,7 @@ class CustomRadioState extends State<CustomRadio> {
             if (showExplaination)
               Padding(
                   padding: const EdgeInsets.all(8),
-                  child: Column(children: [
-                    TeXView(
-                      child: TeXViewColumn(children: [
-                        TeXViewInkWell(
-                          id: "id_0",
-                          child: TeXViewColumn(
-                              children: [TeXViewDocument(widget.explaination)]),
-                        )
-                      ]),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    )
-                  ])),
+                  child: Column(children: [Text(widget.explaination)])),
             if (banner == null)
               const Text("Loading Ad...")
             else
@@ -438,16 +421,7 @@ class RadioItem extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 20),
-          Expanded(
-            child: TeXView(
-              child: TeXViewColumn(children: [
-                TeXViewInkWell(
-                  id: "id_0",
-                  child: TeXViewColumn(children: [TeXViewDocument(_item.text)]),
-                )
-              ]),
-            ),
-          )
+          Expanded(child: Text(_item.text))
         ],
       ),
     );

@@ -54,7 +54,8 @@ class QuizDatabase {
     ${DateField.id} $idType, 
     ${DateField.date} $textType,
     ${DateField.pages} $intType,
-    ${DateField.competitionUuid} $textType
+    ${DateField.competitionUuid} $textType,
+    ${DateField.examName} $textType
     )
 ''');
 

@@ -44,7 +44,7 @@ class _RewardedQuestionsState extends State<RewardedQuestions> {
       },
     );
 
-    final resJson = jsonDecode(response.body);
+    final resJson = jsonDecode(utf8.decode(response.bodyBytes));
 
     for (var id in resJson) {
       questionStatements.add([
@@ -121,51 +121,25 @@ class _RewardedQuestionsState extends State<RewardedQuestions> {
                                     style:
                                         const TextStyle(color: Colors.white)),
                                 onPressed: () {
-                                  if (exam == "jeeAdv") {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => JeeCustomRadio(
-                                                options: snapShot.data![1][i],
-                                                statement: snapShot.data![0][i]
-                                                    [0],
-                                                quesUUid: snapShot.data![0][i]
-                                                    [1],
-                                                qualityRating: snapShot.data![0]
-                                                    [i][2],
-                                                difficultyRating:
-                                                    snapShot.data![0][i][3],
-                                                isRated: snapShot.data![0][i]
-                                                    [4],
-                                                createdBy: snapShot.data![0][i]
-                                                    [5],
-                                                explaination: snapShot.data![0]
-                                                    [i][6],
-                                              )),
-                                    );
-                                  } else {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => CustomRadio(
-                                                options: snapShot.data![1][i],
-                                                statement: snapShot.data![0][i]
-                                                    [0],
-                                                quesUUid: snapShot.data![0][i]
-                                                    [1],
-                                                qualityRating: snapShot.data![0]
-                                                    [i][2],
-                                                difficultyRating:
-                                                    snapShot.data![0][i][3],
-                                                isRated: snapShot.data![0][i]
-                                                    [4],
-                                                createdBy: snapShot.data![0][i]
-                                                    [5],
-                                                explaination: snapShot.data![0]
-                                                    [i][6],
-                                              )),
-                                    );
-                                  }
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => CustomRadio(
+                                              options: snapShot.data![1][i],
+                                              statement: snapShot.data![0][i]
+                                                  [0],
+                                              quesUUid: snapShot.data![0][i][1],
+                                              qualityRating: snapShot.data![0]
+                                                  [i][2],
+                                              difficultyRating:
+                                                  snapShot.data![0][i][3],
+                                              isRated: snapShot.data![0][i][4],
+                                              createdBy: snapShot.data![0][i]
+                                                  [5],
+                                              explaination: snapShot.data![0][i]
+                                                  [6],
+                                            )),
+                                  );
                                 },
                                 style: ElevatedButton.styleFrom(
                                     fixedSize: const Size(250, 20),

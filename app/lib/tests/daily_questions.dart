@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:app/ad_state.dart';
@@ -6,7 +7,6 @@ import 'package:app/ad_state.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'jee_adv_quiz_template.dart';
 import 'quiz_template.dart';
 import 'package:provider/provider.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -44,17 +44,21 @@ class _DailyQuestionsState extends State<DailyQuestions> {
       },
     );
 
-    final resJson = jsonDecode(response.body);
+    final resJson = jsonDecode(utf8.decode(response.bodyBytes));
 
     for (var id in resJson) {
+      final String statement =
+          (id['statement'] as String).replaceAll("\\n", "\n");
+      final String createdBy = (id['createdBy']).replaceAll("\\n", "\n");
+      final String explaination = (id['explaination']).replaceAll("\\n", "\n");
       questionStatements.add([
-        id['statement'],
+        statement,
         id['uuid'],
         id['ratings'],
         id['difficulty'],
         id['isRated'],
-        id['createdBy'],
-        id['explaination']
+        createdBy,
+        explaination
       ]);
       allOptions.add(id['options']);
     }
@@ -120,51 +124,25 @@ class _DailyQuestionsState extends State<DailyQuestions> {
                                     style:
                                         const TextStyle(color: Colors.white)),
                                 onPressed: () {
-                                  if (exam == "jeeAdv") {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => JeeCustomRadio(
-                                                options: snapShot.data![1][i],
-                                                statement: snapShot.data![0][i]
-                                                    [0],
-                                                quesUUid: snapShot.data![0][i]
-                                                    [1],
-                                                qualityRating: snapShot.data![0]
-                                                    [i][2],
-                                                difficultyRating:
-                                                    snapShot.data![0][i][3],
-                                                isRated: snapShot.data![0][i]
-                                                    [4],
-                                                createdBy: snapShot.data![0][i]
-                                                    [5],
-                                                explaination: snapShot.data![0]
-                                                    [i][6],
-                                              )),
-                                    );
-                                  } else {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => CustomRadio(
-                                                options: snapShot.data![1][i],
-                                                statement: snapShot.data![0][i]
-                                                    [0],
-                                                quesUUid: snapShot.data![0][i]
-                                                    [1],
-                                                qualityRating: snapShot.data![0]
-                                                    [i][2],
-                                                difficultyRating:
-                                                    snapShot.data![0][i][3],
-                                                isRated: snapShot.data![0][i]
-                                                    [4],
-                                                createdBy: snapShot.data![0][i]
-                                                    [5],
-                                                explaination: snapShot.data![0]
-                                                    [i][6],
-                                              )),
-                                    );
-                                  }
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => CustomRadio(
+                                              options: snapShot.data![1][i],
+                                              statement: snapShot.data![0][i]
+                                                  [0],
+                                              quesUUid: snapShot.data![0][i][1],
+                                              qualityRating: snapShot.data![0]
+                                                  [i][2],
+                                              difficultyRating:
+                                                  snapShot.data![0][i][3],
+                                              isRated: snapShot.data![0][i][4],
+                                              createdBy: snapShot.data![0][i]
+                                                  [5],
+                                              explaination: snapShot.data![0][i]
+                                                  [6],
+                                            )),
+                                  );
                                 },
                                 style: ElevatedButton.styleFrom(
                                     fixedSize: const Size(250, 20),

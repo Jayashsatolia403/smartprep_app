@@ -1,7 +1,4 @@
-import 'package:app/rate/rate_question.dart';
-import 'package:app/rewarded_ad_ques/ad_screen.dart';
 import 'package:app/splashscreen/splashscreen.dart';
-import 'package:app/test.dart';
 import 'package:flutter/material.dart';
 
 import 'ad_state.dart';
@@ -46,6 +43,6 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(primarySwatch: white, fontFamily: 'OpenSans'),
-        home: const Test());
+        home: const Splash());
   }
 }

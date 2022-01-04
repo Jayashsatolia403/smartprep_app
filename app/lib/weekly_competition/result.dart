@@ -11,7 +11,7 @@ class Result extends StatelessWidget {
       appBar: AppBar(title: const Text("Result")),
       body: Center(
         child: Text(
-          'Correct Options: $correctOptions',
+          'Correct Questions: $correctOptions',
           style: const TextStyle(fontSize: 25),
         ),
       ),

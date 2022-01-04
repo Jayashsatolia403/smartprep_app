@@ -3,10 +3,9 @@
 import 'package:app/weekly_competition/quiz_config.dart';
 import 'package:app/weekly_competition/quiz_models.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_tex/flutter_tex.dart';
 // import 'package:flutter/services.dart';
 // ignore: import_of_legacy_library_into_null_safe
-import 'package:katex_flutter/katex_flutter.dart';
+// import 'package:katex_flutter/katex_flutter.dart';
 
 import 'package:provider/provider.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -142,19 +141,9 @@ class CustomRadioState extends State<CustomRadio> {
             if (index == 0) {
               return Column(children: [
                 Padding(
-                  padding: const EdgeInsets.only(
-                      left: 15, top: 20, right: 15, bottom: 30),
-                  child: TeXView(
-                    child: TeXViewColumn(children: [
-                      TeXViewInkWell(
-                        id: "id_0",
-                        child: TeXViewColumn(children: [
-                          TeXViewDocument(widget.question.statement)
-                        ]),
-                      )
-                    ]),
-                  ),
-                ),
+                    padding: const EdgeInsets.only(
+                        left: 15, top: 20, right: 15, bottom: 30),
+                    child: Text(widget.question.statement)),
                 InkWell(
                   highlightColor: Colors.red,
                   splashColor: Colors.blueAccent,
@@ -238,16 +227,7 @@ class RadioItem extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 20),
-          Expanded(
-            child: TeXView(
-              child: TeXViewColumn(children: [
-                TeXViewInkWell(
-                  id: "id_0",
-                  child: TeXViewColumn(children: [TeXViewDocument(_item.text)]),
-                )
-              ]),
-            ),
-          )
+          Expanded(child: Text(_item.text))
         ],
       ),
     );

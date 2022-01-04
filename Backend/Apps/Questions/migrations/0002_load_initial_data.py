@@ -32,12 +32,14 @@ def load_initial_data(apps, schema_editor):
                    "constitutionAndGovernance",
                    "decisionMaking",
                    "iasMisc"]
-    
+
+    iasHindi = ["iasMiscHindi"]
+        
     jeeSubjects = ["physicsAdv", "mathsAdv", "chemAdv", "physicsMains", "mathsMains", "chemMains", "jeeMisc"]
     jeeAdvSubjects = ["physicsAdv", "mathsAdv", "chemAdv", "jeeAdvMisc"]
     jeeMainsSubjects = ["physicsMains", "mathsMains", "chemMains", "jeeMainsMisc"]
 
-    neetSubjects = ["physicsMains", "bio", "chemMains", "neetMisc"]
+    neetSubjects = ["physicsMains", "bio", "chemMains", "neetMisc", "physicsNeet", "chemNeet"]
 
     rasSubjects = ["currentAffairsIndiaEasy", 
                     "currentAffairsIndiaHard", 
@@ -73,11 +75,14 @@ def load_initial_data(apps, schema_editor):
                     "reasoningEasy",
                     "rasMisc"]
 
-    ndaSubjects = ["ndaPhysics", 
+    rasHindiSubjects = ["rasMiscHindi"]
+
+    ndaSubjects = ["physicsNeet", 
                     "ndaHistory", 
-                    "ndaChemistry", 
+                    "chemNeet", 
                     "ndaMaths", 
                     "currentEvents",
+                    "mathsMains",
                     "ndaMisc"]
 
     cdsSubjects = ["reasoningEasy", 
@@ -89,7 +94,8 @@ def load_initial_data(apps, schema_editor):
                     "polityIndEasy", 
                     "historyIndEasy", 
                     "sciAndTechEasy", 
-                    "cdsMaths", 
+                    "mathsMains", 
+                    "cdsMaths",
                     "environmentAndEcologyEasy",
                     "cdsMisc"]
 
@@ -126,6 +132,8 @@ def load_initial_data(apps, schema_editor):
                         "financeAndAccounts",
                         "statistics",
                         "sscCGLMisc"]
+
+    sscCGLHindiSubjects = ["sscCGLMiscHindi"]
 
     sscCHSLSubjects = ["reasoningHard", 
                         "reasoningEasy", 
@@ -181,7 +189,8 @@ def load_initial_data(apps, schema_editor):
             "polityRajHard", 
             "currentAffairsRajHard",
             "artAndCultureInd", 
-            "grade2ndSSMisc"]
+            "grade2ndSSMisc",
+            "rasMiscHindi"]
 
     reet2ScienceSubjects = [
             "reet2ScienceMisc",
@@ -220,7 +229,8 @@ def load_initial_data(apps, schema_editor):
             "artAndCultureRaj",
             "economyRajHard",
             "economyRajEasy",
-            "sipaper2Misc"
+            "sipaper2Misc",
+            "rasMiscHindi"
     ]
 
     patwariSubjects = [
@@ -247,7 +257,8 @@ def load_initial_data(apps, schema_editor):
             "artAndCultureRaj",
             "economyRajHard",
             "economyRajEasy",
-            "patwariMisc"
+            "patwariMisc",
+            "rasMiscHindi"
     ]
 
     grade2ndSubjects = [
@@ -269,10 +280,11 @@ def load_initial_data(apps, schema_editor):
             "artAndCultureRaj",
             "economyRajHard",
             "economyRajEasy",
-            "grade2ndMisc"
+            "grade2ndMisc",
+            "rasMiscHindi"
     ]
 
-    grade2ndScienceSubjects = ["bio", "physicsMains", "chemMains", "grade2ndScienceMisc"]
+    grade2ndScienceSubjects = ["bio", "physicsNeet", "chemNeet", "grade2ndScienceMisc"]
 
     grade2ndSSSubjects = [
             "staticGK",
@@ -292,7 +304,9 @@ def load_initial_data(apps, schema_editor):
             "polityRajHard", 
             "currentAffairsRajHard",
             "artAndCultureInd", 
-            "grade2ndSSMisc"
+            "grade2ndSSMisc",
+            "rasMiscHindi",
+            "iasMiscHindi"
     ]
 
     sscGDSubjects = [
@@ -354,12 +368,15 @@ def load_initial_data(apps, schema_editor):
     ]
 
 
-    exams = [("ias", "ias"),("jee", "jee"),("jeeMains","jeeMains"),("jeeAdv","jeeAdv"),("neet","neet"),
-               ("ras","ras"), ("ibpsPO","ibpsPO"), ("ibpsClerk", "ibpsClerk"), ("sscCHSL", "sscCHSL"),
-               ("sscCGL", "sscCGL"), ("nda","nda"), ("cds","cds"), ("ntpc","ntpc"), 
-               ("reet1", "reet1"), ("reet2", "reet2"), ("reet2Science", "reet2Science"), ("patwari", 'patwari'), ("grade2nd", "grade2nd"), 
+
+    exams = [("ias", "ias"),("iasHindi", "iasHindi"), ("jee", "jee"),("jeeMains","jeeMains"),("jeeAdv","jeeAdv"),("neet","neet"),
+               ("ras","ras"), ("rasHindi","rasHindi"), ("ibpsPO","ibpsPO"), ("ibpsClerk", "ibpsClerk"), ("sscCHSL", "sscCHSL"),
+               ("sscCGL", "sscCGL"), ("sscCGLHindi", "sscCGLHindi"), ("nda","nda"), ("cds","cds"), ("ntpc","ntpc"), 
+               ("reet1", "reet1"), ("reet2", "reet2"), ("reet2Science", "reet2Science"), 
+               ("patwari", 'patwari'), ("grade2nd", "grade2nd"), 
                ("grade2ndScience", "grade2ndScience"), ("grade2ndSS", "grade2ndSS"), ("sscGD", "sscGD"), ("sscMTS", "sscMTS"),
-               ("rajPoliceConst", "rajPoliceConst"), ("rajLDC", "rajLDC"), ("rrbGD", "rrbGD"), ("sipaper1", "sipaper1"), ("sipaper2", "sipaper2")]
+               ("rajPoliceConst", "rajPoliceConst"), ("rajLDC", "rajLDC"), ("rrbGD", "rrbGD"), 
+               ("sipaper1", "sipaper1"), ("sipaper2", "sipaper2")]
 
     subjects = [("physicsAdv", "physicsAdv"), 
             ("mathsAdv","mathsAdv"),
@@ -367,6 +384,8 @@ def load_initial_data(apps, schema_editor):
             ("physicsMains","physicsMains"), 
             ("mathsMains", "mathsMains"),
             ("chemMains","chemMains"),
+            ("physicsNeet", "physicsNeet"),
+            ("chemNeet", "chemNeet"),
             ("bio", "bio"),
             ("reasoningHard", "reasoningHard"),
             ("reasoningEasy","reasoningEasy"),
@@ -410,9 +429,7 @@ def load_initial_data(apps, schema_editor):
             ("economyRajEasy", "economyRajEasy"), 
             ("constitutionAndGovernance", "constitutionAndGovernance"), 
             ("decisionMaking","decisionMaking"),
-            ("ndaPhysics", "ndaPhysics"),
             ("ndaHistory", "ndaHistory"),
-            ("ndaChemistry","ndaChemistry"),
             ("ndaMaths","ndaMaths"),
             ("cdsMaths","cdsMaths"),
             ("currentEvents", "currentEvents"),
@@ -454,8 +471,11 @@ def load_initial_data(apps, schema_editor):
             ("rrbGDMisc", "rrbGDMisc"),
             ("sipaper1Misc", "sipaper1Misc"),
             ("sipaper2Misc", "sipaper2Misc"),
-            ("reet2ScienceMisc", "reet2ScienceMisc")
-]
+            ("reet2ScienceMisc", "reet2ScienceMisc"),
+            ("iasMiscHindi", "iasMiscHindi"),
+            ("rasMiscHindi", "rasMiscHindi"),
+            ("sscCGLMiscHindi", "sscCGLMiscHindi")
+    ]
 
 
     Questions = apps.get_model('Questions', 'Questions')
@@ -469,9 +489,9 @@ def load_initial_data(apps, schema_editor):
 
 
     
-    d = {"ias": iasSubjects, "jee": jeeSubjects, "jeeMains": jeeMainsSubjects, "jeeAdv": jeeAdvSubjects,
-         "neet": neetSubjects, "ras": rasSubjects, "nda": ndaSubjects, "cds": cdsSubjects, "ibpsPO": ibpsPOSubjects,
-         "ibpsClerk": ibpsClerkSubjects, "sscCGL": sscCGLSubjects, "sscCHSL": sscCHSLSubjects, "ntpc": ntpcSubjects,
+    d = {"ias": iasSubjects, "iasHindi": iasHindi, "jee": jeeSubjects, "jeeMains": jeeMainsSubjects, "jeeAdv": jeeAdvSubjects,
+         "neet": neetSubjects, "ras": rasSubjects, "rasHindi": rasHindiSubjects, "nda": ndaSubjects, "cds": cdsSubjects, "ibpsPO": ibpsPOSubjects,
+         "ibpsClerk": ibpsClerkSubjects, "sscCGL": sscCGLSubjects, "sscCGLHindi": sscCGLHindiSubjects, "sscCHSL": sscCHSLSubjects, "ntpc": ntpcSubjects,
          "reet1": reet1Subjects, "reet2": reet2Subjects, "reet2Science": reet2ScienceSubjects, "patwari": patwariSubjects, "grade2nd": grade2ndSubjects, 
          "grade2ndScience": grade2ndScienceSubjects, "grade2ndSS": grade2ndSSSubjects, "sscGD": sscGDSubjects, "sscMTS": sscMTSSubjects,
          "rajPoliceConst": rajPoliceConstSubjects, "rajLDC": rajLDCSubjects, "rrbGD": rrbGDSubjects, "sipaper1": sipaper1Subjects, "sipaper2": sipaper2Subjects}
@@ -491,97 +511,97 @@ def load_initial_data(apps, schema_editor):
             exam.subjects.add(subject)
             exam.save()
 
-    correctOptions = [True, False, False, False]
+    # correctOptions = [True, False, False, False]
 
-    try:
-        maths_file = open(r"/home/jayash/Desktop/Projects/smartprep_app/Backend/maths.txt")
-    except:
-        maths_file = open(r"/app/maths.txt")
+    # try:
+    #     maths_file = open(r"/home/jayash/Desktop/Projects/smartprep_app/Backend/maths.txt")
+    # except:
+    #     maths_file = open(r"/app/maths.txt")
 
-    good_data = []
+    # good_data = []
 
-    while True:
-        statement = maths_file.readline()
+    # while True:
+    #     statement = maths_file.readline()
         
-        if not statement:
-            break
-        else:
-            a = maths_file.readline()
-            b = maths_file.readline()
-            c = maths_file.readline()
-            d = maths_file.readline()
+    #     if not statement:
+    #         break
+    #     else:
+    #         a = maths_file.readline()
+    #         b = maths_file.readline()
+    #         c = maths_file.readline()
+    #         d = maths_file.readline()
 
 
-        data = {"options" : [a, b, c, d],
-                'statement' : statement}
+    #     data = {"options" : [a, b, c, d],
+    #             'statement' : statement}
 
-        good_data.append(data)
+    #     good_data.append(data)
 
-        maths_file.readline()
-        maths_file.readline()
+    #     maths_file.readline()
+    #     maths_file.readline()
 
-    for _ in range(10):
-        for i in subjects:
+    # for _ in range(10):
+    #     for i in subjects:
 
-            random.shuffle(correctOptions)
-            random.shuffle(good_data)
+    #         random.shuffle(correctOptions)
+    #         random.shuffle(good_data)
 
-            for data in good_data:
+    #         for data in good_data:
 
-                a = Options(
-                    content= data["options"][0],
-                    isCorrect=correctOptions[0],
-                    uuid=str(uuid.uuid4())
-                )
-                a.save()
+    #             a = Options(
+    #                 content= data["options"][0],
+    #                 isCorrect=correctOptions[0],
+    #                 uuid=str(uuid.uuid4())
+    #             )
+    #             a.save()
 
-                b = Options(
-                    content=data["options"][1],
-                    isCorrect=correctOptions[1],
-                    uuid=str(uuid.uuid4())
-                )
-                b.save()
+    #             b = Options(
+    #                 content=data["options"][1],
+    #                 isCorrect=correctOptions[1],
+    #                 uuid=str(uuid.uuid4())
+    #             )
+    #             b.save()
 
-                c = Options(
-                    content=data["options"][2],
-                    isCorrect=correctOptions[2],
-                    uuid=str(uuid.uuid4())
-                )
-                c.save()
+    #             c = Options(
+    #                 content=data["options"][2],
+    #                 isCorrect=correctOptions[2],
+    #                 uuid=str(uuid.uuid4())
+    #             )
+    #             c.save()
 
-                d = Options(
-                    content=data["options"][3],
-                    isCorrect=correctOptions[3],
-                    uuid=str(uuid.uuid4())
-                )
-                d.save()
+    #             d = Options(
+    #                 content=data["options"][3],
+    #                 isCorrect=correctOptions[3],
+    #                 uuid=str(uuid.uuid4())
+    #             )
+    #             d.save()
 
 
-                question = Questions(
-                    uuid=str(uuid.uuid4()),
-                    statement=data["statement"],
-                    subject=i[0],
-                    ratings=5,
-                    isExpert=True,
-                    difficulty=5,
-                    explaination = "This is sample Explaination."
-                )
+    #             question = Questions(
+    #                 uuid=str(uuid.uuid4()),
+    #                 statement=data["statement"],
+    #                 subject=i[0],
+    #                 ratings=5,
+    #                 isExpert=True,
+    #                 difficulty=5,
+    #                 explaination = "This is sample Explaination."
+    #             )
 
-                question.save()
+    #             question.save()
 
-                question.options.add(a)
-                question.options.add(b)
-                question.options.add(c)
-                question.options.add(d)
+    #             question.options.add(a)
+    #             question.options.add(b)
+    #             question.options.add(c)
+    #             question.options.add(d)
 
-                question.save()
+    #             question.save()
 
-                subject = Subjects.objects.get(name=i[0])
+    #             subject = Subjects.objects.get(name=i[0])
 
-                subject.questions.add(question)
-                subject.save()
+    #             subject.questions.add(question)
+    #             subject.save()
 
-                question.save()
+    #             question.save()
 
     
     

@@ -638,7 +638,7 @@ a two-horned farm tool
 y
 None
 
-Consider the following statements, can an initiative be taken to bring an amendment in the Indian Constitution? ignore_new_line(1) - by Lok Sabha ignore_new_line(2) - by State Legislatures (3) - by Rajya Sabha (4) - by President Which of the above statements are correct?
+Consider the following statements, can an initiative be taken to bring an amendment in the Indian Constitution? \n(1) - by Lok Sabha \n(2) - by State Legislatures (3) - by Rajya Sabha (4) - by President Which of the above statements are correct?
 4
 (A) - 1 & 2
 (B) - 1 & 3
@@ -768,7 +768,7 @@ City of Nawabs - Ajmer
 y
 None
 
-With reference to NABARD, consider the following statements? ignore_new_line(1) - NABARD was established in the year 1981 by an Act of Parliament. ignore_new_line(2) - It provides credit facility only for agriculture. Select the correct statements from the above? (Important question)
+With reference to NABARD, consider the following statements? \n(1) - NABARD was established in the year 1981 by an Act of Parliament. \n(2) - It provides credit facility only for agriculture. Select the correct statements from the above? (Important question)
 4
 (A) - 1 only
 (B) - 2 only
@@ -948,7 +948,7 @@ fifth
 y
 None
 
-Who has won gold medal in women's 49kg category at Commonwealth Weightlifting Championships in Tashkent, Uzbekistan?ignore_new_line ignore_new_line(Important question)
+Who has won gold medal in women's 49kg category at Commonwealth Weightlifting Championships in Tashkent, Uzbekistan?\n \n(Important question)
 4
 christina sobolo
 Chayutra Pramongkholi
@@ -978,7 +978,7 @@ Jagat Shiromani Temple
 y
 None
 
-Consider the following statements? ignore_new_line(1) Right to Education. ignore_new_line(2) Right to receive public service with equality. (3) Right to food. Which of the following rights come under the "Comprehensive Declaration of Human Rights"? (Important question)
+Consider the following statements? \n(1) Right to Education. \n(2) Right to receive public service with equality. (3) Right to food. Which of the following rights come under the "Comprehensive Declaration of Human Rights"? (Important question)
 4
 (A) - 1 only
 (B) - 1 & 2
@@ -1088,7 +1088,7 @@ Ropar Wetland
 y
 None
 
-Consider the following? ignore_new_line(1) - carbon dioxideignore_new_line(2) - oxides of nitrogen (3) - oxides of sulfur Which of the above emissions are emitted by combustion of coal in thermal power plants? (Important question)
+Consider the following? \n(1) - carbon dioxide\n(2) - oxides of nitrogen (3) - oxides of sulfur Which of the above emissions are emitted by combustion of coal in thermal power plants? (Important question)
 4
 (A) - 1 only
 (B) - 1 & 3
@@ -1488,7 +1488,7 @@ France
 y
 None
 
-What is called 'Amarnath of Rajasthan'?ignore_new_lineignore_new_line(V.V. Important questions)
+What is called 'Amarnath of Rajasthan'?\n\n(V.V. Important questions)
 4
 Parashuram Mahadev site located in the cave near Sadri town of Pali district
 Mimaj Mata, Udaipur
@@ -1498,7 +1498,7 @@ Ashapura Mata, Kota
 y
 None
 
-On which style of architecture is the construction of Ram temple in Ayodhya based?ignore_new_lineignore_new_line(V. Very important question)
+On which style of architecture is the construction of Ram temple in Ayodhya based?\n\n(V. Very important question)
 4
 Dravidian style
 Mughal style
@@ -1938,7 +1938,7 @@ Cristiano Ronaldo
 y
 None
 
-Consider the following statements-ignore_new_line(1) - Assam is bordered by Bhutan and Bangladesh. ignore_new_line(2) - West Bengal is adjacent to the borders of Bhutan and Nepal. (3) - Mizoram is adjacent to the borders of Bangladesh and Myanmar. Which of the above statements are correct.
+Consider the following statements-\n(1) - Assam is bordered by Bhutan and Bangladesh. \n(2) - West Bengal is adjacent to the borders of Bhutan and Nepal. (3) - Mizoram is adjacent to the borders of Bangladesh and Myanmar. Which of the above statements are correct.
 4
 (A) - 1 & 2
 (B) - 1 & 3
@@ -2048,7 +2048,7 @@ Mandawali Police Station
 y
 None
 
-Assertion (S) : In Rajasthan only 1.30 percent of the land area is covered by dense forest cover.ignore_new_lineReason (R) : Illegal logging, uncontrolled grazing and changing land use patterns have reduced the density of forests in the stateignore_new_line (Important question)
+Assertion (S) : In Rajasthan only 1.30 percent of the land area is covered by dense forest cover.\nReason (R) : Illegal logging, uncontrolled grazing and changing land use patterns have reduced the density of forests in the state\n (Important question)
 4
 Both S and R are correct and R is the correct explanation of S.
 Both S and R are correct. R is not the correct explanation of S.
@@ -2088,7 +2088,7 @@ Abhijit Banerjee
 y
 None
 
-Pay attention to the following articles of the constitutionignore_new_linear. 72 Pardoning Power of the Presidentignore_new_lineArticle 143 Advisory Jurisdiction of the Supreme Court Art. 360 PROVISIONS RELATED TO FINANCIAL EMERGENCY ART(148-151) POWERS AND FUNCTIONS OF ATTORNEY GENERAL OF INDIA Which match is correct
+Pay attention to the following articles of the constitution\nar. 72 Pardoning Power of the President\nArticle 143 Advisory Jurisdiction of the Supreme Court Art. 360 PROVISIONS RELATED TO FINANCIAL EMERGENCY ART(148-151) POWERS AND FUNCTIONS OF ATTORNEY GENERAL OF INDIA Which match is correct
 4
 [A] 1 and 3
 [B] 1, 2 and 3
@@ -2368,7 +2368,7 @@ On which date and year NABARD (National Bank of Agriculture and Rural Developmen
 y
 None
 
-Recently a place called Raidana is in a lot of discussion, where is it located?ignore_new_lineignore_new_line( Most important question)
+Recently a place called Raidana is in a lot of discussion, where is it located?\n\n( Most important question)
 4
 Jaisalmer
 Dungarpur
@@ -2458,7 +2458,7 @@ central cabinet
 y
 None
 
-Match.ignore_new_lineDurg Jauhar leadignore_new_line(A) Ranthambore 1 Jaital De (B) Sivana 2 Phoolkanwar (C) Jalore 3 Rang Devi (D) Chittor 4 Maina De option (Most important question)
+Match.\nDurg Jauhar lead\n(A) Ranthambore 1 Jaital De (B) Sivana 2 Phoolkanwar (C) Jalore 3 Rang Devi (D) Chittor 4 Maina De option (Most important question)
 4
 1. - (A)-3, (B)-2, (C)-1, (D)-4
 2. - (A)-3, (B)-4, (C)-2, (D)-1
@@ -2466,7 +2466,7 @@ Match.ignore_new_lineDurg Jauhar leadignore_new_line(A) Ranthambore 1 Jaital De 
 4. - (A)-3, (B)-4, (C)-1, (D)-2
 3
 y
-Ranthambore 1301- Rangdeviignore_new_lineSiwana 1308 - Rani Maina deignore_new_lineJalore 1311 - Jaital De Chittor 1568 - Phoolkanwar None
+Ranthambore 1301- Rangdevi\nSiwana 1308 - Rani Maina de\nJalore 1311 - Jaital De Chittor 1568 - Phoolkanwar None
 
 Prime Minister Narendra Modi will attend the United Nations Climate Change Conference (COP26), 2021. COP 26 will be held in which of the following city?
 4
@@ -2478,7 +2478,7 @@ The Hague, Netherlands
 y
 None
 
-"War of Bhootala" was fought between whom.ignore_new_lineignore_new_line(V. Very important question)
+"War of Bhootala" was fought between whom.\n\n(V. Very important question)
 4
 Balban and Samant Singh
 Balban and Jaitra Singh
@@ -2486,7 +2486,7 @@ Iltutmish and Samant Singh
 Iltutmish and Jaitra Singh
 3
 y
-Battle of Bhutala 1227 AD.ignore_new_lineIltutmish vs Jaitra Singhignore_new_lineResult - Iltutmish's defeat None
+Battle of Bhutala 1227 AD.\nIltutmish vs Jaitra Singh\nResult - Iltutmish's defeat None
 
 To which dynasty did Rana Kumbha's mother Saubhagya Devi belong?
 4
@@ -2548,7 +2548,7 @@ copy plan
 y
 None
 
-Which place of the state is famous for gum production?ignore_new_lineignore_new_line(V Very important question)
+Which place of the state is famous for gum production?\n\n(V Very important question)
 4
 Khichan (Jodhpur)
 Sokh (Alwar)
@@ -2608,7 +2608,7 @@ Maharaja Ram Singh I
 y
 Scholars named Devbodh and Dharmaghosh were the courtiers of Arnoraj.
 
-Which pair of titles of Kumbha is not correct?ignore_new_lineignore_new_line(V very important question)
+Which pair of titles of Kumbha is not correct?\n\n(V very important question)
 4
 1. Halguru - Being the lord of Giri forts
 2. Shailguru - Being skilled in warfare
@@ -2788,7 +2788,7 @@ from Border Security Force
 y
 None
 
-Which assembly constituency of Rajasthan is spread over more than one district?ignore_new_lineignore_new_line(V. Very important)
+Which assembly constituency of Rajasthan is spread over more than one district?\n\n(V. Very important)
 4
 Nathdwara
 Chhabra
@@ -2808,7 +2808,7 @@ for spice production
 y
 None
 
-With reference to India, consider the following? ignore_new_line1.Nationalization of Banksignore_new_line2.Formation of Regional Rural Banks 3.Adoption of Villages by Bank Branches Which of the above can be considered as steps to achieve "Financial Inclusion" in India?
+With reference to India, consider the following? \n1.Nationalization of Banks\n2.Formation of Regional Rural Banks 3.Adoption of Villages by Bank Branches Which of the above can be considered as steps to achieve "Financial Inclusion" in India?
 4
 1 & 2
 2 & 3
@@ -2928,7 +2928,7 @@ lehis katrina
 y
 None
 
-Malir print is related to which district?ignore_new_lineignore_new_line(V. very important question)
+Malir print is related to which district?\n\n(V. very important question)
 4
 barmer
 Chittorgarh
@@ -2938,7 +2938,7 @@ Jodhpur
 y
 None
 
-At present there are total women MPs in Parliament?ignore_new_lineignore_new_line(V. Very important question)
+At present there are total women MPs in Parliament?\n\n(V. Very important question)
 4
 103
 78
@@ -2946,9 +2946,9 @@ At present there are total women MPs in Parliament?ignore_new_lineignore_new_lin
 200
 0
 y
-Noneignore_new_lineignore_new_line There are currently 103 women inside the Indian Parliament
+None\n\n There are currently 103 women inside the Indian Parliament
 
-Who is credited with starting the modern artistic Namda Shala of Tonk? ignore_new_lineignore_new_line(V. Very important question)
+Who is credited with starting the modern artistic Namda Shala of Tonk? \n\n(V. Very important question)
 4
 Kamalkant Tiwari
 Nandkumar Tiwari
@@ -3258,7 +3258,7 @@ If a person standing at 82 degrees east longitude sees the time at 8 a.m., then 
 y
 None
 
-In which district Dev Somnath fair fills ?ignore_new_lineignore_new_line(Important question )
+In which district Dev Somnath fair fills ?\n\n(Important question )
 4
 Banswara
 Bikaner
@@ -3528,7 +3528,7 @@ Jamnalal Bajaj
 y
 None
 
-Which of the following rights is not available to all persons in India?ignore_new_lineSelect your answer using the code given belowignore_new_line1. Equality before law 2. Right against discrimination 3. Freedom to move freely across the country 4. Right to contest elections right code
+Which of the following rights is not available to all persons in India?\nSelect your answer using the code given below\n1. Equality before law 2. Right against discrimination 3. Freedom to move freely across the country 4. Right to contest elections right code
 4
 1, 3, 4
 1, 2, 4
@@ -3808,7 +3808,7 @@ Roopa Ganguly
 y
 None
 
-Dinesh Goswami committee recommended ?ignore_new_lineignore_new_line[IAS (Pre), 1997]
+Dinesh Goswami committee recommended ?\n\n[IAS (Pre), 1997]
 4
 Government funding for Lok Sabha elections
 Ban on the candidature of independent candidates in the Lok Sabha elections
@@ -4138,7 +4138,7 @@ alwar style
 y
 None
 
-Which of the following pairs is correctly matched?ignore_new_line(Mughal Emperor) (location of his tombs)ignore_new_line (a) Babur - Kabul (b) Akbar - Fatehpur Sikri (c) Jahangir - Lahore (d) Bahadur Shah Zafar - Delhi Now with the following code Select the correct answer code: (Important question)
+Which of the following pairs is correctly matched?\n(Mughal Emperor) (location of his tombs)\n (a) Babur - Kabul (b) Akbar - Fatehpur Sikri (c) Jahangir - Lahore (d) Bahadur Shah Zafar - Delhi Now with the following code Select the correct answer code: (Important question)
 4
 (a) 1 and 2
 (b) 2 and 3
@@ -4308,7 +4308,7 @@ Sardar Vallabh Bhai Patel
 y
 None
 
-In the context of Rajasthan Government Budget 2021-22, Indira Gandhi Urban Credit Card Scheme is related to?ignore_new_lineignore_new_line1) To provide interest free loan up to Rs 50,000 to the needy from street vendors and unemployed in urban areas.
+In the context of Rajasthan Government Budget 2021-22, Indira Gandhi Urban Credit Card Scheme is related to?\n\n1) To provide interest free loan up to Rs 50,000 to the needy from street vendors and unemployed in urban areas.
 4
 only 1 is correct
 only 2 is correct
@@ -4388,7 +4388,7 @@ Soda fragrance
 y
 None
 
-"Lord Curzon wants to dance alone like Ravana all over India, his intellect is so heavily veiled by the pride of wealth and power, Like a swinging elephant he is crushing public opinion like grass"ignore_new_lineThe above statement Whose?
+"Lord Curzon wants to dance alone like Ravana all over India, his intellect is so heavily veiled by the pride of wealth and power, Like a swinging elephant he is crushing public opinion like grass"\nThe above statement Whose?
 4
 Rash Behari Bose
 Montagu Chelmsford
@@ -4628,7 +4628,7 @@ Secretary Devprasthan Prayag
 y
 None
 
-In which year was the "historic establishment" of Rajasthan's largest educational channel "RAS Exam" done? ignore_new_lineignore_new_line(This question should not be wrong )
+In which year was the "historic establishment" of Rajasthan's largest educational channel "RAS Exam" done? \n\n(This question should not be wrong )
 4
 in 2016
 in 2017
@@ -5078,7 +5078,7 @@ All
 y
 None
 
-Which of the following is the correct statement?ignore_new_line A resolution passed by the Council of States under Article 249 of the Parliament to make laws on State subjects in the national interest, remains in force for a period?ignore_new_line (Most important question)
+Which of the following is the correct statement?\n A resolution passed by the Council of States under Article 249 of the Parliament to make laws on State subjects in the national interest, remains in force for a period?\n (Most important question)
 4
 not more than six months
 not more than two years
@@ -5329,7 +5329,7 @@ jhunjhunu
 y
 None
 
-Match List 1 (Mughal Ruler) with List 2 (Tomb Location) on the basis of code List-1 List-2ignore_new_line1. Babar A. delhiignore_new_line2. Humayun b. Kabul 3. Akbar s. Lahore 4. Jahangir D. Sikandra Code: (Important question)
+Match List 1 (Mughal Ruler) with List 2 (Tomb Location) on the basis of code List-1 List-2\n1. Babar A. delhi\n2. Humayun b. Kabul 3. Akbar s. Lahore 4. Jahangir D. Sikandra Code: (Important question)
 4
 1-A 2-B 3-S 4-D
 1-B 2-A 3-D 4-S
@@ -5619,7 +5619,7 @@ Nagaur
 y
 None
 
-During the Revolt of 1857, who among the following were the leaders who were not going to Delhi thinking that their personality would be dwarfed in front of Bahadur Shah?ignore_new_line(Most important question)
+During the Revolt of 1857, who among the following were the leaders who were not going to Delhi thinking that their personality would be dwarfed in front of Bahadur Shah?\n(Most important question)
 4
 Nana Saheb
 Begum Hazrat Mahal
@@ -6310,7 +6310,7 @@ fifth
 y
 None
 
-Who among the following was Jahangiri painter? Select the correct answer from the code given below –ignore_new_line1. Abdussamad 2 Abul Hassanignore_new_line3. Aka Riza 4 Mir Syed Ali Code: (Most important question)
+Who among the following was Jahangiri painter? Select the correct answer from the code given below –\n1. Abdussamad 2 Abul Hassan\n3. Aka Riza 4 Mir Syed Ali Code: (Most important question)
 4
 (a) 1 and 2
 (b) 2 and 3
@@ -6600,7 +6600,7 @@ Tehri Garhwal
 y
 None
 
-In September 2021, who among the following has been elected as the new Chief Minister of Punjab?ignore_new_lineignore_new_line(Most important question)
+In September 2021, who among the following has been elected as the new Chief Minister of Punjab?\n\n(Most important question)
 4
 Ambika Soni
 Navjot Singh Sidhu
@@ -6760,7 +6760,7 @@ London, England
 y
 None
 
-Who propounded the Saptang theory of the state?ignore_new_lineignore_new_line(Important question L
+Who propounded the Saptang theory of the state?\n\n(Important question L
 4
 [A] Kautilya in Arthashastra
 [B] Manu in Manusmriti
@@ -7260,7 +7260,7 @@ Article 164
 y
 None
 
-Select the true statement related to the Sustainable Development Goals (SDGs?ignore_new_lineignore_new_lineA) SDGs have set 17 goals! B) According to the SDG report-2019, there has been a 49% reduction in infant mortality between 2000 and 2017 C) All the goals are to be achieved by the year 2030
+Select the true statement related to the Sustainable Development Goals (SDGs?\n\nA) SDGs have set 17 goals! B) According to the SDG report-2019, there has been a 49% reduction in infant mortality between 2000 and 2017 C) All the goals are to be achieved by the year 2030
 4
 only 2
 1 and 2
@@ -7496,7 +7496,7 @@ All of the above
 y
 None
 
-Consider with reference to the geographical condition for maize production? ignore_new_line(1) - warm and sub-tropical climate conditionsignore_new_line(2) - strong sunlight (3) - mean temperature and rainfall Select the correct statements from the above? (Important question)
+Consider with reference to the geographical condition for maize production? \n(1) - warm and sub-tropical climate conditions\n(2) - strong sunlight (3) - mean temperature and rainfall Select the correct statements from the above? (Important question)
 4
 (A) - 1 & 2
 (B) - 1 & 3
@@ -7936,7 +7936,7 @@ What is the estimated contribution of service and in the gross value addition of
 y
 None
 
-Which of the following is related to Pradhan Mantri Kusum Yojana? (ignore_new_lineignore_new_lineA) It is a scheme of the Central Government! B) To get the farmers to set up solar power plants C) To provide solar pumps and grid connected moderators to the farmers through the scheme! (Most important question)
+Which of the following is related to Pradhan Mantri Kusum Yojana? (\n\nA) It is a scheme of the Central Government! B) To get the farmers to set up solar power plants C) To provide solar pumps and grid connected moderators to the farmers through the scheme! (Most important question)
 4
 A and B
 C only
@@ -7996,7 +7996,7 @@ Gurudwara
 y
 None
 
-To what extent is it fair to punish the whole country for the sin of one place.ignore_new_line👉 Whose statement on the suspension of non-cooperation movement❓ignore_new_line (Important question)
+To what extent is it fair to punish the whole country for the sin of one place.\n👉 Whose statement on the suspension of non-cooperation movement❓\n (Important question)
 4
 Motilal Nehru
 Lala Lajpat Rai
@@ -8204,7 +8204,7 @@ When was Mahatma Gandhi Adarsh ​​Gram Yojana implemented?
 17 March 2019
 0
 y
-Noneignore_new_lineignore_new_line Launched on the occasion of 150th birth anniversary (Year,2019) of Father of the Nation Mahatma Gandhi! According to the plan, a village in the district will be selected and developed according to Gandhian values.
+None\n\n Launched on the occasion of 150th birth anniversary (Year,2019) of Father of the Nation Mahatma Gandhi! According to the plan, a village in the district will be selected and developed according to Gandhian values.
 
 Which is the famous text painted in Chavand painting style during the period of Maharana Amar Singh I?
 4
@@ -8426,7 +8426,7 @@ Udit Singhli
 y
 None
 
-Shale gas resources are found in which of the following regions of India? ignore_new_line(1) Cambay Basin (Gujarat Gulf of Khambhat) ignore_new_line(2) Cauvery Basin (Tamil Nadu) (3) Krishna-Godavari Basin (Andhra Pradesh) (4) Damodar Valley Region (West Bengal) Select the correct statements from the above?
+Shale gas resources are found in which of the following regions of India? \n(1) Cambay Basin (Gujarat Gulf of Khambhat) \n(2) Cauvery Basin (Tamil Nadu) (3) Krishna-Godavari Basin (Andhra Pradesh) (4) Damodar Valley Region (West Bengal) Select the correct statements from the above?
 4
 (A) - 1 & 2
 (B) - 1, 2 & 3
@@ -8446,7 +8446,7 @@ Maharaja Jawahar Singh
 y
 None
 
-False statements about Fifth State Financial Commission are ?ignore_new_lineA. Its duration is 2015-2020 !ignore_new_lineB. The distribution of funds among Panchayati Raj Institutions was 5 : 20 : 75 respectively! C. Use of 55% amount for basic and development works (Most important question)
+False statements about Fifth State Financial Commission are ?\nA. Its duration is 2015-2020 !\nB. The distribution of funds among Panchayati Raj Institutions was 5 : 20 : 75 respectively! C. Use of 55% amount for basic and development works (Most important question)
 4
 A false
 A and B False
@@ -8754,9 +8754,9 @@ Cow
 She goat
 3
 y
-Noneignore_new_lineignore_new_line The state had 21.67 million goats in 2012 and in 2019 the state has the first place (highest animal wealth) with the number of 20.84 million!
+None\n\n The state had 21.67 million goats in 2012 and in 2019 the state has the first place (highest animal wealth) with the number of 20.84 million!
 
-Select the true statements (20th count) ?ignore_new_lineignore_new_lineA. Goats are the highest in terms of livestock numbers in the state! B. In the 19th census, the number of goats, camels and donkeys was the first in the country! C. The number of sheep is 13.87% of the total livestock in the country! (Important question)
+Select the true statements (20th count) ?\n\nA. Goats are the highest in terms of livestock numbers in the state! B. In the 19th census, the number of goats, camels and donkeys was the first in the country! C. The number of sheep is 13.87% of the total livestock in the country! (Important question)
 4
 A and C
 only B
@@ -8806,7 +8806,7 @@ On the advice of the Advocate General of India.
 y
 None
 
-Evaluate the following statements with reference to the State Finance Commission? ignore_new_line(1) - Article 280 deals with the constitution of the State Finance Commission. ignore_new_line(2) - State Finance Commission is constituted every fifth year by the President of India. Which of the above statements are correct?
+Evaluate the following statements with reference to the State Finance Commission? \n(1) - Article 280 deals with the constitution of the State Finance Commission. \n(2) - State Finance Commission is constituted every fifth year by the President of India. Which of the above statements are correct?
 4
 (A) - 1 only
 (B) - 2 only
@@ -8956,7 +8956,7 @@ Police Officer
 y
 None
 
-Who among the following called the District Magistrate 'Institutional Charisma'?ignore_new_lineignore_new_line[ Ras Pre Exam, 2013 ]
+Who among the following called the District Magistrate 'Institutional Charisma'?\n\n[ Ras Pre Exam, 2013 ]
 4
 Rajni Kothari
 P. R. interpreter
@@ -8976,7 +8976,7 @@ Earl of Willington
 y
 None
 
-Who among the following scholars was not in the court of Kumbha?ignore_new_lineignore_new_line[ Ras Pre Exam, 2016 ]
+Who among the following scholars was not in the court of Kumbha?\n\n[ Ras Pre Exam, 2016 ]
 4
 Tilla Bhatt
 Muni Sundar Suri
@@ -9066,7 +9066,7 @@ Mariyappan Thangavelu
 y
 None
 
-Alibakshi Khayal is associated with which of the following region of Rajasthan?ignore_new_lineignore_new_line[ Ras Pre Exam, 2016 ]
+Alibakshi Khayal is associated with which of the following region of Rajasthan?\n\n[ Ras Pre Exam, 2016 ]
 4
 Karauli
 teasing
@@ -9086,7 +9086,7 @@ Maharashtra
 y
 None
 
-Ancient city which is mentioned in both Mahabharata and Mahabhashya ?ignore_new_lineignore_new_line(Ras Pre Exam, 2016 )
+Ancient city which is mentioned in both Mahabharata and Mahabhashya ?\n\n(Ras Pre Exam, 2016 )
 4
 Biratnagar (Bairath)
 Madhyamika (city)
@@ -9106,7 +9106,7 @@ Hurricane Nate
 y
 None
 
-What is meant by 'Patta Rekh' in the history of Rajasthan?ignore_new_lineignore_new_line[ Ras Pre Exam, 2016 ]
+What is meant by 'Patta Rekh' in the history of Rajasthan?\n\n[ Ras Pre Exam, 2016 ]
 4
 assessed revenue
 military tax
@@ -9426,7 +9426,7 @@ Rs 6533
 y
 None
 
-Which interpretation of Economic Survey 2020-21 is correct?ignore_new_line1. The per capita income in the state (2011-12) is Rs 81,355 !ignore_new_line2. The total food grain production in the year 2020-21 is estimated at 271.33 lakh tonnes! 3. The per capita income of the state at the prevailing prices is Rs 1,09,386.
+Which interpretation of Economic Survey 2020-21 is correct?\n1. The per capita income in the state (2011-12) is Rs 81,355 !\n2. The total food grain production in the year 2020-21 is estimated at 271.33 lakh tonnes! 3. The per capita income of the state at the prevailing prices is Rs 1,09,386.
 4
 1 and 3
 only 2
@@ -9686,7 +9686,7 @@ opaji adha
 y
 None
 
-Which of the following statements is true ?ignore_new_lineignore_new_line(A) Agriculture sector has the highest contribution to GDP at present in the state (B) the contribution of service sector to GDP (in the state) is increasing continuously! (C) According to the 2019-20 survey, the contribution of the service sector in the state is 42.40%
+Which of the following statements is true ?\n\n(A) Agriculture sector has the highest contribution to GDP at present in the state (B) the contribution of service sector to GDP (in the state) is increasing continuously! (C) According to the 2019-20 survey, the contribution of the service sector in the state is 42.40%
 4
 A, B & C
 A & B
@@ -9766,7 +9766,7 @@ Chambal
 y
 None
 
-Consider the following grassland and country? ignore_new_line(1) - Pampaz --- Argentinaignore_new_line(2) - Downs --- Australia (3) - Weld --- Hungary (4) - Pustage --- South Africa Select the correct statements from the above? (Most important question)
+Consider the following grassland and country? \n(1) - Pampaz --- Argentina\n(2) - Downs --- Australia (3) - Weld --- Hungary (4) - Pustage --- South Africa Select the correct statements from the above? (Most important question)
 4
 (A) - 1 & 2
 (B) - 1, 2 & 3
@@ -9816,7 +9816,7 @@ The new date of Ayushman Bharat Mahatma Gandhi Rajasthan Insurance Scheme was st
 y
 None
 
-Common Consumer Price Index in the state, Jaipur, Ajmer and Bhilwara are issued on the basis of center, which city has been included in place of Ajmer center at present?ignore_new_lineignore_new_line(V.very important question)
+Common Consumer Price Index in the state, Jaipur, Ajmer and Bhilwara are issued on the basis of center, which city has been included in place of Ajmer center at present?\n\n(V.very important question)
 4
 Alwar
 Jodhpur
@@ -9966,7 +9966,7 @@ Enlightenment
 y
 None
 
-On which base year the Consumer Price Index of the state is being released from the month of September 2020 ?ignore_new_lineignore_new_line(V.very important question)
+On which base year the Consumer Price Index of the state is being released from the month of September 2020 ?\n\n(V.very important question)
 4
 2016 = 100
 1999 - 2000 = 100

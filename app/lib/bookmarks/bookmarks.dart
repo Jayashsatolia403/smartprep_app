@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-import 'jeeAdv_quiz_template.dart';
 import 'quiz_template.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -12,12 +11,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
 import '../ad_state.dart';
-import '../config.dart';
 
 class Bookmarks extends StatefulWidget {
-  Bookmarks({Key? key, required this.data}) : super(key: key);
-
-  Config data;
+  const Bookmarks({Key? key}) : super(key: key);
 
   @override
   _BookmarksState createState() => _BookmarksState();
@@ -54,7 +50,7 @@ class _BookmarksState extends State<Bookmarks> {
       },
     );
 
-    final resJson = jsonDecode(response.body);
+    final resJson = jsonDecode(utf8.decode(response.bodyBytes));
 
     if (resJson == "Done") {
       _refreshController.loadNoData();
@@ -142,26 +138,6 @@ class _BookmarksState extends State<Bookmarks> {
                                       style:
                                           const TextStyle(color: Colors.white)),
                                   onPressed: () {
-                                    if (exam == "jeeAdv") {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                JeeCustomRadio(
-                                                  options: allOptions[i],
-                                                  statement:
-                                                      questionStatements[i][0],
-                                                  quesUUid:
-                                                      questionStatements[i][1],
-                                                  qualityRating:
-                                                      questionStatements[i][2],
-                                                  difficultyRating:
-                                                      questionStatements[i][3],
-                                                  explaination:
-                                                      questionStatements[i][4],
-                                                )),
-                                      );
-                                    }
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
@@ -203,94 +179,3 @@ class _BookmarksState extends State<Bookmarks> {
         });
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Future<List<dynamic>> getBookmarks() async {
-//   String url = await rootBundle.loadString('assets/text/url.txt');
-//   print(url);
-//   List<dynamic> allOptions = <dynamic>[];
-//   List<dynamic> questionStatements = <dynamic>[];
-//   List<dynamic> result = <dynamic>[];
-
-//   final prefs = await SharedPreferences.getInstance();
-//   String? token = prefs.getString("token");
-
-//   final response = await http.get(
-//     Uri.parse('$url/get_bookmarked_questions'),
-//     headers: <String, String>{
-//       'Content-Type': 'application/json; charset=UTF-8',
-//       'Authorization': "Token $token"
-//     },
-//   );
-
-//   final resJson = jsonDecode(response.body);
-
-//   print(resJson);
-
-//   for (var id in resJson) {
-//     questionStatements
-//         .add([id['statement'], id['uuid'], id['ratings'], id['difficulty']]);
-//     allOptions.add(id['options']);
-//   }
-
-//   result.add(questionStatements);
-//   result.add(allOptions);
-
-//   print("\n\n");
-//   print(result);
-
-//   return result;
-// }

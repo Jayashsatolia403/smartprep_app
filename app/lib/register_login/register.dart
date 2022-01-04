@@ -31,7 +31,7 @@ Future<List<String>> registerUser(
   if (response.statusCode == 200) {
     final prefs = await SharedPreferences.getInstance();
 
-    Map<String, dynamic> json = jsonDecode(response.body);
+    Map<String, dynamic> json = jsonDecode(utf8.decode(response.bodyBytes));
 
     prefs.setString('token', json['token']);
     prefs.setString('name', json['name']);

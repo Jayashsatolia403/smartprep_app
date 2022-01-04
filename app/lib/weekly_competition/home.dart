@@ -41,7 +41,7 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
 
   void loadVideoAd() async {
     RewardedAd.load(
-        adUnitId: "ca-app-pub-3347710342715984/3851662288",
+        adUnitId: RewardedAd.testAdUnitId,
         request: const AdRequest(),
         rewardedAdLoadCallback:
             RewardedAdLoadCallback(onAdLoaded: (RewardedAd ad) {
@@ -64,14 +64,17 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
 
   Map<String, int> totalPages = {
     "ias": 10,
+    "iasHindi": 10,
     "jee": 6,
     "jeeMains": 9,
     "jeeAdv": 6,
     "neet": 18,
     "ras": 15,
+    "rasHindi": 15,
     "ibpsPO": 10,
     "ibpsClerk": 10,
     "sscCGL": 10,
+    "sscCGLHindi": 10,
     "sscCHSL": 10,
     "nda": 15,
     "cat": 9,
@@ -93,6 +96,7 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
   };
 
   Future<bool> getQuesFromDatabase() async {
+    print("Fetching From Database...");
     try {
       if (questions.length >= currentPage * 10) {
         currentPage++;
@@ -137,21 +141,15 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
     }
   }
 
-  Future<bool> getQuestions(bool isRefresh) async {
+  Future<bool> getQuestions() async {
+    print("\n\n\n\n\n At Lease Working \n\n");
     String url = await rootBundle.loadString('assets/text/url.txt');
 
     final prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString("token");
     String examName = prefs.getString("exam_name") ?? "Exam";
 
-    setState(() {
-      exam = examName;
-    });
-
-    if (isRefresh) {
-      currentPage = 1;
-      questions = [];
-    } else if (currentPage > (totalPages[examName] as int)) {
+    if (currentPage > (totalPages[examName] as int)) {
       _refreshController.loadNoData();
       return false;
     }
@@ -159,8 +157,11 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
     final dbDate = await QuizDatabase.instance.readAllDate();
 
     final now = DateTime.now();
+
     if (dbDate.isNotEmpty &&
-        dbDate[0].date != DateTime(now.year, now.month, now.day)) {
+        (dbDate[0].date != DateTime(now.year, now.month, now.day) ||
+            dbDate[0].examName != examName)) {
+      print("\n\n\n\n\n\n\n\n\nClearing Database...\n\n\n\n\n");
       await QuizDatabase.instance.deleteEverything();
     } else if (dbDate.isNotEmpty && dbDate[0].pages >= currentPage) {
       final res = await getQuesFromDatabase();
@@ -168,6 +169,8 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
         return true;
       }
     }
+
+    print("\n\n\n\n Working : 6 \n\n\n\n");
 
     final response = await http.get(
       Uri.parse(
@@ -178,7 +181,7 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
       },
     );
 
-    final resJson = jsonDecode(response.body);
+    final resJson = jsonDecode(utf8.decode(response.bodyBytes));
 
     if (response.statusCode == 404) {
       setState(() {
@@ -194,18 +197,23 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
 
     for (var ques in resJson['questions']) {
       // Adding Question to quiz_config
-      Question question = Question(statement: ques['statement'], options: []);
+      Question question = Question(
+          statement: (ques['statement'] as String).replaceAll("\\n", "\n"),
+          options: []);
 
       // Adding Question to Database
-      Questions dbQuestion =
-          Questions(uuid: ques['uuid'], statement: ques['statement']);
+      Questions dbQuestion = Questions(
+          uuid: ques['uuid'],
+          statement: (ques['statement'] as String).replaceAll("\\n", "\n"));
 
       await QuizDatabase.instance.createQuestion(dbQuestion);
 
       for (var optn in ques['options']) {
         // Adding Option to Database
-        Options dbOption =
-            Options(uuid: optn[1], content: optn[0], isSelected: false);
+        Options dbOption = Options(
+            uuid: optn[1],
+            content: (optn[0] as String).replaceAll("\\n", "\n"),
+            isSelected: false);
         await QuizDatabase.instance.createOption(dbOption);
 
         // Adding Options to Question of quiz_config
@@ -237,7 +245,8 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
       await QuizDatabase.instance.createDate(Date(
           date: DateTime(now.year, now.month, now.day),
           pages: currentPage,
-          competitionUuid: competitionUuid));
+          competitionUuid: competitionUuid,
+          examName: examName));
     }
 
     return true;
@@ -262,7 +271,7 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
 
   @override
   void initState() {
-    myFuture = getQuestions(false);
+    myFuture = getQuestions();
     loadVideoAd();
   }
 
@@ -284,7 +293,11 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
                           style: TextStyle(color: Colors.white)),
                       ElevatedButton(
                           onPressed: () async {
-                            showVideoAd();
+                            try {
+                              showVideoAd();
+                            } catch (error) {
+                              print(error);
+                            }
                             String url = await rootBundle
                                 .loadString('assets/text/url.txt');
 
@@ -358,7 +371,7 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
                         controller: _refreshController,
                         enablePullUp: true,
                         onLoading: () async {
-                          final result = await getQuestions(false);
+                          final result = await getQuestions();
                           if (result) {
                             _refreshController.loadComplete();
                           } else {
@@ -374,28 +387,17 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
                                     left: 20, top: 50, bottom: 20),
                                 child: ElevatedButton(
                                   child: Text(
-                                      'Q.${i + 1}  ${questions[i].statement}',
+                                      '                          Q.${i + 1}\n\n${questions[i].statement}',
                                       style:
                                           const TextStyle(color: Colors.white)),
                                   onPressed: () {
-                                    if (exam == "jeeAdv") {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                JeeCustomRadio(
-                                                  question: questions[i],
-                                                )),
-                                      );
-                                    } else {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => CustomRadio(
-                                                  question: questions[i],
-                                                )),
-                                      );
-                                    }
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => CustomRadio(
+                                                question: questions[i],
+                                              )),
+                                    );
                                   },
                                   style: ElevatedButton.styleFrom(
                                       fixedSize: const Size(250, 20),
@@ -490,7 +492,7 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
 //     },
 //   );
 
-//   for (var uuid in jsonDecode(response.body)) {
+//   for (var uuid in jsonDecode(utf8.decode(response.bodyBytes))) {
 //     final ques = await http.get(
 //       Uri.parse('$url/getQuesByID?quesID=$uuid'),
 //       headers: <String, String>{
@@ -550,7 +552,7 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
 //     },
 //   );
 
-//   for (var uuid in jsonDecode(response.body)) {
+//   for (var uuid in jsonDecode(utf8.decode(response.bodyBytes))) {
 //     final ques = await http.get(
 //       Uri.parse('$url/getQuesByID?quesID=$uuid'),
 //       headers: <String, String>{

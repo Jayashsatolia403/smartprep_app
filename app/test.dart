@@ -12,7 +12,7 @@ void main() async {
     },
   );
 
-  final resJson = await jsonDecode(response.body);
+  final resJson = await jsonDecode(utf8.decode(response.bodyBytes));
 
   for (var x in resJson['questions']) {
     print("\n");

@@ -23,8 +23,11 @@ upsc -> iasMisc
 ("ntpc","ntpc"), 
 
 ("reet1", "reet1"), 
-("reet2Science", "reet2Science"), ("patwari", 'patwari'), ("grade2nd", "grade2n
-d"), 
-               ("grade2ndScience", "grade2ndScience"), ("grade2ndSS", "grade2ndSS"), ("sscGD", "sscGD"), ("sscMTS", "sscMTS"),
-               ("rajPoliceConst", "rajPoliceConst"), ("rrbGD", "rrbGD"), ("sipaper1", "sipaper1"), ("sipaper2", 
-"sipaper2")]
+("patwari", 'patwari'), 
+("grade2nd", "grade2nd"),, 
+("grade2ndSS", "grade2ndSS"), 
+("sscGD", "sscGD"), 
+("sscMTS", "sscMTS"),
+("rajPoliceConst", "rajPoliceConst"), 
+("rrbGD", "rrbGD"), 
+("sipaper1", "sipaper1"), 

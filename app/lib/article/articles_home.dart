@@ -18,7 +18,7 @@ Future<List<ArticleConfig>> getArticles() async {
     },
   );
 
-  final json = jsonDecode(response.body);
+  final json = jsonDecode(utf8.decode(response.bodyBytes));
 
   for (var i in json) {
     ArticleConfig data = ArticleConfig(

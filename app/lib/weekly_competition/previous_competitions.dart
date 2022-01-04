@@ -41,7 +41,7 @@ class _PreviousCompetitionsState extends State<PreviousCompetitions> {
       return false;
     }
 
-    final resJson = jsonDecode(response.body);
+    final resJson = jsonDecode(utf8.decode(response.bodyBytes));
 
     for (var i in resJson) {
       setState(() {
@@ -78,26 +78,28 @@ class _PreviousCompetitionsState extends State<PreviousCompetitions> {
                 _refreshController.loadFailed();
               }
             },
-            child: ListView.builder(
-              itemCount: previousCompetitions.length,
-              shrinkWrap: true,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(previousCompetitions[index][0]),
-                  subtitle: const Text("Tap to view"),
-                  leading: const Icon(Icons.book),
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => PreviousCompetitionView(
-                            compUuid: previousCompetitions[index][1],
-                            compName: previousCompetitions[index][0],
-                          ),
-                        ));
-                  },
-                );
-              },
-            )));
+            child: ListView(children: [
+              ListView.builder(
+                itemCount: previousCompetitions.length,
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: Text(previousCompetitions[index][0]),
+                    subtitle: const Text("Tap to view"),
+                    leading: const Icon(Icons.book),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => PreviousCompetitionView(
+                              compUuid: previousCompetitions[index][1],
+                              compName: previousCompetitions[index][0],
+                            ),
+                          ));
+                    },
+                  );
+                },
+              )
+            ])));
   }
 }

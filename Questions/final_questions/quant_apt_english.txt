@@ -98,7 +98,7 @@ A boy goes to school at the speed of 5 km/h and returns to the village at the sp
 y
 None
 
-A rabbit is 100 meters ahead of a dog. He looked back and saw the dog and started running at the speed of 12Km/hour. After half a minute the dog saw the rabbit and followed him at a speed of 16Km/Hour. When will he catch her?ignore_new_line[ Important Questions ]
+A rabbit is 100 meters ahead of a dog. He looked back and saw the dog and started running at the speed of 12Km/hour. After half a minute the dog saw the rabbit and followed him at a speed of 16Km/Hour. When will he catch her?\n[ Important Questions ]
 4
 2 minutes
 3 minutes
@@ -138,7 +138,7 @@ Rs. 60
 y
 None
 
-If a discount of 30% on the marked price of an article and the difference between two successive discounts of 20% and 10% is Rs 144, then what is the marked price of the article?ignore_new_lineignore_new_line【 SSC CGL Tier-ll 2015
+If a discount of 30% on the marked price of an article and the difference between two successive discounts of 20% and 10% is Rs 144, then what is the marked price of the article?\n\n【 SSC CGL Tier-ll 2015
 4
 7200 rupees
 7400 rupees
@@ -148,7 +148,7 @@ If a discount of 30% on the marked price of an article and the difference betwee
 y
 None
 
-If a shopkeeper wants to give a discount of 20% on a toy, then he has to sell it for Rs.300. If he sells it for Rs 405, then what will be his profit percentage ?ignore_new_lineignore_new_line【 SSC CGL Tier- ll 2015
+If a shopkeeper wants to give a discount of 20% on a toy, then he has to sell it for Rs.300. If he sells it for Rs 405, then what will be his profit percentage ?\n\n【 SSC CGL Tier- ll 2015
 4
 5%
 4%
@@ -178,7 +178,7 @@ What is the greatest number which when divided by 2400 and 1810 leaves remainder
 y
 None
 
-Find the fraction which has the same ratio from 1/27 as 3/7 to 5/9 ?ignore_new_lineignore_new_line【 SSC CGL Tier-ll 2016
+Find the fraction which has the same ratio from 1/27 as 3/7 to 5/9 ?\n\n【 SSC CGL Tier-ll 2016
 4
 5/9
 1/35
@@ -198,7 +198,7 @@ What is the largest six digit number which when divided by 6, 7, 8, 9 and 10 lea
 y
 None
 
-What is the measure of each interior angle of a regular polygon with 8 sides?ignore_new_lineignore_new_line[ SSC CHSL, DEO, PA/SA Exam 2015 ]
+What is the measure of each interior angle of a regular polygon with 8 sides?\n\n[ SSC CHSL, DEO, PA/SA Exam 2015 ]
 5
 120°
 100°
@@ -219,7 +219,7 @@ The area of ​​an equilateral triangle is 9√3 m. Accordingly, how many mete
 y
 None
 
-Two supplementary angles are in the ratio 2 : 3. What is the degree angle ?ignore_new_lineignore_new_line[ SSC CGL Pre 2013, Main 2014 ]
+Two supplementary angles are in the ratio 2 : 3. What is the degree angle ?\n\n[ SSC CGL Pre 2013, Main 2014 ]
 4
 33°, 57°
 66°,114°
@@ -349,7 +349,7 @@ If Q is equal to 20% of P and R is equal to 30% of Q, then which of the followin
 y
 None
 
-21.6 3.6 × 2 + 0.25 × 16 4 - 6 is equal to :ignore_new_lineignore_new_line[ SSC CGL Tier- l 2019 ]
+21.6 3.6 × 2 + 0.25 × 16 4 - 6 is equal to :\n\n[ SSC CGL Tier- l 2019 ]
 4
 6
 5
@@ -439,7 +439,7 @@ Rs 790
 y
 None
 
-Which of the following number is not prime?ignore_new_lineignore_new_line[ SSC CHSL Exam 2018 ]
+Which of the following number is not prime?\n\n[ SSC CHSL Exam 2018 ]
 4
 89
 87
@@ -469,7 +469,7 @@ A shopkeeper allows a discount of 10% on the marked price. By what% should the m
 y
 None
 
-What will be the third ratio of 7.8 and 12? (RRB (A.S.M) 2007)ignore_new_lineignore_new_lineWhat will be third proportion of 8 and 12?
+What will be the third ratio of 7.8 and 12? (RRB (A.S.M) 2007)\n\nWhat will be third proportion of 8 and 12?
 4
 (a) 7/4
 (b) 8
@@ -479,7 +479,7 @@ What will be the third ratio of 7.8 and 12? (RRB (A.S.M) 2007)ignore_new_lineign
 y
 None
 
-The sum of four consecutive odd numbers is 328. Find the largest number ?ignore_new_lineignore_new_line[ SSC CHSL Exam 2018 ]
+The sum of four consecutive odd numbers is 328. Find the largest number ?\n\n[ SSC CHSL Exam 2018 ]
 4
 85
 98
@@ -509,7 +509,7 @@ The sum of two numbers is 56 and their LCM is 105. What are numbers?
 y
 None
 
-b - [ b -( a + b) - { b - ( b - a - b ) } + 2a ] = ?ignore_new_lineignore_new_line[ SSC CHSL Exam 2019 ]
+b - [ b -( a + b) - { b - ( b - a - b ) } + 2a ] = ?\n\n[ SSC CHSL Exam 2019 ]
 4
 2b
 1
@@ -519,7 +519,7 @@ b - [ b -( a + b) - { b - ( b - a - b ) } + 2a ] = ?ignore_new_lineignore_new_li
 y
 None
 
-A gold piece broke into three parts. The ratio of the weights of these three parts is 3:4:5. The price of gold is directly proportional to the square of its weight. If this gold is broken, there is a loss of ₹ 23500. What was the original price of gold?ignore_new_lineignore_new_line★ Important Question
+A gold piece broke into three parts. The ratio of the weights of these three parts is 3:4:5. The price of gold is directly proportional to the square of its weight. If this gold is broken, there is a loss of ₹ 23500. What was the original price of gold?\n\n★ Important Question
 4
 ₹30,000
 ₹36,000
@@ -720,7 +720,7 @@ None of these
 y
 None
 
-If the following series is written in reverse order, then which number will be 4th to the right of the 7th number from the left?ignore_new_lineignore_new_line7,3,9,7,0,3,8,4,6,2,1,0, 5,11,13
+If the following series is written in reverse order, then which number will be 4th to the right of the 7th number from the left?\n\n7,3,9,7,0,3,8,4,6,2,1,0, 5,11,13
 4
 0
 5
@@ -740,7 +740,7 @@ A mixture of 60 liters of milk and water contains 60 percent water, how much mor
 y
 None
 
-A train traveling at 9/13 times its original speed reaches the destination in 39 hours, how much time will ignore_new_line save if the train moves at its original speed?
+A train traveling at 9/13 times its original speed reaches the destination in 39 hours, how much time will \n save if the train moves at its original speed?
 4
 18hrs
 16hrs
@@ -818,7 +818,7 @@ A wooden piece measures 30 cm × 24 cm × 18 cm. There are such cubes to be cut 
 (d) 75
 0
 y
-(Ans : a)ignore_new_lineHint: Number of cubes = 30×24×18/6×6×6 = 60
+(Ans : a)\nHint: Number of cubes = 30×24×18/6×6×6 = 60
 
 A boy tosses three coins The probability of getting at least one head is-
 4
@@ -828,7 +828,7 @@ A boy tosses three coins The probability of getting at least one head is-
 (d) 7/8
 2
 y
-(Ans : c)ignore_new_lineHint: Required Probability = (1/2)n = (1/2)3 = 1/8
+(Ans : c)\nHint: Required Probability = (1/2)n = (1/2)3 = 1/8
 
 In a football tournament, there are 87 players for 7 different teams. Each team has at least 12 players. Each team has at least 12 players. What is the biggest possible number for a single team?
 4
@@ -838,7 +838,7 @@ In a football tournament, there are 87 players for 7 different teams. Each team 
 (d) 21
 2
 y
-(Ans : c)ignore_new_lineHint: Minimum number of players in all team = 12 × 7 = 84, If the remaining 3 players are given in any one team, then the number of players in the team (which will be the maximum possible number) is.
+(Ans : c)\nHint: Minimum number of players in all team = 12 × 7 = 84, If the remaining 3 players are given in any one team, then the number of players in the team (which will be the maximum possible number) is.
 
 The sum of the length, breadth and height of a cuboid is 25 cm. The diagonal of a cuboid is 15  cm. What will be the total surface area of ​​the cuboid?
 4
@@ -850,7 +850,7 @@ The sum of the length, breadth and height of a cuboid is 25 cm. The diagonal of 
 y
 None
 
-Can you answer this?ignore_new_line H.C.F. of two numbers. and L.C.M. The sum of is 360 and their L.C.M. His H.C.F. 44. If one of the numbers is 32, then the other number is:
+Can you answer this?\n H.C.F. of two numbers. and L.C.M. The sum of is 360 and their L.C.M. His H.C.F. 44. If one of the numbers is 32, then the other number is:
 4
 (A) 64
 (B) 72
@@ -1126,7 +1126,7 @@ A boy goes to school at the speed of 5 km/h and returns to the village at the sp
 y
 None
 
-A rabbit is 100 meters ahead of a dog. He looked back and saw the dog and started running at the speed of 12Km/hour. After half a minute the dog saw the rabbit and followed him at a speed of 16Km/Hour. When will he catch her?ignore_new_line[ Important Questions ]
+A rabbit is 100 meters ahead of a dog. He looked back and saw the dog and started running at the speed of 12Km/hour. After half a minute the dog saw the rabbit and followed him at a speed of 16Km/Hour. When will he catch her?\n[ Important Questions ]
 4
 2 minutes
 3 minutes
@@ -1146,7 +1146,7 @@ D) Friday
 y
 None
 
-How many times will the hour and minute hands be on each other in 24 hours?ignore_new_line(A) 20  (B) 21ignore_new_line(C) 22  (D) 24
+How many times will the hour and minute hands be on each other in 24 hours?\n(A) 20  (B) 21\n(C) 22  (D) 24
 4
 (C)
 (B)
@@ -1166,7 +1166,7 @@ A sum of money doubles itself in 5 years at the rate of simple interest, then fi
 y
 None
 
-3720 in 3 years at simple interest. 4200 in 5 years. Then find the principal amount?ignore_new_line3720 in 3 years at simple interest. 4200 in 5 years. If so, find the principal amount?
+3720 in 3 years at simple interest. 4200 in 5 years. Then find the principal amount?\n3720 in 3 years at simple interest. 4200 in 5 years. If so, find the principal amount?
 4
 2500
 2800
@@ -1186,7 +1186,7 @@ The average of x numbers is 48. If 5/6 of the numbers are increased by 51 each a
 y
 None
 
-Simple interest on an amount is Rs. 24 and the true discount on the same is Rs. 20. The principal amount isignore_new_lineignore_new_line The simple interest on an amount is Rs.24 and the actual discount on the same is Rs.20. What is the principal amount?
+Simple interest on an amount is Rs. 24 and the true discount on the same is Rs. 20. The principal amount is\n\n The simple interest on an amount is Rs.24 and the actual discount on the same is Rs.20. What is the principal amount?
 4
 110
 120
@@ -1247,7 +1247,7 @@ None
 y
 None
 
-Find out the correct sequence of the missing letters of the series from the alternatives given below the following letter series.ignore_new_lineaa – bb – aa – abbbb – a
+Find out the correct sequence of the missing letters of the series from the alternatives given below the following letter series.\naa – bb – aa – abbbb – a
 4
 bbaa
 aabb
@@ -1297,7 +1297,7 @@ cannot be determined.
 y
 None
 
-ignore_new_lineIf the profit earned on selling an article for Rs.579 and the loss on selling it for Rs.337 is equal, then find the profit percentage on selling the article for Rs.687.
+\nIf the profit earned on selling an article for Rs.579 and the loss on selling it for Rs.337 is equal, then find the profit percentage on selling the article for Rs.687.
 4
 245%
 25%
@@ -1338,7 +1338,7 @@ son in law
 y
 None
 
-A series is given with one term missing. Choose the correct option from the given alternatives which will complete the series. ignore_new_line5 10 13 26 29 58 61 ?
+A series is given with one term missing. Choose the correct option from the given alternatives which will complete the series. \n5 10 13 26 29 58 61 ?
 4
 122
 125
@@ -1378,7 +1378,7 @@ Select the missing number from the given alternatives?
 y
 None
 
-Arrange the following words in alphabetical order?ignore_new_lineignore_new_lineA) acarpaus B) across C) accede D) academic E) accentuate
+Arrange the following words in alphabetical order?\n\nA) acarpaus B) across C) accede D) academic E) accentuate
 4
 (B),(C),(A),(D),(E)
 (C),(D),(A),(B),(E)
@@ -1388,7 +1388,7 @@ Arrange the following words in alphabetical order?ignore_new_lineignore_new_line
 y
 None
 
-When a 100 W, 240 V bulb is operated at 200 volt, the current in it is ignore_new_lineignore_new_line
+When a 100 W, 240 V bulb is operated at 200 volt, the current in it is \n\n
 4
 0.58 A
 0.50 A
@@ -1398,7 +1398,7 @@ When a 100 W, 240 V bulb is operated at 200 volt, the current in it is ignore_ne
 y
 None
 
-Volume of CO₂ obtained at STP by the complete decomposition of 9.85 g Na₂CO₃ isignore_new_lineignore_new_line9.85 g The volume of CO प्राप्त obtained at STP by the complete decomposition of Na₂CO₃ is
+Volume of CO₂ obtained at STP by the complete decomposition of 9.85 g Na₂CO₃ is\n\n9.85 g The volume of CO प्राप्त obtained at STP by the complete decomposition of Na₂CO₃ is
 4
 2.24
 0.85
@@ -1408,7 +1408,7 @@ Volume of CO₂ obtained at STP by the complete decomposition of 9.85 g Na₂CO�
 y
 None
 
-The energy of the third Bohr shell is ignore_new_lineignore_new_line The energy of the third Bohr shell is
+The energy of the third Bohr shell is \n\n The energy of the third Bohr shell is
 4
 - 3.4 ev
 - 1.51 eV
@@ -1418,7 +1418,7 @@ None of these
 y
 None
 
-Who was the founder of Yoga philosophy?ignore_new_lineignore_new_line
+Who was the founder of Yoga philosophy?\n\n
 4
 Jaimini / Jaimini
 Kapila / Kapila
@@ -1428,7 +1428,7 @@ Patanjali
 y
 None
 
-If f(x) = ( x-1)/( x+1), then the value of f(f(ax)) isignore_new_lineignore_new_lineIf f(x) = ( x-1)/( x+1), then the value of of f(f(ax)) is
+If f(x) = ( x-1)/( x+1), then the value of f(f(ax)) is\n\nIf f(x) = ( x-1)/( x+1), then the value of of f(f(ax)) is
 4
 (f(x)+1)/( a(f(x)-1))
 (f(x)-1)/(a(f(x)+1))
@@ -1438,7 +1438,7 @@ If f(x) = ( x-1)/( x+1), then the value of f(f(ax)) isignore_new_lineignore_new_
 y
 None
 
-Can you answer this?ignore_new_line Five bells ring together and ring again at intervals of 4, 6, 8, 10 and 12 seconds respectively. How many times will they ring together in 30 minutes?
+Can you answer this?\n Five bells ring together and ring again at intervals of 4, 6, 8, 10 and 12 seconds respectively. How many times will they ring together in 30 minutes?
 4
 (A) 12
 (B) 14
@@ -1658,7 +1658,7 @@ If a man is running at a speed of 15 m/s and crosses a train which is running in
 None of these
 0
 y
-Speed ​​of the train in m/s = 126 × 5 = 35 m/s18ignore_new_lineignore_new_lineD = S × T D = ( 15 + 35) × 13 D = 50 × 13 D = 650 m
+Speed ​​of the train in m/s = 126 × 5 = 35 m/s18\n\nD = S × T D = ( 15 + 35) × 13 D = 50 × 13 D = 650 m
 
 A train is moving with a speed of 20 m/s and crosses a pole in 8 sec. How much time will it take to cross the second train which is running in the opposite direction with the speed of the first and is half the length of the first train?
 5
@@ -1751,7 +1751,7 @@ After 1500 Days
 After 1200 Days
 0
 y
-Required time = LCM of (200, 250 and 300) = 3000 dayssignore_new_lineHence, after 3000 days they all come relatively to the same position as at a certain point of time in their orbits.ignore_new_line Hence, option A is correct.
+Required time = LCM of (200, 250 and 300) = 3000 dayss\nHence, after 3000 days they all come relatively to the same position as at a certain point of time in their orbits.\n Hence, option A is correct.
 
 The HCF of two numbers is 98 and their LCM is 2352. Can the numbers be a sum?
 4
@@ -1838,7 +1838,7 @@ Distance covered by three cars in the ratio 1:2:3. If the ratio of travel times 
 y
 None
 
-From each vertex of a triangle a line is drawn parallel to its opposite side. What is the ratio of the perimeter of the triangle so formed to the perimeter of the initial triangle ?ignore_new_lineignore_new_line[ SSC CGL 2015, SSC CPO 2011 ]
+From each vertex of a triangle a line is drawn parallel to its opposite side. What is the ratio of the perimeter of the triangle so formed to the perimeter of the initial triangle ?\n\n[ SSC CGL 2015, SSC CPO 2011 ]
 4
 3:2
 4:1
@@ -2060,7 +2060,7 @@ None Of These
 y
 None
 
-If 10 men and 15 boys can do a piece of work in 15 days, then in how many days will 16 men and 20 boys do 3 times the work, while 3 men can do as much work in 2 hours as 5 boys can do in 3 hours? Can ?ignore_new_lineignore_new_line[ SSC CGL MAINS 2003 ]
+If 10 men and 15 boys can do a piece of work in 15 days, then in how many days will 16 men and 20 boys do 3 times the work, while 3 men can do as much work in 2 hours as 5 boys can do in 3 hours? Can ?\n\n[ SSC CGL MAINS 2003 ]
 4
 15 days
 10 days
@@ -2180,7 +2180,7 @@ The ratio of alcohol and water in a 24 liter mixture of wine and water in a cask
 y
 None
 
-50 grams of an alloy of gold and silver contains 80% gold by weight. How much more gold should be added to this metal so that the alloy becomes 95% gold?ignore_new_lineignore_new_line[ SSC CGL MAINS 2005 ]
+50 grams of an alloy of gold and silver contains 80% gold by weight. How much more gold should be added to this metal so that the alloy becomes 95% gold?\n\n[ SSC CGL MAINS 2005 ]
 4
 200 grams
 150 grams
@@ -2441,7 +2441,7 @@ The difference between the compound interest and the simple interest on a sum of
 y
 None
 
-The compound interest on a sum of money for 2 years is ₹282.15 and the simple interest is ₹270. What is the interest rate?ignore_new_line{SSC CGL 2003}
+The compound interest on a sum of money for 2 years is ₹282.15 and the simple interest is ₹270. What is the interest rate?\n{SSC CGL 2003}
 4
 8%
 9%
@@ -2471,7 +2471,7 @@ Two trains each of length 80 m are running on parallel tracks. If they are going
 y
 None
 
-A rabbit is 100 meters ahead of a dog. He looked back and saw the dog and started running at the speed of 12Km/hour. After half a minute the dog saw the rabbit and followed him at a speed of 16Km/Hour. When will he catch her?ignore_new_line[ Important Questions ]
+A rabbit is 100 meters ahead of a dog. He looked back and saw the dog and started running at the speed of 12Km/hour. After half a minute the dog saw the rabbit and followed him at a speed of 16Km/Hour. When will he catch her?\n[ Important Questions ]
 4
 2 minutes
 3 minutes
@@ -2763,7 +2763,7 @@ The ratio of present ages of Asha and Lata is 5 : 6. If the difference between t
 y
 None
 
-A 50KG glass and tin mixture contains 60% glass. How much glaze will be added to this mixture to make the mixture 75% glaze?ignore_new_line[ Delhi Police 2009]
+A 50KG glass and tin mixture contains 60% glass. How much glaze will be added to this mixture to make the mixture 75% glaze?\n[ Delhi Police 2009]
 4
 20KG
 25KG
@@ -2804,7 +2804,7 @@ none of these
 y
 None
 
-If a person spends 20% of his income on food and 5% of the remaining on transport and finally drinks alcohol worth Rs 120 of the remaining money and in the end he is left with Rs 1400. So what is his income?ignore_new_line[ Important Question]
+If a person spends 20% of his income on food and 5% of the remaining on transport and finally drinks alcohol worth Rs 120 of the remaining money and in the end he is left with Rs 1400. So what is his income?\n[ Important Question]
 4
 2200 ₹
 2000₹

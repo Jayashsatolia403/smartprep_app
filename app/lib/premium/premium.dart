@@ -84,64 +84,66 @@ List<Widget> plans = <Widget>[
   )
 ];
 
-List<String> examNames = <String>[
-  'IAS',
-  'JEE',
-  'JEE MAINS',
-  'JEE ADV',
-  'NEET',
-  'RAS',
-  'IBPS PO',
-  'IBPS CLERK',
-  'SSC CHSL',
-  'SSC CGL',
-  'NDA',
-  'CDS',
-  'NTPC',
-  "REET LEVEL 1",
-  "REET LEVEL 2 Social Science",
-  "REET LEVEL 2 Science",
-  "PATWARI",
-  "2nd Grade Paper 1",
-  "2nd Grade Science",
-  "2nd Grade Social Science",
-  "SSC GD",
-  "SSC MTS",
-  "Rajasthan Police Constable",
-  "Rajasthan LDC",
-  "RRB GD",
-  "SI Paper 1",
-  "SI Paper 2"
+List<String> examNames = [
+  'ias',
+  'iasHindi',
+  'jee',
+  'jeeMains',
+  'jeeAdv',
+  'neet',
+  'ras',
+  'rasHindi',
+  'ibpsPO',
+  'ibpsClerk',
+  'sscCHSL',
+  'sscCGL',
+  'sscCGLHindi',
+  'ntpc',
+  'reet1',
+  'reet2',
+  'reet2Science',
+  'patwari',
+  'grade2nd',
+  'grade2ndScience',
+  'grade2ndSS',
+  'sscGD',
+  'sscMTS',
+  'rajPoliceConst',
+  'rajLDC',
+  'rrbGD',
+  'sipaper1',
+  'sipaper2'
 ];
 
 var examNameValues = {
-  'IAS': 'ias',
-  'JEE': 'jee',
-  'JEE MAINS': 'jeeMains',
-  'JEE ADV': 'jeeAdv',
-  'NEET': 'neet',
-  'RAS': 'ras',
-  'IBPS PO': 'ibpsPO',
-  'IBPS CLERK': 'ibpsClerk',
-  'SSC CHSL': 'sscCHSL',
-  'SSC CGL': 'sscCGL',
-  'NDA': 'nda',
-  'CDS': 'cds',
-  'NTPC': 'ntpc',
-  "REET LEVEL 1": "reet1",
-  "REET LEVEL 2 Social Science": "reet2",
-  "REET LEVEL 2 Science": "reet2Science",
-  "PATWARI": "patwari",
-  "2nd Grade Paper 1": "grade2nd",
-  "2nd Grade Science": "grade2ndScience",
-  "2nd Grade Social Science ": "grade2ndSS",
-  "SSC GD": "sscGD",
-  "SSC MTS": "sscMTS",
-  "Rajasthan Police Constable": "rajPoliceConst",
-  "Rajasthan LDC": "rajLDC",
-  "RRB GD": "rrbGD",
-  "SI Paper 1": "sipaper1",
-  "SI Paper 2": "sipaper2"
+  'ias': 'IAS',
+  'iasHindi': 'IAS Hindi Medium',
+  'jee': 'JEE',
+  'jeeMains': 'JEE MAINS',
+  'jeeAdv': 'JEE ADV',
+  'neet': 'NEET',
+  'ras': 'RAS',
+  'rasHindi': 'RAS Hindi Medium',
+  'ibpsPO': 'IBPS PO',
+  'ibpsClerk': 'IBPS CLERK',
+  'sscCHSL': 'SSC CHSL',
+  'sscCGL': 'SSC CGL',
+  'sscCGLHindi': 'SSC CGL Hindi Medium',
+  'ntpc': 'NTPC',
+  'reet1': 'REET LEVEL 1',
+  'reet2': 'REET LEVEL 2 Social Science',
+  'reet2Science': 'REET LEVEL 2 Science',
+  'patwari': 'PATWARI',
+  'grade2nd': '2nd Grade Paper 1',
+  'grade2ndScience': '2nd Grade Science',
+  'grade2ndSS': '2nd Grade Social Science ',
+  'sscGD': 'SSC GD',
+  'sscMTS': 'SSC MTS',
+  'rajPoliceConst': 'Rajasthan Police Constable',
+  'rajLDC': 'Rajasthan LDC',
+  'rrbGD': 'RRB GD',
+  'sipaper1': 'SI Paper 1',
+  'sipaper2': 'SI Paper 2'
 };
 
 class Premium extends StatefulWidget {
@@ -211,10 +213,11 @@ class _PremiumState extends State<Premium> {
                 },
                 items: examNames.map<DropdownMenuItem<String>>((String value) {
                   return DropdownMenuItem<String>(
-                      value: examNameValues[value],
+                      value: value,
                       child: Padding(
                           padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                          child: Center(child: Text(value))));
+                          child: Center(
+                              child: Text(examNameValues[value] ?? "Exam"))));
                 }).toList(),
               )),
           SingleChildScrollView(
@@ -427,7 +430,7 @@ class _PremiumState extends State<Premium> {
                 },
               );
 
-              final checkoutUrl = jsonDecode(response.body);
+              final checkoutUrl = jsonDecode(utf8.decode(response.bodyBytes));
 
               if (await canLaunch(url)) {
                 await launch(checkoutUrl);

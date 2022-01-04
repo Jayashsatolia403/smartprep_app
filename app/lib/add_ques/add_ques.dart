@@ -40,6 +40,8 @@ List<String> iasSubjects = [
   "iasMisc"
 ];
 
+List<String> iasHindiSubjects = ["iasMiscHindi"];
+
 List<String> jeeSubjects = [
   "physicsAdv",
   "mathsAdv",
@@ -107,29 +109,31 @@ List<String> rasSubjects = [
   "rasMisc"
 ];
 
-List<String> ndaSubjects = [
-  "ndaPhysics",
-  "ndaHistory",
-  "ndaChemistry",
-  "ndaMaths",
-  "currentEvents",
-  "ndaMisc"
-];
+List<String> rasHindiSubjects = ["rasMiscHindi"];
 
-List<String> cdsSubjects = [
-  "reasoningEasy",
-  "reasoningHard",
-  "currentAffairsIndiaEasy",
-  "englishLangAndComprehensionHard",
-  "englishLangAndComprehensionEasy",
-  "geographyIndEasy",
-  "polityIndEasy",
-  "historyIndEasy",
-  "sciAndTechEasy",
-  "cdsMaths",
-  "environmentAndEcologyEasy",
-  "cdsMisc"
-];
+// List<String> ndaSubjects = [
+//   "ndaPhysics",
+//   "ndaHistory",
+//   "ndaChemistry",
+//   "ndaMaths",
+//   "currentEvents",
+//   "ndaMisc"
+// ];
+
+// List<String> cdsSubjects = [
+//   "reasoningEasy",
+//   "reasoningHard",
+//   "currentAffairsIndiaEasy",
+//   "englishLangAndComprehensionHard",
+//   "englishLangAndComprehensionEasy",
+//   "geographyIndEasy",
+//   "polityIndEasy",
+//   "historyIndEasy",
+//   "sciAndTechEasy",
+//   "cdsMaths",
+//   "environmentAndEcologyEasy",
+//   "cdsMisc"
+// ];
 
 List<String> ibpsPOSubjects = [
   "englishLangAndComprehensionHard",
@@ -170,6 +174,8 @@ List<String> sscCGLSubjects = [
   "statistics",
   "sscCGLMisc"
 ];
+
+List<String> sscCGLHindiSubjects = ["sscCGLMiscHindi"];
 
 List<String> sscCHSLSubjects = [
   "reasoningHard",
@@ -466,16 +472,19 @@ List<String> subjectsSubjects = <String>[
 
 var examSubjectsRelation = {
   "ias": iasSubjects,
+  "iasHindi": iasHindiSubjects,
   "jee": jeeSubjects,
   "jeeMains": jeeMainsSubjects,
   "jeeAdv": jeeAdvSubjects,
   "neet": neetSubjects,
   "ras": rasSubjects,
-  "nda": ndaSubjects,
-  "cds": cdsSubjects,
+  "rasHindi": rasHindiSubjects,
+  // "nda": ndaSubjects,
+  // "cds": cdsSubjects,
   "ibpsPO": ibpsPOSubjects,
   "ibpsClerk": ibpsClerkSubjects,
   "sscCGL": sscCGLSubjects,
+  "sscCGLHindi": sscCGLHindiSubjects,
   "sscCHSL": sscCHSLSubjects,
   "ntpc": ntpcSubjects,
   "reet1": reet1Subjects,
@@ -495,48 +504,50 @@ var examSubjectsRelation = {
 };
 
 var examValues = {
-  'IAS': 'ias',
-  'JEE': 'jee',
-  'JEE MAINS': 'jeeMains',
-  'JEE ADV': 'jeeAdv',
-  'NEET': 'neet',
-  'RAS': 'ras',
-  'IBPS PO': 'ibpsPO',
-  'IBPS CLERK': 'ibpsClerk',
-  'SSC CHSL': 'sscCHSL',
-  'SSC CGL': 'sscCGL',
-  'NDA': 'nda',
-  'CDS': 'cds',
-  'NTPC': 'ntpc',
-  "REET LEVEL 1": "reet1",
-  "REET LEVEL 2 Social Science": "reet2",
-  "REET LEVEL 2 Science": "reet2Science",
-  "PATWARI": "patwari",
-  "2nd Grade Paper 1": "grade2nd",
-  "2nd Grade Science": "grade2ndScience",
-  "2nd Grade Social Science ": "grade2ndSS",
-  "SSC GD": "sscGD",
-  "SSC MTS": "sscMTS",
-  "Rajasthan Police Constable": "rajPoliceConst",
-  "Rajasthan LDC": "rajLDC",
-  "RRB GD": "rrbGD",
-  "SI Paper 1": "sipaper1",
-  "SI Paper 2": "sipaper2"
+  'ias': 'IAS',
+  'iasHindi': 'IAS Hindi Medium',
+  'jee': 'JEE',
+  'jeeMains': 'JEE MAINS',
+  'jeeAdv': 'JEE ADV',
+  'neet': 'NEET',
+  'ras': 'RAS',
+  'rasHindi': 'RAS Hindi Medium',
+  'ibpsPO': 'IBPS PO',
+  'ibpsClerk': 'IBPS CLERK',
+  'sscCHSL': 'SSC CHSL',
+  'sscCGL': 'SSC CGL',
+  'sscCGLHindi': 'SSC CGL Hindi Medium',
+  'ntpc': 'NTPC',
+  'reet1': 'REET LEVEL 1',
+  'reet2': 'REET LEVEL 2 Social Science',
+  'reet2Science': 'REET LEVEL 2 Science',
+  'patwari': 'PATWARI',
+  'grade2nd': '2nd Grade Paper 1',
+  'grade2ndScience': '2nd Grade Science',
+  'grade2ndSS': '2nd Grade Social Science ',
+  'sscGD': 'SSC GD',
+  'sscMTS': 'SSC MTS',
+  'rajPoliceConst': 'Rajasthan Police Constable',
+  'rajLDC': 'Rajasthan LDC',
+  'rrbGD': 'RRB GD',
+  'sipaper1': 'SI Paper 1',
+  'sipaper2': 'SI Paper 2'
 };
 
 var dropDownValues = {
   "ias": "iasMisc",
+  "iasHindi": "iasMiscHindi",
   "jee": "jeeMisc",
   "jeeMains": "jeeMainsMisc",
   "jeeAdv": "jeeAdvMisc",
   "neet": "neetMisc",
   "ras": "rasMisc",
+  "rasHindi": "rasMiscHindi",
   "ibpsPO": "ibpsPOMisc",
   "ibpsClerk": "ibpsClerkMisc",
   "sscCHSL": "sscCHSLMisc",
   "sscCGL": "sscCGLMisc",
-  "nda": "ndaMisc",
-  "cds": "cdsMisc",
+  "sscCGLHindi": "sscCGLMiscHindi",
   "ntpc": "ntpcMisc",
   "reet1": "reet1Misc",
   "reet2": "reet2Misc",
@@ -591,7 +602,7 @@ Future<bool> addQuestion(String statement, List<String> options, String subject,
     }),
   );
 
-  String json = jsonDecode(response.body);
+  String json = jsonDecode(utf8.decode(response.bodyBytes));
 
   if (json == "Success!") return true;
 

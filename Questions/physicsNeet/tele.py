@@ -53,66 +53,66 @@ async def main():
     # await client.send_file('me', '/home/me/Pictures/holidays.jpg')
 
     # You can print the message history of any chat:
-    # count = 1
-    # async for message in client.iter_messages(-1001239140977):
+    count = 1
+    async for message in client.iter_messages(-1001414950129):
 
-    #     if (message.poll):
+        if (message.poll):
 
-    #         try:
+            try:
 
-    #             file = open("questions_final.txt", "a")
+                file = open("questions.txt", "a")
 
 
-    #             question = message.poll.poll.question
-    #             answers = []
-    #             correct_answers = []
+                question = message.poll.poll.question
+                answers = []
+                correct_answers = []
 
-    #             for i in message.poll.poll.answers:
-    #                 answer = str(i.text)
-    #                 answer = answer.replace("\n", "ignore_new_line")
-    #                 answers.append(answer)
+                for i in message.poll.poll.answers:
+                    answer = str(i.text)
+                    answer = answer.replace("\n", "ignore_new_line")
+                    answers.append(answer)
                 
 
-    #             for i in message.poll.results.results: 
-    #                 if i.correct:
-    #                     correct_answers.append(str(i.option)[-2])
+                for i in message.poll.results.results: 
+                    if i.correct:
+                        correct_answers.append(str(i.option)[-2])
                 
-    #             count += 1
+                count += 1
 
-    #             question = question.replace("\n", "ignore_new_line")
+                question = question.replace("\n", "ignore_new_line")
 
-    #             file.write(question)
-    #             file.write("\n")
-    #             file.write(str(len(answers)))
-    #             file.write("\n")
+                file.write(question)
+                file.write("\n")
+                file.write(str(len(answers)))
+                file.write("\n")
                 
-    #             for ans in answers:
-    #                 file.write(ans)
-    #                 file.write("\n")
+                for ans in answers:
+                    file.write(ans)
+                    file.write("\n")
 
                 
-    #             for correct_answer in correct_answers:
-    #                 file.write(correct_answer)
-    #                 file.write(" ")
+                for correct_answer in correct_answers:
+                    file.write(correct_answer)
+                    file.write(" ")
                 
-    #             file.write("\n")
+                file.write("\n")
 
-    #             try:
-    #                 solution = str(message.poll.results.solution)
-    #                 solution = solution.replace("\n", "ignore_new_line")
-    #                 file.write("y")
-    #                 file.write("\n")
-    #                 file.write(solution)
-    #             except Exception as e:
-    #                 print(e)
+                try:
+                    solution = str(message.poll.results.solution)
+                    solution = solution.replace("\n", "ignore_new_line")
+                    file.write("y")
+                    file.write("\n")
+                    file.write(solution)
+                except Exception as e:
+                    print(e)
                 
-    #             file.write("\n\n")
+                file.write("\n\n")
 
-    #             print("Success")
+                print("Success")
 
             
-    #         except:
-    #             print(">>> Unanswered Question")
+            except:
+                print(">>> Unanswered Question")
             
             # break
 

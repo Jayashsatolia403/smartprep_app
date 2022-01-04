@@ -85,7 +85,7 @@ class _PreviousCompetitionViewState extends State<PreviousCompetitionView> {
       },
     );
 
-    final resJson = jsonDecode(response.body);
+    final resJson = jsonDecode(utf8.decode(response.bodyBytes));
 
     for (var id in resJson['questions']) {
       setState(() {
@@ -166,43 +166,21 @@ class _PreviousCompetitionViewState extends State<PreviousCompetitionView> {
                           child: Text(questionStatements[i][0],
                               style: const TextStyle(color: Colors.white)),
                           onPressed: () {
-                            if (exam == "jeeAdv") {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => JeeCustomRadio(
-                                          options: allOptions[i],
-                                          statement: questionStatements[i][0],
-                                          quesUUid: questionStatements[i][1],
-                                          qualityRating: questionStatements[i]
-                                              [2],
-                                          difficultyRating:
-                                              questionStatements[i][3],
-                                          isRated: questionStatements[i][4],
-                                          createdBy: questionStatements[i][5],
-                                          explaination: questionStatements[i]
-                                              [6],
-                                        )),
-                              );
-                            } else {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => CustomRadio(
-                                          options: allOptions[i],
-                                          statement: questionStatements[i][0],
-                                          quesUUid: questionStatements[i][1],
-                                          qualityRating: questionStatements[i]
-                                              [2],
-                                          difficultyRating:
-                                              questionStatements[i][3],
-                                          isRated: questionStatements[i][4],
-                                          createdBy: questionStatements[i][5],
-                                          explaination: questionStatements[i]
-                                              [6],
-                                        )),
-                              );
-                            }
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => CustomRadio(
+                                        options: allOptions[i],
+                                        statement: questionStatements[i][0],
+                                        quesUUid: questionStatements[i][1],
+                                        qualityRating: questionStatements[i][2],
+                                        difficultyRating: questionStatements[i]
+                                            [3],
+                                        isRated: questionStatements[i][4],
+                                        createdBy: questionStatements[i][5],
+                                        explaination: questionStatements[i][6],
+                                      )),
+                            );
                           },
                           style: ElevatedButton.styleFrom(
                               fixedSize: const Size(250, 20),
@@ -291,7 +269,7 @@ class _PreviousCompetitionViewState extends State<PreviousCompetitionView> {
 //     },
 //   );
 
-//   for (var uuid in jsonDecode(response.body)) {
+//   for (var uuid in jsonDecode(utf8.decode(response.bodyBytes))) {
 //     final ques = await http.get(
 //       Uri.parse('$url/getQuesByID?quesID=$uuid'),
 //       headers: <String, String>{
@@ -351,7 +329,7 @@ class _PreviousCompetitionViewState extends State<PreviousCompetitionView> {
 //     },
 //   );
 
-//   for (var uuid in jsonDecode(response.body)) {
+//   for (var uuid in jsonDecode(utf8.decode(response.bodyBytes))) {
 //     final ques = await http.get(
 //       Uri.parse('$url/getQuesByID?quesID=$uuid'),
 //       headers: <String, String>{
