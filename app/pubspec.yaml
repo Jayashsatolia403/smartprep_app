@@ -67,6 +67,8 @@ dependencies:
 
   pull_to_refresh: ^2.0.0
 
+  webview_flutter: ^3.0.0
+
 
 
 

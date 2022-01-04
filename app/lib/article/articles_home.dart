@@ -1,34 +1,24 @@
 import 'package:app/article/article_view.dart';
 import 'package:flutter/material.dart';
 
-import 'article_config.dart';
-import 'package:flutter/services.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-
-Future<List<ArticleConfig>> getArticles() async {
-  List<ArticleConfig> articles = [];
-
-  String url = await rootBundle.loadString('assets/text/url.txt');
-
-  final response = await http.get(
-    Uri.parse('$url/articles'),
-    headers: <String, String>{
-      'Content-Type': 'application/json; charset=UTF-8',
-    },
-  );
-
-  final json = jsonDecode(utf8.decode(response.bodyBytes));
-
-  for (var i in json) {
-    ArticleConfig data = ArticleConfig(
-        title: i['title'], content: i['content'], images: [], date: i['date']);
-
-    articles.add(data);
-  }
-
-  return articles;
-}
+List<List<String>> urlTitles = [
+  [
+    "Ten Things Successful People (Who Are Actually Happy) Do Differently ",
+    "https://www.linkedin.com/pulse/things-successful-people-who-actually-happy-do-dr-travis-bradberry"
+  ],
+  [
+    "13 Things You Should Give Up If You Want To Be Successful",
+    "https://medium.com/@zdravko/13-things-you-need-to-give-up-if-you-want-to-be-successful-44b5b9b06a26#.7pe14to63"
+  ],
+  [
+    "Is achieving true happiness a possibility?",
+    "https://rawsomeee.medium.com/is-achieving-true-happiness-a-possibility-209ca036a5bc"
+  ],
+  [
+    "Don't Make A New Year Resolution!",
+    "https://roybntz.medium.com/dont-make-a-new-year-resolution-83139f5c0e66"
+  ]
+];
 
 class ArticlesHome extends StatefulWidget {
   const ArticlesHome({Key? key}) : super(key: key);
@@ -38,41 +28,29 @@ class ArticlesHome extends StatefulWidget {
 }
 
 class _ArticlesHomeState extends State<ArticlesHome> {
-  final Future<List<ArticleConfig>> _articles = getArticles();
-
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<ArticleConfig>>(
-        future: _articles,
-        builder: (BuildContext context,
-            AsyncSnapshot<List<ArticleConfig>> snapShot) {
-          if (snapShot.hasData) {
-            return Scaffold(
-              appBar: AppBar(
-                title: const Center(child: Text("Articles")),
-              ),
-              body: ListView.builder(
-                itemCount: snapShot.data!.length,
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Text(snapShot.data![index].title),
-                    leading: const Icon(Icons.article),
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ArticleView(
-                                    data: snapShot.data![index],
-                                  )));
-                    },
-                  );
-                },
-              ),
+    return Scaffold(
+        appBar: AppBar(
+          title: const Center(child: Text("Articles")),
+        ),
+        body: ListView.builder(
+          itemCount: urlTitles.length,
+          shrinkWrap: true,
+          itemBuilder: (context, index) {
+            return ListTile(
+              title: Text(urlTitles[index][0]),
+              leading: const Icon(Icons.article),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ArticleView(
+                              url: urlTitles[index][1],
+                            )));
+              },
             );
-          } else {
-            return const Text("Problems");
-          }
-        });
+          },
+        ));
   }
 }

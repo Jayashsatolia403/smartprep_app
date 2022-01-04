@@ -1,16 +1,31 @@
+import 'package:app/article/article_view.dart';
 import 'package:app/exam_select/select_exam.dart';
 import 'package:app/splashscreen/splashscreen.dart';
 import 'package:flutter/material.dart';
 
 import 'package:carousel_slider/carousel_slider.dart';
 
-final List<String> imgList = [
-  'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
-  'https://images.unsplash.com/photo-1522205408450-add114ad53fe?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=368f45b0888aeb0b7b08e3a1084d3ede&auto=format&fit=crop&w=1950&q=80',
-  'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=94a1e718d89ca60a6337a6008341ca50&auto=format&fit=crop&w=1950&q=80',
-  'https://images.unsplash.com/photo-1523205771623-e0faa4d2813d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=89719a0d55dd05e2deae4120227e6efc&auto=format&fit=crop&w=1953&q=80',
-  'https://images.unsplash.com/photo-1508704019882-f9cf40e475b4?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=8c6e5e3aba713b17aa1fe71ab4f0ae5b&auto=format&fit=crop&w=1352&q=80',
-  'https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80'
+List<List<String>> urlTitles = [
+  [
+    "Ten Things Successful People Do Differently ",
+    "https://www.linkedin.com/pulse/things-successful-people-who-actually-happy-do-dr-travis-bradberry",
+    "https://www.incimages.com/uploaded_files/image/1024x576/getty_495142964_198701.jpg"
+  ],
+  [
+    "13 Things You Should Give Up If You Want To Be Successful",
+    "https://medium.com/@zdravko/13-things-you-need-to-give-up-if-you-want-to-be-successful-44b5b9b06a26#.7pe14to63",
+    "https://miro.medium.com/max/2400/1*Nm4_WwWrQT2eveqwpr6d9g.jpeg"
+  ],
+  [
+    "Is achieving true happiness a possibility?",
+    "https://rawsomeee.medium.com/is-achieving-true-happiness-a-possibility-209ca036a5bc",
+    "https://cdn2.psychologytoday.com/assets/styles/manual_crop_1_91_1_1528x800/public/field_blog_entry_teaser_image/2021-07/success3.jpg"
+  ],
+  [
+    "Don't Make A New Year Resolution!",
+    "https://roybntz.medium.com/dont-make-a-new-year-resolution-83139f5c0e66",
+    "https://miro.medium.com/max/1400/0*Td1PDbC9Mkw-sqjp"
+  ]
 ];
 
 class HomeSlider extends StatefulWidget {
@@ -23,20 +38,23 @@ class HomeSlider extends StatefulWidget {
 class _HomeSliderState extends State<HomeSlider> {
   @override
   Widget build(BuildContext context) {
-    final List<Widget> imageSliders = imgList
+    final List<Widget> imageSliders = urlTitles
         .map((item) => Container(
                 child: InkWell(
               onTap: () {
                 Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => Splash()));
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ArticleView(url: item[1])));
               },
               child: Container(
                 margin: EdgeInsets.all(5.0),
                 child: ClipRRect(
-                    borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                    borderRadius: const BorderRadius.all(Radius.circular(5.0)),
                     child: Stack(
                       children: <Widget>[
-                        Image.network(item, fit: BoxFit.cover, width: 1000.0),
+                        Image.network(item[2],
+                            fit: BoxFit.cover, width: 1000.0),
                         Positioned(
                           bottom: 0.0,
                           left: 0.0,
@@ -55,10 +73,10 @@ class _HomeSliderState extends State<HomeSlider> {
                             padding: const EdgeInsets.symmetric(
                                 vertical: 10.0, horizontal: 20.0),
                             child: Text(
-                              'No. ${imgList.indexOf(item)} image',
+                              item[0],
                               style: const TextStyle(
                                 color: Colors.white,
-                                fontSize: 20.0,
+                                fontSize: 15.0,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),

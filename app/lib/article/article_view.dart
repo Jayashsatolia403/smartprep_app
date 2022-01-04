@@ -1,31 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
-import 'article_config.dart';
+class ArticleView extends StatelessWidget {
+  final String url;
+  const ArticleView({Key? key, required this.url}) : super(key: key);
 
-class ArticleView extends StatefulWidget {
-  const ArticleView({Key? key, required this.data}) : super(key: key);
-
-  final ArticleConfig data;
-
-  @override
-  ArticleViewState createState() => ArticleViewState();
-}
-
-class ArticleViewState extends State<ArticleView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(widget.data.title),
-        ),
-        body: Column(children: [
-          Padding(
-              padding: const EdgeInsets.all(0),
-              child: Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 20, 10, 20),
-                  child: SingleChildScrollView(
-                      scrollDirection: Axis.vertical,
-                      child: Flexible(child: Text(widget.data.content)))))
-        ]));
+      body: WebView(
+        initialUrl: url,
+        javascriptMode: JavascriptMode.unrestricted,
+      ),
+    );
   }
 }
