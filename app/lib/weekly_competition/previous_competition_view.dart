@@ -33,14 +33,17 @@ class _PreviousCompetitionViewState extends State<PreviousCompetitionView> {
   String exam = "";
   Map<String, int> totalPages = {
     "ias": 10,
+    "iasHindi": 10,
     "jee": 6,
     "jeeMains": 9,
     "jeeAdv": 6,
     "neet": 18,
     "ras": 15,
+    "rasHindi": 15,
     "ibpsPO": 10,
     "ibpsClerk": 10,
     "sscCGL": 10,
+    "sscCGLHindi": 10,
     "sscCHSL": 10,
     "nda": 15,
     "cat": 9,
@@ -60,6 +63,7 @@ class _PreviousCompetitionViewState extends State<PreviousCompetitionView> {
     "sipaper1": 10,
     "sipaper2": 10
   };
+
   Future<bool> getQuestions(String competitionUuid) async {
     String url = await rootBundle.loadString('assets/text/url.txt');
 
@@ -126,6 +130,7 @@ class _PreviousCompetitionViewState extends State<PreviousCompetitionView> {
 
   @override
   void initState() {
+    super.initState();
     getQuestions(widget.compUuid);
   }
 

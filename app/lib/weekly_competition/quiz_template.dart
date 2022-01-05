@@ -108,13 +108,20 @@ class CustomRadioState extends State<CustomRadio> {
     _initializeData();
   }
 
-  void updateOption(String uuid) async {
+  void updateOption(String uuid, String quesUuid) async {
     for (var i in sampleData) {
       Options option = await QuizDatabase.instance.readOptions(i.uuid);
       option.isSelected = false;
       await QuizDatabase.instance.updateOption(option);
     }
     Options option = await QuizDatabase.instance.readOptions(uuid);
+
+    Questions ques =
+        await QuizDatabase.instance.readQuestionsByUUid(widget.question.uuid);
+
+    ques.isAnswered = true;
+
+    await QuizDatabase.instance.updateQuestion(ques);
 
     option.isSelected = true;
     await QuizDatabase.instance.updateOption(option);
@@ -153,7 +160,8 @@ class CustomRadioState extends State<CustomRadio> {
                         element.isSelected = false;
                       }
                       sampleData[index].isSelected = true;
-                      updateOption(sampleData[index].uuid);
+                      updateOption(
+                          sampleData[index].uuid, widget.question.uuid);
                     });
                   },
                   child: RadioItem(sampleData[index]),
@@ -169,7 +177,7 @@ class CustomRadioState extends State<CustomRadio> {
                     element.isSelected = false;
                   }
                   sampleData[index].isSelected = true;
-                  updateOption(sampleData[index].uuid);
+                  updateOption(sampleData[index].uuid, widget.question.uuid);
                 });
               },
               child: RadioItem(sampleData[index]),

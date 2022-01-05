@@ -95,87 +95,84 @@ class _BookmarksState extends State<Bookmarks> {
 
   @override
   void initState() {
+    super.initState();
     myFuture = getBookmarks();
   }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<bool>(
-        future: myFuture,
-        builder: (BuildContext context, AsyncSnapshot<bool> snapShot) {
-          if (snapShot.hasData) {
-            return Scaffold(
-                appBar: AppBar(
-                  title: const Text("Bookmarked Questions",
-                      style: TextStyle(color: Colors.white)),
-                  backgroundColor: Colors.purple,
-                  toolbarHeight: 100,
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text("Bookmarked Questions",
+              style: TextStyle(color: Colors.white)),
+          backgroundColor: Colors.purple,
+          toolbarHeight: 100,
+        ),
+        body: Scaffold(
+            body: Column(
+          children: [
+            if (questionStatements.isNotEmpty)
+              Expanded(
+                child: SmartRefresher(
+                  controller: _refreshController,
+                  enablePullUp: true,
+                  onLoading: () async {
+                    final result = await getBookmarks();
+                    if (result) {
+                      _refreshController.loadComplete();
+                    } else {
+                      _refreshController.loadFailed();
+                    }
+                  },
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: [
+                      for (var i = 0; i < questionStatements.length; i++)
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              left: 20, top: 50, bottom: 20),
+                          child: ElevatedButton(
+                            child: Text(questionStatements[i][0],
+                                style: const TextStyle(color: Colors.white)),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => CustomRadio(
+                                          options: allOptions[i],
+                                          statement: questionStatements[i][0],
+                                          quesUUid: questionStatements[i][1],
+                                          qualityRating: questionStatements[i]
+                                              [2],
+                                          difficultyRating:
+                                              questionStatements[i][3],
+                                          explaination: questionStatements[i]
+                                              [4],
+                                        )),
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                                fixedSize: const Size(250, 20),
+                                primary: Colors.black,
+                                onPrimary: Colors.black,
+                                alignment: Alignment.center),
+                          ),
+                        )
+                    ],
+                  ),
                 ),
-                body: Scaffold(
-                    body: Column(
-                  children: [
-                    Expanded(
-                      child: SmartRefresher(
-                        controller: _refreshController,
-                        enablePullUp: true,
-                        onLoading: () async {
-                          final result = await getBookmarks();
-                          if (result) {
-                            _refreshController.loadComplete();
-                          } else {
-                            _refreshController.loadFailed();
-                          }
-                        },
-                        child: ListView(
-                          scrollDirection: Axis.horizontal,
-                          children: [
-                            for (var i = 0; i < questionStatements.length; i++)
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 20, top: 50, bottom: 20),
-                                child: ElevatedButton(
-                                  child: Text(questionStatements[i][0],
-                                      style:
-                                          const TextStyle(color: Colors.white)),
-                                  onPressed: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => CustomRadio(
-                                                options: allOptions[i],
-                                                statement: questionStatements[i]
-                                                    [0],
-                                                quesUUid: questionStatements[i]
-                                                    [1],
-                                                qualityRating:
-                                                    questionStatements[i][2],
-                                                difficultyRating:
-                                                    questionStatements[i][3],
-                                                explaination:
-                                                    questionStatements[i][4],
-                                              )),
-                                    );
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                      fixedSize: const Size(250, 20),
-                                      primary: Colors.black,
-                                      onPrimary: Colors.black,
-                                      alignment: Alignment.center),
-                                ),
-                              )
-                          ],
-                        ),
-                      ),
-                    ),
-                    if (banner == null)
-                      const Text("yo")
-                    else
-                      SizedBox(height: 150, child: AdWidget(ad: banner!))
-                  ],
-                )));
-          } else {
-            return const Center(child: CircularProgressIndicator());
-          }
-        });
+              ),
+            if (questionStatements.isEmpty)
+              const Center(
+                child: CircularProgressIndicator(
+                  color: Colors.blue,
+                ),
+              ),
+            if (banner == null)
+              const Text("yo")
+            else
+              SizedBox(height: 150, child: AdWidget(ad: banner!))
+          ],
+        )));
   }
 }

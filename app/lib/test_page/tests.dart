@@ -1,4 +1,5 @@
 import 'package:app/bookmarks/bookmarks.dart';
+import 'package:app/practice_questions/practice_questions_home.dart';
 import 'package:app/tests/daily_questions.dart';
 import 'package:app/weekly_competition/home.dart';
 import 'package:app/weekly_competition/previous_competitions.dart';
@@ -146,7 +147,12 @@ class _TestsState extends State<Tests> {
                         horizontal: 20, vertical: 20),
                     child: IconButton(
                         onPressed: () {
-                          print("HEY!");
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const PracticeQuestions()),
+                          );
                         },
                         icon: Image.asset("assets/images/pq.png"),
                         iconSize: 200)),

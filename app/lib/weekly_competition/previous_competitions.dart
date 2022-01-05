@@ -3,9 +3,13 @@ import 'dart:convert';
 import 'package:app/weekly_competition/previous_competition_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
+
+import '../ad_state.dart';
 
 class PreviousCompetitions extends StatefulWidget {
   const PreviousCompetitions({Key? key}) : super(key: key);
@@ -15,6 +19,24 @@ class PreviousCompetitions extends StatefulWidget {
 }
 
 class _PreviousCompetitionsState extends State<PreviousCompetitions> {
+  BannerAd? banner;
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final adState = Provider.of<AdState>(context);
+
+    adState.initialization.then((status) {
+      setState(() {
+        banner = BannerAd(
+            adUnitId: adState.bannerAdUnitId,
+            size: const AdSize(height: 150, width: 360),
+            request: const AdRequest(),
+            listener: adState.listener)
+          ..load();
+      });
+    });
+  }
+
   List<dynamic> previousCompetitions = [];
   int currentPage = 1;
   RefreshController _refreshController =
@@ -58,6 +80,7 @@ class _PreviousCompetitionsState extends State<PreviousCompetitions> {
 
   @override
   void initState() {
+    super.initState();
     getPreviousCompetitons();
   }
 
@@ -78,7 +101,7 @@ class _PreviousCompetitionsState extends State<PreviousCompetitions> {
                 _refreshController.loadFailed();
               }
             },
-            child: ListView(children: [
+            child: Column(children: [
               ListView.builder(
                 itemCount: previousCompetitions.length,
                 shrinkWrap: true,
@@ -99,7 +122,14 @@ class _PreviousCompetitionsState extends State<PreviousCompetitions> {
                     },
                   );
                 },
-              )
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              if (banner == null)
+                const Text("yo")
+              else
+                SizedBox(height: 150, child: AdWidget(ad: banner!))
             ])));
   }
 }

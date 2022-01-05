@@ -2,6 +2,8 @@ import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'quiz_models.dart';
 
+String databaseFilePath = "";
+
 class QuizDatabase {
   static final QuizDatabase instance = QuizDatabase._init();
 
@@ -21,7 +23,9 @@ class QuizDatabase {
     final dbPath = await getDatabasesPath();
     final path = join(dbPath, filePath);
 
-    print(path);
+    databaseFilePath = path;
+
+    print(databaseFilePath);
 
     return await openDatabase(path, version: 1, onCreate: _createDB);
   }
@@ -45,7 +49,8 @@ class QuizDatabase {
   CREATE TABLE $tableQuestions (
     ${QuestionFields.id} $idType,
     ${QuestionFields.uuid} $textType,
-    ${QuestionFields.statement} $textType
+    ${QuestionFields.statement} $textType,
+    ${QuestionFields.isAnswered} $boolType
     )
 ''');
 
@@ -53,7 +58,6 @@ class QuizDatabase {
   CREATE TABLE $tableDate ( 
     ${DateField.id} $idType, 
     ${DateField.date} $textType,
-    ${DateField.pages} $intType,
     ${DateField.competitionUuid} $textType,
     ${DateField.examName} $textType
     )
@@ -128,7 +132,8 @@ class QuizDatabase {
     if (maps.isNotEmpty) {
       return Questions.fromJson(maps.first);
     } else {
-      return Questions(statement: 'Invalid', uuid: "Invalid", id: 0);
+      return Questions(
+          statement: 'Invalid', uuid: "Invalid", id: 0, isAnswered: false);
     }
   }
 
@@ -145,7 +150,8 @@ class QuizDatabase {
     if (maps.isNotEmpty) {
       return Questions.fromJson(maps.first);
     } else {
-      return Questions(statement: 'Invalid', uuid: "Invalid", id: 0);
+      return Questions(
+          statement: 'Invalid', uuid: "Invalid", id: 0, isAnswered: false);
     }
   }
 
@@ -368,4 +374,7 @@ class QuizDatabase {
 
     db.close();
   }
+
+  Future<void> deleteDatabase() =>
+      databaseFactory.deleteDatabase(databaseFilePath);
 }

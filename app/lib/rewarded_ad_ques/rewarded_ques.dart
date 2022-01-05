@@ -70,6 +70,7 @@ class _RewardedQuestionsState extends State<RewardedQuestions> {
 
   @override
   void initState() {
+    super.initState();
     _RewardedQuestions = getRewardedQuestions();
   }
 

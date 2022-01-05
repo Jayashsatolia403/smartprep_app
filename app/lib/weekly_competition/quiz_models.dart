@@ -15,25 +15,19 @@ class OptionFields {
 }
 
 class QuestionFields {
-  static const List<String> values = [id, uuid, statement];
+  static const List<String> values = [id, uuid, statement, isAnswered];
 
   static const String id = '_id';
   static const String uuid = 'uuid';
   static const String statement = 'statement';
+  static const String isAnswered = 'is_answered';
 }
 
 class DateField {
-  static const List<String> values = [
-    id,
-    date,
-    pages,
-    competitionUuid,
-    examName
-  ];
+  static const List<String> values = [id, date, competitionUuid, examName];
 
   static const String id = '_id';
   static const String date = 'date';
-  static const String pages = 'pages';
   static const String competitionUuid = 'competition_uuid';
   static const String examName = 'exam_name';
 }
@@ -84,64 +78,68 @@ class Questions {
   int? id;
   String uuid;
   String statement;
+  bool isAnswered;
 
-  Questions({this.id, required this.uuid, required this.statement});
+  Questions(
+      {this.id,
+      required this.uuid,
+      required this.statement,
+      required this.isAnswered});
 
-  Questions copy({int? id, String? uuid, String? statement}) => Questions(
-      id: id ?? this.id,
-      uuid: uuid ?? this.uuid,
-      statement: statement ?? this.statement);
+  Questions copy(
+          {int? id, String? uuid, String? statement, bool? isAnswered}) =>
+      Questions(
+          id: id ?? this.id,
+          uuid: uuid ?? this.uuid,
+          statement: statement ?? this.statement,
+          isAnswered: isAnswered ?? this.isAnswered);
 
   static Questions fromJson(Map<String, Object?> json) => Questions(
       id: json[QuestionFields.id] as int?,
       uuid: json[QuestionFields.uuid] as String,
-      statement: json[QuestionFields.statement] as String);
+      statement: json[QuestionFields.statement] as String,
+      isAnswered: json[QuestionFields.isAnswered] == 1);
 
   Map<String, Object?> toJson() => {
         QuestionFields.id: id,
         QuestionFields.uuid: uuid,
-        QuestionFields.statement: statement
+        QuestionFields.statement: statement,
+        QuestionFields.isAnswered: isAnswered ? 1 : 0
       };
 }
 
 class Date {
   int? id;
   DateTime date;
-  int pages;
   String competitionUuid;
   String examName;
 
   Date(
       {this.id,
       required this.date,
-      required this.pages,
       required this.competitionUuid,
       required this.examName});
 
   Date copy(
           {int? id,
           DateTime? date,
-          int? pages,
           String? competitionUuid,
           String? examName}) =>
       Date(
           id: id ?? this.id,
           date: date ?? this.date,
-          pages: pages ?? this.pages,
           competitionUuid: competitionUuid ?? this.competitionUuid,
           examName: examName ?? this.examName);
 
   static Date fromJson(Map<String, Object?> json) => Date(
       id: json[DateField.id] as int?,
       date: DateFormat("yyyy-MM-dd").parse(json[DateField.date].toString()),
-      pages: json[DateField.pages] as int,
       competitionUuid: json[DateField.competitionUuid] as String,
       examName: json[DateField.examName] as String);
 
   Map<String, Object?> toJson() => {
         DateField.id: id,
         DateField.date: date.toIso8601String(),
-        DateField.pages: pages,
         DateField.competitionUuid: competitionUuid,
         DateField.examName: examName
       };

@@ -1,6 +1,10 @@
+from django.core import paginator
 from rest_framework.decorators import api_view
 
+from django.core.paginator import InvalidPage, Paginator
+
 from rest_framework.response import Response
+from rest_framework import status
 
 from .models import Chat, Forum
 from .serializers import ForumMessageSerializer, PersonalMessageSerializer
@@ -15,11 +19,18 @@ def getAllForumMessages(request):
     try:
         result = []
 
+        page = request.GET['page']
+        page_size = request.GET['page_size']
+
         forumName = request.GET['forum']
         forum = Forum.objects.get(name=forumName)
 
-        messages = list(forum.messages.all())
-        messages = messages[:50]
+        paginator = Paginator(forum.messages.all().order_by('-id'), page_size)
+
+        try:
+            messages = list(paginator.page(page))
+        except InvalidPage:
+            return Response("Done", status=status.HTTP_404_NOT_FOUND)
 
         for i in messages:
             if request.user == i.sender:
@@ -27,23 +38,22 @@ def getAllForumMessages(request):
                     'text': i.text,
                     'side': 'right',
                     'time': i.time,
-                    'sender': i.sender.name
+                    'sender': i.sender.name if i.sender else "Smartprep Team"
                 })
             else:
                 result.append({
                     'text': i.text,
                     'side': 'left',
                     'time': i.time,
-                    'sender': i.sender.name
+                    'sender': i.sender.name if i.sender else "Smartprep Team"
                 })
 
         result = sorted(result, key= lambda i: i['time'])
 
-        # result.reverse()
-
         return Response(result)
-    except:
-        return Response("Invalid Request")
+    except Exception as e:
+        print(e)
+        return Response("Invalid Request", status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['POST', ])
@@ -67,8 +77,9 @@ def sendForumMessage(request):
             return Response("Success")
         else:
             return "Oops"
-    except:
-        return Response("Invalid Request")
+    except Exception as e:
+        print(e)
+        return Response("Invalid Request", status = status.HTTP_400_BAD_REQUEST)
     
 
 
@@ -102,7 +113,8 @@ def sendPersonalMessage(request):
             return Response("Success")
         else:
             return Response(serializer.errors)
-    except:
+    except Exception as e:
+        print(e)
         return Response("Invalid Request")
 
 
@@ -147,7 +159,7 @@ def getAllPersonalMessages(request):
 
 
         return Response(result)
-    except:
-        return Response("Invalid Request")
+    except Exception as e:
+        return Response("Invalid Request", status=status.HTTP_400_BAD_REQUEST)
 
 

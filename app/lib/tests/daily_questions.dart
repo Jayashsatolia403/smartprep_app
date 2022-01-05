@@ -73,6 +73,7 @@ class _DailyQuestionsState extends State<DailyQuestions> {
 
   @override
   void initState() {
+    super.initState();
     _dailyQuestions = getDailyQuestions();
   }
 
