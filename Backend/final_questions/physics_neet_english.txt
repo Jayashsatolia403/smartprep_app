@@ -1,0 +1,2920 @@
+A solenoid is connected to a battery so that a steady current flows through it. If an iron core is inserted into the solenoid, the current will
+4
+A. Increases
+B. decreases
+C. Remains same
+D.first increase and decrease
+1 
+y
+None
+
+A laser beam is used for locating distant objects because
+4
+A. It is monochromatic
+B. It is non monochromatic
+C. It is not observed
+D. It has small angular spread
+3 
+y
+None
+
+Which among the following molecule is not a dipole?
+4
+A. NH3
+B. H2O
+C. HCl
+D. CH4
+3 
+y
+None
+
+Which of the following colours of white light deviated most when passes through a prism?
+4
+A. Red
+B. Violet
+C. Green
+D. Blue
+1 
+y
+None
+
+The three famous law of Kepler is related to
+4
+A. Velocity
+B. Speed
+C. Oscillatory Motion
+D. Planetary Motion
+3 
+y
+None
+
+The tidal waves on sea is mainly due to
+4
+A. Gravitational Effect of Moon on Earth
+B. Gravitational Effect of Sun on Earth
+C. Gravitational Effect of Earth on Moon
+D. None of the above
+0 
+y
+None
+
+290The word "Physics" comes from the Greek word
+4
+A. Phiji
+B. Fusis
+C. Phusik
+D. Physi
+1 
+y
+None
+
+When all the forces and torques are balanced in a mechanical body it is said to be in
+4
+A. Equilibrium
+B. Static
+C. Buoyancy
+D. None of the above
+0 
+y
+None
+
+Consider the following:\n1. Mica\n2. Graphite 3. Sulphur 4. Human body Which among the above is / are electrical conductors?
+4
+A. Only 1, 2 & 4
+B. Only 2, 3 & 4
+C. Only 2 & 4
+D. Only 2
+2 
+y
+None
+
+In parallel combination of n cells, we obtain
+4
+A. More current
+B. Morr voltage
+C. Less voltage
+D. Less current
+1 
+y
+None
+
+The maximum distance upto which TV transmission from a TV tower of height h can be received is proportional to which of the following?
+4
+A. h1/2
+B. h
+C. h3/2
+D. H2
+0 
+y
+None
+
+An atom with more neutrons than protons is called
+4
+A. Compound
+B. Element
+C. Isotope
+D. All of the above
+2 
+y
+None
+
+If the intensity of incident radiation in a photo-cell is increased, how does the stopping potential vary?
+4
+A. Increases
+B. Decreases
+C. Remains same
+D. Infinite
+2 
+y
+None
+
+The electron emitted in β – radiation originates from where?
+4
+A. Inner orbits of atoms
+B. Free electrons existing in nuclei
+C. The decay of a neutron in nuclei
+D. Photon escaping from the nucleus
+2 
+y
+None
+
+Which of the following statement is correct regarding velocity and speed of a moving body?
+4
+A. Velocity of a moving body is always higher than its speed
+B. Speed of a moving body is always higher than its velocity
+C. Speed of a moving body is its velocity in a given direction
+D. Velocity of a moving body is its speed in a given direction
+3 
+y
+None
+
+If the distance between Sun and Earth becomes double, then the gravitational force on Earth will be
+4
+A. Double
+B. Half
+C. Same
+D. One fourth
+3 
+y
+None
+
+The conductivity of semiconductors like Ge and Si are
+4
+A. increases when it is doped with pentavalent impurity.
+B. increases when it is doped with trivalent impurity.
+C. increases when it is doped with pentavalent or trivalent impurity
+D. None
+2 
+y
+None
+
+An atom with more neutrons than protons is called
+4
+A. Compound
+B. Element
+C. Isotope
+D. None of the above
+2 
+y
+None
+
+268If 13.6 eV energy is required to ionise the hydrogen atom, then energy required to remove an electron from n = 2 is
+4
+A. 10.2 eV
+B.  0 eV
+C. 3.4 eV
+D. 6.8 eV
+2 
+y
+None
+
+Suppose a boy is enjoying a ride on a marry-go-round which is moving with a constant speed of 10 m/s. It implies that the boy is:
+4
+A. At rest
+B. Moving with no acceleration
+C. In accelerated motion
+D. Moving with uniform velocity
+2 
+y
+None
+
+Let the magnetic field on earth be modelled by that of a point magnetic dipole at the centre of earth. The angle of dip at a point on the geographical equator
+4
+A. is always zero
+B. can be zero at specific points.
+C. cannot be positive or negative.
+D.  is not bounded
+1 
+y
+None
+
+Four charges are kept at the corner points of a square. The net force on a charge kept at the center of the square is _________
+4
+A. Along diagonal
+B. Zero
+C. Along one side
+D. Depends on the nature of the charges
+3 
+y
+None
+
+Which of the following is most likely not a case of uniform circular motion?
+4
+A. Motion of the earth around the sun
+B. Motion of a toy train on a circular track
+C. Motion of a racing car on a circular track
+D. Motion of hours’ hand on the dial of a clock
+2 
+y
+None
+
+According to the thin lens formula, which one of the following is true regarding the focal length of the lens?
+4
+A.  f is positive for concave lens
+B. f is negative for convex lens
+C. f is positive for a diverging lens
+D.  f is negative for concave lens
+3 
+y
+None
+
+What happens to the viscosity of liquid with the increase in temperature
+4
+A. It increases
+B. It decreases
+C. It may increase or decrease
+D. No change
+1 
+y
+None
+
+Which of these fluids has the highest viscosity?
+4
+A. Water
+B. Blood
+C. Air
+D. Honey
+3 
+y
+None
+
+The majority of the carriers from the emitter
+4
+A. Recombine in the emitter
+B. Pass through the base of the collector
+C. Recombine in the base
+D. None of the above
+1 
+y
+None
+
+The flux used in the equation for the calculation of induced emf in a transformer is in its
+4
+A. RMS value
+B. Average value
+C. Maximum value
+D. Twice that of the maximum value
+2 
+y
+None
+
+What is the condition of an electromagnetic induction?
+4
+A. there must be a relative motion between the coil of wire and galvanometer
+B.  there must be a relative motion between the galvanometer and a magnet
+C. there must be a relative motion between galvanometer and generator
+D.  there must be a relative motion between the coil of wire and a magnet
+3 
+y
+None
+
+What should be the core of an electromagnet?
+4
+A. Soft iron
+B. Hard iron
+C. Rustered iron
+D. None of the above
+0 
+y
+None
+
+At the time of total solar eclipse, the spectrum of solar radiation would be\n(a) a large number of dark
+4
+A.  a large number of dark Fraunhoffer lines
+B. a small number of dark Fraunhofer lines.
+C. All Fraunhofer lines changed into brilliant colours.
+D. None of the above
+2 
+y
+None
+
+The ionisation potential of hydrogen is 13.6 V. The energy of the atom in n = 2 state will be
+4
+A. -10.2 eV
+B. -6.4eV
+C. – 3.4 eV
+D. – 4.4 eV
+2 
+y
+None
+
+The diameter of a lens is called
+4
+A. Focal length
+B. Principle axis
+C. Aperture
+D. Radius of curvature
+2 
+y
+None
+
+Energy is not carried by
+4
+A. Longitudinal progressive waves
+B. Electromagnetic waves
+C.  Transverse progressive waves
+D. Stationery waves
+3 
+y
+None
+
+With the increase in temperature, the frequency of the sound from an organ pipe
+4
+A. Decreases
+B. Increases
+C. Remain unchanged
+D. Changes erratically
+1 
+y
+None
+
+A number of small drops of mercury coalesce adiabatically to form a single drop. The temperature of drop
+4
+A. Increases
+B. Decreases
+C May increases or decreases depending upon the size
+D. Remain same
+2 
+y
+None
+
+The word Science originates from the Latin verb Scientia meaning
+4
+A. to know
+B. to see
+C. to observe
+D. experience
+0 
+y
+None
+
+Which of the following has a low value in ferrites?
+4
+A. Conductivity
+B. Permeability
+C.Magnetic susceptibility
+D. All of the above
+0 
+y
+None
+
+If a body is rotating about an axis, passing through its centre of mass then its angular momentum is directed along its
+4
+A. Radius
+B. Tangent
+C. Circumference
+D. Axis of rotation
+3 
+y
+None
+
+A body of mass 10 kg is moved parallel to the ground, through a distance of 2 m. The work done against gravitational force is
+4
+A. 196 J
+B. -196 J
+C. 20 J
+D. Zero
+3 
+y
+None
+
+A passenger in a moving bus is thrown forward when the bus is suddenly stopped. This is explained
+4
+A. by Newtons first law
+B. by Newtons second law
+C. by Newtons third law
+D. by the principle of conservation of momentum
+0 
+y
+None
+
+Resolution is
+4
+A. a measure of the bias in the instrument
+B. a measure of the systematic errors
+C. the smallest amount of input signal change that the instrument can detect reliably
+D. None of these
+1 
+y
+None
+
+Consider the following statements:\n1. A tennis ball and a football can have equal kinetic energy if they have equal velocities\n2. A horse and a dog are running with the same speed; both have same kinetic energy Which among the above statement correct
+4
+1. Only 1 is correct
+2. Only 2 is correct
+3. Both are correct
+4. Neither 1nor 2 correct
+3 
+y
+None
+
+A simple pendulum on length l and mass m is suspended vertically. The string makes an angle θ with the vertical. The restoring force acting on the pendulum is
+4
+A. mg tanθ
+B. mg sinθ
+C. – mg sinθ
+D. – mg cosθ
+2 
+y
+None
+
+Why does light travel as a wave?
+4
+A. Due to the small packets called photons
+B. Due to an electric field
+C. Light does not travel as a wave
+D. Due to its electromagnetic nature
+3 
+y
+None
+
+241Which principle suggests that the intensity of light determines its amplitude?
+4
+A. Huygens principle
+B. Classic wave theory
+C. de – Broglie hypothesis
+D. Einstein’s particle theory
+1 
+y
+None
+
+When will the height of water in capillary tube be minimum?
+4
+A. When water temperature is 0° C
+B. When water temperature is 4° C
+C. When water temperature is -4° C
+D. When water temperature is -40  C
+1 
+y
+None
+
+Which of the following represents the condition for floatation?
+4
+A. Fb = mg
+B. Fb + mg
+C. Fb/ mg =1
+D. Fb = mgh
+0 
+y
+None
+
+If a conductor has a potential V ≠ 0 and there are no charges anywhere else outside, then
+4
+A. there must be charges on the surface or in¬side itself.
+B. there cannot be any charge in the body of the conductor.
+C. there must be charges only on the surface.
+D.both (a) and (b) are correct.
+2 
+y
+None
+
+Which of the following statement is true?
+4
+A. Electrostatic force is a conservative force.
+B.  Potential at a point is the work done per unit charge in bringing a charge
+C.  Electrostatic force is non-conservative
+D. Potential is the productof charge and work.
+0 
+y
+None
+
+Which of the following substances cannot be emitted by radioactive substances during their decay?
+4
+A. Protons
+B. Neutron
+C. Helium Nuclei
+D. Electron
+0 
+y
+None
+
+Why blue colour is scattered too much
+4
+A. Due to lage velocity
+B. Due to large wavelength
+C. Due to small wavelength
+D. None of the above
+2 
+y
+None
+
+Which of the following is an effective coolant?
+4
+A. Oil
+B. Mercury
+C. Water
+D. Acids
+2 
+y
+None
+
+233What happens when you heat china having some dark paintings engraved on it at 1000°C and then examine it in a dark room immediately?
+4
+A.  The dark painting will appear much brighter
+B. The whole china dish will be bright
+C. The china dish doesn’t glow
+D. The china dish will develop patterns
+0 
+y
+None
+
+When force and displacement are in the same direction, the kinetic energy of the body ___________
+4
+A. Increases
+B. Decreases
+C. Zero
+D. Remains constant
+0 
+y
+None
+
+What type of nature do electromagnetic waves have?
+4
+A. Wave nature
+B. Particle nature
+C. Photon nature
+D. Dual nature
+3 
+y
+None
+
+230How is friction due to air reduced
+4
+A. Streamlining
+B. Lubrication
+C. By using ball bearings
+D. By polishing
+0 
+y
+None
+
+229Which of the following kinetic friction is smaller?
+4
+A. Limiting friction
+B. Static friction
+C. Rolling friction
+D. Sliding friction
+2 
+y
+None
+
+When we shake the branch of a tree, its fruits and dry leaves fall down. This is an example of
+4
+A. Inertia of rest
+B. Inertia of motion
+C. Inertia of direction
+D. Newton's third law of motion
+0 
+y
+None
+
+A body is moving along a straight path. What will happen to the body in the absence of an external field?
+4
+A. It will stop
+B. It will move with the same speed in a different path
+C.  It will move with the same speed along the same straight path
+D. It will move with a reduced speed along the same path
+2 
+y
+None
+
+A can filled with water is revolved in a vertical circle of radius 4 metre and the water does not fall down. The time period of revolution will be
+4
+A. 4 sec
+B. 10 sec
+C. 8 sec
+D. 1 sec
+0 
+y
+None
+
+A body starts from rest and travels with uniform acceleration of 2 m/s². If its velocity is v after making a displacement of 9 m, then v is
+4
+A. 8 m/s
+B. 10 m/s
+C. 6 m/s
+D. 4 m/s
+2 
+y
+None
+
+What happens when a vector is multiplied by a scalar?
+4
+A. Its magnitude gets multiplied by that much amount
+B.  Its direction rotates in XY plane by that much angle
+C. Its direction rotates in YZ plane by that much angle
+D.  Its direction rotates in ZX plane by that much angle
+0 
+y
+None
+
+Dividing 5î + 10ĵ by 5 gives ______
+4
+A. î + 2ĵ
+B.  î + 4ĵ
+C. î + ĵ
+D. 2î + ĵ
+0 
+y
+None
+
+Which of the following is true about the focal length of a spherical mirror?
+4
+A.  it is equal to its radius of curvature
+B.  it is equal to half its radius of curvature
+C.  it is equal to twice its radius of curvature
+D. it is equal to inverse of  its radius of curvature
+1 
+y
+None
+
+Which of the following is the efficiency of a Carnot engine(a = Temperature of source, b=Temperature of sink)?
+4
+A. 1 – b/a
+B. 1 – a/b
+C. 1 + b/a
+D. 1 + a/b
+0 
+y
+None
+
+A body of mass 5kg hangs from a spring and oscillates with a time period of 2π seconds. If the body is removed, the length of the spring will decrease by?
+4
+A. g/k meters
+B. K/g meters
+C.  2π meters
+D. g meters
+3 
+y
+None
+
+The total energy of a particle performing simple harmonic motion depends on ___________
+4
+A. K a m
+B. K a
+C. K a x
+D. k x
+1 
+y
+None
+
+Find the wrong statement
+4
+A. Clouds appear white for most of the day because the sun radiates all visible wavelengths of light
+B. The rays have to travel a shorter distance than usual at sunrise and sunset
+C. Danger signals are red because red color gets scattered the least
+D. The sky is blue because blue light is scattered more than other colors
+1 
+y
+None
+
+Which of the following is used to increase the range of a telescope?
+4
+A. Increasing the focal length
+B. Decreasing the focal length
+C. Increasing the diameter of the objective
+D.  Decreasing the diameter of the objective
+2 
+y
+None
+
+Which of the following is an example of application of force?
+4
+A. when a body at rest starts moving
+B. when a moving body stops
+C. when moving body changes its direction
+D. All of the above
+3 
+y
+None
+
+Which of the following pairs represent two scalar quantities?
+4
+A. Mass, Acceleration
+B. Temperature, Torque
+C. Distance, Speed
+D. Gravitational Intensity, Work
+2 
+y
+None
+
+When a body is in Uniform Circular Motion, there is no change in ___:
+4
+A. Speed
+B. Amplitude
+C. Velocity
+D. Acceleration
+1 
+y
+None
+
+213Which of the following is used as a voltage regulator?
+4
+A. Zener diode
+B. Solar cell
+C. Photodiode
+D. LED
+0 
+y
+None
+
+Identify the one on which no external bias is applied.
+4
+A. Zener diode
+B. Solar cell
+C. Photodiode
+D. LED
+1 
+y
+None
+
+Which of the following converts light energy to electric current?
+4
+A. LED
+B. Zener diode
+C. Solar cell
+D. Photodiode
+3 
+y
+None
+
+The second polaroid placed after the ray has been polarized is called as ____________
+4
+A.  Polaizer
+B. Analyzer
+C. Brewsters window
+D. Multi Polaroid
+2 
+y
+None
+
+A polaroid with molecules aligned vertically would have polarization axis in the ____________
+4
+A. Vertical Direction
+B. Horizontal Direction
+C. The direction of incident light
+D.  Resultant of vertical and incident light
+1 
+y
+None
+
+Which of the following is a uniaxial crystal?
+4
+A. Borax
+B. Mica
+C. Quartz
+D. Selenite
+2 
+y
+None
+
+A test charge is moved from lower potential point to a higher potential point. The potential energy of test charge will
+4
+A. remain the same
+B. Increases
+C. Decreases
+D. Becomes zero
+2 
+y
+None
+
+206Which of the following statements is not true about Gauss’s law?
+4
+A. Gauss’s law is true for any closed surface.
+B.  The term q on the right side side of Gauss’s law includes the sum of all charges
+C. Gauss’s law is not much useful in calculating electrostatic field
+D. Gauss’s law is based on the inverse square dependence on distance contained in the coulomb’s law
+2 
+y
+None
+
+A Bucket containing water is going in a vertical circle. The water ___________
+4
+A. Falls drop by drop
+B. Falls all at once
+C. Does not fall
+D. Only upper half of the water is lost
+2 
+y
+None
+
+ There is some water in a beaker placed on the pan of a spring balance. If we dip our finger in this water without touching the bottom of the beaker
+4
+A. The reading will be the same
+B.  The reading will increase
+C. The reading drops to zero
+D.  The beaker falls down
+1 
+y
+None
+
+203If the separation between the two slits in Double Slit Fraunhofer Diffraction is changed, what change will be observed in the diffraction pattern?
+4
+A. The fringe length will increase
+B. The fringe length will decrease
+C. Fringes will be colored
+D. No change
+3 
+y
+None
+
+201In Fresnel Diffraction, the incident wavefront is
+4
+A. Hyperbolic
+B. Linear
+C. Sperical
+D. Elliptical
+2 
+y
+None
+
+201. In Fresnel diffraction, the relative phase difference between the curved wavefront is
+4
+A. Constant
+B. Zero
+C. Linearly increasing
+D. Non-constant
+3 
+y
+None
+
+Motion of the tip of second hand of the clock is an example for ___________
+4
+A. Uniform Circular motion
+B. Motion in a plane with uniform velocity
+C. Projectile motion
+D. Motion in a plane with constant acceleration
+0 
+y
+None
+
+A ball is dropped downward from the roof of a building and simultaneously another ball is thrown in a horizontal direction, when will the balls reach the ground?
+4
+A. Same time and same place
+B.  The first ball will reach later than the second ball
+C.  The second ball will reach later than the second ball
+D. Same time but different places
+3 
+y
+None
+
+198For motion in two or three dimensions, what is the angle between velocity and acceleration vectors?
+4
+A. 0 degree
+B. 90 degree
+C. 0 and 180 degree
+D. 180 degree
+2 
+y
+None
+
+A stone tied to a string is rotated in a circle. If the string is cut, the stone flies away from the circle because
+4
+A.  Centrifugal force acts on the stone
+B. Of its inertia
+C. A centripetal force acts on the stone
+D. The reaction of the centripetal force
+1 
+y
+None
+
+196If a particle moves with constant angular velocity in a circle then during the motion its
+4
+A. Momentum is conserved
+B. Energy is conserved
+C. Both energy and momentum is conserved
+D. None of the above is conserved
+1 
+y
+None
+
+195What could be the reason a car moving on a horizontal road gets thrown out of the road while taking a turn
+4
+A. Due to the reaction of the ground
+B. Due to rolling frictional force between tyre and road
+C. By the gravitational force
+D. Due to lack of sufficient centripetal force
+3 
+y
+None
+
+ What is the relationship between the magnetisation of a paramagnetic material and the absolute temperature?
+4
+A. they are directly proportional to each other
+B. they are inversely proportional to each other
+C. they are independent of each other
+D. None of the above
+1 
+y
+None
+
+Which of the following properties of a material make it suitable to become a permanent magnet?
+4
+A. The material should have high retentivity
+B. The material should have low coercivity
+C. The material should have low permeability
+D. Both b and c
+0 
+y
+None
+
+What do we call the magnitude of the drift velocity per unit electric field?
+4
+A. Current density
+B. Conductance
+C. Resistance
+D. Mobility
+3 
+y
+None
+
+Which of the following is correct about the rate of loss of heat of the body, as per the Newton’s law of cooling?
+4
+A.  It is directly proportional to the difference of body’s temperature and the surroundings
+B. It is inversely proportional to the difference of body’s temperature and the surroundings
+C. It is equal to the difference of body’s temperature and the surroundings
+D. None of the above
+0 
+y
+None
+
+190If gravitational constant is decreasing with time, what will remain unchanged in case of a satellite orbiting around the earth?
+4
+A. Time period
+B. Orbiting radius
+C. Areal velocity
+D. Angular velocity
+2 
+y
+None
+
+If the earth stops rotating, the value of g at the equator ___________
+4
+A. Increases
+B. Decreases
+C. No effect
+D. First increases and then decreases
+0 
+y
+None
+
+Swimming is an example of which of the following?
+4
+A. Newton’s first law of motion
+B. Newton’s second law of motion
+C. Newton’s third law of motion
+D. Law of inertia
+2 
+y
+None
+
+Which of the following is an example for impulsive force?
+4
+A.  A person in a moving bus
+B. A horse suddenly stopping
+C. Force exerted by a bat hitting a ball
+D. Sharpening of knife
+2 
+y
+None
+
+A dog is chasing a hare and the hare runs in a zigzag path. What happens?
+4
+A. The dog becomes confused
+B.  The dog catches the hare easily
+C. It becomes difficult for the dog to catch the hare
+D. The hare dies
+2 
+y
+None
+
+When we shake the branch of a tree, its fruits and dry leaves fall down. This is an example of
+4
+A. Inertia of motion
+B. Inertia of rest
+C. Inertia of direction
+D. Newton's third law of motion
+1 
+y
+None
+
+184The lowest possible mass of a particle is its _____________
+4
+A. Relativistic mass
+B. Inertial mass
+C. Gravitational mass
+D.  Rest mass
+3 
+y
+None
+
+Which basic law is used for the derivation of mass variation with velocity?
+4
+A. Law of conservation of Energy
+B. Law of conservation of Kinetic Energy
+C. Law of conservation of Momentum
+D. Law of conservation of mass
+2 
+y
+None
+
+When a body P moves on a circular path, the centripetal acceleration is
+4
+A.directed inwards from P, to the centre of the circle
+B. directed tangential to the circumference of the circle, at P
+C. directed perpendicular to the planc of the circle, at P
+D. directed outward, perpendicular to the circumference of the circle
+0 
+y
+None
+
+A small body attached at the end of an inextensible string completes a vertical circle, then its
+4
+A. angular momentum remains constant
+B.  linear momentum remains constant
+C. angular velocity remains constant
+D. total mechanical energy remains constant
+3 
+y
+None
+
+The wavelength range of X-rays is _____________
+4
+A. 1 mm to 700 nm
+B. 400 nm to 1 nm
+C.  1 nm to 0.001 nm
+D. 0.1 m to 1 mm
+2 
+y
+None
+
+In X-ray emission tubes, X-ray is emitted by the acceleration of ________________
+4
+A. Atoms
+B. Protons
+C. Electrons
+D. Neutrons
+2 
+y
+None
+
+A bullet is fired and gets embedded in a block kept on the table. If a table is frictionless, then
+4
+A. Kinetic energy is conserved
+B. Potential energy is conserved
+C. Momentum is conserved
+D. Both A  and B
+2 
+y
+None
+
+A simple pendulum hanging freely and at rest is vertical because in that position ___________
+4
+A. Kinetic energy is zero
+B. Potential energy is zero
+C. Kinetic energy is minimum
+D. Potential energy is minimum
+3 
+y
+None
+
+176If the earth were to shrink suddenly, what would happen to the length of the day?
+4
+A. It increases
+B. It decreases
+C. It remains same
+D. Can't say
+1 
+y
+None
+
+175Where does the centre of mass of two particles of an equal mass lie?
+4
+A. Inside the body
+B. Outside the body
+C. Near the first body
+D. Midway between the body
+3 
+y
+None
+
+What is a rectifier used for?
+4
+A. Convert ac voltage to dc voltage
+B. Convert dc voltage to ac voltage
+C. To measure resistance
+D. To measure current
+0 
+y
+None
+
+How many main types of rectifiers are there?
+4
+A. 1
+B. 2
+C. 3
+D. 4
+1 
+y
+None
+
+How many AND gates are required to form, NAND gate?
+4
+A. 1
+B. 2
+C. 3
+D. 4
+0 
+y
+None
+
+In the common emitter amplifier, the phase difference between the input voltage and output voltage signal across the collector and emitter is:
+4
+A. 0
+B. π/2
+C. π/4
+D.  π
+3 
+y
+None
+
+In torches, search lights and headlights of vehicles the bulb is placed
+4
+A. between the pole and the focus of the reflector
+B. very near to the focus of the reflector
+C. between the focus and centre of curvature of the reflector
+D. at the centre of curvature of the reflector
+1 
+y
+None
+
+The angle of incidence i and refraction r are equal in a transparent slab when the value of i is
+4
+A. 0
+B. 45
+C. 30
+D. 90
+0 
+y
+None
+
+A body starts from rest and travels with uniform acceleration on a straight line. If its velocity after making a displacement of 32 m is 8 m/s, its acceleration is
+4
+A. 1 m/s²
+B. 2 m/s²
+C. 3 m/s²
+D. 4 m/s²
+0 
+y
+None
+
+167boy starts from a point A, travels to a point B at a distance of 3 km from A and returns to A. If he takes two hours to do so, his speed is
+4
+A. 3km/hr
+B. Zero
+C. 2km/hr
+D. 1.5km/hr
+0 
+y
+None
+
+Find the true statement
+4
+A. Motional emf is inversely proportional to speed of electric conductor
+B. Motional emf is inversely proportion to the length of the conductor
+C. Motional emf is directly proportional to the magnetic field
+D. Motional emf is inversely proportional to the magnetic field
+2 
+y
+None
+
+165Find the true statement
+4
+A. Displacement current and conduction current are never equal
+B.The current that flows through connection wires is called conduction current
+C.  Both A and B
+D. None
+1 
+y
+None
+
+164.  Bolometer is used to measure
+4
+A. Frequency
+B. Temperature
+C. Velocity
+D. Wavelength
+2 
+y
+None
+
+Elecronegativity is the measure of
+4
+A. Metallic
+B. Non-metallic
+C. Semiconductor
+D. Basic character
+1 
+y
+None
+
+How is friction due to air reduced?
+4
+A. Streamlining
+B. Lubrication
+C. By using ball bearings
+D.  By polishing
+0 
+y
+None
+
+A scooter weighs 120kg f. Brakes are applied so that wheels stop rolling and start skidding. Find the force of friction if the coefficient of friction is 0.4.
+4
+A. 60 kg f
+B. 48 kg f
+C. 32 kg f
+D.28 kg f
+1 
+y
+None
+
+A man presses more weight on earth at :
+4
+A. Sitting position
+B. Lying Position
+C. Standing Position
+D. None of these
+2 
+y
+None
+
+When a cat falls from a height _____________
+4
+A. It sustains injury
+B.  It dies
+C. It lands on its feet
+D. It bounces back
+2 
+y
+None
+
+Which isotope below has the highest binding energy?
+4
+A. 4He
+B. 16O
+C.32S
+D. 55Mn
+3 
+y
+None
+
+A nucleus of uranium decays at rest into nuclei of thorium and helium. Then,
+4
+A. The helium nucleus has more kinetic energy than the thorium nucleus
+B. The helium nucleus has less momentum than the thorium nucleus
+C. The helium nucleus has more momentum than the thorium nucleus
+D. The helium nucleus has less kinetic energy than the thorium nucleus
+0 
+y
+None
+
+If electrical conductivity increases with the increase of temperature of a substance, then it is a:
+4
+A. Conductor
+B. Insulator
+C. Semiconductor
+D. Both A and C
+2 
+y
+None
+
+A piece of ice is dropped in a vesel containing kerosene. When ice melts, the level of kerosene will
+4
+A. Rise
+B. Fall
+C. Remain Same
+D. None of these
+1 
+y
+None
+
+A test charge is moved from lower potential point to a higher potential point. The potential energy of test charge will
+4
+A. Remains same
+B. Increase
+C. Decrease
+D. Becomes zero
+2 
+y
+None
+
+ Consider a uniform electric field in the z-direction. The potential is a constant
+4
+A. for any x for a given z
+B.  for any y for a given z
+C. on the x-y plane for a given z
+D. all of these
+3 
+y
+None
+
+Determine the rms value of current in the circuit if a 50 Ω resistor is connected across an ac source of 200 V, 50 Hz?
+4
+A. 4A
+B. 200A
+C. 50A
+D. 1A
+0 
+y
+None
+
+What is the rms value of the current, if its instantaneous current value is \n8 sin314 t?
+4
+A.  2√4 A
+B. 10 A
+C. 4√2 
+D. 50 A
+2 
+y
+None
+
+The part of the transistor which is heavily doped to produce a large number of majority carriers is:
+4
+A. Emitter
+B. Base
+C. Collector
+D. All of the above
+0 
+y
+None
+
+ The mobility of conduction electrons is greater than that of holes since electrons is greater than that of holes since electrons.
+4
+A. are negatively charged
+B.  are lighter
+C. require smaller energy for moving through the crystal lattice.
+D. Undergo smaller number of collisions.
+2 
+y
+None
+
+How can the noise be reduced in AM signal?
+4
+A. Increasing amplitude
+B. Increasing wavelength
+C. Increasing bandwidth
+D. Increasing frequency deviation
+3 
+y
+None
+
+Why is AM used for broadcasting in the communication systems?
+4
+A. Its use avoids receiver complexity
+B. It is more immune to other modulation systems
+C. It requires less transmitting power
+D. No noise disturbances
+0 
+y
+None
+
+The fusion reaction takes place under ________
+4
+A. High Temperature and Low Pressure
+B. Low Temperature and High Pressure
+C. High Temperature and High Pressure
+D.  Low Temperature and Low Pressure
+2 
+y
+None
+
+Nuclear fusion is the phenomenon of ___________
+4
+A. Heavy nucleus splitting
+B. Heavy nuclei combining
+C. Light nucleus splitting
+D. Light nuclei combining
+3 
+y
+None
+
+The photoelectric emission could be explained by the ____________
+4
+A. Wave nature of light
+B. Particle nature of light
+C. Dual nature of light
+D. Quantum nature
+1 
+y
+None
+
+ During Einstein’s Photoelectric Experiment, what changes are observed when the frequency of the incident radiation is increased?
+4
+A. The value of saturation current increases
+B. No effect
+C. The value of stopping potential increases
+D. The value of stopping potential decreases
+2 
+y
+None
+
+Which of these diodes is used to detect optical signals?
+4
+A. Photodiode
+B. Light emitting diode
+C. Photovoltaic diode
+D. Solar cell
+0 
+y
+None
+
+ Which of the following element has an isotope named as Tritium?
+4
+A. Helium
+B. Carbon
+C. Titanium
+D. Hydrogen
+3 
+y
+None
+
+ Which one of the following is the process of recovering the modulated signal?
+4
+A. Amplification
+B. Detection
+C. Attenuation
+D. Transmission
+1 
+y
+None
+
+ Which of the following is not part of the detector system?
+4
+A. Rectifier
+B. Envelope detector
+C. Amplifier
+D. AM wave
+2 
+y
+None
+
+ What is the refractive index of the ionosphere?
+4
+A. Zero
+B. More than one
+C. Less than one
+D. One
+2 
+y
+None
+
+ The maximum distance upto which TV transmission from a TV tower of height h can be received is proportional to which of the following?
+4
+A. h1/2
+B.  h
+C.  h3/2
+D.  h2
+0 
+y
+None
+
+If the conductivity of a semiconductor is only due to break of the covalent band due to the thermal excitation, then the semiconductor is called:
+4
+A. intrinsic
+B. extrinsic
+C.  Acceptor
+D.  none of these
+0 
+y
+None
+
+In a semiconductor, the forbidden energy gap between the valence band and the conduction band is of the order of:
+4
+A.  1 Mev
+B.  1 ev
+C. 0.1 Mev
+D.  5ev
+1 
+y
+None
+
+An ideal black body is thrown into a furnace. The black body is room temperature. It is observed that ___________
+4
+A. Initially, it is darkest body and at later times the brightest
+B. At all times it is the darkest body
+C.  It cannot be distinguished at all times
+D. Initially, it is the darkest body and at later it cannot be distinguished
+0 
+y
+None
+
+The thermometer bulb should have ___________
+4
+A.  High heat capacity
+B.  No heat capacity
+C.  Small heat capacity
+D.  Varying heat capacity
+2 
+y
+None
+
+Electric flux will be maximum if the angle between the field lines and area vector is ______
+4
+A. 45 degree
+B. 135 degree
+C. 90 degree
+D. 0 degree
+3 
+y
+None
+
+When a PN junction diode is reverse biased
+4
+A. Electrons and holes are attracted towards each other and move towards the depletion region
+B. Electrons and holes move away from the junction depletion region
+C. Height of the potential barrier decreases
+D. No change in the current takes place
+1 
+y
+None
+
+ The electrical resistance of the depletion layer is large because
+4
+A. It has no change carriers
+B.It has a large number of charge carrier
+C.It contains electrons as charge carriers
+D.It has holes as charge carriers
+0 
+y
+None
+
+At a critical temperature, the surface tension of a liquid ___________
+4
+A. Is zero
+B. Is infinity
+C. Is the same as any other temperature
+D. Cannot be determined
+0 
+y
+None
+
+Rayleigh-Jean’s law holds good for which of the following?
+4
+A. Shorter wavelength
+B. Longer wavelength
+C. High temperature
+D. High energy
+1 
+y
+None
+
+Which of the following is the characteristic of a black body?
+4
+A.  A perfect absorber but an imperfect radiator
+B.  A perfect radiator but an imperfect absorber
+C. A perfect radiator and a perfect absorber
+D. A perfect conductor
+2 
+y
+None
+
+The device used in the Michaelson Morley experiment was _____
+4
+A. Telescope
+B. Plain Grating
+C. Interferometer
+D.Prism
+2 
+y
+None
+
+  Which of the following were one of the conclusions of the Michaelson Morley experiment?
+4
+a) All laws of physics remain invariant in all inertial frames
+b) Light propagates with different speeds in different directions
+c) Ether has no observable properties
+d) The velocity of light in free space is constant
+2 
+y
+None
+
+If an object is positively charged, theoretically the mass of the object ______
+4
+A. Increases slightly by a factor of 9.11*10-31 kg
+B. Decreases slightly by a factor of 9.11*10-31 kg
+C. Remains the same
+D. May increase or decrease
+1 
+y
+None
+
+1 Coulomb = ________ Electro Static Unit.
+4
+A. 3*109
+B. 3*108
+C. 1.602*10-19
+D. 2*109
+0 
+y
+None
+
+One joule of work is said to be done when__
+4
+A. a force of 1 dyne causes a displacement of 1 cm.
+B. a force of 1 dyne causes a displacement of 1 m.
+C. a force of 1 N causes a displacement of 1 cm.
+D. a force of 1 N causes a displacement of 1 m.
+3 
+y
+None
+
+Which among the following provides potential energy to an object?
+4
+A. Its momentum
+B. It’s position
+C. It’s acceleration
+D. It’s shape
+1 
+y
+None
+
+ Consider α and β particles and γ-rays each having an energy of 0.5 MeV. In the increasing order of penetrating power, the radiation are respectively
+4
+A. α, β, γ
+B. α, γ, β
+C. β, γ, α
+D.  γ β, α
+0 
+y
+None
+
+ An electron emitted in beta radiation originates from
+4
+A.inner orbits of atom
+B. free electrons existing in the nuclei
+C. decay of a neutron in a nuclei
+D. photon escaping from the nucleus
+2 
+y
+None
+
+ In nuclear reaction, there is conservation of
+4
+A. Mass only
+B. Energy only
+C. Momentum only
+D. All of the above
+3 
+y
+None
+
+Light energy emitted by star is due to
+4
+A. Burning of nuclei
+B. Joining of nuclei
+C. Breaking of nuclei
+D. Reflection of solar light
+1 
+y
+None
+
+A body moves with a constant speed in a circular path is moving in a circular path with a constant speed. It has
+4
+A. Acceleration of constant magnitude
+B. Constant velocity
+C. Constant acceleration
+D. An acceleration which varies with time
+0 
+y
+None
+
+What will be the velocity vector of a particle moving in a circle describing equal angles in equal times
+4
+A. Changes in direction
+B. Remains constant
+C. Changes in magnitude
+D. Changes both in direction and magnitude
+0 
+y
+None
+
+Which of the following represents viscosity?
+4
+A. Potential energy stored in fluid
+B. Resistance to fluid motion
+C. Roughness of the surface
+D. The pressure difference between the two fluids
+1 
+y
+None
+
+Which of these fluids has the highest viscosity?
+4
+A. Water
+B. Honey
+C. Blood
+D. Oil
+1 
+y
+None
+
+Calculate the angular speed of flywheel making 420 revolutions per minute.
+4
+A. 42300 rad/sec
+B. 1200 rad/sec
+C. 10/4200 rad/sec
+D. 44 rad/sec
+3 
+y
+None
+
+Motion of the tip of second hand of the clock is an example for ___________
+4
+A. Uniform Circular Motion
+B. Projectile motion
+C. Motion in a plane with uniform velocity
+D. Motion in a plane with constant acceleration
+0 
+y
+None
+
+A body is projected horizontally from the top of a cliff with a velocity of 9.8m/s. What time elapses before horizontal and vertical velocities become equal? Take g = 9.8m/s2
+4
+A. 9.8 sec
+B. 0 sec
+C. 10 sec
+D. 1 sec
+3 
+y
+None
+
+A cyclist moves along a circular path of radius 70m. If he completes one round in 11s, calculate the total length of a path.
+4
+A. 40m
+B. 440m
+C. 0m
+D. 11m
+1 
+y
+None
+
+A lightly damped oscillator with a frequency v is set in motion by a harmonic driving force of frequency v’. When v’ is lesser than v, then the response of the oscillator is controlled by ___________
+4
+A. Spring constant
+B.. Inertia of the mass
+C. Oscillator frequency
+D. Damping coefficient
+0 
+y
+None
+
+ A simple pendulum is attached to the roof of a lift. If the time period of oscillation, when the lift is stationary is T, then the frequency of oscillation when the lift falls freely, will be ___________
+4
+A. Zero
+B. T
+C. 1/T
+D. Infinity
+0 
+y
+None
+
+ An object thrown from an aeroplane is an example for ____________
+4
+A. Projectile motion
+B. Resolution of forces
+C. Composition of Vectors
+D. Addition of Vector
+0 
+y
+None
+
+For motion in two or three dimensions, what is the angle between velocity and acceleration vectors?
+4
+A. 0
+B. 180
+C. Between 0 and 180
+D. 90
+2 
+y
+None
+
+The distance of Neptune and Saturn from sun are nearly 1013 and 1012 meters respectively. Assuming that they move in circular orbits, what will be the ratio of their periodic times?
+4
+A. 40
+B.  10√10
+C. 20√20
+D. 30√30
+1 
+y
+None
+
+What is the escape velocity of a planet having mass 6 times and radius 2 times as that of earth?
+4
+A. 3 ve
+B. √2 ve
+C. √3 ve
+D. 2 ve
+2 
+y
+None
+
+Two bodies of masses m and 4m are moving with equal kinetic energies. What is the ratio of their linear momenta?
+4
+A. 1:2
+B. 1:4
+C. 1:1
+D. 4:1
+0 
+y
+None
+
+A spring 40mm ling is stretched by the application of force. If 10N force is required to stretch the spring through 1mm, then the work done in stretching the spring through 40mm is?
+4
+A. 23 J
+B. 68 J
+C. 84 J
+D. 8 J
+3 
+y
+None
+
+When we steer a bicycle round a bend with both our hands on the handlebars, we apply a ___________
+4
+A. Force
+B. Torque
+C. Couple
+D. Energy
+2 
+y
+None
+
+ How much mass is converted into energy per day in Tarapur nuclear power plant operated at 10 to the power 7 KW?
+4
+A. 10 gm
+B. 9 gm
+C. 9.6 gm
+D. 2 gm
+2 
+y
+None
+
+ The part of the eyes refracts light entering the eye from external objects?
+4
+A. Lens
+B. Cornea
+C. Pupil
+D. Iris
+1 
+y
+None
+
+The colored light that refracts most while passing through a prism is
+4
+A. Red
+B. Blue
+C. Violet
+D. Green
+2 
+y
+None
+
+The least distance of distinct vision for a young adult with normal vision is
+4
+A. 25m
+B. 25cm
+C. 25mm
+D. 2.5cm
+1 
+y
+None
+
+ The image formed by retina of human eye is
+4
+A. Virtual and erect
+B. Real and inverted
+C. Virtual and inverted
+D.  Real and erect
+1 
+y
+None
+
+In all the electrical appliances, the switches are put in the
+4
+A. live wire
+B. earth wire
+C. neutral wire
+D. all of above
+2 
+y
+None
+
+What happens to the current in short circuit?
+4
+A. reduces substantially
+B. does not change
+C. increases heavily
+D. vary continuously
+2 
+y
+None
+
+ What is that instrument which can detect the presence of electric current in a circuit?
+4
+A. galvanometer
+B. motor
+C. generator
+D. none of above
+0 
+y
+None
+
+ An alpha particle is diverted towards west is deflected towards north by a field. The field is magnetic. What will be the direction of field?
+4
+A.  Towards south
+B.  Towards east
+C. Downward
+D. upward
+2 
+y
+None
+
+ What is the output of an OR gate when both the inputs are 1?
+4
+A.0
+B.1
+C. Either 0 or 1
+D. None
+1 
+y
+None
+
+ What is the fuel in the Sun?
+4
+A. Helium
+B. Hydrogen
+C. Oxygen
+D. Carbon dioxide
+1 
+y
+None
+
+Which of the following is associated with an electron microscope?
+4
+A. Matter waves
+B. Electric waves
+C. Magnetic waves
+D. Electromagnetic waves
+0 
+y
+None
+
+Which of the following is the characteristic of a black body?
+4
+A. A perfect absorber but an imperfect radiator
+B. A perfect radiator but an imperfect absorber
+C. A perfect radiator and a perfect absorber
+D. A perfect Conductor
+2 
+y
+None
+
+If boiling point of water is 95°F, what will be reading at Celsius scale?
+4
+A. 7
+B. 35
+C. 65
+D. 63
+1 
+y
+None
+
+ Heat was given to a body, which raises its temperature by 1°C is ___________
+4
+A. Water equivalent
+B. Temperature gradient
+C. Thermal capacity
+D. Specific heat
+2 
+y
+None
+
+A frame of reference has four coordinates, x, y, z, and t is referred to as the_____________
+4
+A. Inertial frame of reference
+B.  Non-inertial frame of reference
+C. Space-time reference
+D.  Four-dimensional plane
+2 
+y
+None
+
+According to Einstein’s Special Theory of Relativity, laws of physics can be formulated based on ____________
+4
+A. Inertial Frame of Reference
+B. Non-Inertial Frame of Reference
+C. Both Inertial and Non-Inertial Frame of Reference
+D. Quantum State
+0 
+y
+None
+
+In a free fall the velocity of a stone is increasing equally ion equal intervals of time under the effect of gravitational force of the earth. Then what can you say about the motion of this stone? Whether the stone
+4
+A. Uniform acceleration              
+B. Non-uniform acceleration
+C. Retardation                                 
+D. Constant speed
+0 
+y
+None
+
+Suppose a boy is enjoying a ride on a marry-go-round which is moving with a constant speed of 10 m/s. It implies that the boy is
+4
+A. At rest
+B. Moving with no acceleration
+C. In accelerated motion
+D. Moving with uniform velocity
+2 
+y
+None
+
+A light and a heavy body have equal kinetic energy. Which one has a greater momentum?
+4
+A. The light body
+B. The heavy body
+C. Both have equal momentum
+D. It is not possible to say anything without additional information
+1 
+y
+None
+
+ Work done in raising a box depends on
+4
+A. How fast it is raised
+B. The strength of the man
+C.The height by which it is raised
+D. None of the above
+2 
+y
+None
+
+ Which of the following can execute both translational and rotational motion under the influence of the external field?
+4
+A. Rigid body
+B. Ideal body
+C. Rotating body
+D. A body which is stationary
+0 
+y
+None
+
+The internal torque on the system due to internal force is ___________
+4
+A. Increasing
+B. Decreasing
+C. Constant
+D. Zero
+3 
+y
+None
+
+What is the net magnetic field in a solenoid?
+4
+A. product of the fields due to all the turns
+B. equal to the field due to the largest turn
+C.  vector sum of the fields due to all the turns
+D. arithmetic mean of the fields due to all the 
+2 
+y
+None
+
+ Which of the following properties of a material make it suitable to become a permanent magnet?
+4
+A. The material should have high retentivity
+B. The material should have low coercivity
+C. The material should have low permeability
+D. Both B and C
+0 
+y
+None
+
+What number does orange colour represent in the resistance colour code?
+4
+A. 1
+B. 2
+C. 3
+D. 4
+3 
+y
+None
+
+Which of the following represents the Boiling process?
+4
+A. Adiabatic change
+B. Isothermal change
+C. Isochoric process
+D. Isobaric process
+1 
+y
+None
+
+Which of the following gives us the mass number of an atom?
+4
+A. total number of electrons
+B. total number of neutrons
+C. total number of nucleons
+D. total number of protons
+2 
+y
+None
+
+Which of the following is NOT a natural magnet?
+4
+A. lodestone
+B. pyrrhotite
+C. columbite
+D. titanium
+3 
+y
+None
+
+Which of these rays have the highest ionising power?
+4
+A. Alpha
+B. Beta
+C. Gamma
+D. All of the above
+0 
+y
+None
+
+Which of the following element has an isotope named as Tritium
+4
+A. Helium
+B. Carbon
+C. Titanium
+D. Hydrogen
+3 
+y
+None
+
+Which of the following is true about working of a photo diode?
+4
+A. It is operated under reverse bias
+B. It is operated under forward bias
+C. Both A and B
+D. None of the above
+0 
+y
+None
+
+What is meant by Atomic number of an atom?
+4
+A. total number of protons
+B. total number of electrons in an uncharged atom
+C. total number of electrons and protons
+D. both A and B
+3 
+y
+None
+
+Which of the following is correct?
+4
+A. The nuclear force does not depend on the electric charge
+B. The nuclear force is much weaker than the Coulomb force
+C.  Both a and b
+D. None of the above
+0 
+y
+None
+
+What is the SI unit of magnetic flux?
+4
+A. tesla
+B. maxwell
+C. weber
+D. newton
+0 
+y
+None
+
+Which of these is used to accelerate charged particles or ions to high energies?
+4
+A. Solenoid
+B. Cyclotron
+C. Electric motor
+D. Toroid
+1 
+y
+None
+
+ What causes the twinkling of stars?
+4
+A. Atmospheric refraction of starlight
+B. Dispersion of starlight
+C. Scattering of starlight
+D. None of the above
+0 
+y
+None
+
+Which is correct about the height of a capillary column of a liquid, at a particular temperature, as per Jurin’s law?
+4
+A. equal to the diameter of the tube
+B. directly proportional to the diameter of the tube
+C. inversely proportional to the diameter of the tube
+D. half of the diameter of the tube
+2 
+y
+None
+
+What happens to a body when its density is greater than the density of the fluid?
+4
+A.  it floats
+B. it sinks
+C. it stays at rest
+D. None of the above
+1 
+y
+None
+
+What is the S.I. unit of absorptive power?
+4
+A. dioptre
+B.metre
+C. Watt
+D. No unit
+3 
+y
+None
+
+ What do we call the magnitude of the maximum disturbance in the medium on either side of the mean value called as?
+4
+A. Frequency
+B. Angular Displacement
+C. Amplitude
+D. Wave number
+2 
+y
+None
+
+What is the size of the image formed by a concave mirror when the object is at focus?
+4
+A. Enlarged
+B. Point sized
+C. Same size
+D. Highly enlarged
+3 
+y
+None
+
+What happens when light travels from a denser medium to a rarer medium?
+4
+A. it slows down and bends towards the normal
+B. it speeds up and bends towards the normal
+C.it slows down and bends away from the normal
+D. it speeds up and bends away from the normal
+3 
+y
+None
+
+Which of the following produces Electromagnetic waves?
+4
+A. charges at rest
+B. charges in uniform motion
+C. accelerated charges
+D. All of the above
+2 
+y
+None
+
+Which of the following is correct about transverse mechanical waves?
+4
+A. they can travel through solids and gases
+B. they can travel through solids but not liquids
+C. they can travel through solids and liquids
+D. they can travel through gases but not solids
+1 
+y
+None
+
+ Which of the following instruments is used to measure the relative density of a liquid?
+4
+A. Hydrometer
+B. Hygrometer
+C. Gravimeter
+D. Lactometer
+0 
+y
+None
+
+What is the angle of contact for pure water and glass?
+4
+A. 0 degree
+B. 30 degree
+C. 60 degree
+D. 90 degree
+0 
+y
+None
+
+Which of the following is the orbital velocity of a satellite orbiting very close to the surface of earth?
+4
+A. 7.2 km/s
+B. 9.2 km/s
+C. 11.2 km/s
+D. 12. 2 km/s
+2 
+y
+None
+
+The value of acceleration due to gravity is minimum on which of these planets
+4
+A. Mars
+B. Jupiter
+C. Neptune
+D. Mercury
+3 
+y
+None
+
+The width of the depletion region is
+4
+A. Directly proportional to doping
+B. Inversely proportional to doping
+C. Independent of doping
+D. None of the above
+1 
+y
+None
+
+Photodiode is used in the detection of
+4
+A. Visible
+B. Invisible
+C. Infrared
+D. Both A and B
+3 
+y
+None
+
+A bucket of water is hung from a spring balance. A piece of iron is suspended in the water without touching the sides or touching the bottom of the bucket. The reading of the spring balance
+4
+A. Will increase
+B. Will decrease
+C. Does not change
+D. Can't say
+0 
+y
+None
+
+Two electric bulbs marked 25W – 220V and 100W – 220V are connected in series to a 440Vsupply. Which of the bulbs will fuse?
+4
+A. 25
+B. 100
+C. Both
+D. Neither
+0 
+y
+None
+
+In a simple harmonic motion, when the displacement is one half the amplitude, what fraction of the total energy is kinetic?
+4
+A. 1/4
+B. 2/4
+C. 3/4
+D. Zero
+2 
+y
+None
+
+A linear harmonic oscillator of force constant 2×106 N/m and amplitude 0.01m has a total mechanical energy of 160J. Its ___________
+4
+A. Potential energy is 160 J
+B. Potential energy is 100 J
+C. Potential energy is 140 J
+D. Potential energy is 120 J
+1 
+y
+None
+
+When germanium crystal is doped with phosphorus atoms, it becomes ………
+4
+A. Insulator
+B. Alloy
+C. N-type semiconductor
+D. P-type semiconductor
+2 
+y
+None
+
+At …………… °C, the temperature on the Celsius and Fahrenheit scales are equal
+4
+A. 40
+B. -40
+C. 100
+D. 212
+1 
+y
+None
+
+A solid sphere, a hollow sphere and a ring are released from top of an inclined plane (frictionless) so that they slide down the plane. Then, maximum acceleration down the plane is for (No rolling) is ______
+4
+A. Solid Sphere
+B. Hollow Sphere
+C. Ring
+D. All of the above
+3 
+y
+None
+
+A solid sphere is rotating in free space. If the radius of the sphere is increased keeping mass same, which one of the following will not be affected?
+4
+A. Moment of inertia
+B. Angular momentum
+C. Angular velocity
+D. Rotational Kinetic energy
+1 
+y
+None
+
+The photoelectric emission could be explained by the _________
+4
+A. Wave nature of light
+B. Particle nature of light
+C. Dual nature of light
+D. None of the above
+1 
+y
+None
+
+During Einstein’s Photoelectric Experiment, what changes are observed when the frequency of the incident radiation is increased?
+4
+A. The value of saturation current increases
+B. The value of stopping potential increases
+C. The value of stopping potential decreases
+D. None of the above
+1 
+y
+None
+
+Which of the following is correct about EMF of a cell?
+4
+A. it is the potential difference between the electrodes when current is flowing in the cell
+B.it is the drift velocity of the electrons when there is no current in the cell
+C. it is the potential difference between the electrodes when there is no current in the cell
+D. All of the above
+2 
+y
+None
+
+Which of the following is the mirror formula?
+4
+A. v + u =f
+B. 1/v + 1/u = 1/f
+C. 1/v - 1/u = f
+D.  v - u =f
+1 
+y
+None
+
+At a given volume and temperature, the pressure of a gas
+4
+A. varies inversely as its mass
+B. varies inversely as the square of its mass
+C. varies linearly as its mass
+D.is independent of its mass
+2 
+y
+None
+
+For which of the following process, the thermal conduction is maximum?
+4
+A. Combustion
+B. Conduction
+C. Convention
+D. Radiation
+3 
+y
+None
+
+What is the scale used for measuring the intensity of the earthquake
+4
+A. Metric Scale
+B. Quake Scale
+C.  Richter Scale
+D. Epicenter Scale
+2 
+y
+None
+
+ Which one of the following has the highest value of specific heat ?
+4
+A. Alcohol
+B. Methane
+C. Kerosine
+D. Water
+3 
+y
+None
+
+Which of the following is the unit of Strain?
+4
+A. Kg-m
+B. N/m
+C.  dyne/cm
+D. None of the above
+3 
+y
+None
+
+Two Flat mirrors are placed at an angle of 60° from each other. How many images will be formed of a Candle placed in between them?
+4
+A. Six
+B. Five
+C. Four
+D. Three
+1 
+y
+None
+
+Which of the following is the ultimate source of energy for us?
+4
+A LPG
+B Nuclear
+C CNG
+D Solar
+3 
+y
+None
+
+Which method is used to produce electricity in thermal power plant?
+4
+A.  By boiling the water to produce steam
+B.  By boiling water
+C. By pushing pistons by heat energy
+D. Any of the above
+1 
+y
+None
+
+ No current will flow between two charged bodies if they have the same 
+4
+A. Charge
+B. Resistance
+C. Potential
+D. Charge/Potential ratio
+2 
+y
+None
+
+Skating on ice is possible because 
+4
+A. the surface of ice is smooth
+B. the ice is cold
+C.pressure on the ice due to skate melts the ice by lowering its melting point forming a thin film
+D. the pressure on the ice due to skate raises its melting point
+2 
+y
+None
+
+An element X is divalent and another element Y is tetravalent. The compound formed by these two elements will be
+4
+ A. XY
+B. XY2
+C. XY4
+D. X2Y
+1 
+y
+None
+
+Which of the following statements is not true about an atom?
+4
+A. Atoms are not able to exist independently.
+B. Atoms are the basic units from which molecules and ions are formed
+C. Atoms are always neutral in nature.
+D. Atoms aggregate in large numbers to form the matter that we can see, feel or touch.
+3 
+y
+None
+
+Rain drops acquire spherical shape due to
+4
+A. Friction
+B. Elasticity
+C. Surface tension
+D. Viscosity
+2 
+y
+None
+
+The speed of light will be minimum while passing through
+4
+A water
+B vaccum
+C air
+D glass
+3 
+y
+None
+
+Specific resistance of all metals is mostly affected by
+4
+A magnetic field
+B pressure
+C volume
+D temperature
+3 
+y
+None
+
+ Direct Current produces a magnetic field similar to a permanent magnet. This magnetic field:
+4
+A is unidirectional and has a steady magnitude
+B is unidirectional but its magnitude varies in regular pattern
+C has steady magnitude but changes direction in regular pattern
+D changes direction and magnitude in regular pattern
+0 
+y
+None
+
+Consider the following:\n1. Mica\n2. Graphite 3. Sulphur 4. Human body Which among the above is / are electrical conductors?
+4
+A. Only 1, 2 & 4
+B.Only 2, 3 & 4
+C.Only 2 & 4
+D.Only 2
+2 
+y
+None
+
+One joule of work is said to be done when__
+4
+A. a force of 1 dyne causes a displacement of 1 cm.
+B. a force of 1 dyne causes a displacement of 1 m
+C. a force of 1 N causes a displacement of 1 cm.
+D. a force of 1 N causes a displacement of 1 m
+3 
+y
+None
+
+The most suitable unit for expressing nuclear radius
+4
+A nanometre
+B angstrom
+C picometer
+D fermi
+3 
+y
+None
+
+working principle of a washing machine is
+4
+A dialysis
+B reverse osmosis
+C diffusion
+D centrifugation
+3 
+y
+None
+
+Walking of a man is an example of 
+4
+A. Multiplication of Vector
+B. Addition of Vector
+C. Subtraction of Vector
+D. Resolution of Vector
+3 
+y
+None
+
+Consider the following statements:\n1. Lightning is caused due to discharge of similar charged clouds\n2. Lightning conductor always develops the opposite charges as is the charge in the clouds Which among the above is / are correct statements
+4
+A. Only 1
+B. Only 2
+C. Both 1 and 2
+D. Neither 1 or 2
+1 
+y
+None
+
+Which of the following statement is correct regarding velocity and speed of a moving body?
+4
+A. Velocity of a moving body is always higher than its speed
+B. Speed of a moving body is always higher than its velocity
+C. Speed of a moving body is its velocity in a given direction
+D. Velocity of a moving body is its speed in a given direction
+3 
+y
+None
+
+ What is the least count of wrist watch
+4
+A. 1 second
+B. 1 minute
+C 1 hour
+D All of the above
+0 
+y
+None
+
+Kepler' s third law is called as
+4
+A. Laws of gravity
+B. Law of area
+C. Law of orbits
+D. Law of periods
+3 
+y
+None
+
+When a planet orbits a sun, one of the  foci of the elliptical orbit is
+4
+A. the perihelion
+B. the axis
+C. the sun
+D. the center
+2 
+y
+None
+
+Flying a bird is an example of ____________
+4
+A. Collinear vector
+B. Addition of Vector
+C. Multiplication of Vector
+D. Composition of Vector
+3 
+y
+None
+
+Least count of micrometer screw gauge is
+4
+A. 0.001cm
+B.  0.001mm
+C. 0.01cm
+D. 0.01mm
+0 
+y
+None
+
+An oscillator produces................... oscillation
+4
+A. Undamped
+B. Damped
+C. Demodulated
+D. Modulated
+0 
+y
+None
+
+When the flow parameters of any given instant remains same at every point, then flow is said to be
+4
+A. Laminar
+B. Turbulent
+C. Steady state
+D. Quasi Static
+2 
+y
+None
+
+Least count of Vernier calliper is
+4
+A.0.001mm
+B. 0.1 cm
+C. 0.01mm
+D. 0.01cm
+3 
+y
+None
+
+An ideal of any fluid must satisfy
+4
+A. Pascal's Law
+B. Stoke's Law
+C. Bernoulli's principle
+D. Equation of Continuity
+3 
+y
+None
+
+In parallel combination of n cells, we obtain
+4
+A. More Voltage
+B. More Current
+C. Less Current
+D. Less Voltage
+1 
+y
+None
+
+Resolution is
+4
+A. a measure of the bias in the instrument
+B.  a measure of the systematic errors
+C. the smallest amount of input signal change that the instrument can detect reliably
+D.  None of the above
+1 
+y
+None
+
+Absolute error of the measurement is
+4
+A. the difference between the individual measurement and the true value of the quantity cubed.
+B. the difference between the individual measurement and the true value of the quantity squared.
+C. the difference between two individual measurements and their mean
+D.the difference between the individual measurement and the true value of the quantity
+0 
+y
+None
+
+Length cannot be measured by
+4
+A. Fermi
+B. Debye
+C. Micron
+D. Light Year
+1 
+y
+None
+
+Which of the following is not unit of time
+4
+A Second
+B. Parsec
+C. Light Year
+D. Year
+2 
+y
+None
+
+Least count of micrometer screw gauge is
+4
+A. 0.001cm
+B. 0.01cm
+C. 0.1cm
+D. 0.001mm
+0 
+y
+None
+
+4.Electron volt is unit of
+4
+a. Potential difference
+b. Charge
+c. Energy
+d. Capacitor
+2 
+y
+None
+
+3. Dimension of work done is same as that of
+4
+a. Pressure
+b. Momentum
+c. Kinetic energy
+d. Power
+2 
+y
+None
+
+What is unit of electric field intensity
+4
+a N/C
+B V/m
+c Wb
+D Both a and c
+3 
+y
+None
+
+Which of the following is unit of magnetic induction
+4
+T
+N/Am
+Wb/m2
+All of the above
+3 
+y
+None
+

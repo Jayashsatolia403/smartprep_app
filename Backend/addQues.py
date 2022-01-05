@@ -17,7 +17,7 @@ subject_files = {
 
 for xs in subject_files:
 
-    path = r"/home/jayash/Desktop/Projects/smartprep_app/Questions/final_questions/" +  subject_files[xs]
+    path = r"/app/final_questions/" +  subject_files[xs]
     file = open(path)
 
     good_data = []
