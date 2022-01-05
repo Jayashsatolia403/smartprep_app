@@ -199,6 +199,9 @@ class WeeklyCompetitions(models.Model):
     date = models.DateField(auto_now_add=True)
     exam = models.ForeignKey(Exams, related_name="competitions_exams", on_delete=models.CASCADE, blank=True, null=True)
 
+    def __str__(self) -> str:
+        return self.name 
+
 
 
 class Submissions(models.Model):
@@ -207,6 +210,8 @@ class Submissions(models.Model):
     question = models.ForeignKey(Questions, related_name="submissionQuestion", on_delete=models.CASCADE)
     selected_options = models.ManyToManyField(Options, related_name="submissionSelectedOptions", blank=True)
 
+    
+
 
 class WeeklyCompetitionResult(models.Model):
     user = models.ForeignKey(User, related_name="resultUser", on_delete=models.CASCADE)
@@ -214,11 +219,14 @@ class WeeklyCompetitionResult(models.Model):
     submissions = models.ManyToManyField(Submissions, related_name="weeklyCompetitionSubmissions", blank=True)
     correct_options = models.IntegerField(default=0)
 
+    def __str__(self) -> str:
+        return self.competition.name
 
 
 class ReportedQuestions(models.Model):
     question = models.ForeignKey(Questions, related_name="reported_question", on_delete=models.CASCADE)
     user = models.ForeignKey(User, related_name="reporting_user", on_delete=models.CASCADE)
+
 
 class Feedback(models.Model):
     uuid = models.CharField(max_length=50, null=True)

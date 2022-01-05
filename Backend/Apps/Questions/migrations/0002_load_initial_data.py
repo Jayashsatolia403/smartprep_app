@@ -482,6 +482,8 @@ def load_initial_data(apps, schema_editor):
     Subjects = apps.get_model('Questions', 'Subjects')
     Options = apps.get_model('Questions', 'Options')
     Exams = apps.get_model('Questions', 'Exams')
+    Forum = apps.get_model('Chat', 'Forum')
+    ForumMessage = apps.get_model('Chat', 'ForumMessage')
 
     for i in subjects:
         subject = Subjects(name=i[0])
@@ -511,100 +513,124 @@ def load_initial_data(apps, schema_editor):
             exam.subjects.add(subject)
             exam.save()
 
-    # correctOptions = [True, False, False, False]
+    subject_files = {
+        'hindi': "hindi.txt",
+        'bio': "bio_english.txt",
+        'chemNeet': "chem_neet_english.txt",
+        'physicsNeet': "physics_neet_english.txt",
+        'quantAptEasy': "quant_apt_hindi.txt",
+        'iasMisc': "upsc_english.txt",
+        'iasMiscHindi': "upsc_hindi.txt",
+        'rasMisc': "ras_english.txt",
+        'rasMiscHindi': "ras_hindi.txt",
+        'englishLangAndComprehensionEasy': "english.txt",
+    }
 
-    # try:
-    #     maths_file = open(r"/home/jayash/Desktop/Projects/smartprep_app/Backend/maths.txt")
-    # except:
-    #     maths_file = open(r"/app/maths.txt")
+    for xs in subject_files:
 
-    # good_data = []
+        try:
+            path = r"/app/final_questions/" +  subject_files[xs]
+            file = open(path)
 
-    # while True:
-    #     statement = maths_file.readline()
-        
-    #     if not statement:
-    #         break
-    #     else:
-    #         a = maths_file.readline()
-    #         b = maths_file.readline()
-    #         c = maths_file.readline()
-    #         d = maths_file.readline()
-
-
-    #     data = {"options" : [a, b, c, d],
-    #             'statement' : statement}
-
-    #     good_data.append(data)
-
-    #     maths_file.readline()
-    #     maths_file.readline()
-
-    # for _ in range(10):
-    #     for i in subjects:
-
-    #         random.shuffle(correctOptions)
-    #         random.shuffle(good_data)
-
-    #         for data in good_data:
-
-    #             a = Options(
-    #                 content= data["options"][0],
-    #                 isCorrect=correctOptions[0],
-    #                 uuid=str(uuid.uuid4())
-    #             )
-    #             a.save()
-
-    #             b = Options(
-    #                 content=data["options"][1],
-    #                 isCorrect=correctOptions[1],
-    #                 uuid=str(uuid.uuid4())
-    #             )
-    #             b.save()
-
-    #             c = Options(
-    #                 content=data["options"][2],
-    #                 isCorrect=correctOptions[2],
-    #                 uuid=str(uuid.uuid4())
-    #             )
-    #             c.save()
-
-    #             d = Options(
-    #                 content=data["options"][3],
-    #                 isCorrect=correctOptions[3],
-    #                 uuid=str(uuid.uuid4())
-    #             )
-    #             d.save()
+        except:
+            path = r"/home/jayash/Desktop/Projects/smartprep_app/Backend/final_questions/" + subject_files[xs]
+            file = open(path)
 
 
-    #             question = Questions(
-    #                 uuid=str(uuid.uuid4()),
-    #                 statement=data["statement"],
-    #                 subject=i[0],
-    #                 ratings=5,
-    #                 isExpert=True,
-    #                 difficulty=5,
-    #                 explaination = "This is sample Explaination."
-    #             )
 
-    #             question.save()
 
-    #             question.options.add(a)
-    #             question.options.add(b)
-    #             question.options.add(c)
-    #             question.options.add(d)
+        good_data = []
 
-    #             question.save()
+        while True:
+                try:
+                        statement = file.readline()
 
-    #             subject = Subjects.objects.get(name=i[0])
+                        if not statement:
+                                break
 
-    #             subject.questions.add(question)
-    #             subject.save()
+                        options = []
+                        options_len = int(file.readline())
+                        correctOptions = [False for _ in range(options_len)]
 
-    #             question.save()
+                        
+                        for i in range(options_len):
+                                options.append(file.readline())
+                        
+                        x = file.readline().split()
+
+                        for i in x:
+                                correctOptions[int(i)] = True
+
+                        file.readline()
+
+                        explaination = file.readline()
+
+                        data = {"options" : options,
+                                'statement' : statement, 
+                                'correctOptions': correctOptions,
+                                'explaination': explaination}
+
+                        good_data.append(data)
+
+
+                        file.readline()
+                except:
+                        break
+
+
+
+        for data in good_data:
+
+                options = []
+
+                for i in range(len(data['options'])):
+                        option  = Options(
+                                content= data["options"][i],
+                                isCorrect=data['correctOptions'][i],
+                                uuid=str(uuid.uuid4()),
+                        )
+
+                        option.save()
+
+                        options.append(option)
+
+
+                question = Questions(
+                        uuid=str(uuid.uuid4()),
+                        statement=data["statement"],
+                        subject=xs,
+                        ratings=5,
+                        isExpert=True,
+                        difficulty=5,
+                        explaination = data['explaination']
+                )
+
+                question.save()
+
+                for option in options:
+                        question.options.add(option)
+                        question.save()
+
+
+                subject = Subjects.objects.get(name=xs)
+
+                subject.questions.add(question)
+                subject.save()
+
+                question.save()
 
     
-    
+    for i in exams:
+        forum = Forum(name=i[0])
+        forum.save()
+
+
+        fm = ForumMessage(text = "Welcome to {} Forum".format(i[0]))
+
+        fm.save()
+
+        forum.messages.add(fm)
+        forum.save()
 
 
 
