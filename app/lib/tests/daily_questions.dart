@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:app/ad_state.dart';
@@ -22,11 +21,12 @@ class DailyQuestions extends StatefulWidget {
 
 class _DailyQuestionsState extends State<DailyQuestions> {
   String exam = "";
-  Future<List<dynamic>> getDailyQuestions() async {
+
+  List<dynamic> allOptions = <dynamic>[];
+  List<dynamic> questionStatements = <dynamic>[];
+
+  Future<bool> getDailyQuestions() async {
     String url = await rootBundle.loadString('assets/text/url.txt');
-    List<dynamic> allOptions = <dynamic>[];
-    List<dynamic> questionStatements = <dynamic>[];
-    List<dynamic> result = <dynamic>[];
 
     final prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString("token");
@@ -47,34 +47,41 @@ class _DailyQuestionsState extends State<DailyQuestions> {
     final resJson = jsonDecode(utf8.decode(response.bodyBytes));
 
     for (var id in resJson) {
-      final String statement =
-          (id['statement'] as String).replaceAll("\\n", "\n");
-      final String createdBy = (id['createdBy']).replaceAll("\\n", "\n");
-      final String explaination = (id['explaination']).replaceAll("\\n", "\n");
-      questionStatements.add([
-        statement,
-        id['uuid'],
-        id['ratings'],
-        id['difficulty'],
-        id['isRated'],
-        createdBy,
-        explaination
-      ]);
-      allOptions.add(id['options']);
+      late String statement;
+      late String createdBy;
+      late String explaination;
+
+      try {
+        statement = (id['statement'] as String).replaceAll("\\n", "\n");
+        createdBy = (id['createdBy'] as String).replaceAll("\\n", "\n");
+        explaination = (id['explaination'] as String).replaceAll("\\n", "\n");
+      } catch (error) {
+        statement = id['statement'];
+        createdBy = id['createdBy'];
+        explaination = id['explaination'];
+      }
+
+      setState(() {
+        questionStatements.add([
+          statement,
+          id['uuid'],
+          id['ratings'],
+          id['difficulty'],
+          id['isRated'],
+          createdBy,
+          explaination
+        ]);
+        allOptions.add(id['options']);
+      });
     }
 
-    result.add(questionStatements);
-    result.add(allOptions);
-
-    return result;
+    return true;
   }
-
-  late Future<List<dynamic>> _dailyQuestions;
 
   @override
   void initState() {
     super.initState();
-    _dailyQuestions = getDailyQuestions();
+    getDailyQuestions();
   }
 
   BannerAd? banner;
@@ -98,72 +105,64 @@ class _DailyQuestionsState extends State<DailyQuestions> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<dynamic>>(
-        future: _dailyQuestions,
-        builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapShot) {
-          if (snapShot.hasData) {
-            return Scaffold(
-                appBar: AppBar(
-                  title: const Text("Daily Questions",
-                      style: TextStyle(color: Colors.white)),
-                  backgroundColor: Colors.purple,
-                  toolbarHeight: 100,
-                ),
-                body: Scaffold(
-                    body: Column(
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text("Daily Questions",
+              style: TextStyle(color: Colors.white)),
+          backgroundColor: Colors.purple,
+          toolbarHeight: 100,
+        ),
+        body: Scaffold(
+            body: Column(
+          children: [
+            if (questionStatements.isNotEmpty)
+              Expanded(
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
                   children: [
-                    Expanded(
-                      child: ListView(
-                        scrollDirection: Axis.horizontal,
-                        children: [
-                          for (var i = 0; i < snapShot.data![0].length; i++)
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 20, top: 50, bottom: 20),
-                              child: ElevatedButton(
-                                child: Text(snapShot.data![0][i][0],
-                                    style:
-                                        const TextStyle(color: Colors.white)),
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => CustomRadio(
-                                              options: snapShot.data![1][i],
-                                              statement: snapShot.data![0][i]
-                                                  [0],
-                                              quesUUid: snapShot.data![0][i][1],
-                                              qualityRating: snapShot.data![0]
-                                                  [i][2],
-                                              difficultyRating:
-                                                  snapShot.data![0][i][3],
-                                              isRated: snapShot.data![0][i][4],
-                                              createdBy: snapShot.data![0][i]
-                                                  [5],
-                                              explaination: snapShot.data![0][i]
-                                                  [6],
-                                            )),
-                                  );
-                                },
-                                style: ElevatedButton.styleFrom(
-                                    fixedSize: const Size(250, 20),
-                                    primary: Colors.black,
-                                    onPrimary: Colors.black,
-                                    alignment: Alignment.center),
-                              ),
-                            )
-                        ],
-                      ),
-                    ),
-                    if (banner == null)
-                      const Text("Loading Ad")
-                    else
-                      SizedBox(height: 150, child: AdWidget(ad: banner!))
+                    for (var i = 0; i < questionStatements.length; i++)
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            left: 20, top: 50, bottom: 20),
+                        child: ElevatedButton(
+                          child: Text(questionStatements[i][0],
+                              style: const TextStyle(color: Colors.white)),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => CustomRadio(
+                                        options: allOptions[i],
+                                        statement: questionStatements[i][0],
+                                        quesUUid: questionStatements[i][1],
+                                        qualityRating: questionStatements[i][2],
+                                        difficultyRating: questionStatements[i]
+                                            [3],
+                                        isRated: questionStatements[i][4],
+                                        createdBy: questionStatements[i][5],
+                                        explaination: questionStatements[i][6],
+                                      )),
+                            );
+                          },
+                          style: ElevatedButton.styleFrom(
+                              fixedSize: const Size(250, 20),
+                              primary: Colors.black,
+                              onPrimary: Colors.black,
+                              alignment: Alignment.center),
+                        ),
+                      )
                   ],
-                )));
-          } else {
-            return const Center(child: CircularProgressIndicator());
-          }
-        });
+                ),
+              ),
+            if (questionStatements.isEmpty)
+              const Center(
+                child: CircularProgressIndicator(),
+              ),
+            if (banner == null)
+              const Text("Loading Ad")
+            else
+              SizedBox(height: 150, child: AdWidget(ad: banner!))
+          ],
+        )));
   }
 }

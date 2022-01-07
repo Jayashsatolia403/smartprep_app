@@ -1,5 +1,4 @@
 import 'package:app/home/home.dart';
-import 'package:app/weekly_competition/quiz_db.dart';
 import 'package:flutter/material.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
@@ -8,9 +7,6 @@ import 'package:app/config.dart';
 var examNames = {
   'ias': 'IAS',
   'iasHindi': 'IAS Hindi Medium',
-  'jee': 'JEE',
-  'jeeMains': 'JEE MAINS',
-  'jeeAdv': 'JEE ADV',
   'neet': 'NEET',
   'ras': 'RAS',
   'rasHindi': 'RAS Hindi Medium',
@@ -45,9 +41,6 @@ updateExamDetails(String examName) async {
 List<String> exam_names = [
   'ias',
   'iasHindi',
-  'jee',
-  'jeeMains',
-  'jeeAdv',
   'neet',
   'ras',
   'rasHindi',

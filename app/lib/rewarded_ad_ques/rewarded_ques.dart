@@ -7,7 +7,6 @@ import 'package:app/ad_state.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:app/tests/jee_adv_quiz_template.dart';
 import 'package:provider/provider.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
@@ -47,15 +46,30 @@ class _RewardedQuestionsState extends State<RewardedQuestions> {
     final resJson = jsonDecode(utf8.decode(response.bodyBytes));
 
     for (var id in resJson) {
+      late String statement;
+      late String createdBy;
+      late String explaination;
+
+      try {
+        statement = (id['statement'] as String).replaceAll("\\n", "\n");
+        createdBy = (id['createdBy'] as String).replaceAll("\\n", "\n");
+        explaination = (id['explaination'] as String).replaceAll("\\n", "\n");
+      } catch (error) {
+        statement = id['statement'];
+        createdBy = id['createdBy'];
+        explaination = id['explaination'];
+      }
+
       questionStatements.add([
-        id['statement'],
+        statement,
         id['uuid'],
         id['ratings'],
         id['difficulty'],
         id['isRated'],
-        id['createdBy'],
-        id['explaination']
+        createdBy,
+        explaination
       ]);
+
       allOptions.add(id['options']);
     }
 

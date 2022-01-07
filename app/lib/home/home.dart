@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:app/add_ques/add_ques.dart';
 import 'package:app/article/articles_home.dart';
-import 'package:app/bookmarks/bookmarks.dart';
 import 'package:app/error_page/error_page.dart';
 import 'package:app/exam_select/select_exam.dart';
 import 'package:app/feedback_complaint/complaint.dart';
@@ -14,7 +13,6 @@ import 'package:app/test_page/tests.dart';
 import 'package:app/premium/premium.dart';
 import 'package:app/profile/profile_page.dart';
 import 'package:app/tests/quiz_template.dart';
-import 'package:app/weekly_competition/previous_competitions.dart';
 import 'package:flutter/material.dart';
 import 'package:app/config.dart';
 import 'package:flutter/services.dart';
@@ -70,9 +68,6 @@ String greet() {
 var examNameValues = {
   'ias': 'IAS',
   'iasHindi': 'IAS Hindi Medium',
-  'jee': 'JEE',
-  'jeeMains': 'JEE MAINS',
-  'jeeAdv': 'JEE ADV',
   'neet': 'NEET',
   'ras': 'RAS',
   'rasHindi': 'RAS Hindi Medium',
@@ -114,7 +109,7 @@ class _HomeState extends State<Home> {
 
   void loadVideoAd() async {
     RewardedAd.load(
-        adUnitId: RewardedAd.testAdUnitId,
+        adUnitId: "ca-app-pub-3347710342715984/3851662288",
         request: const AdRequest(),
         rewardedAdLoadCallback:
             RewardedAdLoadCallback(onAdLoaded: (RewardedAd ad) {
@@ -125,7 +120,6 @@ class _HomeState extends State<Home> {
   }
 
   void showVideoAd() {
-    loadVideoAd();
     rewardedAd.show(onUserEarnedReward: (RewardedAd ad, RewardItem rpoint) {
       print("Reward Earned ${rpoint.amount}");
     });

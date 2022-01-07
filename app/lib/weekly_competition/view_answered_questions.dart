@@ -21,6 +21,7 @@ class _ViewAnsweredQuestionsState extends State<ViewAnsweredQuestions> {
   List<bool> result = [];
 
   Future<Question> getQuestion(int idx) async {
+    print(idx);
     Questions q = await QuizDatabase.instance.readQuestionsById(idx);
 
     Question ques = Question(statement: q.statement, options: [], uuid: q.uuid);
@@ -40,9 +41,6 @@ class _ViewAnsweredQuestionsState extends State<ViewAnsweredQuestions> {
   Map<String, int> totalQuestions = {
     "ias": 100,
     "iasHindi": 100,
-    "jee": 60,
-    "jeeMains": 90,
-    "jeeAdv": 54,
     "neet": 180,
     "ras": 150,
     "rasHindi": 150,

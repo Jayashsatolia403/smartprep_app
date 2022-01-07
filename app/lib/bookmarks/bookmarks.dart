@@ -58,15 +58,29 @@ class _BookmarksState extends State<Bookmarks> {
     }
 
     for (var id in resJson) {
-      questionStatements.add([
-        id['statement'],
-        id['uuid'],
-        id['ratings'],
-        id['difficulty'],
-        id['explaination']
-      ]);
-      allOptions.add(id['options']);
+      late String statement;
+      late String explaination;
+
+      try {
+        statement = (id['statement'] as String).replaceAll("\\n", "\n");
+        explaination = (id['explaination'] as String).replaceAll("\\n", "\n");
+      } catch (error) {
+        statement = id['statement'];
+        explaination = id['explaination'];
+      }
+
+      setState(() {
+        questionStatements.add([
+          statement,
+          id['uuid'],
+          id['ratings'],
+          id['difficulty'],
+          explaination
+        ]);
+        allOptions.add(id['options']);
+      });
     }
+
     setState(() {
       currentPage++;
     });

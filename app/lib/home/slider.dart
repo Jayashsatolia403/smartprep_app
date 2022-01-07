@@ -1,6 +1,4 @@
 import 'package:app/article/article_view.dart';
-import 'package:app/exam_select/select_exam.dart';
-import 'package:app/splashscreen/splashscreen.dart';
 import 'package:flutter/material.dart';
 
 import 'package:carousel_slider/carousel_slider.dart';

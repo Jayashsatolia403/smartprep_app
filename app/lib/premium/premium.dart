@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:app/home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:url_launcher/url_launcher.dart';
@@ -87,9 +86,6 @@ List<Widget> plans = <Widget>[
 List<String> examNames = [
   'ias',
   'iasHindi',
-  'jee',
-  'jeeMains',
-  'jeeAdv',
   'neet',
   'ras',
   'rasHindi',
@@ -118,9 +114,6 @@ List<String> examNames = [
 var examNameValues = {
   'ias': 'IAS',
   'iasHindi': 'IAS Hindi Medium',
-  'jee': 'JEE',
-  'jeeMains': 'JEE MAINS',
-  'jeeAdv': 'JEE ADV',
   'neet': 'NEET',
   'ras': 'RAS',
   'rasHindi': 'RAS Hindi Medium',

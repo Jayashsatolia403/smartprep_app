@@ -1,5 +1,3 @@
-from os import stat
-import re
 from django.core import paginator
 from rest_framework.decorators import api_view
 from rest_framework import status
@@ -23,6 +21,7 @@ import random
 def getDailyQuestions(request):
     try:
 
+        print("Here Bro!")
         result = []
         user = request.user
         examTitle = request.GET['exam']
@@ -495,10 +494,8 @@ def host_weekly_competition(request):
                         continue
                 except:
                     if (len(subjects) != 0):
-                        print(subjects[x].name)
                         del subjects[x]
                     else:
-                        print(subjects[x].name, " >> Breaking")
                         break
                     continue
 
@@ -508,7 +505,6 @@ def host_weekly_competition(request):
                 competition.save()
                 i += 1
                 x += 1
-                print([xs.name for xs in subjects])
 
 
 
@@ -795,3 +791,7 @@ def report_question(request):
     report.save()
 
     return Response("Thanks")
+
+
+
+

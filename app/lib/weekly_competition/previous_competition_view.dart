@@ -1,4 +1,3 @@
-import 'package:app/tests/jee_adv_quiz_template.dart';
 import 'package:app/tests/quiz_template.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -34,9 +33,6 @@ class _PreviousCompetitionViewState extends State<PreviousCompetitionView> {
   Map<String, int> totalPages = {
     "ias": 10,
     "iasHindi": 10,
-    "jee": 6,
-    "jeeMains": 9,
-    "jeeAdv": 6,
     "neet": 18,
     "ras": 15,
     "rasHindi": 15,
@@ -142,7 +138,8 @@ class _PreviousCompetitionViewState extends State<PreviousCompetitionView> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(widget.compName, style: TextStyle(color: Colors.white)),
+          title: Text(widget.compName,
+              style: const TextStyle(color: Colors.white)),
           backgroundColor: Colors.purple,
           toolbarHeight: 100,
         ),

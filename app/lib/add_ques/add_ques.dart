@@ -16,7 +16,7 @@ class AddQuesModel {
   AddQuesModel(this.isSelected, this.buttonText, this.text);
 }
 
-List<String> iasSubjects = [
+var iasSubjects = [
   "currentAffairsWorldHard",
   "currentAffairsIndiaEasy",
   "currentAffairsIndiaHard",
@@ -40,31 +40,31 @@ List<String> iasSubjects = [
   "iasMisc"
 ];
 
-List<String> iasHindiSubjects = ["iasMiscHindi"];
+var iasHindiSubjects = [
+  "currentAffairsWorldHardHindi",
+  "currentAffairsIndiaEasyHindi",
+  "currentAffairsIndiaHardHindi",
+  "geographyIndEasyHindi",
+  "geographyIndHardHindi",
+  "geographyWorldHindi",
+  "polityIndEasyHindi",
+  "polityIndHardHindi",
+  "economyIndGenHindi",
+  "economyIndBudgetAndSchemesHindi",
+  "environmentAndEcologyHardHindi",
+  "environmentAndEcologyEasyHindi",
+  "historyIndEasyHindi",
+  "historyIndHardHindi",
+  "historyWorldHindi",
+  "InternationalRelationAndSecurityHindi",
+  "sciAndTechHardHindi",
+  "artAndCultureIndHindi",
+  "constitutionAndGovernanceHindi",
+  "decisionMakingHindi",
+  "iasMiscHindi"
+];
 
-List<String> jeeSubjects = [
-  "physicsAdv",
-  "mathsAdv",
-  "chemAdv",
-  "physicsMains",
-  "mathsMains",
-  "chemMains",
-  "jeeMisc"
-];
-List<String> jeeAdvSubjects = [
-  "physicsAdv",
-  "mathsAdv",
-  "chemAdv",
-  "jeeAdvMisc"
-];
-List<String> jeeMainsSubjects = [
-  "physicsMains",
-  "mathsMains",
-  "chemMains",
-  "jeeMainsMisc"
-];
-
-List<String> neetSubjects = [
+var neetSubjects = [
   "physicsMains",
   "bio",
   "chemMains",
@@ -73,7 +73,7 @@ List<String> neetSubjects = [
   "chemNeet"
 ];
 
-List<String> rasSubjects = [
+var rasSubjects = [
   "currentAffairsIndiaEasy",
   "currentAffairsIndiaHard",
   "currentAffairsWorldEasy",
@@ -101,41 +101,52 @@ List<String> rasSubjects = [
   "polityRajHard",
   "currentAffairsRajHard",
   "currentAffairsRajEasy",
-  "artAndCultureInd",
   "economyRajHard",
   "economyRajEasy",
   "reasoningHard",
   "reasoningEasy",
-  "rasMisc"
+  "rasMisc",
+  "iasMisc"
 ];
 
-List<String> rasHindiSubjects = ["rasMiscHindi"];
+var rasHindiSubjects = [
+  "currentAffairsIndiaEasyHindi",
+  "currentAffairsIndiaHardHindi",
+  "currentAffairsWorldEasyHindi",
+  "geographyIndEasyHindi",
+  "geographyWorldHindi",
+  "polityIndEasyHindi",
+  "geographyIndHardHindi",
+  "polityIndHardHindi",
+  "economyIndGenHindi",
+  "economyIndBudgetAndSchemesHindi",
+  "environmentAndEcologyHardHindi",
+  "environmentAndEcologyEasyHindi",
+  "historyIndEasyHindi",
+  "historyIndHardHindi",
+  "sciAndTechEasyHindi",
+  "sciAndTechHardHindi",
+  "constitutionAndGovernanceHindi",
+  "geographyRajEasyHindi",
+  "geographyRajHardHindi",
+  "historyRajHardHindi",
+  "historyRajEasyHindi",
+  "artAndCultureRajHindi",
+  "polityRajEasyHindi",
+  "polityRajHardHindi",
+  "currentAffairsRajHardHindi",
+  "currentAffairsRajEasyHindi",
+  "artAndCultureIndHindi",
+  "economyRajHardHindi",
+  "economyRajEasyHindi",
+  "reasoningHardHindi",
+  "reasoningEasyHindi",
+  "rasMiscHindi",
+  "quantAptEasyHindi",
+  "iasMiscHindi"
+];
 
-// List<String> ndaSubjects = [
-//   "ndaPhysics",
-//   "ndaHistory",
-//   "ndaChemistry",
-//   "ndaMaths",
-//   "currentEvents",
-//   "ndaMisc"
-// ];
-
-// List<String> cdsSubjects = [
-//   "reasoningEasy",
-//   "reasoningHard",
-//   "currentAffairsIndiaEasy",
-//   "englishLangAndComprehensionHard",
-//   "englishLangAndComprehensionEasy",
-//   "geographyIndEasy",
-//   "polityIndEasy",
-//   "historyIndEasy",
-//   "sciAndTechEasy",
-//   "cdsMaths",
-//   "environmentAndEcologyEasy",
-//   "cdsMisc"
-// ];
-
-List<String> ibpsPOSubjects = [
+var ibpsPOSubjects = [
   "englishLangAndComprehensionHard",
   "quantAptHard",
   "reasoningHard",
@@ -145,22 +156,22 @@ List<String> ibpsPOSubjects = [
   "financialAwareness",
   "basicComputer",
   "financeAndAccounts",
-  "ibpsPOMisc"
+  "ibpsPOSSCMisc"
 ];
 
-List<String> ibpsClerkSubjects = [
+var ibpsClerkSubjects = [
   "englishLangAndComprehensionEasy",
   "englishLangAndComprehensionHard",
-  "quantAptEasy",
-  "quantAptHard",
-  "reasoningEasy",
+  "quantAptEasyHindi",
+  "quantAptHardHindi",
+  "reasoningEasyHindi",
   "financialAwareness",
   "basicComputer",
   "financeAndAccounts",
-  "ibpsClerkMisc"
+  "ibpsClerkSSCMisc"
 ];
 
-List<String> sscCGLSubjects = [
+var sscCGLSubjects = [
   "reasoningHard",
   "reasoningEasy",
   "historyIndEasy",
@@ -168,245 +179,272 @@ List<String> sscCGLSubjects = [
   "geographyIndEasy",
   "polityIndEasy",
   "quantAptEasy",
+  "quantAptHard",
   "englishLangAndComprehensionHard",
   "englishLangAndComprehensionEasy",
   "financeAndAccounts",
   "statistics",
-  "sscCGLMisc"
+  "ibpsPOSSCMisc"
 ];
 
-List<String> sscCGLHindiSubjects = ["sscCGLMiscHindi"];
-
-List<String> sscCHSLSubjects = [
-  "reasoningHard",
-  "reasoningEasy",
-  "historyIndEasy",
-  "currentAffairsIndiaEasy",
-  "geographyIndEasy",
-  "polityIndEasy",
-  "quantAptEasy",
-  "englishLangAndComprehensionEasy",
+var sscCGLHindiSubjects = [
+  "reasoningHardHindi",
+  "reasoningEasyHindi",
+  "historyIndEasyHindi",
+  "currentAffairsIndiaEasyHindi",
+  "geographyIndEasyHindi",
+  "polityIndEasyHindi",
+  "quantAptEasyHindi",
+  "quantAptHardHindi",
   "englishLangAndComprehensionHard",
-  "sscCHSLMisc"
-];
-
-List<String> ntpcSubjects = [
-  "reasoningHard",
-  "reasoningEasy",
-  "historyIndEasy",
-  "currentAffairsIndiaEasy",
-  "geographyIndEasy",
-  "polityIndEasy",
-  "quantAptEasy",
   "englishLangAndComprehensionEasy",
-  "ntpcMisc"
+  "financeAndAccounts",
+  "statisticsHindi",
+  "sscCGLMiscHindi"
 ];
 
-List<String> reet1Subjects = [
+var sscCHSLSubjects = [
+  "reasoningHardHindi",
+  "reasoningEasyHindi",
+  "historyIndEasyHindi",
+  "currentAffairsIndiaEasyHindi",
+  "geographyIndEasyHindi",
+  "polityIndEasyHindi",
+  "quantAptEasyHindi",
+  "quantAptHardHindi",
+  "englishLangAndComprehensionHard",
+  "englishLangAndComprehensionEasy",
+  "ibpsClerkSSCMisc"
+];
+
+var ntpcSubjects = [
+  "reasoningHardHindi",
+  "reasoningEasyHindi",
+  "historyIndEasyHindi",
+  "currentAffairsIndiaEasyHindi",
+  "geographyIndEasyHindi",
+  "polityIndEasyHindi",
+  "quantAptEasyHindi",
+  "quantAptHardHindi",
+  "englishLangAndComprehensionHard",
+  "englishLangAndComprehensionEasy",
+  "financeAndAccounts",
+  "ibpsClerkSSCMisc"
+];
+
+var reet1Subjects = [
   "reet1Misc",
   "childDevelopmentAndEdu",
   "hindi",
   "englishLangAndComprehensionEasy",
-  "quantAptEasy",
+  "quantAptEasyHindi",
   "generalScience"
 ];
 
-List<String> reet2Subjects = [
-  "reet2Misc",
+var reet2Subjects = [
   "childDevelopmentAndEdu",
   "hindi",
   "englishLangAndComprehensionEasy",
   "staticGK",
-  "geographyIndEasy",
-  "geographyWorld",
-  "polityIndEasy",
-  "geographyIndHard",
-  "polityIndHard",
-  "economyIndGen",
-  "historyIndEasy",
-  "historyIndHard",
-  "artAndCultureInd",
-  "constitutionAndGovernance",
-  "geographyRajHard",
-  "historyRajHard",
-  "artAndCultureRaj",
-  "polityRajHard",
-  "currentAffairsRajHard",
-  "artAndCultureInd",
-  "grade2ndSSMisc"
+  "geographyIndEasyHindi",
+  "geographyWorldHindi",
+  "polityIndEasyHindi",
+  "geographyIndHardHindi",
+  "polityIndHardHindi",
+  "economyIndGenHindi",
+  "historyIndEasyHindi",
+  "historyIndHardHindi",
+  "constitutionAndGovernanceHindi",
+  "geographyRajHardHindi",
+  "historyRajHardHindi",
+  "artAndCultureRajHindi",
+  "polityRajHardHindi",
+  "currentAffairsRajHardHindi",
+  "artAndCultureIndHindi",
+  "rasMiscHindi"
 ];
 
-List<String> reet2ScienceSubjects = [
-  "reet2ScienceMisc",
-  "quantAptEasy",
-  "quantAptHard",
+var reet2ScienceSubjects = [
+  "quantAptEasyHindi",
+  "quantAptHardHindi",
   "childDevelopmentAndEdu",
   "hindi",
   "englishLangAndComprehensionEasy",
-  "bio",
+  "bioHindi",
+  "physicsHindi",
+  "chemHindi",
   "grade2ndScienceMisc",
   "generalScience"
 ];
 
-List<String> sipaper1Subjects = ["hindi"];
+var sipaper1Subjects = ["hindi"];
 
-List<String> sipaper2Subjects = [
-  "reasoningEasy",
-  "reasoningHard",
-  "quantAptEasy",
-  "currentAffairsIndiaEasy",
-  "currentAffairsRajHard",
-  "currentAffairsRajEasy",
-  "currentAffairsWorldEasy",
-  "geographyIndEasy",
-  "polityIndEasy",
-  "economyIndGen"
-      "economyIndBudgetAndSchemes"
-      "historyIndEasy",
+var sipaper2Subjects = [
+  "reasoningEasyHindi",
+  "reasoningHardHindi",
+  "quantAptEasyHindi",
+  "currentAffairsIndiaEasyHindi",
+  "currentAffairsRajEasyHindi",
+  "currentAffairsWorldEasyHindi",
+  "geographyIndEasyHindi",
+  "polityIndEasyHindi",
+  "economyIndGenHindi",
+  "historyIndEasyHindi",
   "generalScience",
-  "geographyRajEasy",
-  "geographyRajHard",
-  "historyRajEasy",
+  "geographyRajEasyHindi",
+  "geographyRajHardHindi",
+  "historyRajEasyHindi",
   "historyRajHard",
-  "artAndCultureRaj",
-  "economyRajHard",
-  "economyRajEasy",
-  "sipaper2Misc"
-];
-
-List<String> patwariSubjects = [
-  "hindi",
-  "reasoningEasy",
-  "reasoningHard",
-  "quantAptEasy",
-  "currentAffairsIndiaEasy",
-  "currentAffairsRajHard",
-  "currentAffairsRajEasy",
-  "currentAffairsWorldEasy",
-  "englishLangAndComprehensionEasy",
-  "basicComputer",
-  "geographyIndEasy",
-  "polityIndEasy",
-  "economyIndGen"
-      "economyIndBudgetAndSchemes"
-      "historyIndEasy",
-  "generalScience",
-  "geographyRajEasy",
-  "geographyRajHard",
-  "historyRajEasy",
-  "historyRajHard",
-  "artAndCultureRaj",
-  "economyRajHard",
-  "economyRajEasy",
+  "artAndCultureRajHindi",
+  "economyRajHardHindi",
+  "economyRajEasyHindi",
   "patwariMisc"
 ];
 
-List<String> grade2ndSubjects = [
-  "teachingApt",
-  "currentAffairsIndiaEasy",
-  "currentAffairsRajHard",
-  "currentAffairsRajEasy",
-  "currentAffairsWorldEasy",
-  "geographyIndEasy",
-  "polityIndEasy",
-  "economyIndGen"
-      "economyIndBudgetAndSchemes"
-      "historyIndEasy",
+var patwariSubjects = [
+  "reasoningEasyHindi",
+  "reasoningHardHindi",
+  "quantAptEasyHindi",
+  "currentAffairsIndiaEasyHindi",
+  "currentAffairsRajEasyHindi",
+  "currentAffairsWorldEasyHindi",
+  "geographyIndEasyHindi",
+  "polityIndEasyHindi",
+  "economyIndGenHindi",
+  "historyIndEasyHindi",
   "generalScience",
-  "geographyRajEasy",
-  "geographyRajHard",
-  "historyRajEasy",
+  "geographyRajEasyHindi",
+  "geographyRajHardHindi",
+  "historyRajEasyHindi",
   "historyRajHard",
-  "artAndCultureRaj",
-  "economyRajHard",
-  "economyRajEasy",
-  "grade2ndMisc"
-];
-
-List<String> grade2ndScienceSubjects = [
-  "bio",
-  "physicsNeet",
-  "chemNeet",
-  "grade2ndScienceMisc"
-];
-
-List<String> grade2ndSSSubjects = [
-  "staticGK"
-      "geographyIndEasy",
-  "geographyWorld",
-  "polityIndEasy",
-  "geographyIndHard",
-  "polityIndHard",
-  "economyIndGen",
-  "historyIndEasy",
-  "historyIndHard",
-  "artAndCultureInd",
-  "constitutionAndGovernance",
-  "geographyRajHard",
-  "historyRajHard",
-  "artAndCultureRaj",
-  "polityRajHard",
-  "currentAffairsRajHard",
-  "artAndCultureInd",
-  "grade2ndSSMisc"
-];
-
-List<String> sscGDSubjects = [
-  "rpcGKInd",
+  "artAndCultureRajHindi",
+  "economyRajHardHindi",
+  "economyRajEasyHindi",
   "hindi",
-  "rpcReasoning",
-  "gdQuantApt",
-  "sscGDMisc"
+  "currentAffairsRajHard",
+  "englishLangAndComprehensionEasy",
+  "basicComputer",
+  "economyIndBudgetAndSchemes",
+  "patwariMisc"
 ];
 
-List<String> sscMTSSubjects = [
+var grade2ndSubjects = [
+  "currentAffairsIndiaEasyHindi",
+  "currentAffairsRajEasyHindi",
+  "currentAffairsWorldEasyHindi",
+  "geographyIndEasyHindi",
+  "polityIndEasyHindi",
+  "economyIndGenHindi",
+  "historyIndEasyHindi",
+  "generalScience",
+  "geographyRajEasyHindi",
+  "geographyRajHardHindi",
+  "historyRajEasyHindi",
+  "historyRajHard",
+  "artAndCultureRajHindi",
+  "economyRajHardHindi",
+  "economyRajEasyHindi",
+  "hindi",
+  "currentAffairsRajHard",
+  "englishLangAndComprehensionEasy",
+  "basicComputer",
+  "economyIndBudgetAndSchemes",
+  "teachingApt",
+  "rasMiscHindi",
+  "patwariMisc"
+];
+
+var grade2ndScienceSubjects = [
+  "bioHindi",
+  "grade2ndScienceMisc",
+  "physicsHindi",
+  "chemHindi"
+];
+
+var grade2ndSSSubjects = [
+  "childDevelopmentAndEdu",
+  "hindi",
+  "englishLangAndComprehensionEasy",
+  "staticGK",
+  "geographyIndEasyHindi",
+  "geographyWorldHindi",
+  "polityIndEasyHindi",
+  "geographyIndHardHindi",
+  "polityIndHardHindi",
+  "economyIndGenHindi",
+  "historyIndEasyHindi",
+  "historyIndHardHindi",
+  "constitutionAndGovernanceHindi",
+  "geographyRajHardHindi",
+  "historyRajHardHindi",
+  "artAndCultureRajHindi",
+  "polityRajHardHindi",
+  "currentAffairsRajHardHindi",
+  "artAndCultureIndHindi",
+  "rasMiscHindi",
+  "patwariMisc"
+];
+
+var rajLDCSubjects = [
+  "reasoningEasyHindi",
+  "reasoningHardHindi",
+  "quantAptEasyHindi",
+  "currentAffairsIndiaEasyHindi",
+  "currentAffairsRajEasyHindi",
+  "currentAffairsWorldEasyHindi",
+  "geographyIndEasyHindi",
+  "polityIndEasyHindi",
+  "economyIndGenHindi",
+  "historyIndEasyHindi",
+  "generalScience",
+  "geographyRajEasyHindi",
+  "geographyRajHardHindi",
+  "historyRajEasyHindi",
+  "historyRajHard",
+  "artAndCultureRajHindi",
+  "economyRajHardHindi",
+  "economyRajEasyHindi",
+  "hindi",
+  "currentAffairsRajHard",
+  "englishLangAndComprehensionEasy",
+  "basicComputer",
+  "economyIndBudgetAndSchemes",
+  "patwariMisc"
+];
+
+var sscGDSubjects = [
+  "staticGK",
+  "sscMTSGK",
+  "hindi",
+  "sscMTSReasoning",
   "gdQuantApt",
-  "rpcGKInd",
-  "rpcReasoning",
+  "sscMTSMisc"
+];
+
+var sscMTSSubjects = [
+  "staticGK",
+  "gdQuantApt",
+  "sscMTSGK",
+  "sscMTSReasoning",
   "englishLangAndComprehensionEasy",
   "sscMTSMisc"
 ];
 
-List<String> rajPoliceConstSubjects = [
-  "rpcGKInd",
-  "rpcReasoning",
+var rajPoliceConstSubjects = [
+  "staticGK",
+  "sscMTSGK",
+  "sscMTSReasoning",
   "rpcGKRaj",
   "basicComputer",
-  "rajPoliceConstMisc"
+  "sscMTSMisc"
 ];
 
-List<String> rajLDCSubjects = [
-  "hindi",
-  "reasoningEasy",
-  "reasoningHard",
-  "quantAptEasy",
-  "currentAffairsIndiaEasy",
-  "currentAffairsRajHard",
-  "currentAffairsRajEasy",
-  "currentAffairsWorldEasy",
-  "englishLangAndComprehensionEasy",
-  "basicComputer",
-  "geographyIndEasy",
-  "polityIndEasy",
-  "economyIndGen"
-      "economyIndBudgetAndSchemes"
-      "historyIndEasy",
-  "generalScience",
-  "geographyRajEasy",
-  "geographyRajHard",
-  "historyRajEasy",
-  "historyRajHard",
-  "artAndCultureRaj",
-  "economyRajHard",
-  "economyRajEasy",
-  "rajLDCMisc"
-];
-
-List<String> rrbGDSubjects = [
+var rrbGDSubjects = [
+  "staticGK",
   "gdQuantApt",
-  "rpcGKInd",
-  "rpcReasoning",
-  "rrbGDMisc"
+  "sscMTSGK",
+  "sscMTSReasoning",
+  "sscMTSMisc"
 ];
 
 List<String> subjectsSubjects = <String>[
@@ -473,9 +511,6 @@ List<String> subjectsSubjects = <String>[
 var examSubjectsRelation = {
   "ias": iasSubjects,
   "iasHindi": iasHindiSubjects,
-  "jee": jeeSubjects,
-  "jeeMains": jeeMainsSubjects,
-  "jeeAdv": jeeAdvSubjects,
   "neet": neetSubjects,
   "ras": rasSubjects,
   "rasHindi": rasHindiSubjects,
@@ -506,9 +541,6 @@ var examSubjectsRelation = {
 var examValues = {
   'ias': 'IAS',
   'iasHindi': 'IAS Hindi Medium',
-  'jee': 'JEE',
-  'jeeMains': 'JEE MAINS',
-  'jeeAdv': 'JEE ADV',
   'neet': 'NEET',
   'ras': 'RAS',
   'rasHindi': 'RAS Hindi Medium',
@@ -537,9 +569,6 @@ var examValues = {
 var dropDownValues = {
   "ias": "iasMisc",
   "iasHindi": "iasMiscHindi",
-  "jee": "jeeMisc",
-  "jeeMains": "jeeMainsMisc",
-  "jeeAdv": "jeeAdvMisc",
   "neet": "neetMisc",
   "ras": "rasMisc",
   "rasHindi": "rasMiscHindi",

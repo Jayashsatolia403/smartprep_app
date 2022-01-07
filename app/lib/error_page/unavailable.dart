@@ -1,4 +1,3 @@
-import 'package:app/splashscreen/splashscreen.dart';
 import 'package:app/weekly_competition/previous_competitions.dart';
 import 'package:flutter/material.dart';
 

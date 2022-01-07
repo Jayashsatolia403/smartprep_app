@@ -1,5 +1,3 @@
-import 'package:app/article/article_view.dart';
-import 'package:app/article/articles_home.dart';
 import 'package:app/splashscreen/splashscreen.dart';
 import 'package:flutter/material.dart';
 

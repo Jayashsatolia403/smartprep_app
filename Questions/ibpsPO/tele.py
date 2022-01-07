@@ -58,7 +58,7 @@ async def main():
 
             try:
 
-                file = open("questions.txt", "a")
+                file = open("ques_final.txt", "a")
 
 
                 question = message.poll.poll.question

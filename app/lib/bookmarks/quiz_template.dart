@@ -12,6 +12,7 @@ class RadioModel {
   RadioModel(this.isSelected, this.buttonText, this.text, this.isCorrect);
 }
 
+// ignore: must_be_immutable
 class CustomRadio extends StatefulWidget {
   CustomRadio(
       {Key? key,

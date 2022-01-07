@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
@@ -17,6 +16,7 @@ class RadioModel {
   RadioModel(this.isSelected, this.buttonText, this.text, this.isCorrect);
 }
 
+// ignore: must_be_immutable
 class CustomRadio extends StatefulWidget {
   CustomRadio(
       {Key? key,

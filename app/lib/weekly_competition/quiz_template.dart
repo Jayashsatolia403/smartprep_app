@@ -23,6 +23,7 @@ class RadioModel {
   RadioModel(this.isSelected, this.buttonText, this.text, this.uuid);
 }
 
+// ignore: must_be_immutable
 class CustomRadio extends StatefulWidget {
   CustomRadio({Key? key, required this.question}) : super(key: key);
 

@@ -39,6 +39,7 @@ class _PreviousCompetitionsState extends State<PreviousCompetitions> {
 
   List<dynamic> previousCompetitions = [];
   int currentPage = 1;
+  // ignore: prefer_final_fields
   RefreshController _refreshController =
       RefreshController(initialRefresh: true);
 

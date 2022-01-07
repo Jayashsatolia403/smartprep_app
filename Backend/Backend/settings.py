@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-%np0pif&4ex#(dpe!465_7l&7vn7inpj5dd6=f#16o0t*6k^=w'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -103,6 +103,25 @@ WSGI_APPLICATION = 'Backend.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'smartprep-db',
+        'USER': 'Jayash403@smartprep-dbserver',
+        'PASSWORD': os.getenv("DB_PASSWORD"),
+        'HOST': 'smartprep-dbserver.postgres.database.azure.com',
+        'PORT': 5432,
+        'OPTIONS': {
+            'sslmode': 'require'
+        }
+    }
+}
+
+
+
+
+
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
@@ -113,18 +132,6 @@ WSGI_APPLICATION = 'Backend.wsgi.application'
 #         'PORT': 5432
 #     }
 # }
-
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd9qp2r7gjckrjg',
-        'USER': 'zprlsdhzfnvhhp',
-        'PASSWORD': '1c457471d584eb68bf7a2d6af828c90168ad18701c33bc64c435d85f39b25cc3',
-        'HOST': 'ec2-54-235-45-88.compute-1.amazonaws.com',
-        'PORT': 5432
-    }
-}
 
 
 db_from_env = dj_database_url.config(conn_max_age=500, ssl_require=True)

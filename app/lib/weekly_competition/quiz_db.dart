@@ -34,9 +34,11 @@ class QuizDatabase {
     const idType = 'INTEGER PRIMARY KEY AUTOINCREMENT';
     const textType = 'TEXT NOT NULL';
     const boolType = 'BOOLEAN NOT NULL';
+    // ignore: unused_local_variable
     const intType = 'INTEGER NOT NULL';
 
-    await db.execute('''
+    await db.execute(
+        '''
   CREATE TABLE $tableOptions (
     ${OptionFields.id} $idType,
     ${OptionFields.uuid} $textType,
@@ -45,7 +47,8 @@ class QuizDatabase {
     )
 ''');
 
-    await db.execute('''
+    await db.execute(
+        '''
   CREATE TABLE $tableQuestions (
     ${QuestionFields.id} $idType,
     ${QuestionFields.uuid} $textType,
@@ -54,7 +57,8 @@ class QuizDatabase {
     )
 ''');
 
-    await db.execute('''
+    await db.execute(
+        '''
   CREATE TABLE $tableDate ( 
     ${DateField.id} $idType, 
     ${DateField.date} $textType,
@@ -63,7 +67,8 @@ class QuizDatabase {
     )
 ''');
 
-    await db.execute('''
+    await db.execute(
+        '''
   CREATE TABLE $tableQuestionOptions ( 
     ${QuestionOptionsFields.id} $idType, 
     ${QuestionOptionsFields.uuid} $textType,

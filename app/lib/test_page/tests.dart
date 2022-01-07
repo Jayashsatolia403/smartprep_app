@@ -14,9 +14,6 @@ import '../config.dart';
 var examNameValues = {
   'ias': 'IAS',
   'iasHindi': 'IAS Hindi Medium',
-  'jee': 'JEE',
-  'jeeMains': 'JEE MAINS',
-  'jeeAdv': 'JEE ADV',
   'neet': 'NEET',
   'ras': 'RAS',
   'rasHindi': 'RAS Hindi Medium',

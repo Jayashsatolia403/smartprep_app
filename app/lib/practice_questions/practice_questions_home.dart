@@ -49,8 +49,10 @@ class _PracticeQuestionsState extends State<PracticeQuestions> {
     for (var id in resJson) {
       final String statement =
           (id['statement'] as String).replaceAll("\\n", "\n");
-      final String createdBy = (id['createdBy']).replaceAll("\\n", "\n");
-      final String explaination = (id['explaination']).replaceAll("\\n", "\n");
+      final String createdBy =
+          (id['createdBy'] as String).replaceAll("\\n", "\n");
+      final String explaination =
+          (id['explaination'] as String).replaceAll("\\n", "\n");
 
       setState(() {
         questionStatements.add([
@@ -110,55 +112,63 @@ class _PracticeQuestionsState extends State<PracticeQuestions> {
         body: Scaffold(
             body: Column(
           children: [
-            Expanded(
+            if (questionStatements.isNotEmpty)
+              Expanded(
                 child: SmartRefresher(
-              controller: _refreshController,
-              enablePullUp: true,
-              onLoading: () async {
-                final result = await getPracticeQuestions();
-                if (result) {
-                  _refreshController.loadComplete();
-                } else {
-                  _refreshController.loadFailed();
-                }
-              },
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: [
-                  for (var i = 0; i < questionStatements.length; i++)
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(left: 20, top: 50, bottom: 20),
-                      child: ElevatedButton(
-                        child: Text(questionStatements[i][0],
-                            style: const TextStyle(color: Colors.white)),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => CustomRadio(
-                                      options: allOptions[i],
-                                      statement: questionStatements[i][0],
-                                      quesUUid: questionStatements[i][1],
-                                      qualityRating: questionStatements[i][2],
-                                      difficultyRating: questionStatements[i]
-                                          [3],
-                                      isRated: questionStatements[i][4],
-                                      createdBy: questionStatements[i][5],
-                                      explaination: questionStatements[i][6],
-                                    )),
-                          );
-                        },
-                        style: ElevatedButton.styleFrom(
-                            fixedSize: const Size(250, 20),
-                            primary: Colors.black,
-                            onPrimary: Colors.black,
-                            alignment: Alignment.center),
-                      ),
-                    )
-                ],
+                  controller: _refreshController,
+                  enablePullUp: true,
+                  onLoading: () async {
+                    final result = await getPracticeQuestions();
+                    if (result) {
+                      _refreshController.loadComplete();
+                    } else {
+                      _refreshController.loadFailed();
+                    }
+                  },
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: [
+                      for (var i = 0; i < questionStatements.length; i++)
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              left: 20, top: 50, bottom: 20),
+                          child: ElevatedButton(
+                            child: Text(questionStatements[i][0],
+                                style: const TextStyle(color: Colors.white)),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => CustomRadio(
+                                          options: allOptions[i],
+                                          statement: questionStatements[i][0],
+                                          quesUUid: questionStatements[i][1],
+                                          qualityRating: questionStatements[i]
+                                              [2],
+                                          difficultyRating:
+                                              questionStatements[i][3],
+                                          isRated: questionStatements[i][4],
+                                          createdBy: questionStatements[i][5],
+                                          explaination: questionStatements[i]
+                                              [6],
+                                        )),
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                                fixedSize: const Size(250, 20),
+                                primary: Colors.black,
+                                onPrimary: Colors.black,
+                                alignment: Alignment.center),
+                          ),
+                        )
+                    ],
+                  ),
+                ),
               ),
-            )),
+            if (questionStatements.isEmpty)
+              const Center(
+                child: CircularProgressIndicator(),
+              ),
             if (banner == null)
               const Text("Loading Ad")
             else
