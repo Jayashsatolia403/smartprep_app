@@ -4,7 +4,6 @@ from rest_framework.authtoken.models import Token
 from django.conf import settings
 from django.dispatch import receiver
 from django.db.models.signals import post_save
-from django.contrib.postgres.fields import ArrayField
 
 
 from django.db import models
@@ -48,7 +47,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     isFree = models.BooleanField(default=True)
     language = models.CharField(max_length=10, null=True, blank=True)
 
-    premiumExams = ArrayField(models.CharField(max_length=20, null=True, blank=True), null=True, default=list, blank=True)
+    premiumExams = models.CharField(max_length=20, null=True, blank=True)
     addedQuestionDate = models.DateField(null=True, blank=True)
 
     created_at = models.DateTimeField(auto_now_add=True, null=True)

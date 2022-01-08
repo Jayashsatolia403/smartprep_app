@@ -64,9 +64,9 @@ class CustomRadioState extends State<CustomRadio> {
                         backgroundColor:
                             MaterialStateProperty.all<Color>(Colors.blue),
                         shadowColor:
-                            MaterialStateProperty.all<Color>(Colors.blue),
+                            MaterialStateProperty.all<Color>(Colors.white),
                         overlayColor:
-                            MaterialStateProperty.all<Color>(Colors.blue)),
+                            MaterialStateProperty.all<Color>(Colors.white)),
                     onPressed: () async {
                       String url =
                           await rootBundle.loadString('assets/text/url.txt');

@@ -152,8 +152,12 @@ class PaymentSuccess(APIView):
                 user.membershipOf100 = True
 
             user.save()
+
+            alreadyAddedPremiumExams = str(user.premiumExams).split(", ")
             
-            user.premiumExams.append('{}'.format(exam))
+            alreadyAddedPremiumExams.append(', {}'.format(exam))
+
+            user.premiumExams = ", ".join(alreadyAddedPremiumExams)
             
             user.save()
 
@@ -173,3 +177,6 @@ class CancelPayment(APIView):
 
     def get(self, request):
         return response.HttpResponse("<h1> Payment Cancelled </h1>")
+
+
+# OpenSource$403

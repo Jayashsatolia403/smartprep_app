@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-import dj_database_url
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -104,19 +103,30 @@ WSGI_APPLICATION = 'Backend.wsgi.application'
 
 
 
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'smartprep-db',
-        'USER': 'Jayash403@smartprep-dbserver',
-        'PASSWORD': os.getenv("DB_PASSWORD"),
-        'HOST': 'smartprep-dbserver.postgres.database.azure.com',
-        'PORT': 5432,
-        'OPTIONS': {
-            'sslmode': 'require'
-        }
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'smartprep-db-server',
     }
 }
+
+
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'smartprep-db',
+#         'USER': 'Jayash403@smartprep-dbserver',
+#         'PASSWORD': os.getenv("DB_PASSWORD"),
+#         'HOST': 'smartprep-dbserver.postgres.database.azure.com',
+#         'PORT': 5432,
+#         'OPTIONS': {
+#             'sslmode': 'require'
+#         }
+#     }
+# }
 
 
 
@@ -132,10 +142,6 @@ DATABASES = {
 #         'PORT': 5432
 #     }
 # }
-
-
-db_from_env = dj_database_url.config(conn_max_age=500, ssl_require=True)
-DATABASES['default'].update(db_from_env)
 
 
 # Password validation

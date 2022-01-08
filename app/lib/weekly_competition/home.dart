@@ -196,6 +196,7 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
     if (response.statusCode == 404) {
       setState(() {
         na = true;
+        loadingDone = true;
       });
 
       return false;

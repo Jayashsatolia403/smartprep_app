@@ -10,7 +10,7 @@ import 'package:http/http.dart' as http;
 
 import 'package:app/config.dart';
 
-String dropdownValue = 'ias';
+String dropdownValue = 'default';
 
 final List<bool> _selections = List.generate(3, (index) => false);
 
@@ -149,6 +149,16 @@ class Premium extends StatefulWidget {
 }
 
 class _PremiumState extends State<Premium> {
+  int amount = 0;
+
+  Future<bool?> showAlertDialog(BuildContext context) async {
+    return showDialog(
+        context: context,
+        builder: (context) => const AlertDialog(
+              title: Text("Please Choose an Exam First"),
+            ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -223,6 +233,15 @@ class _PremiumState extends State<Premium> {
                   for (var i = 0; i < _selections.length; i++) {
                     _selections[i] = false;
                   }
+
+                  if (index == 0) {
+                    amount = 30;
+                  } else if (index == 1) {
+                    amount = 50;
+                  } else if (index == 2) {
+                    amount = 100;
+                  }
+
                   _selections[index] = !_selections[index];
                 })
               },
@@ -406,37 +425,41 @@ class _PremiumState extends State<Premium> {
             ),
           ElevatedButton(
             onPressed: () async {
-              String url = await rootBundle.loadString('assets/text/url.txt');
-              final prefs = await SharedPreferences.getInstance();
-              String? token = prefs.getString("token");
-
-              if (dropdownValue == 'default') {
-                dropdownValue = widget.data.examname;
-              }
-
-              final response = await http.get(
-                Uri.parse(
-                    '$url/payments/checkout?amount=30&exam=$dropdownValue'),
-                headers: <String, String>{
-                  'Content-Type': 'application/json; charset=UTF-8',
-                  'Authorization': "Token $token"
-                },
-              );
-
-              final checkoutUrl = jsonDecode(utf8.decode(response.bodyBytes));
-
-              if (await canLaunch(url)) {
-                await launch(checkoutUrl);
+              if (dropdownValue == "default") {
+                await showAlertDialog(context);
               } else {
-                throw 'Could not launch $url';
-              }
+                String url = await rootBundle.loadString('assets/text/url.txt');
+                final prefs = await SharedPreferences.getInstance();
+                String? token = prefs.getString("token");
 
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => Home(
-                            data: widget.data,
-                          )));
+                if (dropdownValue == 'default') {
+                  dropdownValue = widget.data.examname;
+                }
+
+                final response = await http.get(
+                  Uri.parse(
+                      '$url/payments/checkout?amount=$amount&exam=$dropdownValue'),
+                  headers: <String, String>{
+                    'Content-Type': 'application/json; charset=UTF-8',
+                    'Authorization': "Token $token"
+                  },
+                );
+
+                final checkoutUrl = jsonDecode(utf8.decode(response.bodyBytes));
+
+                if (await canLaunch(url)) {
+                  await launch(checkoutUrl);
+                } else {
+                  throw 'Could not launch $url';
+                }
+
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => Home(
+                              data: widget.data,
+                            )));
+              }
             },
             child: const Text('Pay', style: TextStyle(fontSize: 20)),
             style: ElevatedButton.styleFrom(

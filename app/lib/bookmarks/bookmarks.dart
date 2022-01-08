@@ -28,6 +28,7 @@ class _BookmarksState extends State<Bookmarks> {
 
   List<dynamic> allOptions = <dynamic>[];
   List<dynamic> questionStatements = <dynamic>[];
+  bool loadingDone = false;
 
   String exam = "Exam";
 
@@ -53,6 +54,9 @@ class _BookmarksState extends State<Bookmarks> {
     final resJson = jsonDecode(utf8.decode(response.bodyBytes));
 
     if (resJson == "Done") {
+      setState(() {
+        loadingDone = true;
+      });
       _refreshController.loadNoData();
       return false;
     }
@@ -181,6 +185,11 @@ class _BookmarksState extends State<Bookmarks> {
                 child: CircularProgressIndicator(
                   color: Colors.blue,
                 ),
+              ),
+            if (loadingDone && questionStatements.isEmpty)
+              const Text(
+                "No Questions Available",
+                style: TextStyle(fontSize: 25, color: Colors.red),
               ),
             if (banner == null)
               const Text("yo")
