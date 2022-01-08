@@ -167,7 +167,9 @@ class _PracticeQuestionsState extends State<PracticeQuestions> {
               ),
             if (questionStatements.isEmpty)
               const Center(
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator(
+                  color: Colors.blue,
+                ),
               ),
             if (banner == null)
               const Text("Loading Ad")

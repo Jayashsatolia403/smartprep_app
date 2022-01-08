@@ -73,8 +73,6 @@ class CustomRadioState extends State<CustomRadio> {
                       final prefs = await SharedPreferences.getInstance();
                       String? token = prefs.getString("token");
 
-                      print("Working Exactly Fine!");
-
                       await http.get(
                         Uri.parse(
                             '$url/rateQues?id=$uuid&difficulty=$difficultyRating&ratings=$qualityRating'),

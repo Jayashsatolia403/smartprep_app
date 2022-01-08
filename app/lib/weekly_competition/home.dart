@@ -49,13 +49,10 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
                       setState(() {
                         loadingDone = true;
                       });
-                    },
-                    child: const Text("Exit")),
-                ElevatedButton(
-                    onPressed: () {
                       Navigator.pop(context);
                     },
-                    child: const Text("Stay"))
+                    child: const Text("Exit")),
+                ElevatedButton(onPressed: () {}, child: const Text("Stay"))
               ],
             ));
   }
@@ -304,7 +301,7 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
   Widget build(BuildContext context) {
     return WillPopScope(
         onWillPop: () async {
-          await showRatingsPage(context);
+          if (!loadingDone) await showRatingsPage(context);
           return loadingDone;
         },
         child: Scaffold(
@@ -429,7 +426,9 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
                 ),
               if (questions.isEmpty)
                 const Center(
-                  child: CircularProgressIndicator(),
+                  child: CircularProgressIndicator(
+                    color: Colors.blue,
+                  ),
                 ),
               if (banner == null)
                 const Text("yo")

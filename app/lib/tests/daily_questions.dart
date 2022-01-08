@@ -156,7 +156,9 @@ class _DailyQuestionsState extends State<DailyQuestions> {
               ),
             if (questionStatements.isEmpty)
               const Center(
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator(
+                  color: Colors.blue,
+                ),
               ),
             if (banner == null)
               const Text("Loading Ad")

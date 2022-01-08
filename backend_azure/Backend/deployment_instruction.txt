@@ -1,0 +1,5 @@
+Things to Keep in mind at the time of Deployment -
+
+1. Change Output (Include name field) of Login Method of DRF (obtain_auth_token).
+
+2. 
