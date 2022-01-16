@@ -1,10 +1,5 @@
-from os import readlink
-import re
 from django.db import models
-from django.db.models.fields import BLANK_CHOICE_DASH
-from rest_framework.serializers import ModelSerializer
 from Apps.User.models import User
-from django.contrib.postgres.fields import ArrayField
 
 
 

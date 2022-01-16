@@ -14,7 +14,7 @@ class QuizDatabase {
   Future<Database> get database async {
     if (_database != null) return _database!;
 
-    _database = await _initDB('options.db');
+    _database = await _initDB('quizdb.db');
 
     return _database!;
   }
@@ -37,8 +37,7 @@ class QuizDatabase {
     // ignore: unused_local_variable
     const intType = 'INTEGER NOT NULL';
 
-    await db.execute(
-        '''
+    await db.execute('''
   CREATE TABLE $tableOptions (
     ${OptionFields.id} $idType,
     ${OptionFields.uuid} $textType,
@@ -47,8 +46,7 @@ class QuizDatabase {
     )
 ''');
 
-    await db.execute(
-        '''
+    await db.execute('''
   CREATE TABLE $tableQuestions (
     ${QuestionFields.id} $idType,
     ${QuestionFields.uuid} $textType,
@@ -57,18 +55,17 @@ class QuizDatabase {
     )
 ''');
 
-    await db.execute(
-        '''
+    await db.execute('''
   CREATE TABLE $tableDate ( 
     ${DateField.id} $idType, 
     ${DateField.date} $textType,
     ${DateField.competitionUuid} $textType,
-    ${DateField.examName} $textType
+    ${DateField.examName} $textType,
+    ${DateField.firstIdx} $intType
     )
 ''');
 
-    await db.execute(
-        '''
+    await db.execute('''
   CREATE TABLE $tableQuestionOptions ( 
     ${QuestionOptionsFields.id} $idType, 
     ${QuestionOptionsFields.uuid} $textType,

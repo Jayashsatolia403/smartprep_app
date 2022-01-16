@@ -117,7 +117,10 @@ class CustomRadioState extends State<CustomRadio> {
                 Padding(
                     padding: const EdgeInsets.only(
                         left: 15, top: 20, right: 15, bottom: 5),
-                    child: Text(widget.statement)),
+                    child: Text(
+                      widget.statement,
+                      style: const TextStyle(fontSize: 19),
+                    )),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                   child: Row(children: [
@@ -254,9 +257,7 @@ class RadioItem extends StatelessWidget {
           ),
           const SizedBox(width: 20),
           Expanded(
-              child: Text(
-            _item.text,
-          ))
+              child: Text(_item.text, style: const TextStyle(fontSize: 15)))
         ],
       ),
     );

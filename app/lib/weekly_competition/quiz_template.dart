@@ -1,7 +1,7 @@
 // import 'dart:convert';
 
-import 'package:app/weekly_competition/quiz_config.dart';
 import 'package:app/weekly_competition/quiz_models.dart';
+import 'package:app/weekly_competition/view_answered_questions.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter/services.dart';
 // ignore: import_of_legacy_library_into_null_safe
@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:app/ad_state.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'quiz_db.dart';
 import 'quiz_models.dart';
@@ -25,9 +26,11 @@ class RadioModel {
 
 // ignore: must_be_immutable
 class CustomRadio extends StatefulWidget {
-  CustomRadio({Key? key, required this.question}) : super(key: key);
+  CustomRadio({Key? key, required this.statement, required this.quesUuid})
+      : super(key: key);
 
-  Question question;
+  String statement;
+  String quesUuid;
 
   @override
   createState() {
@@ -36,29 +39,13 @@ class CustomRadio extends StatefulWidget {
 }
 
 class CustomRadioState extends State<CustomRadio> {
-  BannerAd? banner;
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    final adState = Provider.of<AdState>(context);
-
-    adState.initialization.then((status) {
-      setState(() {
-        banner = BannerAd(
-            adUnitId: adState.bannerAdUnitId,
-            size: AdSize.largeBanner,
-            request: const AdRequest(),
-            listener: adState.listener)
-          ..load();
-      });
-    });
-  }
-
-  // String text = widget.statement;
-
-  List<RadioModel> sampleData = <RadioModel>[];
-
+  bool showExplaination = false;
+  late Questions question;
+  List<bool> correctOptions = [];
+  List<String> nextQuesDetails = [];
+  List<String> lastQuesDetails = [];
+  bool isNextQuesAvailable = false;
+  bool isLastQuesAvailable = false;
   List<String> alphabets = <String>[
     'A',
     'B',
@@ -88,16 +75,124 @@ class CustomRadioState extends State<CustomRadio> {
     'Z'
   ];
 
-  _initializeData() async {
-    int n = widget.question.options.length;
+  BannerAd? banner;
 
-    for (var i = 0; i < n; i++) {
-      final option =
-          await QuizDatabase.instance.readOptions(widget.question.options[i]);
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final adState = Provider.of<AdState>(context);
+
+    adState.initialization.then((status) {
+      setState(() {
+        banner = BannerAd(
+            adUnitId: adState.bannerAdUnitId,
+            size: AdSize.largeBanner,
+            request: const AdRequest(),
+            listener: adState.listener)
+          ..load();
+      });
+    });
+  }
+
+  Map<String, int> totalQuestions = {
+    "ias": 100,
+    "iasHindi": 100,
+    "neet": 180,
+    "ras": 150,
+    "rasHindi": 150,
+    "ibpsPO": 100,
+    "ibpsClerk": 100,
+    "sscCGL": 100,
+    "sscCGLHindi": 100,
+    "sscCHSL": 100,
+    "nda": 150,
+    "cat": 90,
+    "ntpc": 100,
+    "reet1": 150,
+    "reet2": 150,
+    "reet2Science": 150,
+    "patwari": 150,
+    "grade2nd": 100,
+    "grade2ndScience": 150,
+    "grade2ndSS": 150,
+    "sscGD": 100,
+    "sscMTS": 100,
+    "rajPoliceConst": 150,
+    "rajLDC": 150,
+    "rrbGD": 150,
+    "sipaper1": 100,
+    "sipaper2": 100
+  };
+
+  List<RadioModel> sampleData = [];
+
+  _initializeData() async {
+    sampleData = [];
+    Questions dbQuestion =
+        await QuizDatabase.instance.readQuestionsByUUid(widget.quesUuid);
+
+    setState(() {
+      question = dbQuestion;
+    });
+
+    List<QuestionOptions> qOptions = await QuizDatabase.instance
+        .readQuestionOptionsFromQuestionId(widget.quesUuid);
+
+    int idx = 0;
+
+    for (var qOption in qOptions) {
+      Options option =
+          await QuizDatabase.instance.readOptions(qOption.optionId);
 
       setState(() {
         sampleData.add(RadioModel(
-            option.isSelected, alphabets[i], option.content, option.uuid));
+            option.isSelected, alphabets[idx++], option.content, option.uuid));
+      });
+    }
+  }
+
+  _loadNextQuesData() async {
+    Questions dbQuestion =
+        await QuizDatabase.instance.readQuestionsByUUid(widget.quesUuid);
+
+    final prefs = await SharedPreferences.getInstance();
+
+    String? examName = prefs.getString("exam_name");
+
+    final allDates = await QuizDatabase.instance.readAllDate();
+
+    final date = allDates[0];
+
+    if (totalQuestions[examName]! + date.firstIdx - 1 > dbQuestion.id!) {
+      Questions nextQues =
+          await QuizDatabase.instance.readQuestionsById(dbQuestion.id! + 1);
+
+      setState(() {
+        nextQuesDetails = [];
+        nextQuesDetails.add(nextQues.statement);
+        nextQuesDetails.add(nextQues.uuid);
+        isNextQuesAvailable = true;
+      });
+    }
+  }
+
+  _loadPrevQuesData() async {
+    Questions dbQuestion =
+        await QuizDatabase.instance.readQuestionsByUUid(widget.quesUuid);
+
+    final allDates = await QuizDatabase.instance.readAllDate();
+
+    final date = allDates[0];
+
+    if (dbQuestion.id! > date.firstIdx) {
+      Questions nextQues =
+          await QuizDatabase.instance.readQuestionsById(dbQuestion.id! - 1);
+
+      setState(() {
+        lastQuesDetails = [];
+        lastQuesDetails.add(nextQues.statement);
+        lastQuesDetails.add(nextQues.uuid);
+        isLastQuesAvailable = true;
       });
     }
   }
@@ -107,6 +202,8 @@ class CustomRadioState extends State<CustomRadio> {
     super.initState();
 
     _initializeData();
+    _loadNextQuesData();
+    _loadPrevQuesData();
   }
 
   void updateOption(String uuid, String quesUuid) async {
@@ -118,7 +215,7 @@ class CustomRadioState extends State<CustomRadio> {
     Options option = await QuizDatabase.instance.readOptions(uuid);
 
     Questions ques =
-        await QuizDatabase.instance.readQuestionsByUUid(widget.question.uuid);
+        await QuizDatabase.instance.readQuestionsByUUid(widget.quesUuid);
 
     ques.isAnswered = true;
 
@@ -132,14 +229,65 @@ class CustomRadioState extends State<CustomRadio> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          "All Questions",
-          style: TextStyle(color: Colors.white),
+        toolbarHeight: 70,
+        backgroundColor: Colors.deepPurpleAccent,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            IconButton(
+                iconSize: 40,
+                onPressed: () {
+                  setState(() {
+                    widget.statement = lastQuesDetails[0];
+                    widget.quesUuid = lastQuesDetails[1];
+                  });
+
+                  _initializeData();
+                  _loadNextQuesData();
+                  _loadPrevQuesData();
+                },
+                icon: const Icon(
+                  Icons.keyboard_arrow_left,
+                  color: Colors.white,
+                )),
+            const SizedBox(
+              width: 13,
+            ),
+            IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ViewAnsweredQuestions()),
+                );
+              },
+              icon: const ImageIcon(
+                AssetImage("assets/images/menu.png"),
+              ),
+            ),
+            const SizedBox(
+              width: 13,
+            ),
+            IconButton(
+                iconSize: 40,
+                onPressed: () {
+                  setState(() {
+                    widget.statement = nextQuesDetails[0];
+                    widget.quesUuid = nextQuesDetails[1];
+                  });
+
+                  _initializeData();
+                  _loadNextQuesData();
+                  _loadPrevQuesData();
+                },
+                icon: const Icon(
+                  Icons.keyboard_arrow_right,
+                  color: Colors.white,
+                )),
+          ],
         ),
-        backgroundColor: Colors.deepPurple,
-        iconTheme: const IconThemeData(
-          color: Colors.white, //change your color here
-        ),
+        automaticallyImplyLeading: false,
       ),
       body: Column(children: [
         Expanded(
@@ -151,7 +299,10 @@ class CustomRadioState extends State<CustomRadio> {
                 Padding(
                     padding: const EdgeInsets.only(
                         left: 15, top: 20, right: 15, bottom: 30),
-                    child: Text(widget.question.statement)),
+                    child: Text(
+                      widget.statement,
+                      style: const TextStyle(fontSize: 19),
+                    )),
                 InkWell(
                   highlightColor: Colors.red,
                   splashColor: Colors.blueAccent,
@@ -161,8 +312,7 @@ class CustomRadioState extends State<CustomRadio> {
                         element.isSelected = false;
                       }
                       sampleData[index].isSelected = true;
-                      updateOption(
-                          sampleData[index].uuid, widget.question.uuid);
+                      updateOption(sampleData[index].uuid, widget.quesUuid);
                     });
                   },
                   child: RadioItem(sampleData[index]),
@@ -178,7 +328,7 @@ class CustomRadioState extends State<CustomRadio> {
                     element.isSelected = false;
                   }
                   sampleData[index].isSelected = true;
-                  updateOption(sampleData[index].uuid, widget.question.uuid);
+                  updateOption(sampleData[index].uuid, widget.quesUuid);
                 });
               },
               child: RadioItem(sampleData[index]),
@@ -236,7 +386,8 @@ class RadioItem extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 20),
-          Expanded(child: Text(_item.text))
+          Expanded(
+              child: Text(_item.text, style: const TextStyle(fontSize: 15)))
         ],
       ),
     );

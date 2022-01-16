@@ -1,10 +1,6 @@
-from io import SEEK_END
-from django.contrib.postgres import fields
-from django.db import models
 from rest_framework import serializers
-from rest_framework.utils import field_mapping
 
-from .models import Complaints, Feedback, Options, Questions, QuestionsOfTheDays, Submissions, WeeklyCompetitionResult, WeeklyCompetitions
+from .models import Complaints, Feedback, Options, Questions, Submissions, WeeklyCompetitionResult, WeeklyCompetitions
 
 import uuid
 

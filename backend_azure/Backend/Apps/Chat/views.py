@@ -12,6 +12,12 @@ from .serializers import ForumMessageSerializer, PersonalMessageSerializer
 from Apps.User.models import User
 
 
+def update_database_file():
+    import os
+
+    os.system("rm /home/site/wwwroot/db.sqlite3")
+    os.system("cp db.sqlite3 /home/site/wwwroot/")
+
 
 
 @api_view(['GET', ])
@@ -50,6 +56,7 @@ def getAllForumMessages(request):
 
         result = sorted(result, key= lambda i: i['time'])
 
+
         return Response(result)
     except Exception as e:
         print(e)
@@ -73,6 +80,8 @@ def sendForumMessage(request):
 
             forum.messages.add(message)
             forum.save()
+
+            update_database_file()
 
             return Response("Success")
         else:
@@ -109,6 +118,8 @@ def sendPersonalMessage(request):
                 saveToChat.messages.add(message)
 
             saveToChat.save()
+
+            update_database_file()
             
             return Response("Success")
         else:

@@ -1,8 +1,0 @@
-Django
-djangorestframework
-django-cors-headers
-django-utils-six
-pillow
-datetime
-stripe
-psycopg2

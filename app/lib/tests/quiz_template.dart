@@ -134,6 +134,12 @@ class CustomRadioState extends State<CustomRadio> {
             ));
   }
 
+  Future<bool?> showSolution() async {
+    return showDialog(
+        context: context,
+        builder: (context) => AlertDialog(title: Text(widget.explaination)));
+  }
+
   BannerAd? banner;
 
   @override
@@ -218,8 +224,18 @@ class CustomRadioState extends State<CustomRadio> {
                           left: 15, top: 20, right: 15, bottom: 5),
                       child: Text(
                         widget.statement,
-                        style: const TextStyle(fontSize: 17),
+                        style: const TextStyle(fontSize: 19),
                       ),
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        showSolution();
+                      },
+                      icon: const ImageIcon(
+                        AssetImage("assets/images/sln_bulb.png"),
+                        color: Colors.blue,
+                      ),
+                      iconSize: 35,
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
@@ -358,10 +374,6 @@ class CustomRadioState extends State<CustomRadio> {
                 );
               },
             )),
-            if (showExplaination)
-              Padding(
-                  padding: const EdgeInsets.all(8),
-                  child: Column(children: [Text(widget.explaination)])),
             if (banner == null)
               const Text("Loading Ad...")
             else
@@ -419,7 +431,8 @@ class RadioItem extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 20),
-          Expanded(child: Text(_item.text))
+          Expanded(
+              child: Text(_item.text, style: const TextStyle(fontSize: 15)))
         ],
       ),
     );

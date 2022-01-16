@@ -1,4 +1,3 @@
-from django.contrib.postgres.fields.array import ArrayField
 from django.db import models
 
 

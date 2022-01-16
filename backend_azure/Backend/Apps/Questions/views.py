@@ -1,4 +1,3 @@
-from django.core import paginator
 from rest_framework.decorators import api_view
 from rest_framework import status
 
@@ -6,11 +5,19 @@ from rest_framework.response import Response
 from django.core.paginator import InvalidPage, Paginator
 
 from .serializers import AddComplaintsSerializer, AddFeedbackSerializer, AddOptionsSerializer, AddQuestionSerializer, SubmitContestSerializer
-from .models import DailyQuestions, Exams, QuestionBookmarks, Questions, QuestionsOfTheDays, ReportedQuestions, Subjects, WeeklyCompetitionResult, WeeklyCompetitions
+from .models import DailyQuestions, Exams, QuestionBookmarks, Questions, QuestionsOfTheDays, ReportedQuestions, Subjects, WeeklyCompetitions
 
 from datetime import datetime
 import random
 
+
+
+
+def update_database_file():
+    import os 
+
+    os.system("rm /home/site/wwwroot/db.sqlite3")
+    os.system("cp db.sqlite3 /home/site/wwwroot/")
 
 
 
@@ -20,8 +27,6 @@ import random
 @api_view(['GET', ])
 def getDailyQuestions(request):
     try:
-
-        print("Here Bro!")
         result = []
         user = request.user
         examTitle = request.GET['exam']
@@ -68,10 +73,12 @@ def getDailyQuestions(request):
             for question in questions:
                 result.append({"uuid": question.uuid, "statement": question.statement, 
                         "ratings": question.ratings, "difficulty" : question.difficulty, 
-                        "options": [(z.content, z.isCorrect) for z in question.options.all()], 
+                        "options": [(z.content, z.isCorrect, z.uuid) for z in question.options.all()], 
                         "percentCorrect": question.percentCorrect, "subject": question.subject, "isRated": request.user in question.ratedBy.all(),
                         "createdBy": "Smartprep Team" if question.isExpert else question.createdBy.name, "explaination": question.explaination})
 
+
+            update_database_file()
 
             return Response(result[:limit])
         
@@ -114,13 +121,14 @@ def getDailyQuestions(request):
 
                     result.append({"uuid": question.uuid, "statement": question.statement, 
                             "ratings": question.ratings, "difficulty" : question.difficulty, 
-                            "options": [(z.content, z.isCorrect) for z in question.options.all()], 
+                            "options": [(z.content, z.isCorrect, z.uuid) for z in question.options.all()], 
                             "percentCorrect": question.percentCorrect, "subject": question.subject, "isRated": request.user in question.ratedBy.all(),
                             "createdBy": "Smartprep Team" if question.isExpert else question.createdBy.name}) 
                     
                     count += 1
 
             
+        update_database_file()
 
         return Response(result[:limit])
 
@@ -167,6 +175,8 @@ def addQuestion(request):
         else:
             print(optionSerializer.errors)
 
+        update_database_file()
+
         return Response("Success!")
     
     except Exception as e:
@@ -191,6 +201,8 @@ def getQuestionOfTheDay(request):
             quesOfDay = QuestionsOfTheDays.objects.get(date = dateToday, exam=exam)
             ques = quesOfDay.question
 
+            update_database_file()
+
 
             return Response({"uuid": ques.uuid, "statement": ques.statement, 
                         "options": [(z.content, z.isCorrect) for z in ques.options.all()], 
@@ -201,21 +213,31 @@ def getQuestionOfTheDay(request):
             subjects = list(exam.subjects.all())
 
             random.shuffle(subjects)
-            
-            subject = subjects[0]
 
-            for i in subject.questions.all():
-                if (i.ratings > 4.7 and i.difficulty > 4.7) or i.isExpert:
-                    if i not in QuestionsOfTheDays.objects.all():
+            for subject in subjects:
 
-                        import uuid
-                        
-                        quesOfDay = QuestionsOfTheDays(date = dateToday, uuid = str(uuid.uuid4()), exam=exam)
-                        quesOfDay.save()
-                        quesOfDay.question = i
-                        quesOfDay.save()
+                if not subject.questions.all():
+                    continue
 
-                        break
+                done = False
+
+                for i in subject.questions.all():
+                    if (i.ratings > 4.7 and i.difficulty > 4.7) or i.isExpert:
+                        if not QuestionsOfTheDays.objects.filter(question=i):
+
+                            import uuid
+                            
+                            quesOfDay = QuestionsOfTheDays(date = dateToday, uuid = str(uuid.uuid4()), exam=exam)
+                            quesOfDay.save()
+                            quesOfDay.question = i
+                            quesOfDay.save()
+
+                            done = True
+
+                            break
+
+                if done:
+                    break
 
             
             
@@ -223,7 +245,7 @@ def getQuestionOfTheDay(request):
 
             ques = quesOfDay.question
 
-            print("correct till here")
+            update_database_file()
 
 
             return Response({"uuid": ques.uuid, "statement": ques.statement, 
@@ -252,6 +274,8 @@ def rateQuestion(request):
         question.ratings = (question.ratings + float(ratings))/ (len(question.ratedBy.all())+1)
         question.difficulty = (question.difficulty + float(difficulty))/ (len(question.ratedBy.all())+1)
         question.save()
+
+        update_database_file()
 
         return Response("Success!")
     
@@ -305,6 +329,8 @@ def bookmark_question(request):
 
         question_bookmark.save()
 
+        update_database_file()
+
         return Response("Success")
 
 
@@ -330,6 +356,8 @@ def get_bookmarked_questions(request):
         bookmarked_questions = bookmarked_questions.questions.all().order_by('-id')
 
         paginator = Paginator(bookmarked_questions, page_size)
+
+        update_database_file()
 
         try:
             result = paginator.page(page)
@@ -503,6 +531,8 @@ def host_weekly_competition(request):
                 i += 1
                 x += 1
 
+        update_database_file()
+
 
 
         return Response("Success")
@@ -555,6 +585,8 @@ def get_todays_contest(request):
 
         
         competition = {"uuid": contest.uuid, "questions" : questions}
+
+        update_database_file()
 
 
         return Response(competition)
@@ -665,7 +697,13 @@ def submit_contest(request):
             res = serializer.save()
             data['correct_options'] = res.correct_options
 
+            update_database_file()
+
         else:
+
+            update_database_file()
+
+
             print(serializer.errors)
 
         return Response(data)
@@ -751,6 +789,8 @@ def give_feedback(request):
         feedback.user = request.user
 
         feedback.save()
+
+        update_database_file()
     else:
         return Response("Error", status=status.HTTP_500_INTERNAL_SERVER_ERROR)
     
@@ -769,6 +809,8 @@ def make_complaint(request):
         complaint.user = request.user
 
         complaint.save()
+
+        update_database_file()
     else:
         return Response("Error", status=status.HTTP_500_INTERNAL_SERVER_ERROR)
     
@@ -786,6 +828,8 @@ def report_question(request):
     report = ReportedQuestions(user = user, question=question)
 
     report.save()
+
+    update_database_file()
 
     return Response("Thanks")
 

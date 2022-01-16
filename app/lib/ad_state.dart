@@ -5,7 +5,7 @@ class AdState {
 
   AdState(this.initialization);
 
-  String get bannerAdUnitId => "ca-app-pub-3347710342715984/5536472562";
+  String get bannerAdUnitId => BannerAd.testAdUnitId;
   String get rewardedVideoAdUnitId => '';
   String get interstitialAdUnitId => '';
 

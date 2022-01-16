@@ -25,7 +25,8 @@ class WeeklyCompetitionHome extends StatefulWidget {
 
 class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
   BannerAd? banner;
-  List<Question> questions = [];
+  List<String> quesStatements = [];
+  List<String> quesUuids = [];
   bool done = false;
   String competitionUuid = "";
   bool na = false;
@@ -52,14 +53,20 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
                       Navigator.pop(context);
                     },
                     child: const Text("Exit")),
-                ElevatedButton(onPressed: () {}, child: const Text("Stay"))
+                ElevatedButton(
+                  onPressed: () {},
+                  child: const Text("Stay"),
+                  style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all(Colors.purple)),
+                )
               ],
             ));
   }
 
   void loadVideoAd() async {
     RewardedAd.load(
-        adUnitId: "ca-app-pub-3347710342715984/3851662288",
+        adUnitId: RewardedAd.testAdUnitId,
         request: const AdRequest(),
         rewardedAdLoadCallback:
             RewardedAdLoadCallback(onAdLoaded: (RewardedAd ad) {
@@ -126,17 +133,9 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
         Question configQuestion =
             Question(statement: i.statement, options: [], uuid: i.uuid);
 
-        final getDbQuestionOptions = await QuizDatabase.instance
-            .readQuestionOptionsFromQuestionId(i.uuid);
-
-        for (var j in getDbQuestionOptions) {
-          final getDbOption =
-              await QuizDatabase.instance.readOptions(j.optionId);
-
-          configQuestion.options.add(getDbOption.uuid);
-        }
         setState(() {
-          questions.add(configQuestion);
+          quesStatements.add(configQuestion.statement);
+          quesUuids.add(configQuestion.uuid);
         });
 
         if (!changedFirstIdx) {
@@ -207,12 +206,6 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
     });
 
     for (var ques in resJson['questions']) {
-      // Adding Question to quiz_config
-      Question question = Question(
-          statement: (ques['statement'] as String).replaceAll("\\n", "\n"),
-          options: [],
-          uuid: ques['uuid']);
-
       // Adding Question to Database
       Questions dbQuestion = Questions(
           uuid: ques['uuid'],
@@ -229,9 +222,6 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
             isSelected: false);
         await QuizDatabase.instance.createOption(dbOption);
 
-        // Adding Options to Question of quiz_config
-        question.options.add(optn[1]);
-
         // Adding QuestionOptions to Database
         QuestionOptions dbQuestionOptions = QuestionOptions(
             uuid: const Uuid().v4(),
@@ -241,12 +231,14 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
         await QuizDatabase.instance.createQuestionOptions(dbQuestionOptions);
       }
 
+      // Adding quesStatements and quesUuids
+      setState(() {
+        quesStatements.add(ques['statement']);
+        quesUuids.add(ques['uuid']);
+      });
+
       final returnedId =
           await QuizDatabase.instance.readQuestionsByUUid(dbQuestion.uuid);
-
-      setState(() {
-        questions.add(question);
-      });
 
       if (!changedFirstIndex) {
         setState(() {
@@ -265,7 +257,8 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
       await QuizDatabase.instance.createDate(Date(
           date: DateTime(now.year, now.month, now.day),
           competitionUuid: competitionUuid,
-          examName: examName));
+          examName: examName,
+          firstIdx: firstIdx));
 
       setState(() {
         loadingDone = true;
@@ -315,10 +308,7 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => ViewAnsweredQuestions(
-                                exam: exam,
-                                firstIdx: firstIdx,
-                              )),
+                          builder: (context) => const ViewAnsweredQuestions()),
                     );
                   },
                   icon: const ImageIcon(
@@ -360,8 +350,6 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
                         }
 
                         count += 1;
-
-                        print(count);
                       }
 
                       var data = {
@@ -390,34 +378,36 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
                     child: const Text("Submit"))
               ]),
               backgroundColor: Colors.purple,
-              toolbarHeight: 100,
+              toolbarHeight: 90,
             ),
             body: Column(children: [
-              if (questions.isNotEmpty)
+              if (quesStatements.isNotEmpty)
                 Expanded(
                   child: ListView(
                     scrollDirection: Axis.horizontal,
                     children: [
-                      for (var i = 0; i < questions.length; i++)
+                      for (var i = 0; i < quesStatements.length; i++)
                         Padding(
                           padding: const EdgeInsets.only(
-                              left: 20, top: 50, bottom: 20),
+                              left: 20, top: 30, bottom: 20),
                           child: ElevatedButton(
                             child: Text(
-                                '                          Q.${i + 1}\n\n${questions[i].statement}',
-                                style: const TextStyle(color: Colors.white)),
+                                '                       Q.${i + 1}\n\n${quesStatements[i]}',
+                                style: const TextStyle(
+                                    color: Colors.white, fontSize: 17)),
                             onPressed: () {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => CustomRadio(
-                                          question: questions[i],
+                                          quesUuid: quesUuids[i],
+                                          statement: quesStatements[i],
                                         )),
                               );
                             },
                             style: ElevatedButton.styleFrom(
                                 fixedSize: const Size(250, 20),
-                                primary: Colors.black,
+                                primary: Colors.deepPurpleAccent,
                                 onPrimary: Colors.black,
                                 alignment: Alignment.center),
                           ),
@@ -425,7 +415,7 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
                     ],
                   ),
                 ),
-              if (questions.isEmpty)
+              if (quesStatements.isEmpty)
                 const Center(
                   child: CircularProgressIndicator(
                     color: Colors.blue,
@@ -438,186 +428,3 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
             ])));
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// addToDatabase() async {
-//   String url = await rootBundle.loadString('assets/text/url.txt');
-
-//   final prefs = await SharedPreferences.getInstance();
-//   String? token = prefs.getString("token");
-//   String? examName = prefs.getString("exam_name");
-
-//   final response = await http.get(
-//     Uri.parse('$url/get_todays_contest?exam=$examName&page=1,page_size=1000'),
-//     headers: <String, String>{
-//       'Content-Type': 'application/json; charset=UTF-8',
-//       'Authorization': "Token $token"
-//     },
-//   );
-
-//   for (var uuid in jsonDecode(utf8.decode(response.bodyBytes))) {
-//     final ques = await http.get(
-//       Uri.parse('$url/getQuesByID?quesID=$uuid'),
-//       headers: <String, String>{
-//         'Content-Type': 'application/json; charset=UTF-8',
-//         'Authorization': "Token $token"
-//       },
-//     );
-
-//     final jsonResponse = jsonDecode(ques.body);
-
-//     // Adding Question to Database
-//     Questions dbQuestion =
-//         Questions(uuid: uuid, statement: jsonResponse['statement']);
-
-//     await QuizDatabase.instance.createQuestion(dbQuestion);
-
-//     for (var optn in jsonResponse['options']) {
-//       // Adding Option to Database
-//       Options dbOption =
-//           Options(uuid: optn[2], content: optn[0], isSelected: false);
-//       await QuizDatabase.instance.createOption(dbOption);
-
-//       // Adding QuestionOptions to Database
-//       QuestionOptions dbQuestionOptions = QuestionOptions(
-//           uuid: const Uuid().v4(),
-//           questionId: jsonResponse['uuid'],
-//           optionId: optn[2]);
-
-//       await QuizDatabase.instance.createQuestionOptions(dbQuestionOptions);
-//     }
-//   }
-
-//   Date date = Date(date: DateTime.now());
-
-//   await QuizDatabase.instance.createDate(date);
-// }
-
-// Future<List<Question>> getCompetitionQuestions(int page) async {
-//   List<Question> weeklyQuiz = [];
-
-//   final dbDate = await QuizDatabase.instance.readAllDate();
-//   if (dbDate.isNotEmpty) {
-//     return await getQuesFromDatabase(page);
-//   }
-
-//   String url = await rootBundle.loadString('assets/text/url.txt');
-
-//   final prefs = await SharedPreferences.getInstance();
-//   String? token = prefs.getString("token");
-//   String? examName = prefs.getString("exam_name");
-
-//   final response = await http.get(
-//     Uri.parse('$url/get_todays_contest?exam=$examName'),
-//     headers: <String, String>{
-//       'Content-Type': 'application/json; charset=UTF-8',
-//       'Authorization': "Token $token"
-//     },
-//   );
-
-//   for (var uuid in jsonDecode(utf8.decode(response.bodyBytes))) {
-//     final ques = await http.get(
-//       Uri.parse('$url/getQuesByID?quesID=$uuid'),
-//       headers: <String, String>{
-//         'Content-Type': 'application/json; charset=UTF-8',
-//         'Authorization': "Token $token"
-//       },
-//     );
-
-//     final jsonResponse = jsonDecode(ques.body);
-
-//     // Adding Question to quiz_config
-//     Question question =
-//         Question(statement: jsonResponse['statement'], options: []);
-
-//     // Adding Question to Database
-//     Questions dbQuestion =
-//         Questions(uuid: uuid, statement: jsonResponse['statement']);
-
-//     await QuizDatabase.instance.createQuestion(dbQuestion);
-
-//     for (var optn in jsonResponse['options']) {
-//       // Adding Option to Database
-//       Options dbOption =
-//           Options(uuid: optn[2], content: optn[0], isSelected: false);
-//       await QuizDatabase.instance.createOption(dbOption);
-
-//       // Adding Options to Question of quiz_config
-//       question.options.add([optn[0], false, optn[2]]);
-
-//       // Adding QuestionOptions to Database
-//       QuestionOptions dbQuestionOptions = QuestionOptions(
-//           uuid: const Uuid().v4(),
-//           questionId: jsonResponse['uuid'],
-//           optionId: optn[2]);
-
-//       await QuizDatabase.instance.createQuestionOptions(dbQuestionOptions);
-//     }
-
-//     weeklyQuiz.add(question);
-//   }
-
-// final date = await QuizDatabase.instance.readAllDate();
-
-// if (date.isNotEmpty) {
-//   date[0].pages = date[0].pages + 1;
-//   await QuizDatabase.instance.updateDate(date[0]);
-// } else {
-//   final now = DateTime.now();
-//   await QuizDatabase.instance.createDate(
-//       Date(date: DateTime(now.year, now.month, now.day), pages: 1));
-// }
-
-//   return weeklyQuiz;
-// }

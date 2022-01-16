@@ -1,4 +1,3 @@
-from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -6,6 +5,16 @@ from rest_framework.views import APIView
 from .serializers import RegisterationSerializer
 
 from rest_framework.authtoken.models import Token
+
+def update_database_file():
+    import os
+
+    os.system("rm /home/site/wwwroot/db.sqlite3")
+    os.system("cp db.sqlite3 /home/site/wwwroot/")
+
+    print("Successfully Updated")
+
+
 
 
 
@@ -32,6 +41,8 @@ class RegisterUser(APIView):
             data = {"name": f.name, "token": str(token.key), "email": str(f.email)}
         else:
             data = serializer.errors
+
+        update_database_file()
 
 
         return Response(data)

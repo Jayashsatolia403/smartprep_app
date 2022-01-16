@@ -124,7 +124,7 @@ class _BookmarksState extends State<Bookmarks> {
           title: const Text("Bookmarked Questions",
               style: TextStyle(color: Colors.white)),
           backgroundColor: Colors.purple,
-          toolbarHeight: 100,
+          toolbarHeight: 80,
         ),
         body: Scaffold(
             body: Column(
@@ -148,10 +148,11 @@ class _BookmarksState extends State<Bookmarks> {
                       for (var i = 0; i < questionStatements.length; i++)
                         Padding(
                           padding: const EdgeInsets.only(
-                              left: 20, top: 50, bottom: 20),
+                              left: 20, top: 30, bottom: 20),
                           child: ElevatedButton(
                             child: Text(questionStatements[i][0],
-                                style: const TextStyle(color: Colors.white)),
+                                style: const TextStyle(
+                                    color: Colors.white, fontSize: 17)),
                             onPressed: () {
                               Navigator.push(
                                 context,
@@ -171,7 +172,7 @@ class _BookmarksState extends State<Bookmarks> {
                             },
                             style: ElevatedButton.styleFrom(
                                 fixedSize: const Size(250, 20),
-                                primary: Colors.black,
+                                primary: Colors.deepPurpleAccent,
                                 onPrimary: Colors.black,
                                 alignment: Alignment.center),
                           ),

@@ -16,6 +16,138 @@ from datetime import datetime
 stripe.api_key = os.getenv("STRIPE_API_KEY")
 
 
+
+def update_database_file():
+    import os
+
+    os.system("rm /home/site/wwwroot/db.sqlite3")
+    os.system("cp db.sqlite3 /home/site/wwwroot/")
+
+
+
+
+
+
+@api_view(['GET', ])
+def checkout(request):
+    try:
+        amount = request.GET['amount']
+        exam = request.GET['exam']
+
+        SERVER_URL = int(os.getenv("SERVER_URL"))
+
+        membership30ID = 'price_1KFJ0dCRUp8Jfn8fpHdBR0Ge'
+        membership50ID = 'price_1KFJ4TCRUp8Jfn8fsgSwOn5W'
+        membership100ID = 'price_1KFJ5vCRUp8Jfn8fFe2EMzMt'
+
+        # Create Stripe Checkout
+        
+        if amount == 30:
+            membershipID = membership30ID
+        elif amount == 50:
+            membershipID = membership50ID
+        else:
+            membershipID = membership100ID
+        
+        session = stripe.checkout.Session.create(
+            payment_method_types=['card'],
+            customer_email = request.user.email,
+            line_items=[{
+                'price': membershipID,
+                'quantity': 1,
+            }],
+            mode='subscription',
+            allow_promotion_codes=True,
+            success_url=SERVER_URL+'payments/success?sessionId={CHECKOUT_SESSION_ID}&exam='+exam,
+            cancel_url=SERVER_URL+'payments/cancel',
+        )
+
+        newSession = SessionUser(user = request.user, sessionID = session.id)
+        newSession.save()
+
+        update_database_file()
+
+        return Response(session.url)
+
+    except:
+        return Response("Oops")
+
+
+
+
+class PaymentSuccess(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request):
+        if 'sessionId' in request.GET:
+            exam = request.GET['exam']
+            print(exam)
+            session = stripe.checkout.Session.retrieve(request.GET['sessionId'],)
+            print(session.amount_subtotal)
+            user = SessionUser.objects.get(sessionID = request.GET['sessionId']).user
+            user.stripeId = session.customer
+            user.membershipEnd = datetime.now()
+            user.stripeSubscriptionId = session.subscription
+
+            if session.amount_subtotal == 3000:
+                user.membershipOf30 = True
+            elif session.amount_subtotal == 5000:
+                user.membershipOf50 = True
+            else:
+                user.membershipOf100 = True
+
+            user.save()
+
+            alreadyAddedPremiumExams = str(user.premiumExams).split(", ")
+            
+            alreadyAddedPremiumExams.append(', {}'.format(exam))
+
+            user.premiumExams = ", ".join(alreadyAddedPremiumExams)
+            
+            user.save()
+
+            update_database_file()
+
+            todaysDailyQuestion = DailyQuestions.objects.filter(user=user, exam=exam)
+
+            if todaysDailyQuestion:
+                todaysDailyQuestion.delete()
+        else:
+            return Response("There is an error in your payment. Contact Smartprep Support Team if money has detected from your account.")
+    
+        return response.HttpResponse("<h1>Your Payment is SuccessFul. \n\n Enjoy your membership. \n\nYou can return to SmartPrep App now.</h1>")
+
+
+
+class CancelPayment(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request):
+        return response.HttpResponse("<h1> Payment Cancelled </h1>")
+
+
+# OpenSource$403
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # @api_view(['GET', ])
 # def success(request):
 #     if 'sessionId' in request.GET:
@@ -80,103 +212,3 @@ stripe.api_key = os.getenv("STRIPE_API_KEY")
 #     except:
 #         return Response("Oops")
 
-
-
-
-
-
-@api_view(['GET', ])
-def checkout(request):
-    try:
-        amount = request.GET['amount']
-        exam = request.GET['exam']
-
-        SERVER_URL = int(os.getenv("SERVER_URL"))
-
-        membership30ID = 'price_1KFJ0dCRUp8Jfn8fpHdBR0Ge'
-        membership50ID = 'price_1KFJ4TCRUp8Jfn8fsgSwOn5W'
-        membership100ID = 'price_1KFJ5vCRUp8Jfn8fFe2EMzMt'
-
-        # Create Stripe Checkout
-        
-        if amount == 30:
-            membershipID = membership30ID
-        elif amount == 50:
-            membershipID = membership50ID
-        else:
-            membershipID = membership100ID
-        
-        session = stripe.checkout.Session.create(
-            payment_method_types=['card'],
-            customer_email = request.user.email,
-            line_items=[{
-                'price': membershipID,
-                'quantity': 1,
-            }],
-            mode='subscription',
-            allow_promotion_codes=True,
-            success_url=SERVER_URL+'payments/success?sessionId={CHECKOUT_SESSION_ID}&exam='+exam,
-            cancel_url=SERVER_URL+'payments/cancel',
-        )
-
-        newSession = SessionUser(user = request.user, sessionID = session.id)
-        newSession.save()
-
-        return Response(session.url)
-
-    except:
-        return Response("Oops")
-
-
-
-
-class PaymentSuccess(APIView):
-    permission_classes = [AllowAny]
-
-    def get(self, request):
-        if 'sessionId' in request.GET:
-            exam = request.GET['exam']
-            print(exam)
-            session = stripe.checkout.Session.retrieve(request.GET['sessionId'],)
-            print(session.amount_subtotal)
-            user = SessionUser.objects.get(sessionID = request.GET['sessionId']).user
-            user.stripeId = session.customer
-            user.membershipEnd = datetime.now()
-            user.stripeSubscriptionId = session.subscription
-
-            if session.amount_subtotal == 3000:
-                user.membershipOf30 = True
-            elif session.amount_subtotal == 5000:
-                user.membershipOf50 = True
-            else:
-                user.membershipOf100 = True
-
-            user.save()
-
-            alreadyAddedPremiumExams = str(user.premiumExams).split(", ")
-            
-            alreadyAddedPremiumExams.append(', {}'.format(exam))
-
-            user.premiumExams = ", ".join(alreadyAddedPremiumExams)
-            
-            user.save()
-
-            todaysDailyQuestion = DailyQuestions.objects.filter(user=user, exam=exam)
-
-            if todaysDailyQuestion:
-                todaysDailyQuestion.delete()
-        else:
-            return Response("There is an error in your payment. Contact Smartprep Support Team if money has detected from your account.")
-    
-        return response.HttpResponse("<h1>Your Payment is SuccessFul. \n\n Enjoy your membership. \n\nYou can return to SmartPrep App now.</h1>")
-
-
-
-class CancelPayment(APIView):
-    permission_classes = [AllowAny]
-
-    def get(self, request):
-        return response.HttpResponse("<h1> Payment Cancelled </h1>")
-
-
-# OpenSource$403

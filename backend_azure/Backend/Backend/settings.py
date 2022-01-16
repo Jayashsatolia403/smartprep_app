@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-%np0pif&4ex#(dpe!465_7l&7vn7inpj5dd6=f#16o0t*6k^=w'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -107,7 +107,7 @@ WSGI_APPLICATION = 'Backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'smartprep-db-server',
+        'NAME': 'db.sqlite3',
     }
 }
 
@@ -135,10 +135,10 @@ DATABASES = {
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'questions',
+#         'NAME': 'postgres',
 #         'USER': 'postgres',
-#         'PASSWORD': 'J',
-#         'HOST': 'localhost',
+#         'PASSWORD': 'postgres',
+#         'HOST': 'db',
 #         'PORT': 5432
 #     }
 # }
@@ -196,3 +196,28 @@ AUTH_USER_MODEL = "User.User"
 WHITENOISE_USE_FINDERS = True
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+
+
+LOGGING = {
+ 'version': 1,
+ 'disable_existing_loggers': False,
+ 'filters': {
+ 'require_debug_false': {
+ '()': 'django.utils.log.RequireDebugFalse'
+    }
+ },
+ 'handlers': {
+ 'logfile': {
+ 'class': 'logging.handlers.WatchedFileHandler',
+ 'filename': '/home/site/wwwroot/logs.log'
+    }
+ },
+ 'loggers': {
+ 'django': {
+ 'handlers': ['logfile'],
+ 'level': 'ERROR',
+ 'propagate': False,
+    }
+ }
+}

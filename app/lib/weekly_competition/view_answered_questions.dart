@@ -1,41 +1,32 @@
-import 'package:app/weekly_competition/quiz_config.dart';
 import 'package:app/weekly_competition/quiz_db.dart';
 import 'package:app/weekly_competition/quiz_template.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'quiz_models.dart';
 
 class ViewAnsweredQuestions extends StatefulWidget {
-  const ViewAnsweredQuestions(
-      {Key? key, required this.exam, required this.firstIdx})
-      : super(key: key);
-
-  final String exam;
-  final int firstIdx;
+  const ViewAnsweredQuestions({Key? key}) : super(key: key);
 
   @override
   _ViewAnsweredQuestionsState createState() => _ViewAnsweredQuestionsState();
 }
 
 class _ViewAnsweredQuestionsState extends State<ViewAnsweredQuestions> {
+  String exam = "";
+  int firstIdx = 1;
   List<bool> result = [];
 
-  Future<Question> getQuestion(int idx) async {
-    print(idx);
+  String quesStatement = '';
+  String quesUuid = '';
+
+  _getQuestion(int idx) async {
     Questions q = await QuizDatabase.instance.readQuestionsById(idx);
 
-    Question ques = Question(statement: q.statement, options: [], uuid: q.uuid);
-
-    final getDbQuestionOptions =
-        await QuizDatabase.instance.readQuestionOptionsFromQuestionId(q.uuid);
-
-    for (var j in getDbQuestionOptions) {
-      final getDbOption = await QuizDatabase.instance.readOptions(j.optionId);
-
-      ques.options.add(getDbOption.uuid);
-    }
-
-    return ques;
+    setState(() {
+      quesStatement = q.statement;
+      quesUuid = q.uuid;
+    });
   }
 
   Map<String, int> totalQuestions = {
@@ -70,9 +61,23 @@ class _ViewAnsweredQuestionsState extends State<ViewAnsweredQuestions> {
 
   Future<bool> getAnsweredQuestions() async {
     try {
+      final prefs = await SharedPreferences.getInstance();
+      String? examName = prefs.getString("exam_name");
+
+      setState(() {
+        exam = examName ?? "None";
+      });
+
+      final allDates = await QuizDatabase.instance.readAllDate();
+      final date = allDates[0];
+
+      setState(() {
+        firstIdx = date.firstIdx;
+      });
+
       final questions = await QuizDatabase.instance.readAllQuestions();
 
-      for (var i = 0; i < totalQuestions[widget.exam]!; i++) {
+      for (var i = 0; i < totalQuestions[examName]!; i++) {
         result.add(false);
       }
 
@@ -85,8 +90,6 @@ class _ViewAnsweredQuestionsState extends State<ViewAnsweredQuestions> {
 
         idx++;
       }
-
-      print(result);
     } catch (error) {
       return false;
     }
@@ -161,26 +164,24 @@ class _ViewAnsweredQuestionsState extends State<ViewAnsweredQuestions> {
           const SizedBox(
             height: 20,
           ),
-          for (var index = 0;
-              index < (totalQuestions[widget.exam]! / 5);
-              index++)
+          for (var index = 0; index < (totalQuestions[exam]! / 5); index++)
             Column(children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   for (var i = 0; i < 5; i++)
-                    if ((index * 5 + 1 + i) <= totalQuestions[widget.exam]!)
+                    if ((index * 5 + 1 + i) <= totalQuestions[exam]!)
                       Column(children: [
                         ElevatedButton(
                           onPressed: () async {
-                            Question ques = await getQuestion(
-                                widget.firstIdx + index * 5 + i);
+                            await _getQuestion(firstIdx + index * 5 + i);
                             Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => CustomRadio(
-                                        question: ques,
+                                        quesUuid: quesUuid,
+                                        statement: quesStatement,
                                       )),
                             );
                           },

@@ -1,4 +1,3 @@
-from django.core import paginator
 from django.urls import path
 
 from .views import get_competition_by_uuid, get_practice_questions, get_previous_contests, get_questions_by_ad, get_todays_contest, addQuestion, bookmark_question, get_bookmarked_questions, getQuestionByID, give_feedback, has_user_added_question_today, host_weekly_competition, make_complaint, report_question, submit_contest

@@ -1,6 +1,6 @@
 import 'package:app/bookmarks/bookmarks.dart';
 import 'package:app/practice_questions/practice_questions_home.dart';
-import 'package:app/tests/daily_questions.dart';
+import 'package:app/update_daily_ques/daily_questions.dart';
 import 'package:app/weekly_competition/home.dart';
 import 'package:app/weekly_competition/previous_competitions.dart';
 import 'package:flutter/material.dart';

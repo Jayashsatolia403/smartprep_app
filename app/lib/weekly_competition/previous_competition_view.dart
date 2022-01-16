@@ -141,7 +141,7 @@ class _PreviousCompetitionViewState extends State<PreviousCompetitionView> {
           title: Text(widget.compName,
               style: const TextStyle(color: Colors.white)),
           backgroundColor: Colors.purple,
-          toolbarHeight: 100,
+          toolbarHeight: 80,
         ),
         body: Column(
           children: [
@@ -163,10 +163,11 @@ class _PreviousCompetitionViewState extends State<PreviousCompetitionView> {
                     for (var i = 0; i < questionStatements.length; i++)
                       Padding(
                         padding: const EdgeInsets.only(
-                            left: 20, top: 50, bottom: 20),
+                            left: 20, top: 30, bottom: 20),
                         child: ElevatedButton(
                           child: Text(questionStatements[i][0],
-                              style: const TextStyle(color: Colors.white)),
+                              style: const TextStyle(
+                                  color: Colors.white, fontSize: 17)),
                           onPressed: () {
                             Navigator.push(
                               context,
@@ -186,7 +187,7 @@ class _PreviousCompetitionViewState extends State<PreviousCompetitionView> {
                           },
                           style: ElevatedButton.styleFrom(
                               fixedSize: const Size(250, 20),
-                              primary: Colors.black,
+                              primary: Colors.deepPurpleAccent,
                               onPrimary: Colors.black,
                               alignment: Alignment.center),
                         ),

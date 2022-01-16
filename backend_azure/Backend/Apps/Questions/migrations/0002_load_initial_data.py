@@ -639,7 +639,7 @@ def load_initial_data(apps, schema_editor):
 
     for xs in subject_files:
 
-        path = r"/home/jayash/Desktop/Projects/smartprep_app/Backend/final_questions/" +  subject_files[xs]
+        path = r"/home/jayash/Desktop/Projects/smartprep_app/backend_azure/Backend/final_questions/" +  subject_files[xs]
         file = open(path)
 
         good_data = []

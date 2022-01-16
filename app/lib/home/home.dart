@@ -109,7 +109,7 @@ class _HomeState extends State<Home> {
 
   void loadVideoAd() async {
     RewardedAd.load(
-        adUnitId: "ca-app-pub-3347710342715984/3851662288",
+        adUnitId: RewardedAd.testAdUnitId,
         request: const AdRequest(),
         rewardedAdLoadCallback:
             RewardedAdLoadCallback(onAdLoaded: (RewardedAd ad) {

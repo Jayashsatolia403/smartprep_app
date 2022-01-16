@@ -25,12 +25,19 @@ class QuestionFields {
 }
 
 class DateField {
-  static const List<String> values = [id, date, competitionUuid, examName];
+  static const List<String> values = [
+    id,
+    date,
+    competitionUuid,
+    examName,
+    firstIdx
+  ];
 
   static const String id = '_id';
   static const String date = 'date';
   static const String competitionUuid = 'competition_uuid';
   static const String examName = 'exam_name';
+  static const String firstIdx = 'first_idx';
 }
 
 class QuestionOptionsFields {
@@ -114,35 +121,41 @@ class Date {
   DateTime date;
   String competitionUuid;
   String examName;
+  int firstIdx;
 
   Date(
       {this.id,
       required this.date,
       required this.competitionUuid,
-      required this.examName});
+      required this.examName,
+      required this.firstIdx});
 
   Date copy(
           {int? id,
           DateTime? date,
           String? competitionUuid,
-          String? examName}) =>
+          String? examName,
+          int? firstIdx}) =>
       Date(
           id: id ?? this.id,
           date: date ?? this.date,
           competitionUuid: competitionUuid ?? this.competitionUuid,
-          examName: examName ?? this.examName);
+          examName: examName ?? this.examName,
+          firstIdx: firstIdx ?? this.firstIdx);
 
   static Date fromJson(Map<String, Object?> json) => Date(
       id: json[DateField.id] as int?,
       date: DateFormat("yyyy-MM-dd").parse(json[DateField.date].toString()),
       competitionUuid: json[DateField.competitionUuid] as String,
-      examName: json[DateField.examName] as String);
+      examName: json[DateField.examName] as String,
+      firstIdx: json[DateField.firstIdx] as int);
 
   Map<String, Object?> toJson() => {
         DateField.id: id,
         DateField.date: date.toIso8601String(),
         DateField.competitionUuid: competitionUuid,
-        DateField.examName: examName
+        DateField.examName: examName,
+        DateField.firstIdx: firstIdx
       };
 }
 
