@@ -46,7 +46,7 @@ class _HomeSliderState extends State<HomeSlider> {
                         builder: (context) => ArticleView(url: item[1])));
               },
               child: Container(
-                margin: EdgeInsets.all(5.0),
+                margin: const EdgeInsets.all(5.0),
                 child: ClipRRect(
                     borderRadius: const BorderRadius.all(Radius.circular(5.0)),
                     child: Stack(

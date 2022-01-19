@@ -35,7 +35,7 @@ class Splash extends StatelessWidget {
           if (snapShot.hasData) {
             if (snapShot.data?[0] != "User" && snapShot.data?[1] != "Exam") {
               return SplashScreen(
-                seconds: 5,
+                seconds: 2,
                 navigateAfterSeconds: Home(
                   data: Config(
                       username: snapShot.data![0],
@@ -48,7 +48,7 @@ class Splash extends StatelessWidget {
               );
             } else if (snapShot.data?[0] != "User") {
               return SplashScreen(
-                seconds: 5,
+                seconds: 2,
                 navigateAfterSeconds: SelectExam(
                     data: Config(
                         username: snapShot.data![0],
@@ -60,7 +60,7 @@ class Splash extends StatelessWidget {
               );
             } else {
               return SplashScreen(
-                seconds: 5,
+                seconds: 2,
                 navigateAfterSeconds: const MyHomePage(),
                 image: Image.asset('assets/images/logo6.png'),
                 photoSize: 100.0,
@@ -69,7 +69,7 @@ class Splash extends StatelessWidget {
             }
           } else {
             return SplashScreen(
-              seconds: 5,
+              seconds: 2,
               navigateAfterSeconds: const MyHomePage(),
               image: Image.asset('assets/images/logo6.png'),
               photoSize: 100.0,

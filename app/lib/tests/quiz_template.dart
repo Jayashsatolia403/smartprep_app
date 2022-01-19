@@ -68,6 +68,26 @@ class CustomRadioState extends State<CustomRadio> {
                         overlayColor:
                             MaterialStateProperty.all<Color>(Colors.white)),
                     onPressed: () async {
+                      setState(() {
+                        widget.isRated = true;
+                      });
+                      Navigator.pop(context);
+                    },
+                    child: const Text(
+                      "Cancel",
+                      style: TextStyle(color: Colors.white, fontSize: 17),
+                    )),
+                ElevatedButton(
+                    style: ButtonStyle(
+                        foregroundColor:
+                            MaterialStateProperty.all<Color>(Colors.blue),
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Colors.blue),
+                        shadowColor:
+                            MaterialStateProperty.all<Color>(Colors.white),
+                        overlayColor:
+                            MaterialStateProperty.all<Color>(Colors.white)),
+                    onPressed: () async {
                       String url =
                           await rootBundle.loadString('assets/text/url.txt');
                       final prefs = await SharedPreferences.getInstance();
@@ -408,7 +428,7 @@ class RadioItem extends StatelessWidget {
             decoration: BoxDecoration(
               color: (() {
                 if (_item.isCorrect) {
-                  return Colors.lightBlueAccent;
+                  return Colors.green;
                 } else if (_item.isSelected) {
                   return Colors.red;
                 } else {
@@ -419,7 +439,7 @@ class RadioItem extends StatelessWidget {
                 width: 1.0,
                 color: (() {
                   if (_item.isCorrect) {
-                    return Colors.lightBlueAccent;
+                    return Colors.green;
                   } else if (_item.isSelected) {
                     return Colors.red;
                   } else {

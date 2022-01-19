@@ -1,7 +1,7 @@
 from django.http import response
 from rest_framework.views import APIView
 from Apps.Membership.models import SessionUser
-from rest_framework.decorators import api_view, permission_classes
+from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
 import os
@@ -10,18 +10,11 @@ from Apps.Questions.models import DailyQuestions
 # Created new web app "smartprep": https://smartprep.azurewebsites.net
 
 import stripe
+from update_db_file import update_database_file
 
 from datetime import datetime
 
 stripe.api_key = os.getenv("STRIPE_API_KEY")
-
-
-
-def update_database_file():
-    import os
-
-    os.system("rm /home/site/wwwroot/db.sqlite3")
-    os.system("cp db.sqlite3 /home/site/wwwroot/")
 
 
 
@@ -31,10 +24,10 @@ def update_database_file():
 @api_view(['GET', ])
 def checkout(request):
     try:
-        amount = request.GET['amount']
+        amount = int(request.GET['amount'])
         exam = request.GET['exam']
 
-        SERVER_URL = int(os.getenv("SERVER_URL"))
+        SERVER_URL = os.getenv("SERVER_URL")
 
         membership30ID = 'price_1KFJ0dCRUp8Jfn8fpHdBR0Ge'
         membership50ID = 'price_1KFJ4TCRUp8Jfn8fsgSwOn5W'
@@ -69,7 +62,8 @@ def checkout(request):
 
         return Response(session.url)
 
-    except:
+    except Exception as e:
+        print(e)
         return Response("Oops")
 
 

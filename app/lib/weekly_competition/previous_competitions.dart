@@ -93,7 +93,6 @@ class _PreviousCompetitionsState extends State<PreviousCompetitions> {
         ),
         body: SmartRefresher(
             controller: _refreshController,
-            enablePullUp: true,
             onLoading: () async {
               final result = await getPreviousCompetitons();
               if (result) {

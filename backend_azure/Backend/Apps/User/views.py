@@ -2,19 +2,11 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from update_db_file import update_database_file
+
 from .serializers import RegisterationSerializer
 
 from rest_framework.authtoken.models import Token
-
-def update_database_file():
-    import os
-
-    os.system("rm /home/site/wwwroot/db.sqlite3")
-    os.system("cp db.sqlite3 /home/site/wwwroot/")
-
-    print("Successfully Updated")
-
-
 
 
 

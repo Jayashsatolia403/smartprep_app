@@ -42,6 +42,12 @@ class CustomRadioState extends State<CustomRadio> {
   bool showExplaination = false;
   BannerAd? banner;
 
+  Future<bool?> showSolution() async {
+    return showDialog(
+        context: context,
+        builder: (context) => AlertDialog(title: Text(widget.explaination)));
+  }
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -121,6 +127,16 @@ class CustomRadioState extends State<CustomRadio> {
                       widget.statement,
                       style: const TextStyle(fontSize: 19),
                     )),
+                IconButton(
+                  onPressed: () {
+                    showSolution();
+                  },
+                  icon: const ImageIcon(
+                    AssetImage("assets/images/sln_bulb.png"),
+                    color: Colors.blue,
+                  ),
+                  iconSize: 35,
+                ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                   child: Row(children: [
@@ -195,10 +211,6 @@ class CustomRadioState extends State<CustomRadio> {
             );
           },
         )),
-        if (showExplaination)
-          Padding(
-              padding: const EdgeInsets.all(8),
-              child: Text(widget.explaination)),
         if (banner == null)
           const Text("Loading Ad...")
         else
@@ -233,7 +245,7 @@ class RadioItem extends StatelessWidget {
             decoration: BoxDecoration(
               color: (() {
                 if (_item.isCorrect) {
-                  return Colors.lightBlueAccent;
+                  return Colors.green;
                 } else if (_item.isSelected) {
                   return Colors.red;
                 } else {
@@ -244,7 +256,7 @@ class RadioItem extends StatelessWidget {
                 width: 1.0,
                 color: (() {
                   if (_item.isCorrect) {
-                    return Colors.lightBlueAccent;
+                    return Colors.green;
                   } else if (_item.isSelected) {
                     return Colors.red;
                   } else {

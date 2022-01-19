@@ -6,17 +6,6 @@ import sys
 
 def main():
     """Run administrative tasks."""
-    try:
-        path = "/home/site/wwwroot/db.sqlite3"
-        open(path)
-    except:
-        os.system("cp db.sqlite3 /home/site/wwwroot/")
-
-
-    os.system("rm db.sqlite3")
-    os.system("cp /home/site/wwwroot/db.sqlite3 .")
-
-
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Backend.settings')
     try:
         from django.core.management import execute_from_command_line

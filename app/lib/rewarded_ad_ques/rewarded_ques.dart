@@ -118,7 +118,7 @@ class _RewardedQuestionsState extends State<RewardedQuestions> {
                   title: const Text("Rewarded Questions",
                       style: TextStyle(color: Colors.white)),
                   backgroundColor: Colors.purple,
-                  toolbarHeight: 100,
+                  toolbarHeight: 80,
                 ),
                 body: Scaffold(
                     body: Column(
@@ -133,8 +133,8 @@ class _RewardedQuestionsState extends State<RewardedQuestions> {
                                   left: 20, top: 50, bottom: 20),
                               child: ElevatedButton(
                                 child: Text(snapShot.data![0][i][0],
-                                    style:
-                                        const TextStyle(color: Colors.white)),
+                                    style: const TextStyle(
+                                        color: Colors.white, fontSize: 17)),
                                 onPressed: () {
                                   Navigator.push(
                                     context,
@@ -158,7 +158,7 @@ class _RewardedQuestionsState extends State<RewardedQuestions> {
                                 },
                                 style: ElevatedButton.styleFrom(
                                     fixedSize: const Size(250, 20),
-                                    primary: Colors.black,
+                                    primary: Colors.deepPurpleAccent,
                                     onPrimary: Colors.black,
                                     alignment: Alignment.center),
                               ),

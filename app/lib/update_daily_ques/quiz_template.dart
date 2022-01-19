@@ -95,6 +95,30 @@ class CustomRadioState extends State<CustomRadio> {
                         overlayColor:
                             MaterialStateProperty.all<Color>(Colors.white)),
                     onPressed: () async {
+                      setState(() {
+                        isRated = true;
+                      });
+
+                      question.isRated = true;
+
+                      await DailyQuesDatabase.instance.updateQuestion(question);
+                      Navigator.pop(context);
+                    },
+                    child: const Text(
+                      "Cancel",
+                      style: TextStyle(color: Colors.white, fontSize: 17),
+                    )),
+                ElevatedButton(
+                    style: ButtonStyle(
+                        foregroundColor:
+                            MaterialStateProperty.all<Color>(Colors.blue),
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Colors.blue),
+                        shadowColor:
+                            MaterialStateProperty.all<Color>(Colors.white),
+                        overlayColor:
+                            MaterialStateProperty.all<Color>(Colors.white)),
+                    onPressed: () async {
                       String url =
                           await rootBundle.loadString('assets/text/url.txt');
                       final prefs = await SharedPreferences.getInstance();
@@ -121,7 +145,7 @@ class CustomRadioState extends State<CustomRadio> {
                     child: const Text(
                       "Submit",
                       style: TextStyle(color: Colors.white, fontSize: 17),
-                    ))
+                    )),
               ],
               title: Column(
                 children: [
@@ -289,6 +313,7 @@ class CustomRadioState extends State<CustomRadio> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 IconButton(
+                    color: Colors.white,
                     iconSize: 40,
                     onPressed: () {
                       if (isRated) {
@@ -303,6 +328,18 @@ class CustomRadioState extends State<CustomRadio> {
                         _loadPrevQuesData();
                       } else {
                         showRatingsPage(context, widget.quesUUid);
+
+                        if (isRated) {
+                          setState(() {
+                            widget.statement = lastQuesDetails[0];
+                            widget.quesUUid = lastQuesDetails[1];
+                            correctOptions = [];
+                          });
+
+                          _initializeData();
+                          _loadNextQuesData();
+                          _loadPrevQuesData();
+                        }
                       }
                     },
                     icon: const Icon(
@@ -348,6 +385,7 @@ class CustomRadioState extends State<CustomRadio> {
                   width: 13,
                 ),
                 IconButton(
+                    color: Colors.white,
                     iconSize: 40,
                     onPressed: () {
                       if (isRated) {
@@ -362,6 +400,18 @@ class CustomRadioState extends State<CustomRadio> {
                         _loadPrevQuesData();
                       } else {
                         showRatingsPage(context, widget.quesUUid);
+
+                        if (isRated) {
+                          setState(() {
+                            widget.statement = lastQuesDetails[0];
+                            widget.quesUUid = lastQuesDetails[1];
+                            correctOptions = [];
+                          });
+
+                          _initializeData();
+                          _loadNextQuesData();
+                          _loadPrevQuesData();
+                        }
                       }
                     },
                     icon: const Icon(

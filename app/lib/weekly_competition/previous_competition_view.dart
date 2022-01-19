@@ -1,4 +1,5 @@
-import 'package:app/tests/quiz_template.dart';
+// import 'package:app/tests/quiz_template.dart';
+import 'package:app/weekly_competition/previous_competition_quiz_template.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -10,6 +11,7 @@ import 'package:http/http.dart' as http;
 import '../ad_state.dart';
 import 'dart:convert';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'result.dart';
 
 class PreviousCompetitionView extends StatefulWidget {
   const PreviousCompetitionView(
@@ -30,6 +32,7 @@ class _PreviousCompetitionViewState extends State<PreviousCompetitionView> {
   List<dynamic> allOptions = <dynamic>[];
   List<dynamic> questionStatements = <dynamic>[];
   String exam = "";
+  int correctQuestions = 0;
   Map<String, int> totalPages = {
     "ias": 10,
     "iasHindi": 10,
@@ -87,6 +90,10 @@ class _PreviousCompetitionViewState extends State<PreviousCompetitionView> {
 
     final resJson = jsonDecode(utf8.decode(response.bodyBytes));
 
+    setState(() {
+      correctQuestions = resJson['corrects'];
+    });
+
     for (var id in resJson['questions']) {
       setState(() {
         questionStatements.add([
@@ -138,8 +145,25 @@ class _PreviousCompetitionViewState extends State<PreviousCompetitionView> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(widget.compName,
-              style: const TextStyle(color: Colors.white)),
+          title: Row(children: [
+            const Text('Competition Result',
+                style: TextStyle(color: Colors.white)),
+            IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => Result(
+                            examName: exam,
+                            correctOptions: correctQuestions,
+                          )),
+                );
+              },
+              icon: const ImageIcon(
+                AssetImage("assets/images/menu.png"),
+              ),
+            ),
+          ]),
           backgroundColor: Colors.purple,
           toolbarHeight: 80,
         ),
@@ -172,7 +196,8 @@ class _PreviousCompetitionViewState extends State<PreviousCompetitionView> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => CustomRadio(
+                                  builder: (context) =>
+                                      PreviousCompetitionQuizTemplate(
                                         options: allOptions[i],
                                         statement: questionStatements[i][0],
                                         quesUUid: questionStatements[i][1],

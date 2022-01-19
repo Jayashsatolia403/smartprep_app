@@ -1,3 +1,4 @@
+import uuid
 from rest_framework.decorators import api_view
 from rest_framework import status
 
@@ -5,19 +6,11 @@ from rest_framework.response import Response
 from django.core.paginator import InvalidPage, Paginator
 
 from .serializers import AddComplaintsSerializer, AddFeedbackSerializer, AddOptionsSerializer, AddQuestionSerializer, SubmitContestSerializer
-from .models import DailyQuestions, Exams, QuestionBookmarks, Questions, QuestionsOfTheDays, ReportedQuestions, Subjects, WeeklyCompetitions
+from .models import DailyQuestions, Exams, QuestionBookmarks, Questions, QuestionsOfTheDays, ReportedQuestions, Subjects, Submissions, WeeklyCompetitions
 
 from datetime import datetime
 import random
-
-
-
-
-def update_database_file():
-    import os 
-
-    os.system("rm /home/site/wwwroot/db.sqlite3")
-    os.system("cp db.sqlite3 /home/site/wwwroot/")
+from update_db_file import update_database_file
 
 
 
@@ -87,7 +80,7 @@ def getDailyQuestions(request):
 
         subjects = list(exam.subjects.all()) # Access all subject related to exam
 
-        addDailyQuestion = DailyQuestions(user = request.user, date = date, exam = exam) # Add new entry in Daily Questions Table
+        addDailyQuestion = DailyQuestions(uuid = uuid.uuid4(), user = request.user, date = date, exam = exam) # Add new entry in Daily Questions Table
         addDailyQuestion.save()
 
         perSubjectLimit = limit//len(subjects) # Define Each Subject Limit to Serve Questions
@@ -123,7 +116,7 @@ def getDailyQuestions(request):
                             "ratings": question.ratings, "difficulty" : question.difficulty, 
                             "options": [(z.content, z.isCorrect, z.uuid) for z in question.options.all()], 
                             "percentCorrect": question.percentCorrect, "subject": question.subject, "isRated": request.user in question.ratedBy.all(),
-                            "createdBy": "Smartprep Team" if question.isExpert else question.createdBy.name}) 
+                            "createdBy": "Smartprep Team" if question.isExpert else question.createdBy.name, "explaination": question.explaination}) 
                     
                     count += 1
 
@@ -132,7 +125,8 @@ def getDailyQuestions(request):
 
         return Response(result[:limit])
 
-    except:
+    except Exception as e:
+        print(e)
         return Response("Invalid Request", status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -279,7 +273,8 @@ def rateQuestion(request):
 
         return Response("Success!")
     
-    except:
+    except Exception as e:
+        print(e)
         return Response("Invalid Request", status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -299,7 +294,8 @@ def getQuestionByID(request):
                         "options": [(z.content, z.isCorrect, z.uuid) for z in ques.options.all()], 
                         "percentCorrect": ques.percentCorrect, "subject": ques.subject, "explaination": ques.explaination})
     
-    except:
+    except Exception as e:
+        print(e)
         return Response("Invalid UUID", status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -334,7 +330,8 @@ def bookmark_question(request):
         return Response("Success")
 
 
-    except:
+    except Exception as e:
+        print(e)
         return Response("Invalid Request", status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -371,53 +368,49 @@ def get_bookmarked_questions(request):
                         "percentCorrect": question.percentCorrect, "subject": question.subject, 
                         "isRated": request.user in question.ratedBy.all(), "explaination": question.explaination} for question in result])
 
-    except:
+    except Exception as e:
+        print(e)
         return Response("Invalid Request", status=status.HTTP_400_BAD_REQUEST)
 
 
 
 
-@api_view(['GET',])
-def host_weekly_competition(request):
-    try:
-        user = request.user
+# Adding async function for hosting weekly competition
+def hostWeeklyCompetition():
 
-        if not user or not user.is_superuser:
-            return Response("Invalid Request", status=status.HTTP_400_BAD_REQUEST)
+    exam_questions = {
+        "ias": 100,
+        "iasHindi": 100,
+        "jee": 60,
+        "jeeMains": 90,
+        "jeeAdv": 54,
+        "neet": 180,
+        "ras": 150,
+        "rasHindi": 150,
+        "ibpsPO": 100,
+        "ibpsClerk": 100,
+        "sscCGL": 100,
+        "sscCGLHindi": 100,
+        "sscCHSL": 100,
+        "cat": 90,
+        "ntpc": 100,
+        "reet1": 150,
+        "reet2": 150,
+        "reet2Science": 150,
+        "patwari": 150,
+        "grade2nd": 100,
+        "grade2ndScience": 150,
+        "grade2ndSS": 150,
+        "sscGD": 100,
+        "sscMTS": 100,
+        "rajPoliceConst": 150,
+        "rajLDC": 150,
+        "rrbGD": 150,
+        "sipaper1": 100,
+        "sipaper2": 100
+    }
 
-        exam_questions = {
-            "ias": 100,
-            "iasHindi": 100,
-            "jee": 60,
-            "jeeMains": 90,
-            "jeeAdv": 54,
-            "neet": 180,
-            "ras": 150,
-            "rasHindi": 150,
-            "ibpsPO": 100,
-            "ibpsClerk": 100,
-            "sscCGL": 100,
-            "sscCGLHindi": 100,
-            "sscCHSL": 100,
-            "cat": 90,
-            "ntpc": 100,
-            "reet1": 150,
-            "reet2": 150,
-            "reet2Science": 150,
-            "patwari": 150,
-            "grade2nd": 100,
-            "grade2ndScience": 150,
-            "grade2ndSS": 150,
-            "sscGD": 100,
-            "sscMTS": 100,
-            "rajPoliceConst": 150,
-            "rajLDC": 150,
-            "rrbGD": 150,
-            "sipaper1": 100,
-            "sipaper2": 100
-        }
-
-        questions = {
+    questions = {
             "ias": set(),
             "iasHindi": set(),
             "jee": set(),
@@ -447,97 +440,109 @@ def host_weekly_competition(request):
             "rrbGD": set(),
             "sipaper1": set(),
             "sipaper2": set()
-            }
+        }
 
 
-        
-        exams = Exams.objects.all()
+    
+    exams = Exams.objects.all()
 
-        for exam in exams:
-            import uuid
+    for exam in exams:
+        import uuid
 
-            print('Starting for', exam.name)
+        if exam.name not in questions:
+            continue
 
-            if exam.name not in questions:
+        round = WeeklyCompetitions.objects.filter(exam=exam)
+        if len(round) == 0:
+            round = 0
+        else:
+            round = round[len(round)-1]
+            round = int(round.round)
+
+
+        competition = WeeklyCompetitions(
+            uuid=str(uuid.uuid4()),
+            name="Smartprep {} Round #{}".format(str(exam.name), str(round+1)),
+            round=round+1,
+            exam=exam,
+        )
+
+        competition.save()
+
+
+        subjects = list(exam.subjects.all())
+
+
+        limit = exam_questions[exam.name] // len(subjects)
+
+        idx = 0
+        i = 0
+        limit = 0
+        x = 0
+
+        while i < exam_questions[exam.name]:
+
+            if x == len(subjects):
+                x = 0
+
+            if len(subjects) == 0:
+                break
+
+            if limit > 10000:
+                print("Breaking due to limit exceeed at index :", i)
+                break
+            else:
+                limit += 1
+
+
+            if i >= len(subjects)*(idx+1):
+                idx += 1
+
+
+            subject = subjects[x]
+
+            try:
+                subject_questions = list(subject.questions.all())
+                random.shuffle(subject_questions)
+                question = subject_questions[idx]
+
+                if question in competition.questions.all():
+                    continue
+            except:
+                if (len(subjects) != 0):
+                    del subjects[x]
+                else:
+                    break
                 continue
 
-            round = WeeklyCompetitions.objects.filter(exam=exam)
-            if len(round) == 0:
-                round = 0
-            else:
-                round = round[len(round)-1]
-                round = int(round.round)
-
-
-            competition = WeeklyCompetitions(
-                uuid=str(uuid.uuid4()),
-                name="Smartprep {} Round #{}".format(str(exam.name), str(round+1)),
-                round=round+1,
-                exam=exam,
-            )
+            
+            competition.questions.add(question)
 
             competition.save()
+            i += 1
+            x += 1
+
+    update_database_file()
 
 
-            subjects = list(exam.subjects.all())
+@api_view(['GET',])
+def host_weekly_competition(request):
+    try:
+        user = request.user
 
+        if not user or not user.is_superuser:
+            return Response("Invalid Request", status=status.HTTP_400_BAD_REQUEST)
 
-            limit = exam_questions[exam.name] // len(subjects)
+        import threading
 
-            idx = 0
-            i = 0
-            limit = 0
-            x = 0
-
-            while i < exam_questions[exam.name]:
-
-                if x == len(subjects):
-                    x = 0
-
-                if len(subjects) == 0:
-                    break
-
-                if limit > 10000:
-                    print("Breaking due to limit exceeed at index :", i)
-                    break
-                else:
-                    limit += 1
-
-
-                if i >= len(subjects)*(idx+1):
-                    idx += 1
-
-
-                subject = subjects[x]
-
-                try:
-                    subject_questions = list(subject.questions.all())
-                    random.shuffle(subject_questions)
-                    question = subject_questions[idx]
-
-                    if question in competition.questions.all():
-                        continue
-                except:
-                    if (len(subjects) != 0):
-                        del subjects[x]
-                    else:
-                        break
-                    continue
-
-                
-                competition.questions.add(question)
-
-                competition.save()
-                i += 1
-                x += 1
-
-        update_database_file()
-
-
+        t = threading.Thread(target=hostWeeklyCompetition)
+        t.setDaemon(True)
+        t.start()
 
         return Response("Success")
     
-    except:
+    except Exception as err:
+        print(err)
         return Response('Invalid Request', status=status.HTTP_400_BAD_REQUEST)
 
     
@@ -673,9 +678,15 @@ def get_competition_by_uuid(request):
 
 
     for question in contest_questions:
+        try:
+            selected_options = Submissions.objects.get(question=question).selected_options.all()
+        except:
+            selected_options = []
+
+            
         questions.append({"uuid": question.uuid, "statement": question.statement, 
                         "ratings": question.ratings, "difficulty" : question.difficulty, 
-                        "options": [(z.content, z.isCorrect) for z in question.options.all()], 
+                        "options": [(z.content, z.isCorrect, z in selected_options) for z in question.options.all()], 
                         "percentCorrect": question.percentCorrect, "subject": question.subject, "isRated": request.user in question.ratedBy.all(), 
                         "explaination": question.explaination})
 

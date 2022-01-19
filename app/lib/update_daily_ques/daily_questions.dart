@@ -117,10 +117,6 @@ class _DailyQuestionsState extends State<DailyQuestions> {
         hasSetFirstQuesUuid = true;
       }
 
-      print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-      print(explaination);
-      print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-
       Questions question = Questions(
           uuid: id['uuid'],
           statement: statement,

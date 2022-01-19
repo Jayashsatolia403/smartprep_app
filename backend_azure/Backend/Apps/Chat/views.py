@@ -11,12 +11,7 @@ from .serializers import ForumMessageSerializer, PersonalMessageSerializer
 
 from Apps.User.models import User
 
-
-def update_database_file():
-    import os
-
-    os.system("rm /home/site/wwwroot/db.sqlite3")
-    os.system("cp db.sqlite3 /home/site/wwwroot/")
+from update_db_file import update_database_file
 
 
 

@@ -103,7 +103,6 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   String greetMessage = greet();
-  late Future<bool> _isAddedQuestion;
 
   late RewardedAd rewardedAd;
 
@@ -119,32 +118,21 @@ class _HomeState extends State<Home> {
         }));
   }
 
-  void showVideoAd() {
+  bool showVideoAd(BuildContext context) {
+    bool seenFullAd = false;
+
     rewardedAd.show(onUserEarnedReward: (RewardedAd ad, RewardItem rpoint) {
-      print("Reward Earned ${rpoint.amount}");
+      seenFullAd = true;
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => const RewardedQuestions()));
     });
 
     rewardedAd.fullScreenContentCallback = FullScreenContentCallback(
       onAdFailedToShowFullScreenContent: (ad, error) => print(error),
       onAdShowedFullScreenContent: (ad) => print("Working"),
     );
-  }
 
-  Future<bool> isAddedQuestion() async {
-    String url = await rootBundle.loadString('assets/text/url.txt');
-    final prefs = await SharedPreferences.getInstance();
-
-    String token = prefs.getString("token") ?? "NA";
-
-    final response = await http.get(
-      Uri.parse('$url/has_user_added_question_today'),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-        'Authorization': "Token $token"
-      },
-    );
-
-    return jsonDecode(utf8.decode(response.bodyBytes));
+    return seenFullAd;
   }
 
   BannerAd? banner;
@@ -169,7 +157,6 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
-    _isAddedQuestion = isAddedQuestion();
     loadVideoAd();
   }
 
@@ -181,103 +168,265 @@ class _HomeState extends State<Home> {
       optionsData.add(AddQuesModel(false, alphabets[i], ""));
     }
 
-    return FutureBuilder<bool>(
-        future: _isAddedQuestion,
-        builder: (BuildContext context, AsyncSnapshot<bool> snapShot) {
-          if (snapShot.hasData) {
-            if (snapShot.data == true) {
-              return Scaffold(
-                appBar: AppBar(
-                  backgroundColor: Colors.deepPurpleAccent,
-                  title: Image.asset("assets/images/logo14.png", height: 60),
-                  toolbarHeight: 80,
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.deepPurpleAccent,
+        title: Image.asset("assets/images/logo14.png", height: 60),
+        toolbarHeight: 80,
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            // ignore: sized_box_for_whitespace
+            Container(
+                child: DrawerHeader(
+                  decoration: const BoxDecoration(color: Colors.white),
+                  child: Column(children: [
+                    Text(widget.data.username,
+                        style: const TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        textAlign: TextAlign.left),
+                    ListTile(
+                      leading: const Icon(Icons.person),
+                      title: const Text("Your Profile",
+                          style: TextStyle(color: Colors.black, fontSize: 17)),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Profile(
+                                      data: widget.data,
+                                    )));
+                      },
+                    )
+                  ]),
                 ),
-                drawer: Drawer(
-                  child: ListView(
-                    padding: EdgeInsets.zero,
+                height: 150),
+            ListTile(
+              title: Text(
+                  'Change Exam : ${examNameValues[widget.data.examname]}',
+                  style: const TextStyle(color: Colors.white, fontSize: 17)),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => SelectExam(
+                              data: widget.data,
+                            )));
+              },
+              tileColor: Colors.deepPurpleAccent,
+            ),
+            ListTile(
+              title: const Text('Explore Premium',
+                  style: TextStyle(color: Colors.white, fontSize: 17)),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => Premium(
+                              data: widget.data,
+                            )));
+              },
+              tileColor: Colors.deepPurpleAccent,
+              // leading: const Icon(Icons.),
+            ),
+            ListTile(
+              title: const Text('Add Question',
+                  style: TextStyle(color: Colors.white, fontSize: 17)),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => AddQuestions(
+                              data: widget.data,
+                              val: 2,
+                              quesStatement: "",
+                              optionsData: optionsData,
+                              quesExplaination: '',
+                            )));
+              },
+              tileColor: Colors.deepPurpleAccent,
+              // leading: const Icon(Icons.),
+            ),
+            ListTile(
+              title: const Text('Go to Practice Section',
+                  style: TextStyle(color: Colors.white, fontSize: 17)),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => Tests(
+                              data: widget.data,
+                            )));
+              },
+              tileColor: Colors.deepPurpleAccent,
+              // leading: const Icon(Icons.),
+            ),
+            ListTile(
+              title: const Text('Forum',
+                  style: TextStyle(color: Colors.white, fontSize: 17)),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            Messages(forumname: widget.data.examname)));
+              },
+              tileColor: Colors.deepPurpleAccent,
+              // leading: const Icon(Icons.),
+            ),
+            ListTile(
+              title: const Text('Feedback',
+                  style: TextStyle(color: Colors.white, fontSize: 17)),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const GiveFeedback()));
+              },
+              tileColor: Colors.deepPurpleAccent,
+              // leading: const Icon(Icons.),
+            ),
+            ListTile(
+              title: const Text('Complaint',
+                  style: TextStyle(color: Colors.white, fontSize: 17)),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const MakeComplaint()));
+              },
+              tileColor: Colors.deepPurpleAccent,
+              // leading: const Icon(Icons.),
+            ),
+          ],
+        ),
+      ),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
+                  child: Column(
                     children: [
-                      // ignore: sized_box_for_whitespace
-                      Container(
-                          child: DrawerHeader(
-                            decoration:
-                                const BoxDecoration(color: Colors.white),
-                            child: Column(children: [
-                              Text(widget.data.username,
-                                  style: const TextStyle(
-                                    fontSize: 30,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                  textAlign: TextAlign.left),
-                              ListTile(
-                                leading: const Icon(Icons.person),
-                                title: const Text("Your Profile",
-                                    style: TextStyle(
-                                        color: Colors.black, fontSize: 17)),
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => Profile(
-                                                data: widget.data,
-                                              )));
-                                },
-                              )
-                            ]),
+                      Row(
+                        children: [
+                          Text('$greetMessage ${widget.data.username}',
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                fontSize: 17,
+                                color: Colors.black,
+                              )),
+                          const SizedBox(width: 40),
+                          Image.asset(
+                            'assets/images/brain_bulb.jpg',
+                            width: 40,
+                            height: 45,
+                          )
+                        ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(5, 10, 60, 10),
+                        child: ListTile(
+                          title: Row(
+                            children: [
+                              const Text(
+                                "Featured Articles",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 20),
+                              ),
+                              IconButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const ArticlesHome()));
+                                  },
+                                  icon: const Icon(
+                                    Icons.arrow_right,
+                                    size: 35,
+                                  ))
+                            ],
                           ),
-                          height: 150),
-                      ListTile(
+                        ),
+                      ),
+                      const HomeSlider(),
+                      Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 25, 0, 5),
+                          child: ListTile(
+                            title: const Text(
+                              "Activities for you",
+                              style: TextStyle(
+                                  fontSize: 23, fontWeight: FontWeight.bold),
+                            ),
+                            tileColor: Colors.grey[200],
+                          )),
+                      const ListTile(
                         title: Text(
-                            'Change Exam : ${examNameValues[widget.data.examname]}',
-                            style: const TextStyle(
-                                color: Colors.white, fontSize: 17)),
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => SelectExam(
-                                        data: widget.data,
-                                      )));
-                        },
-                        tileColor: Colors.deepPurpleAccent,
+                          "Quote of the Day",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                        subtitle:
+                            Text("Intelligence is Ability to Adapt Change."),
                       ),
                       ListTile(
-                        title: const Text('Explore Premium',
-                            style:
-                                TextStyle(color: Colors.white, fontSize: 17)),
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Premium(
-                                        data: widget.data,
-                                      )));
+                        title: const Text(
+                          "Question of the day",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                        tileColor: Colors.blue[100],
+                        onTap: () async {
+                          String url = await rootBundle
+                              .loadString('assets/text/url.txt');
+
+                          final prefs = await SharedPreferences.getInstance();
+                          String? token = prefs.getString("token");
+
+                          final response = await http.get(
+                            Uri.parse(
+                                '$url/getQuesOfDay?exam=${widget.data.examname}'),
+                            headers: <String, String>{
+                              'Content-Type': 'application/json; charset=UTF-8',
+                              'Authorization': "Token $token"
+                            },
+                          );
+
+                          final resJson =
+                              jsonDecode(utf8.decode(response.bodyBytes));
+
+                          if (response.statusCode == 400 ||
+                              resJson == "Error") {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const ErrorPage()));
+                          } else {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => CustomRadio(
+                                          options: resJson['options'],
+                                          statement: resJson['statement'],
+                                          quesUUid: resJson['uuid'],
+                                          qualityRating: resJson['ratings'],
+                                          difficultyRating:
+                                              resJson['difficulty'],
+                                          isRated: resJson['isRated'],
+                                          createdBy: resJson['createdBy'],
+                                          explaination: resJson['explaination'],
+                                        )));
+                          }
                         },
-                        tileColor: Colors.deepPurpleAccent,
-                        // leading: const Icon(Icons.),
                       ),
                       ListTile(
-                        title: const Text('Add Question',
-                            style:
-                                TextStyle(color: Colors.white, fontSize: 17)),
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => AddQuestions(
-                                        data: widget.data,
-                                        val: 2,
-                                        quesStatement: "",
-                                        optionsData: optionsData,
-                                        quesExplaination: '',
-                                      )));
-                        },
-                        tileColor: Colors.deepPurpleAccent,
-                        // leading: const Icon(Icons.),
-                      ),
-                      ListTile(
-                        title: const Text('Go to Practice Section',
-                            style:
-                                TextStyle(color: Colors.white, fontSize: 17)),
+                        title: const Text("Go to Practice Section"),
+                        leading: const Icon(Icons.book),
                         onTap: () {
                           Navigator.push(
                               context,
@@ -286,238 +435,494 @@ class _HomeState extends State<Home> {
                                         data: widget.data,
                                       )));
                         },
-                        tileColor: Colors.deepPurpleAccent,
-                        // leading: const Icon(Icons.),
+                        tileColor: Colors.cyan[100],
                       ),
                       ListTile(
-                        title: const Text('Forum',
-                            style:
-                                TextStyle(color: Colors.white, fontSize: 17)),
+                        title: const Text("Rewarded Questions"),
+                        leading: const Icon(Icons.book),
                         onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Messages(
-                                      forumname: widget.data.examname)));
+                          showVideoAd(context);
                         },
-                        tileColor: Colors.deepPurpleAccent,
-                        // leading: const Icon(Icons.),
+                        tileColor: Colors.blue[100],
                       ),
-                      ListTile(
-                        title: const Text('Feedback',
-                            style:
-                                TextStyle(color: Colors.white, fontSize: 17)),
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const GiveFeedback()));
-                        },
-                        tileColor: Colors.deepPurpleAccent,
-                        // leading: const Icon(Icons.),
+                      const SizedBox(
+                        height: 8,
                       ),
-                      ListTile(
-                        title: const Text('Complaint',
-                            style:
-                                TextStyle(color: Colors.white, fontSize: 17)),
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const MakeComplaint()));
-                        },
-                        tileColor: Colors.deepPurpleAccent,
-                        // leading: const Icon(Icons.),
-                      ),
+                      if (banner == null)
+                        const Text("Loading Ad")
+                      else
+                        SizedBox(height: 150, child: AdWidget(ad: banner!))
                     ],
-                  ),
-                ),
-                body: SafeArea(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 20, vertical: 25),
-                            child: Column(
-                              children: [
-                                Row(
-                                  children: [
-                                    Text(
-                                        '$greetMessage ${widget.data.username}',
-                                        textAlign: TextAlign.center,
-                                        style: const TextStyle(
-                                          fontSize: 17,
-                                          color: Colors.black,
-                                        )),
-                                    const SizedBox(width: 40),
-                                    Image.asset(
-                                      'assets/images/brain_bulb.jpg',
-                                      width: 40,
-                                      height: 45,
-                                    )
-                                  ],
-                                ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(5, 10, 60, 10),
-                                  child: ListTile(
-                                    title: Row(
-                                      children: [
-                                        const Text(
-                                          "Featured Articles",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 20),
-                                        ),
-                                        IconButton(
-                                            onPressed: () {
-                                              Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          const ArticlesHome()));
-                                            },
-                                            icon: const Icon(
-                                              Icons.arrow_right,
-                                              size: 35,
-                                            ))
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                const HomeSlider(),
-                                Padding(
-                                    padding:
-                                        const EdgeInsets.fromLTRB(0, 25, 0, 5),
-                                    child: ListTile(
-                                      title: const Text(
-                                        "Activities for you",
-                                        style: TextStyle(
-                                            fontSize: 23,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      tileColor: Colors.grey[200],
-                                    )),
-                                const ListTile(
-                                  title: Text(
-                                    "Quote of the Day",
-                                    style: TextStyle(fontSize: 20),
-                                  ),
-                                  subtitle: Text(
-                                      "Intelligence is Ability to Adapt Change."),
-                                ),
-                                ListTile(
-                                  title: const Text(
-                                    "Question of the day",
-                                    style: TextStyle(fontSize: 20),
-                                  ),
-                                  tileColor: Colors.blue[100],
-                                  onTap: () async {
-                                    String url = await rootBundle
-                                        .loadString('assets/text/url.txt');
-
-                                    final prefs =
-                                        await SharedPreferences.getInstance();
-                                    String? token = prefs.getString("token");
-
-                                    final response = await http.get(
-                                      Uri.parse(
-                                          '$url/getQuesOfDay?exam=${widget.data.examname}'),
-                                      headers: <String, String>{
-                                        'Content-Type':
-                                            'application/json; charset=UTF-8',
-                                        'Authorization': "Token $token"
-                                      },
-                                    );
-
-                                    final resJson = jsonDecode(
-                                        utf8.decode(response.bodyBytes));
-
-                                    if (response.statusCode == 400 ||
-                                        resJson == "Error") {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const ErrorPage()));
-                                    } else {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) => CustomRadio(
-                                                    options: resJson['options'],
-                                                    statement:
-                                                        resJson['statement'],
-                                                    quesUUid: resJson['uuid'],
-                                                    qualityRating:
-                                                        resJson['ratings'],
-                                                    difficultyRating:
-                                                        resJson['difficulty'],
-                                                    isRated: resJson['isRated'],
-                                                    createdBy:
-                                                        resJson['createdBy'],
-                                                    explaination:
-                                                        resJson['explaination'],
-                                                  )));
-                                    }
-                                  },
-                                ),
-                                ListTile(
-                                  title: const Text("Go to Practice Section"),
-                                  leading: const Icon(Icons.book),
-                                  onTap: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => Tests(
-                                                  data: widget.data,
-                                                )));
-                                  },
-                                  tileColor: Colors.cyan[100],
-                                ),
-                                ListTile(
-                                  title: const Text("Rewarded Questions"),
-                                  leading: const Icon(Icons.book),
-                                  onTap: () {
-                                    showVideoAd();
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                const RewardedQuestions()));
-                                  },
-                                  tileColor: Colors.blue[100],
-                                ),
-                                const SizedBox(
-                                  height: 8,
-                                ),
-                                if (banner == null)
-                                  const Text("Loading Ad")
-                                else
-                                  SizedBox(
-                                      height: 150, child: AdWidget(ad: banner!))
-                              ],
-                            ))
-                      ],
-                    ),
-                  ),
-                ),
-              );
-            } else {
-              return AddQuestions(
-                data: widget.data,
-                val: 2,
-                quesStatement: "",
-                optionsData: optionsData,
-                quesExplaination: "",
-              );
-            }
-          } else {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-        });
+                  ))
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Future<bool> isAddedQuestion() async {
+//   String url = await rootBundle.loadString('assets/text/url.txt');
+//   final prefs = await SharedPreferences.getInstance();
+
+//   String token = prefs.getString("token") ?? "NA";
+
+//   final response = await http.get(
+//     Uri.parse('$url/has_user_added_question_today'),
+//     headers: <String, String>{
+//       'Content-Type': 'application/json; charset=UTF-8',
+//       'Authorization': "Token $token"
+//     },
+//   );
+
+//   return jsonDecode(utf8.decode(response.bodyBytes));
+// }
+
+
+
+
+
+// return FutureBuilder<bool>(
+//         future: _isAddedQuestion,
+//         builder: (BuildContext context, AsyncSnapshot<bool> snapShot) {
+//           if (snapShot.hasData) {
+//             if (snapShot.data == true) {
+//               return Scaffold(
+//                 appBar: AppBar(
+//                   backgroundColor: Colors.deepPurpleAccent,
+//                   title: Image.asset("assets/images/logo14.png", height: 60),
+//                   toolbarHeight: 80,
+//                 ),
+//                 drawer: Drawer(
+//                   child: ListView(
+//                     padding: EdgeInsets.zero,
+//                     children: [
+//                       // ignore: sized_box_for_whitespace
+//                       Container(
+//                           child: DrawerHeader(
+//                             decoration:
+//                                 const BoxDecoration(color: Colors.white),
+//                             child: Column(children: [
+//                               Text(widget.data.username,
+//                                   style: const TextStyle(
+//                                     fontSize: 30,
+//                                     fontWeight: FontWeight.bold,
+//                                   ),
+//                                   textAlign: TextAlign.left),
+//                               ListTile(
+//                                 leading: const Icon(Icons.person),
+//                                 title: const Text("Your Profile",
+//                                     style: TextStyle(
+//                                         color: Colors.black, fontSize: 17)),
+//                                 onTap: () {
+//                                   Navigator.push(
+//                                       context,
+//                                       MaterialPageRoute(
+//                                           builder: (context) => Profile(
+//                                                 data: widget.data,
+//                                               )));
+//                                 },
+//                               )
+//                             ]),
+//                           ),
+//                           height: 150),
+//                       ListTile(
+//                         title: Text(
+//                             'Change Exam : ${examNameValues[widget.data.examname]}',
+//                             style: const TextStyle(
+//                                 color: Colors.white, fontSize: 17)),
+//                         onTap: () {
+//                           Navigator.push(
+//                               context,
+//                               MaterialPageRoute(
+//                                   builder: (context) => SelectExam(
+//                                         data: widget.data,
+//                                       )));
+//                         },
+//                         tileColor: Colors.deepPurpleAccent,
+//                       ),
+//                       ListTile(
+//                         title: const Text('Explore Premium',
+//                             style:
+//                                 TextStyle(color: Colors.white, fontSize: 17)),
+//                         onTap: () {
+//                           Navigator.push(
+//                               context,
+//                               MaterialPageRoute(
+//                                   builder: (context) => Premium(
+//                                         data: widget.data,
+//                                       )));
+//                         },
+//                         tileColor: Colors.deepPurpleAccent,
+//                         // leading: const Icon(Icons.),
+//                       ),
+//                       ListTile(
+//                         title: const Text('Add Question',
+//                             style:
+//                                 TextStyle(color: Colors.white, fontSize: 17)),
+//                         onTap: () {
+//                           Navigator.push(
+//                               context,
+//                               MaterialPageRoute(
+//                                   builder: (context) => AddQuestions(
+//                                         data: widget.data,
+//                                         val: 2,
+//                                         quesStatement: "",
+//                                         optionsData: optionsData,
+//                                         quesExplaination: '',
+//                                       )));
+//                         },
+//                         tileColor: Colors.deepPurpleAccent,
+//                         // leading: const Icon(Icons.),
+//                       ),
+//                       ListTile(
+//                         title: const Text('Go to Practice Section',
+//                             style:
+//                                 TextStyle(color: Colors.white, fontSize: 17)),
+//                         onTap: () {
+//                           Navigator.push(
+//                               context,
+//                               MaterialPageRoute(
+//                                   builder: (context) => Tests(
+//                                         data: widget.data,
+//                                       )));
+//                         },
+//                         tileColor: Colors.deepPurpleAccent,
+//                         // leading: const Icon(Icons.),
+//                       ),
+//                       ListTile(
+//                         title: const Text('Forum',
+//                             style:
+//                                 TextStyle(color: Colors.white, fontSize: 17)),
+//                         onTap: () {
+//                           Navigator.push(
+//                               context,
+//                               MaterialPageRoute(
+//                                   builder: (context) => Messages(
+//                                       forumname: widget.data.examname)));
+//                         },
+//                         tileColor: Colors.deepPurpleAccent,
+//                         // leading: const Icon(Icons.),
+//                       ),
+//                       ListTile(
+//                         title: const Text('Feedback',
+//                             style:
+//                                 TextStyle(color: Colors.white, fontSize: 17)),
+//                         onTap: () {
+//                           Navigator.push(
+//                               context,
+//                               MaterialPageRoute(
+//                                   builder: (context) => const GiveFeedback()));
+//                         },
+//                         tileColor: Colors.deepPurpleAccent,
+//                         // leading: const Icon(Icons.),
+//                       ),
+//                       ListTile(
+//                         title: const Text('Complaint',
+//                             style:
+//                                 TextStyle(color: Colors.white, fontSize: 17)),
+//                         onTap: () {
+//                           Navigator.push(
+//                               context,
+//                               MaterialPageRoute(
+//                                   builder: (context) => const MakeComplaint()));
+//                         },
+//                         tileColor: Colors.deepPurpleAccent,
+//                         // leading: const Icon(Icons.),
+//                       ),
+//                     ],
+//                   ),
+//                 ),
+//                 body: SafeArea(
+//                   child: SingleChildScrollView(
+//                     child: Column(
+//                       children: [
+//                         Padding(
+//                             padding: const EdgeInsets.symmetric(
+//                                 horizontal: 20, vertical: 25),
+//                             child: Column(
+//                               children: [
+//                                 Row(
+//                                   children: [
+//                                     Text(
+//                                         '$greetMessage ${widget.data.username}',
+//                                         textAlign: TextAlign.center,
+//                                         style: const TextStyle(
+//                                           fontSize: 17,
+//                                           color: Colors.black,
+//                                         )),
+//                                     const SizedBox(width: 40),
+//                                     Image.asset(
+//                                       'assets/images/brain_bulb.jpg',
+//                                       width: 40,
+//                                       height: 45,
+//                                     )
+//                                   ],
+//                                 ),
+//                                 Padding(
+//                                   padding:
+//                                       const EdgeInsets.fromLTRB(5, 10, 60, 10),
+//                                   child: ListTile(
+//                                     title: Row(
+//                                       children: [
+//                                         const Text(
+//                                           "Featured Articles",
+//                                           style: TextStyle(
+//                                               fontWeight: FontWeight.bold,
+//                                               fontSize: 20),
+//                                         ),
+//                                         IconButton(
+//                                             onPressed: () {
+//                                               Navigator.push(
+//                                                   context,
+//                                                   MaterialPageRoute(
+//                                                       builder: (context) =>
+//                                                           const ArticlesHome()));
+//                                             },
+//                                             icon: const Icon(
+//                                               Icons.arrow_right,
+//                                               size: 35,
+//                                             ))
+//                                       ],
+//                                     ),
+//                                   ),
+//                                 ),
+//                                 const HomeSlider(),
+//                                 Padding(
+//                                     padding:
+//                                         const EdgeInsets.fromLTRB(0, 25, 0, 5),
+//                                     child: ListTile(
+//                                       title: const Text(
+//                                         "Activities for you",
+//                                         style: TextStyle(
+//                                             fontSize: 23,
+//                                             fontWeight: FontWeight.bold),
+//                                       ),
+//                                       tileColor: Colors.grey[200],
+//                                     )),
+//                                 const ListTile(
+//                                   title: Text(
+//                                     "Quote of the Day",
+//                                     style: TextStyle(fontSize: 20),
+//                                   ),
+//                                   subtitle: Text(
+//                                       "Intelligence is Ability to Adapt Change."),
+//                                 ),
+//                                 ListTile(
+//                                   title: const Text(
+//                                     "Question of the day",
+//                                     style: TextStyle(fontSize: 20),
+//                                   ),
+//                                   tileColor: Colors.blue[100],
+//                                   onTap: () async {
+//                                     String url = await rootBundle
+//                                         .loadString('assets/text/url.txt');
+
+//                                     final prefs =
+//                                         await SharedPreferences.getInstance();
+//                                     String? token = prefs.getString("token");
+
+//                                     final response = await http.get(
+//                                       Uri.parse(
+//                                           '$url/getQuesOfDay?exam=${widget.data.examname}'),
+//                                       headers: <String, String>{
+//                                         'Content-Type':
+//                                             'application/json; charset=UTF-8',
+//                                         'Authorization': "Token $token"
+//                                       },
+//                                     );
+
+//                                     final resJson = jsonDecode(
+//                                         utf8.decode(response.bodyBytes));
+
+//                                     if (response.statusCode == 400 ||
+//                                         resJson == "Error") {
+//                                       Navigator.push(
+//                                           context,
+//                                           MaterialPageRoute(
+//                                               builder: (context) =>
+//                                                   const ErrorPage()));
+//                                     } else {
+//                                       Navigator.push(
+//                                           context,
+//                                           MaterialPageRoute(
+//                                               builder: (context) => CustomRadio(
+//                                                     options: resJson['options'],
+//                                                     statement:
+//                                                         resJson['statement'],
+//                                                     quesUUid: resJson['uuid'],
+//                                                     qualityRating:
+//                                                         resJson['ratings'],
+//                                                     difficultyRating:
+//                                                         resJson['difficulty'],
+//                                                     isRated: resJson['isRated'],
+//                                                     createdBy:
+//                                                         resJson['createdBy'],
+//                                                     explaination:
+//                                                         resJson['explaination'],
+//                                                   )));
+//                                     }
+//                                   },
+//                                 ),
+//                                 ListTile(
+//                                   title: const Text("Go to Practice Section"),
+//                                   leading: const Icon(Icons.book),
+//                                   onTap: () {
+//                                     Navigator.push(
+//                                         context,
+//                                         MaterialPageRoute(
+//                                             builder: (context) => Tests(
+//                                                   data: widget.data,
+//                                                 )));
+//                                   },
+//                                   tileColor: Colors.cyan[100],
+//                                 ),
+//                                 ListTile(
+//                                   title: const Text("Rewarded Questions"),
+//                                   leading: const Icon(Icons.book),
+//                                   onTap: () {
+//                                     showVideoAd(context);
+//                                     Navigator.push(
+//                                         context,
+//                                         MaterialPageRoute(
+//                                             builder: (context) =>
+//                                                 const RewardedQuestions()));
+//                                   },
+//                                   tileColor: Colors.blue[100],
+//                                 ),
+//                                 const SizedBox(
+//                                   height: 8,
+//                                 ),
+//                                 if (banner == null)
+//                                   const Text("Loading Ad")
+//                                 else
+//                                   SizedBox(
+//                                       height: 150, child: AdWidget(ad: banner!))
+//                               ],
+//                             ))
+//                       ],
+//                     ),
+//                   ),
+//                 ),
+//               );
+//             } else {
+//               return AddQuestions(
+//                 data: widget.data,
+//                 val: 2,
+//                 quesStatement: "",
+//                 optionsData: optionsData,
+//                 quesExplaination: "",
+//               );
+//             }
+//           } else {
+//             return const Center(
+//               child: CircularProgressIndicator(),
+//             );
+//           }
+//         });

@@ -34,6 +34,8 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
   int firstIdx = 0;
   bool changedFirstIndex = false;
   bool loadingDone = false;
+  int correctOptions = 0;
+  bool submitted = false;
 
   late RewardedAd rewardedAd;
 
@@ -76,15 +78,69 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
         }));
   }
 
-  void showVideoAd() {
+  void showVideoAd(BuildContext context) {
     rewardedAd.show(onUserEarnedReward: (RewardedAd ad, RewardItem rpoint) {
-      print("Reward Earned ${rpoint.amount}");
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => Result(
+                  correctOptions: correctOptions,
+                  examName: exam,
+                )),
+      );
     });
 
     rewardedAd.fullScreenContentCallback = FullScreenContentCallback(
       onAdFailedToShowFullScreenContent: (ad, error) => print(error),
       onAdShowedFullScreenContent: (ad) => print("Working"),
     );
+  }
+
+  void submitContest(BuildContext context) async {
+    showVideoAd(context);
+    loadVideoAd();
+
+    String url = await rootBundle.loadString('assets/text/url.txt');
+
+    final prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString("token");
+
+    List<List<String>> submitOptions = [];
+    int count = 0;
+    final dbQuestions = await QuizDatabase.instance.readAllQuestions();
+
+    for (var dbQuestion in dbQuestions) {
+      final getDbQuestionOptions = await QuizDatabase.instance
+          .readQuestionOptionsFromQuestionId(dbQuestion.uuid);
+
+      submitOptions.add([]);
+
+      for (var j in getDbQuestionOptions) {
+        final getDbOption = await QuizDatabase.instance.readOptions(j.optionId);
+
+        if (getDbOption.isSelected) {
+          submitOptions[count].add(getDbOption.uuid);
+        }
+      }
+
+      count += 1;
+    }
+
+    var data = {"uuid": competitionUuid, "options": submitOptions};
+
+    showVideoAd(context);
+
+    final response = await http.post(Uri.parse('$url/submit_contest/'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Authorization': "Token $token"
+        },
+        body: jsonEncode({"data": jsonEncode(data).toString()}));
+
+    setState(() {
+      correctOptions = jsonDecode(response.body)["correct_options"];
+      submitted = true;
+    });
   }
 
   Map<String, int> totalQuestions = {
@@ -317,63 +373,7 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
                 ),
                 ElevatedButton(
                     onPressed: () async {
-                      try {
-                        showVideoAd();
-                        showVideoAd();
-                      } catch (error) {
-                        print(error);
-                      }
-                      String url =
-                          await rootBundle.loadString('assets/text/url.txt');
-
-                      final prefs = await SharedPreferences.getInstance();
-                      String? token = prefs.getString("token");
-
-                      List<List<String>> submitOptions = [];
-                      int count = 0;
-                      final dbQuestions =
-                          await QuizDatabase.instance.readAllQuestions();
-
-                      for (var dbQuestion in dbQuestions) {
-                        final getDbQuestionOptions = await QuizDatabase.instance
-                            .readQuestionOptionsFromQuestionId(dbQuestion.uuid);
-
-                        submitOptions.add([]);
-
-                        for (var j in getDbQuestionOptions) {
-                          final getDbOption = await QuizDatabase.instance
-                              .readOptions(j.optionId);
-
-                          if (getDbOption.isSelected) {
-                            submitOptions[count].add(getDbOption.uuid);
-                          }
-                        }
-
-                        count += 1;
-                      }
-
-                      var data = {
-                        "uuid": competitionUuid,
-                        "options": submitOptions
-                      };
-
-                      final response = await http.post(
-                          Uri.parse('$url/submit_contest/'),
-                          headers: <String, String>{
-                            'Content-Type': 'application/json; charset=UTF-8',
-                            'Authorization': "Token $token"
-                          },
-                          body: jsonEncode(
-                              {"data": jsonEncode(data).toString()}));
-
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => Result(
-                                correctOptions:
-                                    jsonDecode(response.body)["correct_options"]
-                                        .toString())),
-                      );
+                      submitContest(context);
                     },
                     child: const Text("Submit"))
               ]),

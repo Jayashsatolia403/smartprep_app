@@ -4,7 +4,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" /> -->
    <application
-        android:label="app"
+        android:label="Smartprep"
         android:icon="@mipmap/ic_launcher">
         <!-- android:usesCleartextTraffic="true"> -->
         <activity
@@ -43,6 +43,6 @@
             android:value="2" />
        <meta-data
            android:name="com.google.android.gms.ads.APPLICATION_ID"
-           android:value="ca-app-pub-3347710342715984~2537229541"/>
+           android:value="ca-app-pub-2187393685695467~1833697551"/>
    </application>
 </manifest>
