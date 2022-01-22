@@ -46,12 +46,24 @@ class Result extends StatelessWidget {
     };
 
     return Scaffold(
-      appBar: AppBar(title: const Text("Result")),
-      body: Center(
-          child: PieChart(
-        dataMap: dataMap,
-        colorList: const [Colors.green, Colors.red],
-      )),
-    );
+        appBar: AppBar(title: const Text("Result")),
+        body: Column(children: [
+          const SizedBox(
+            height: 20,
+          ),
+          Text(
+            'Correct : $correctOptions',
+            style: const TextStyle(fontSize: 20),
+          ),
+          Text(
+            "Incorrect : ${totalQuestions[examName]!.toDouble() - correctOptions}",
+            style: const TextStyle(fontSize: 20),
+          ),
+          Center(
+              child: PieChart(
+            dataMap: dataMap,
+            colorList: const [Colors.green, Colors.red],
+          )),
+        ]));
   }
 }

@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+from dis import show_code
 from pathlib import Path
 import os
 
@@ -21,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-%np0pif&4ex#(dpe!465_7l&7vn7inpj5dd6=f#16o0t*6k^=w'
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -180,6 +181,10 @@ USE_TZ = False
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = [
+    "/home/jayash/Desktop/Projects/smartprep_app/backend_azure/Backend/static/home"
+]
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
@@ -195,26 +200,7 @@ WHITENOISE_USE_FINDERS = True
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
+# from update_db_file import LOGGING
 
-LOGGING = {
- 'version': 1,
- 'disable_existing_loggers': False,
- 'filters': {
- 'require_debug_false': {
- '()': 'django.utils.log.RequireDebugFalse'
-    }
- },
- 'handlers': {
- 'logfile': {
- 'class': 'logging.handlers.WatchedFileHandler',
- 'filename': '/home/site/wwwroot/logs.log'
-    }
- },
- 'loggers': {
- 'django': {
- 'handlers': ['logfile'],
- 'level': 'ERROR',
- 'propagate': False,
-    }
- }
-}
+
+# LOGGING = LOGGING

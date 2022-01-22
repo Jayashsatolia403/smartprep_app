@@ -185,7 +185,6 @@ class _LoginPageState extends State<LoginPage> {
                   },
                   child: const Text('Submit', style: TextStyle(fontSize: 20)),
                   style: ElevatedButton.styleFrom(
-                      fixedSize: const Size(100, 50),
                       primary: Colors.black,
                       onPrimary: Colors.white,
                       alignment: Alignment.center),

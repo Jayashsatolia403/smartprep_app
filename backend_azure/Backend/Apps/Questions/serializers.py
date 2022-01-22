@@ -1,9 +1,11 @@
 from rest_framework import serializers
 
+
 from .models import Complaints, Feedback, Options, Questions, Submissions, WeeklyCompetitionResult, WeeklyCompetitions
 
 import uuid
 
+from update_db_file import update_database_file
 
 
 class QuestionsSerializer(serializers.ModelSerializer):
@@ -66,6 +68,9 @@ class AddOptionsSerializer(serializers.ModelSerializer):
 
             result.append(newOption)
 
+
+        update_database_file()
+
         return result
 
 
@@ -87,6 +92,9 @@ class AddQuestionSerializer(serializers.ModelSerializer):
         )
 
         newQuestion.save()
+
+        update_database_file()
+
         return newQuestion
 
 
@@ -96,26 +104,7 @@ class SubmitContestSerializer(serializers.ModelSerializer):
         model = WeeklyCompetitionResult
         fields = []
 
-
-    def save(self):
-        """
-            Input Type: {
-                "uuid": String,
-                "options": [[selected options uuids], [selected options uuids], [], []]
-            }
-        """
-
-        import json
-
-        data = json.loads(self.context['useful_data']['data'])
-
-        
-
-
-        competition_uuid = data['uuid']
-        selected_options = data['options']
-        user = self.context['request'].user
-
+    def submit_competition(self, competition_uuid, selected_options, user):
         competition = WeeklyCompetitions.objects.get(uuid=competition_uuid)
         competition_questions = competition.questions.all()
 
@@ -132,8 +121,6 @@ class SubmitContestSerializer(serializers.ModelSerializer):
 
         competition_result = WeeklyCompetitionResult(user = user, competition=competition)
         competition_result.save()
-
-        print(len(competition_questions))
 
 
         for i in range(len(competition_questions)):
@@ -164,9 +151,46 @@ class SubmitContestSerializer(serializers.ModelSerializer):
                 competition_result.save()
 
             competition_result.submissions.add(submission)
+
+
+        update_database_file()
+
         
 
         return competition_result
+
+
+        
+
+
+    def save(self):
+        """
+            Input Type: {
+                "uuid": String,
+                "options": [[selected options uuids], [selected options uuids], [], []]
+            }
+        """
+
+        import json
+
+        data = json.loads(self.context['useful_data']['data'])
+
+        
+
+
+        competition_uuid = data['uuid']
+        selected_options = data['options']
+        user = self.context['request'].user
+
+        import threading
+
+        t = threading.Thread(target=self.submit_competition(competition_uuid, selected_options, user))
+        t.daemon = True
+        t.start()
+
+        return True
+
+        
 
 
 
@@ -186,6 +210,8 @@ class AddFeedbackSerializer(serializers.ModelSerializer):
 
         newFeedback.save()
 
+        update_database_file()
+
         return newFeedback
 
 class AddComplaintsSerializer(serializers.ModelSerializer):
@@ -204,4 +230,72 @@ class AddComplaintsSerializer(serializers.ModelSerializer):
 
         newComplaints.save()
 
+        update_database_file()
+
         return newComplaints
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# competition = WeeklyCompetitions.objects.get(uuid=competition_uuid)
+#         competition_questions = competition.questions.all()
+
+#         try:
+#             competition_result = WeeklyCompetitionResult.objects.get(user=user, competition=competition)
+
+#             for s in competition_result.submissions.all():
+#                 s.delete()
+            
+#             competition_result.delete()
+#         except:
+#             print("Good News")
+
+
+#         competition_result = WeeklyCompetitionResult(user = user, competition=competition)
+#         competition_result.save()
+
+
+#         for i in range(len(competition_questions)):
+#             correct = True
+#             submission = Submissions(
+#                 question = competition_questions[i],
+#                 user = user,
+#                 uuid = str(uuid.uuid4())
+#             )
+
+#             submission.save()
+#             correct = False
+
+#             for option_uuid in selected_options[i]:
+#                 if option_uuid:
+#                     option = Options.objects.get(uuid = option_uuid)
+
+#                     if option.isCorrect == True:
+#                         correct = True
+
+#                     submission.selected_options.add(option)
+#                     submission.save()
+#                 else:
+#                     correct = False
+
+#             if correct:
+#                 competition_result.correct_options += 1
+#                 competition_result.save()
+
+#             competition_result.submissions.add(submission)
+        
+
+#         return competition_result

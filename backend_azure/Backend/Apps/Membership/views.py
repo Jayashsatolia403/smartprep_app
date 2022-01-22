@@ -1,4 +1,5 @@
 from django.http import response
+from django.shortcuts import redirect, render
 from rest_framework.views import APIView
 from Apps.Membership.models import SessionUser
 from rest_framework.decorators import api_view
@@ -7,14 +8,73 @@ from rest_framework.permissions import AllowAny
 import os
 from Apps.Questions.models import DailyQuestions
 
-# Created new web app "smartprep": https://smartprep.azurewebsites.net
+
 
 import stripe
 from update_db_file import update_database_file
 
 from datetime import datetime
+from django.contrib.auth.decorators import login_required
+
+
 
 stripe.api_key = os.getenv("STRIPE_API_KEY")
+
+
+
+
+@login_required
+def payments_page(request):
+
+    if request.method == 'POST':
+
+        amount = int(request.GET['amount'])
+        exam = request.POST['exam']
+
+        SERVER_URL = os.getenv("SERVER_URL")
+
+        membership30ID = os.getenv("membership30ID")
+        membership50ID = os.getenv("membership50ID")
+        membership100ID = os.getenv("membership100ID")
+
+        # Create Stripe Checkout
+        
+        if amount == 30:
+            membershipID = membership30ID
+        elif amount == 50:
+            membershipID = membership50ID
+        else:
+            membershipID = membership100ID
+        
+        session = stripe.checkout.Session.create(
+            payment_method_types=['card'],
+            customer_email = request.user.email,
+            line_items=[{
+                'price': membershipID,
+                'quantity': 1,
+            }],
+            mode='subscription',
+            allow_promotion_codes=True,
+            success_url=SERVER_URL+'payments/success?sessionId={CHECKOUT_SESSION_ID}&exam='+exam,
+            cancel_url=SERVER_URL+'payments/cancel',
+        )
+
+        newSession = SessionUser(user = request.user, sessionID = session.id)
+        newSession.save()
+
+        update_database_file()
+
+        return redirect(session.url)
+    
+    return render(request, "payments.html")
+
+
+
+class PaymentsPage(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request):
+        return Response(os.getenv("SERVER_URL") + "payments")
 
 
 
@@ -29,9 +89,9 @@ def checkout(request):
 
         SERVER_URL = os.getenv("SERVER_URL")
 
-        membership30ID = 'price_1KFJ0dCRUp8Jfn8fpHdBR0Ge'
-        membership50ID = 'price_1KFJ4TCRUp8Jfn8fsgSwOn5W'
-        membership100ID = 'price_1KFJ5vCRUp8Jfn8fFe2EMzMt'
+        membership30ID = os.getenv("membership30ID")
+        membership50ID = os.getenv("membership50ID")
+        membership100ID = os.getenv("membership100ID")
 
         # Create Stripe Checkout
         

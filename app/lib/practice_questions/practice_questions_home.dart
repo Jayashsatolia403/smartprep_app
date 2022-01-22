@@ -28,6 +28,7 @@ class _PracticeQuestionsState extends State<PracticeQuestions> {
 
   List<dynamic> allOptions = <dynamic>[];
   List<dynamic> questionStatements = <dynamic>[];
+  List<bool> showRatings = [];
 
   Future<bool> getPracticeQuestions() async {
     String url = await rootBundle.loadString('assets/text/url.txt');
@@ -65,6 +66,7 @@ class _PracticeQuestionsState extends State<PracticeQuestions> {
           explaination
         ]);
         allOptions.add(id['options']);
+        showRatings.add(id['isRated']);
       });
     }
 
@@ -137,6 +139,9 @@ class _PracticeQuestionsState extends State<PracticeQuestions> {
                                 style: const TextStyle(
                                     color: Colors.white, fontSize: 17)),
                             onPressed: () {
+                              bool pastRating = showRatings[i];
+                              showRatings[i] = true;
+
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -148,7 +153,7 @@ class _PracticeQuestionsState extends State<PracticeQuestions> {
                                               [2],
                                           difficultyRating:
                                               questionStatements[i][3],
-                                          isRated: questionStatements[i][4],
+                                          isRated: pastRating,
                                           createdBy: questionStatements[i][5],
                                           explaination: questionStatements[i]
                                               [6],

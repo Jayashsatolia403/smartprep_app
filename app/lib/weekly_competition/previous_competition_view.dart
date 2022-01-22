@@ -33,6 +33,7 @@ class _PreviousCompetitionViewState extends State<PreviousCompetitionView> {
   List<dynamic> questionStatements = <dynamic>[];
   String exam = "";
   int correctQuestions = 0;
+  List<bool> showRatings = [];
   Map<String, int> totalPages = {
     "ias": 10,
     "iasHindi": 10,
@@ -106,6 +107,7 @@ class _PreviousCompetitionViewState extends State<PreviousCompetitionView> {
           id['explaination']
         ]);
         allOptions.add(id['options']);
+        showRatings.add(id['isRated']);
       });
     }
 
@@ -148,7 +150,10 @@ class _PreviousCompetitionViewState extends State<PreviousCompetitionView> {
           title: Row(children: [
             const Text('Competition Result',
                 style: TextStyle(color: Colors.white)),
-            IconButton(
+            const SizedBox(
+              width: 10,
+            ),
+            ElevatedButton(
               onPressed: () {
                 Navigator.push(
                   context,
@@ -159,9 +164,7 @@ class _PreviousCompetitionViewState extends State<PreviousCompetitionView> {
                           )),
                 );
               },
-              icon: const ImageIcon(
-                AssetImage("assets/images/menu.png"),
-              ),
+              child: const Text("Result"),
             ),
           ]),
           backgroundColor: Colors.purple,
@@ -193,6 +196,8 @@ class _PreviousCompetitionViewState extends State<PreviousCompetitionView> {
                               style: const TextStyle(
                                   color: Colors.white, fontSize: 17)),
                           onPressed: () {
+                            bool pastIsRated = showRatings[i];
+                            showRatings[i] = true;
                             Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -204,7 +209,7 @@ class _PreviousCompetitionViewState extends State<PreviousCompetitionView> {
                                         qualityRating: questionStatements[i][2],
                                         difficultyRating: questionStatements[i]
                                             [3],
-                                        isRated: questionStatements[i][4],
+                                        isRated: pastIsRated,
                                         createdBy: questionStatements[i][5],
                                         explaination: questionStatements[i][6],
                                       )),

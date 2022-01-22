@@ -1,3 +1,4 @@
+import 'package:app/ad_config.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class AdState {
@@ -5,7 +6,7 @@ class AdState {
 
   AdState(this.initialization);
 
-  String get bannerAdUnitId => BannerAd.testAdUnitId;
+  String get bannerAdUnitId => Adconfig().banner;
   String get rewardedVideoAdUnitId => '';
   String get interstitialAdUnitId => '';
 

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:app/ad_config.dart';
 import 'package:app/add_ques/add_ques.dart';
 import 'package:app/article/articles_home.dart';
 import 'package:app/error_page/error_page.dart';
@@ -108,7 +109,7 @@ class _HomeState extends State<Home> {
 
   void loadVideoAd() async {
     RewardedAd.load(
-        adUnitId: RewardedAd.testAdUnitId,
+        adUnitId: Adconfig().rewarded,
         request: const AdRequest(),
         rewardedAdLoadCallback:
             RewardedAdLoadCallback(onAdLoaded: (RewardedAd ad) {

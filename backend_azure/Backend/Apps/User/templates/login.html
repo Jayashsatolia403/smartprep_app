@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="title" content="project">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="language" content="English">
+  <meta name="author" content="vinayak sharma">
+
+
+
+  <!-- bootstrap file -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+  <!-- bootstrap file-->
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+</head>
+
+<body class="container-fluid">
+
+
+  <header class="row">
+  </header>
+  <br/>
+  <br>
+  <br>
+  <div class="row">
+    <div class="content-section col-md-8 col-md-offset-2">
+        <center>
+            <h1>Login </h1> 
+        <form method="POST" style="border: 1px solid black; margin: 4%; padding:10%; border-radius:1%;">
+          {% csrf_token %}
+          <fieldset class="form-group">
+            {{ form }}
+          </fieldset>
+         <center>
+          <button style="background: black; font-size: 2rem; padding:1%;" class="btn btn-outline-info" type="submit"><span class="glyphicon glyphicon-log-in"></span> &nbsp; login</button>
+        </center>
+      </center>
+    </div>
+  </div>
+</body>
+
+</html>

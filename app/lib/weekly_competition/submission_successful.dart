@@ -1,3 +1,4 @@
+import 'package:app/weekly_competition/previous_competitions.dart';
 import 'package:flutter/material.dart';
 
 class SubmissionSuccessFul extends StatelessWidget {
@@ -8,9 +9,32 @@ class SubmissionSuccessFul extends StatelessWidget {
     return Scaffold(
       body: Center(
           child: Column(
-        children: const [
-          Text("Submission Successful"),
-          Text("You can go to results page now"),
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const Text(
+            "Submission Successful ",
+            style: TextStyle(fontSize: 20),
+          ),
+          const Text(
+            "You can go to results page now",
+            style: TextStyle(fontSize: 20),
+          ),
+          ElevatedButton(
+              style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all(Colors.deepPurpleAccent)),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const PreviousCompetitions(),
+                    ));
+              },
+              child: const Text(
+                "Go to Result",
+                style: TextStyle(color: Colors.white),
+              )),
         ],
       )),
     );

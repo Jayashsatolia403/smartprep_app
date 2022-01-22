@@ -1,6 +1,8 @@
+import 'package:app/ad_config.dart';
 import 'package:app/weekly_competition/quiz_models.dart';
 import 'package:app/weekly_competition/quiz_template.dart';
 import 'package:app/weekly_competition/result.dart';
+import 'package:app/weekly_competition/submission_successful.dart';
 import 'package:app/weekly_competition/view_answered_questions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -68,7 +70,7 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
 
   void loadVideoAd() async {
     RewardedAd.load(
-        adUnitId: RewardedAd.testAdUnitId,
+        adUnitId: Adconfig().rewarded,
         request: const AdRequest(),
         rewardedAdLoadCallback:
             RewardedAdLoadCallback(onAdLoaded: (RewardedAd ad) {
@@ -82,11 +84,7 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
     rewardedAd.show(onUserEarnedReward: (RewardedAd ad, RewardItem rpoint) {
       Navigator.push(
         context,
-        MaterialPageRoute(
-            builder: (context) => Result(
-                  correctOptions: correctOptions,
-                  examName: exam,
-                )),
+        MaterialPageRoute(builder: (context) => const SubmissionSuccessFul()),
       );
     });
 

@@ -1,10 +1,16 @@
+from django.conf import settings
+from django.conf.urls.static import static
+
+
 from django.contrib import admin
 from django.urls import path, include
 
-from . import views
+from .views import checkout, PaymentSuccess, CancelPayment, payments_page, PaymentsPage
 
 urlpatterns = [
-    path('checkout', views.checkout, name='checkout'),
-    path('success', views.PaymentSuccess.as_view(), name='success'),
-    path('cancel', views.CancelPayment.as_view(), name='cancel')
+    path('checkout', checkout, name='checkout'),
+    path('success', PaymentSuccess.as_view(), name='success'),
+    path('cancel', CancelPayment.as_view(), name='cancel'),
+    path('', payments_page, name="payments_page"),
+    path('go_to_payments_page', PaymentsPage.as_view(), name="go_to_payments_page")
 ]

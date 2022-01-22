@@ -1,6 +1,5 @@
-import 'package:app/splashscreen/splashscreen.dart';
 import 'package:flutter/material.dart';
-
+import 'package:app/web_premium.dart';
 import 'ad_state.dart';
 
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -43,6 +42,6 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(primarySwatch: white, fontFamily: 'OpenSans'),
-        home: const Splash());
+        home: const Premium());
   }
 }
