@@ -220,20 +220,20 @@ class _HomeState extends State<Home> {
               },
               tileColor: Colors.deepPurpleAccent,
             ),
-            ListTile(
-              title: const Text('Explore Premium',
-                  style: TextStyle(color: Colors.white, fontSize: 17)),
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => Premium(
-                              data: widget.data,
-                            )));
-              },
-              tileColor: Colors.deepPurpleAccent,
-              // leading: const Icon(Icons.),
-            ),
+            // ListTile(
+            //   title: const Text('Explore Premium',
+            //       style: TextStyle(color: Colors.white, fontSize: 17)),
+            //   onTap: () {
+            //     Navigator.push(
+            //         context,
+            //         MaterialPageRoute(
+            //             builder: (context) => Premium(
+            //                   data: widget.data,
+            //                 )));
+            //   },
+            //   tileColor: Colors.deepPurpleAccent,
+            //   // leading: const Icon(Icons.),
+            // ),
             ListTile(
               title: const Text('Add Question',
                   style: TextStyle(color: Colors.white, fontSize: 17)),

@@ -26,11 +26,16 @@ class RadioModel {
 
 // ignore: must_be_immutable
 class CustomRadio extends StatefulWidget {
-  CustomRadio({Key? key, required this.statement, required this.quesUuid})
+  CustomRadio(
+      {Key? key,
+      required this.statement,
+      required this.quesUuid,
+      required this.isLoadingDone})
       : super(key: key);
 
   String statement;
   String quesUuid;
+  bool isLoadingDone;
 
   @override
   createState() {
@@ -125,6 +130,15 @@ class CustomRadioState extends State<CustomRadio> {
   };
 
   List<RadioModel> sampleData = [];
+
+  Future<bool?> loadingQuestionsAlert(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (context) => const AlertDialog(
+              title: Text(
+                  "Competition Questions are Downloading. Please wait...."),
+            ));
+  }
 
   _initializeData() async {
     sampleData = [];
@@ -238,14 +252,18 @@ class CustomRadioState extends State<CustomRadio> {
             IconButton(
                 iconSize: 40,
                 onPressed: () {
-                  setState(() {
-                    widget.statement = lastQuesDetails[0];
-                    widget.quesUuid = lastQuesDetails[1];
-                  });
+                  if (!widget.isLoadingDone) {
+                    loadingQuestionsAlert(context);
+                  } else {
+                    setState(() {
+                      widget.statement = lastQuesDetails[0];
+                      widget.quesUuid = lastQuesDetails[1];
+                    });
 
-                  _initializeData();
-                  _loadNextQuesData();
-                  _loadPrevQuesData();
+                    _initializeData();
+                    _loadNextQuesData();
+                    _loadPrevQuesData();
+                  }
                 },
                 icon: const Icon(
                   Icons.keyboard_arrow_left,
@@ -256,11 +274,17 @@ class CustomRadioState extends State<CustomRadio> {
             ),
             IconButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const ViewAnsweredQuestions()),
-                );
+                if (widget.isLoadingDone) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ViewAnsweredQuestions(
+                              isLoadingDone: widget.isLoadingDone,
+                            )),
+                  );
+                } else {
+                  loadingQuestionsAlert(context);
+                }
               },
               icon: const ImageIcon(
                 AssetImage("assets/images/menu.png"),
@@ -272,14 +296,18 @@ class CustomRadioState extends State<CustomRadio> {
             IconButton(
                 iconSize: 40,
                 onPressed: () {
-                  setState(() {
-                    widget.statement = nextQuesDetails[0];
-                    widget.quesUuid = nextQuesDetails[1];
-                  });
+                  if (!widget.isLoadingDone) {
+                    loadingQuestionsAlert(context);
+                  } else {
+                    setState(() {
+                      widget.statement = nextQuesDetails[0];
+                      widget.quesUuid = nextQuesDetails[1];
+                    });
 
-                  _initializeData();
-                  _loadNextQuesData();
-                  _loadPrevQuesData();
+                    _initializeData();
+                    _loadNextQuesData();
+                    _loadPrevQuesData();
+                  }
                 },
                 icon: const Icon(
                   Icons.keyboard_arrow_right,

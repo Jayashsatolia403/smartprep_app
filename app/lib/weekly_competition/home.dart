@@ -1,7 +1,7 @@
 import 'package:app/ad_config.dart';
+import 'package:app/error_page/unavailable.dart';
 import 'package:app/weekly_competition/quiz_models.dart';
 import 'package:app/weekly_competition/quiz_template.dart';
-import 'package:app/weekly_competition/result.dart';
 import 'package:app/weekly_competition/submission_successful.dart';
 import 'package:app/weekly_competition/view_answered_questions.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +41,16 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
 
   late RewardedAd rewardedAd;
 
-  Future<bool?> showRatingsPage(BuildContext context) async {
+  Future<bool?> loadingQuestionsAlert(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (context) => const AlertDialog(
+              title: Text(
+                  "Competition Questions are Downloading. Please wait...."),
+            ));
+  }
+
+  Future<bool?> showQuestionsAreLoadingDialog(BuildContext context) async {
     return showDialog(
         context: context,
         builder: (context) => AlertDialog(
@@ -128,6 +137,15 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
 
     showVideoAd(context);
 
+    final lastSubmissionDetails = await QuizDatabase.instance.readAllDate();
+    final lastSubmissionDetail = lastSubmissionDetails[0];
+    final now = DateTime.now();
+
+    lastSubmissionDetail.submissionTime =
+        DateTime(now.year, now.month, now.day, now.hour, now.minute);
+
+    await QuizDatabase.instance.updateDate(lastSubmissionDetail);
+
     final response = await http.post(Uri.parse('$url/submit_contest/'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
@@ -172,6 +190,7 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
   };
 
   Future<bool> getQuesFromDatabase() async {
+    print("I am Here...");
     DateTime now = DateTime.now();
     final dbDate = await QuizDatabase.instance.readAllDate();
     if (dbDate[0].date == DateTime(now.year, now.month, now.day)) {
@@ -312,7 +331,9 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
           date: DateTime(now.year, now.month, now.day),
           competitionUuid: competitionUuid,
           examName: examName,
-          firstIdx: firstIdx));
+          firstIdx: firstIdx,
+          submissionTime: DateTime(
+              now.year, now.month, now.day - 1, now.hour, now.minute)));
 
       setState(() {
         loadingDone = true;
@@ -347,9 +368,12 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
 
   @override
   Widget build(BuildContext context) {
+    if (na) {
+      return const Unavailable();
+    }
     return WillPopScope(
         onWillPop: () async {
-          if (!loadingDone) await showRatingsPage(context);
+          if (!loadingDone) await showQuestionsAreLoadingDialog(context);
           return loadingDone;
         },
         child: Scaffold(
@@ -359,11 +383,17 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
                     style: TextStyle(color: Colors.white)),
                 IconButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const ViewAnsweredQuestions()),
-                    );
+                    if (!loadingDone) {
+                      loadingQuestionsAlert(context);
+                    } else {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ViewAnsweredQuestions(
+                                  isLoadingDone: loadingDone,
+                                )),
+                      );
+                    }
                   },
                   icon: const ImageIcon(
                     AssetImage("assets/images/menu.png"),
@@ -371,7 +401,11 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
                 ),
                 ElevatedButton(
                     onPressed: () async {
-                      submitContest(context);
+                      if (!loadingDone) {
+                        loadingQuestionsAlert(context);
+                      } else {
+                        submitContest(context);
+                      }
                     },
                     child: const Text("Submit"))
               ]),
@@ -400,6 +434,7 @@ class _WeeklyCompetitionHomeState extends State<WeeklyCompetitionHome> {
                                     builder: (context) => CustomRadio(
                                           quesUuid: quesUuids[i],
                                           statement: quesStatements[i],
+                                          isLoadingDone: loadingDone,
                                         )),
                               );
                             },

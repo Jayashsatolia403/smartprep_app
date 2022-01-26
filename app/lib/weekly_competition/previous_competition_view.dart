@@ -1,5 +1,6 @@
 // import 'package:app/tests/quiz_template.dart';
 import 'package:app/weekly_competition/previous_competition_quiz_template.dart';
+import 'package:app/weekly_competition/quiz_db.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -34,6 +35,7 @@ class _PreviousCompetitionViewState extends State<PreviousCompetitionView> {
   String exam = "";
   int correctQuestions = 0;
   List<bool> showRatings = [];
+
   Map<String, int> totalPages = {
     "ias": 10,
     "iasHindi": 10,

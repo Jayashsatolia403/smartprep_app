@@ -6,7 +6,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'quiz_models.dart';
 
 class ViewAnsweredQuestions extends StatefulWidget {
-  const ViewAnsweredQuestions({Key? key}) : super(key: key);
+  const ViewAnsweredQuestions({Key? key, required this.isLoadingDone})
+      : super(key: key);
+
+  final bool isLoadingDone;
 
   @override
   _ViewAnsweredQuestionsState createState() => _ViewAnsweredQuestionsState();
@@ -19,6 +22,8 @@ class _ViewAnsweredQuestionsState extends State<ViewAnsweredQuestions> {
 
   String quesStatement = '';
   String quesUuid = '';
+
+  late Future<bool> _getAnsweredQuestions;
 
   _getQuestion(int idx) async {
     Questions q = await QuizDatabase.instance.readQuestionsById(idx);
@@ -101,121 +106,142 @@ class _ViewAnsweredQuestionsState extends State<ViewAnsweredQuestions> {
   void initState() {
     super.initState();
 
-    getAnsweredQuestions();
+    _getAnsweredQuestions = getAnsweredQuestions();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.deepPurpleAccent,
-          title: const Text(
-            "Competition Questions",
-            style: TextStyle(color: Colors.white),
-          ),
-        ),
-        body: ListView(children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Row(
-                children: [
-                  const Text(
-                    "Answered : ",
-                    style: TextStyle(fontSize: 20),
+    return FutureBuilder<bool>(
+        future: _getAnsweredQuestions,
+        builder: (BuildContext context, AsyncSnapshot<bool> snapShot) {
+          if (snapShot.hasData) {
+            return Scaffold(
+                appBar: AppBar(
+                  backgroundColor: Colors.deepPurpleAccent,
+                  title: const Text(
+                    "Competition Questions",
+                    style: TextStyle(color: Colors.white),
                   ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: const Text(''),
-                    style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all(Colors.green),
-                        shape: MaterialStateProperty.all(const CircleBorder(
-                            side: BorderSide(color: Colors.green))),
-                        fixedSize:
-                            MaterialStateProperty.all(const Size(30, 30))),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 6,
-              ),
-              Row(
-                children: [
-                  const Text(
-                    "Not Answered : ",
-                    style: TextStyle(fontSize: 20),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: const Text(''),
-                    style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(Colors.red),
-                        shape: MaterialStateProperty.all(const CircleBorder(
-                            side: BorderSide(color: Colors.red))),
-                        fixedSize:
-                            MaterialStateProperty.all(const Size(30, 30))),
-                  ),
-                ],
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          for (var index = 0; index < (totalQuestions[exam]! / 5); index++)
-            Column(children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  for (var i = 0; i < 5; i++)
-                    if ((index * 5 + 1 + i) <= totalQuestions[exam]!)
-                      Column(children: [
-                        ElevatedButton(
-                          onPressed: () async {
-                            await _getQuestion(firstIdx + index * 5 + i);
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => CustomRadio(
-                                        quesUuid: quesUuid,
-                                        statement: quesStatement,
-                                      )),
-                            );
-                          },
-                          child: Text(
-                            '${index * 5 + i + 1}',
-                            style: const TextStyle(fontSize: 20),
+                ),
+                body: ListView(children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Row(
+                        children: [
+                          const Text(
+                            "Answered : ",
+                            style: TextStyle(fontSize: 20),
                           ),
-                          style: ButtonStyle(
-                              foregroundColor:
-                                  MaterialStateProperty.all(Colors.white),
-                              backgroundColor: result[index * 5 + i]
-                                  ? MaterialStateProperty.all(Colors.green)
-                                  : MaterialStateProperty.all(Colors.red),
-                              overlayColor:
-                                  MaterialStateProperty.all(Colors.white),
-                              shape: MaterialStateProperty.all(CircleBorder(
-                                  side: BorderSide(
-                                      color: result[index * 5 + i]
-                                          ? Colors.green
-                                          : Colors.red))),
-                              fixedSize: MaterialStateProperty.all(
-                                  const Size(60, 60))),
-                        ),
-                        const SizedBox(
-                          width: 6,
-                        ),
-                      ]),
-                ],
-              ),
-              const SizedBox(
-                height: 6,
-              )
-            ])
-        ]));
+                          ElevatedButton(
+                            onPressed: () {},
+                            child: const Text(''),
+                            style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all(Colors.green),
+                                shape: MaterialStateProperty.all(
+                                    const CircleBorder(
+                                        side: BorderSide(color: Colors.green))),
+                                fixedSize: MaterialStateProperty.all(
+                                    const Size(30, 30))),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 6,
+                      ),
+                      Row(
+                        children: [
+                          const Text(
+                            "Not Answered : ",
+                            style: TextStyle(fontSize: 20),
+                          ),
+                          ElevatedButton(
+                            onPressed: () {},
+                            child: const Text(''),
+                            style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all(Colors.red),
+                                shape: MaterialStateProperty.all(
+                                    const CircleBorder(
+                                        side: BorderSide(color: Colors.red))),
+                                fixedSize: MaterialStateProperty.all(
+                                    const Size(30, 30))),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  for (var index = 0;
+                      index < (totalQuestions[exam]! / 5);
+                      index++)
+                    Column(children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          for (var i = 0; i < 5; i++)
+                            if ((index * 5 + 1 + i) <= totalQuestions[exam]!)
+                              Column(children: [
+                                ElevatedButton(
+                                  onPressed: () async {
+                                    await _getQuestion(
+                                        firstIdx + index * 5 + i);
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => CustomRadio(
+                                                quesUuid: quesUuid,
+                                                statement: quesStatement,
+                                                isLoadingDone:
+                                                    widget.isLoadingDone,
+                                              )),
+                                    );
+                                  },
+                                  child: Text(
+                                    '${index * 5 + i + 1}',
+                                    style: const TextStyle(fontSize: 20),
+                                  ),
+                                  style: ButtonStyle(
+                                      foregroundColor: MaterialStateProperty
+                                          .all(Colors.white),
+                                      backgroundColor: result[index * 5 + i]
+                                          ? MaterialStateProperty.all(
+                                              Colors.green)
+                                          : MaterialStateProperty.all(
+                                              Colors.red),
+                                      overlayColor: MaterialStateProperty.all(
+                                          Colors.white),
+                                      shape: MaterialStateProperty.all(
+                                          CircleBorder(
+                                              side: BorderSide(
+                                                  color: result[index * 5 + i]
+                                                      ? Colors.green
+                                                      : Colors.red))),
+                                      fixedSize: MaterialStateProperty.all(
+                                          const Size(60, 60))),
+                                ),
+                                const SizedBox(
+                                  width: 6,
+                                ),
+                              ]),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 6,
+                      )
+                    ])
+                ]));
+          } else {
+            return const Scaffold(
+              body: CircularProgressIndicator(),
+            );
+          }
+        });
   }
 }
 

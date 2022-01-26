@@ -428,27 +428,10 @@ class _PremiumState extends State<Premium> {
               if (dropdownValue == "default") {
                 await showAlertDialog(context);
               } else {
-                String url = await rootBundle.loadString('assets/text/url.txt');
-                final prefs = await SharedPreferences.getInstance();
-                String? token = prefs.getString("token");
-
-                if (dropdownValue == 'default') {
-                  dropdownValue = widget.data.examname;
-                }
-
-                final response = await http.get(
-                  Uri.parse(
-                      '$url/payments/checkout?amount=$amount&exam=$dropdownValue'),
-                  headers: <String, String>{
-                    'Content-Type': 'application/json; charset=UTF-8',
-                    'Authorization': "Token $token"
-                  },
-                );
-
-                final checkoutUrl = jsonDecode(utf8.decode(response.bodyBytes));
+                String url = StaticDetails().url;
 
                 if (await canLaunch(url)) {
-                  await launch(checkoutUrl);
+                  await launch('$url/payments');
                 } else {
                   throw 'Could not launch $url';
                 }
@@ -461,7 +444,7 @@ class _PremiumState extends State<Premium> {
                             )));
               }
             },
-            child: const Text('Pay', style: TextStyle(fontSize: 20)),
+            child: const Text('SUbscribe', style: TextStyle(fontSize: 20)),
             style: ElevatedButton.styleFrom(
                 fixedSize: const Size(100, 50),
                 primary: Colors.deepPurple,

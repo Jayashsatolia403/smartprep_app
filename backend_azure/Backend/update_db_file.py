@@ -5,14 +5,14 @@ import os
 
 
 def update_database_file():
-    return 
+    # return 
 
     os.system("rm /home/site/wwwroot/database/db.sqlite3")
     os.system("cp db.sqlite3 /home/site/wwwroot/database/")
 
 
 def fetch_persistant_db_file():
-    return
+    # return
 
     try:
         path = "/home/site/wwwroot/database/db.sqlite3"

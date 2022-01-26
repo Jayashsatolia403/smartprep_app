@@ -11,30 +11,30 @@ class SubmissionSuccessFul extends StatelessWidget {
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const Text(
+        children: const [
+          Text(
             "Submission Successful ",
             style: TextStyle(fontSize: 20),
           ),
-          const Text(
-            "You can go to results page now",
+          Text(
+            "It will take 10 minute to submit and evaluate your answers.",
             style: TextStyle(fontSize: 20),
           ),
-          ElevatedButton(
-              style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all(Colors.deepPurpleAccent)),
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const PreviousCompetitions(),
-                    ));
-              },
-              child: const Text(
-                "Go to Result",
-                style: TextStyle(color: Colors.white),
-              )),
+          // ElevatedButton(
+          //     style: ButtonStyle(
+          //         backgroundColor:
+          //             MaterialStateProperty.all(Colors.deepPurpleAccent)),
+          //     onPressed: () {
+          //       Navigator.push(
+          //           context,
+          //           MaterialPageRoute(
+          //             builder: (context) => const PreviousCompetitions(),
+          //           ));
+          //     },
+          //     child: const Text(
+          //       "Go to Result",
+          //       style: TextStyle(color: Colors.white),
+          //     )),
         ],
       )),
     );

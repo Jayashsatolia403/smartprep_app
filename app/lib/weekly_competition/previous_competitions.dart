@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:app/weekly_competition/previous_competition_view.dart';
+import 'package:app/weekly_competition/quiz_db.dart';
+import 'package:app/weekly_competition/wait.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -20,6 +22,7 @@ class PreviousCompetitions extends StatefulWidget {
 
 class _PreviousCompetitionsState extends State<PreviousCompetitions> {
   BannerAd? banner;
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -35,6 +38,29 @@ class _PreviousCompetitionsState extends State<PreviousCompetitions> {
           ..load();
       });
     });
+  }
+
+  int diffBetweenLastSubmissionAndNow = 0;
+  late Future<bool> _isCurrentSubmissionClashing;
+
+  Future<bool> isCurrentSubmissionClashing() async {
+    final lastSubmissionDetails = await QuizDatabase.instance.readAllDate();
+
+    if (lastSubmissionDetails.isEmpty) return true;
+
+    final lastSubmissionTime = lastSubmissionDetails[0].submissionTime;
+
+    final diff = DateTime.now().difference(lastSubmissionTime).inMinutes;
+
+    if (diff < 10) {
+      setState(() {
+        diffBetweenLastSubmissionAndNow = 10 - diff;
+      });
+
+      return false;
+    }
+
+    return true;
   }
 
   List<dynamic> previousCompetitions = [];
@@ -82,54 +108,64 @@ class _PreviousCompetitionsState extends State<PreviousCompetitions> {
   @override
   void initState() {
     super.initState();
+    _isCurrentSubmissionClashing = isCurrentSubmissionClashing();
     getPreviousCompetitons();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: const Text("Previous Weekly Competitions"),
-        ),
-        body: SmartRefresher(
-            controller: _refreshController,
-            onLoading: () async {
-              final result = await getPreviousCompetitons();
-              if (result) {
-                _refreshController.loadComplete();
-              } else {
-                _refreshController.loadFailed();
-              }
-            },
-            child: Column(children: [
-              ListView.builder(
-                itemCount: previousCompetitions.length,
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Text(previousCompetitions[index][0]),
-                    subtitle: const Text("Tap to view"),
-                    leading: const Icon(Icons.book),
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => PreviousCompetitionView(
-                              compUuid: previousCompetitions[index][1],
-                              compName: previousCompetitions[index][0],
-                            ),
-                          ));
+    return FutureBuilder<bool>(
+        future: _isCurrentSubmissionClashing,
+        builder: (BuildContext context, AsyncSnapshot<bool> snapShot) {
+          if (snapShot.hasData && snapShot.data == true) {
+            return Scaffold(
+                appBar: AppBar(
+                  title: const Text("Previous Weekly Competitions"),
+                ),
+                body: SmartRefresher(
+                    controller: _refreshController,
+                    onLoading: () async {
+                      final result = await getPreviousCompetitons();
+                      if (result) {
+                        _refreshController.loadComplete();
+                      } else {
+                        _refreshController.loadFailed();
+                      }
                     },
-                  );
-                },
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              if (banner == null)
-                const Text("yo")
-              else
-                SizedBox(height: 150, child: AdWidget(ad: banner!))
-            ])));
+                    child: Column(children: [
+                      ListView.builder(
+                        itemCount: previousCompetitions.length,
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) {
+                          return ListTile(
+                            title: Text(previousCompetitions[index][0]),
+                            subtitle: const Text("Tap to view"),
+                            leading: const Icon(Icons.book),
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        PreviousCompetitionView(
+                                      compUuid: previousCompetitions[index][1],
+                                      compName: previousCompetitions[index][0],
+                                    ),
+                                  ));
+                            },
+                          );
+                        },
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      if (banner == null)
+                        const Text("yo")
+                      else
+                        SizedBox(height: 150, child: AdWidget(ad: banner!))
+                    ])));
+          } else {
+            return Wait(minutes: diffBetweenLastSubmissionAndNow);
+          }
+        });
   }
 }

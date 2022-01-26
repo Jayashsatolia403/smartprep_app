@@ -1,6 +1,8 @@
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.decorators import api_view
+from rest_framework import status
 
 from update_db_file import update_database_file
 
@@ -67,3 +69,4 @@ class LoginUser(APIView):
         form = AuthenticationForm()
 
         return render(request, 'login.html', {'form': form})
+

@@ -182,7 +182,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    "/home/jayash/Desktop/Projects/smartprep_app/backend_azure/Backend/static/home"
+    os.path.join(BASE_DIR, 'static/home')
 ]
 
 # Default primary key field type
@@ -200,7 +200,7 @@ WHITENOISE_USE_FINDERS = True
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
-# from update_db_file import LOGGING
+from update_db_file import LOGGING
 
 
-# LOGGING = LOGGING
+LOGGING = LOGGING

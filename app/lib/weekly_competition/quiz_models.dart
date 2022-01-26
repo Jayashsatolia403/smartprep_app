@@ -30,7 +30,8 @@ class DateField {
     date,
     competitionUuid,
     examName,
-    firstIdx
+    firstIdx,
+    submissionTime
   ];
 
   static const String id = '_id';
@@ -38,6 +39,7 @@ class DateField {
   static const String competitionUuid = 'competition_uuid';
   static const String examName = 'exam_name';
   static const String firstIdx = 'first_idx';
+  static const String submissionTime = 'submission_time';
 }
 
 class QuestionOptionsFields {
@@ -122,40 +124,48 @@ class Date {
   String competitionUuid;
   String examName;
   int firstIdx;
+  DateTime submissionTime;
 
   Date(
       {this.id,
       required this.date,
       required this.competitionUuid,
       required this.examName,
-      required this.firstIdx});
+      required this.firstIdx,
+      required this.submissionTime});
 
   Date copy(
           {int? id,
           DateTime? date,
           String? competitionUuid,
           String? examName,
-          int? firstIdx}) =>
+          int? firstIdx,
+          DateTime? submissionTime}) =>
       Date(
           id: id ?? this.id,
           date: date ?? this.date,
           competitionUuid: competitionUuid ?? this.competitionUuid,
           examName: examName ?? this.examName,
-          firstIdx: firstIdx ?? this.firstIdx);
+          firstIdx: firstIdx ?? this.firstIdx,
+          submissionTime: submissionTime ?? this.submissionTime);
 
   static Date fromJson(Map<String, Object?> json) => Date(
       id: json[DateField.id] as int?,
       date: DateFormat("yyyy-MM-dd").parse(json[DateField.date].toString()),
       competitionUuid: json[DateField.competitionUuid] as String,
       examName: json[DateField.examName] as String,
-      firstIdx: json[DateField.firstIdx] as int);
+      firstIdx: json[DateField.firstIdx] as int,
+      submissionTime: DateFormat("yyyy-MM-dd HH:mm")
+          .parse(json[DateField.submissionTime].toString()));
 
   Map<String, Object?> toJson() => {
         DateField.id: id,
         DateField.date: date.toIso8601String(),
         DateField.competitionUuid: competitionUuid,
         DateField.examName: examName,
-        DateField.firstIdx: firstIdx
+        DateField.firstIdx: firstIdx,
+        DateField.submissionTime:
+            DateFormat("yyyy-MM-dd HH:mm").format(submissionTime)
       };
 }
 

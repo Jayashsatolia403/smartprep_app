@@ -53,7 +53,7 @@ def payments_page(request):
                 'price': membershipID,
                 'quantity': 1,
             }],
-            mode='subscription',
+            mode='payment',
             allow_promotion_codes=True,
             success_url=SERVER_URL+'payments/success?sessionId={CHECKOUT_SESSION_ID}&exam='+exam,
             cancel_url=SERVER_URL+'payments/cancel',
@@ -67,14 +67,6 @@ def payments_page(request):
         return redirect(session.url)
     
     return render(request, "payments.html")
-
-
-
-class PaymentsPage(APIView):
-    permission_classes = [AllowAny]
-
-    def get(self, request):
-        return Response(os.getenv("SERVER_URL") + "payments")
 
 
 
