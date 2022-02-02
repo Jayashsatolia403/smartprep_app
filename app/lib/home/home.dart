@@ -331,33 +331,33 @@ class _HomeState extends State<Home> {
                           )
                         ],
                       ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(5, 10, 60, 10),
-                        child: ListTile(
-                          title: Row(
-                            children: [
-                              const Text(
-                                "Featured Articles",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 20),
-                              ),
-                              IconButton(
-                                  onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                const ArticlesHome()));
-                                  },
-                                  icon: const Icon(
-                                    Icons.arrow_right,
-                                    size: 35,
-                                  ))
-                            ],
-                          ),
-                        ),
-                      ),
-                      const HomeSlider(),
+                      // Padding(
+                      //   padding: const EdgeInsets.fromLTRB(5, 10, 60, 10),
+                      //   child: ListTile(
+                      //     title: Row(
+                      //       children: [
+                      //         const Text(
+                      //           "Featured Articles",
+                      //           style: TextStyle(
+                      //               fontWeight: FontWeight.bold, fontSize: 20),
+                      //         ),
+                      //         IconButton(
+                      //             onPressed: () {
+                      //               Navigator.push(
+                      //                   context,
+                      //                   MaterialPageRoute(
+                      //                       builder: (context) =>
+                      //                           const ArticlesHome()));
+                      //             },
+                      //             icon: const Icon(
+                      //               Icons.arrow_right,
+                      //               size: 35,
+                      //             ))
+                      //       ],
+                      //     ),
+                      //   ),
+                      // ),
+                      // const HomeSlider(),
                       Padding(
                           padding: const EdgeInsets.fromLTRB(0, 25, 0, 5),
                           child: ListTile(
