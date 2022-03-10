@@ -1,0 +1,920 @@
+If boiling point of water is 95°F, what will be reading at Celsius scale?
+4
+A. 7
+B. 35
+C. 65
+D. 63
+1 
+y
+None
+
+ Heat was given to a body, which raises its temperature by 1°C is ___________
+4
+A. Water equivalent
+B. Temperature gradient
+C. Thermal capacity
+D. Specific heat
+2 
+y
+None
+
+A frame of reference has four coordinates, x, y, z, and t is referred to as the_____________
+4
+A. Inertial frame of reference
+B.  Non-inertial frame of reference
+C. Space-time reference
+D.  Four-dimensional plane
+2 
+y
+None
+
+According to Einstein’s Special Theory of Relativity, laws of physics can be formulated based on ____________
+4
+A. Inertial Frame of Reference
+B. Non-Inertial Frame of Reference
+C. Both Inertial and Non-Inertial Frame of Reference
+D. Quantum State
+0 
+y
+None
+
+In a free fall the velocity of a stone is increasing equally ion equal intervals of time under the effect of gravitational force of the earth. Then what can you say about the motion of this stone? Whether the stone
+4
+A. Uniform acceleration              
+B. Non-uniform acceleration
+C. Retardation                                 
+D. Constant speed
+0 
+y
+None
+
+Suppose a boy is enjoying a ride on a marry-go-round which is moving with a constant speed of 10 m/s. It implies that the boy is
+4
+A. At rest
+B. Moving with no acceleration
+C. In accelerated motion
+D. Moving with uniform velocity
+2 
+y
+None
+
+A light and a heavy body have equal kinetic energy. Which one has a greater momentum?
+4
+A. The light body
+B. The heavy body
+C. Both have equal momentum
+D. It is not possible to say anything without additional information
+1 
+y
+None
+
+ Work done in raising a box depends on
+4
+A. How fast it is raised
+B. The strength of the man
+C.The height by which it is raised
+D. None of the above
+2 
+y
+None
+
+ Which of the following can execute both translational and rotational motion under the influence of the external field?
+4
+A. Rigid body
+B. Ideal body
+C. Rotating body
+D. A body which is stationary
+0 
+y
+None
+
+The internal torque on the system due to internal force is ___________
+4
+A. Increasing
+B. Decreasing
+C. Constant
+D. Zero
+3 
+y
+None
+
+What is the net magnetic field in a solenoid?
+4
+A. product of the fields due to all the turns
+B. equal to the field due to the largest turn
+C.  vector sum of the fields due to all the turns
+D. arithmetic mean of the fields due to all the 
+2 
+y
+None
+
+ Which of the following properties of a material make it suitable to become a permanent magnet?
+4
+A. The material should have high retentivity
+B. The material should have low coercivity
+C. The material should have low permeability
+D. Both B and C
+0 
+y
+None
+
+What number does orange colour represent in the resistance colour code?
+4
+A. 1
+B. 2
+C. 3
+D. 4
+3 
+y
+None
+
+Which of the following represents the Boiling process?
+4
+A. Adiabatic change
+B. Isothermal change
+C. Isochoric process
+D. Isobaric process
+1 
+y
+None
+
+Which of the following gives us the mass number of an atom?
+4
+A. total number of electrons
+B. total number of neutrons
+C. total number of nucleons
+D. total number of protons
+2 
+y
+None
+
+Which of the following is NOT a natural magnet?
+4
+A. lodestone
+B. pyrrhotite
+C. columbite
+D. titanium
+3 
+y
+None
+
+Which of these rays have the highest ionising power?
+4
+A. Alpha
+B. Beta
+C. Gamma
+D. All of the above
+0 
+y
+None
+
+Which of the following element has an isotope named as Tritium
+4
+A. Helium
+B. Carbon
+C. Titanium
+D. Hydrogen
+3 
+y
+None
+
+Which of the following is true about working of a photo diode?
+4
+A. It is operated under reverse bias
+B. It is operated under forward bias
+C. Both A and B
+D. None of the above
+0 
+y
+None
+
+What is meant by Atomic number of an atom?
+4
+A. total number of protons
+B. total number of electrons in an uncharged atom
+C. total number of electrons and protons
+D. both A and B
+3 
+y
+None
+
+Which of the following is correct?
+4
+A. The nuclear force does not depend on the electric charge
+B. The nuclear force is much weaker than the Coulomb force
+C.  Both a and b
+D. None of the above
+0 
+y
+None
+
+What is the SI unit of magnetic flux?
+4
+A. tesla
+B. maxwell
+C. weber
+D. newton
+0 
+y
+None
+
+Which of these is used to accelerate charged particles or ions to high energies?
+4
+A. Solenoid
+B. Cyclotron
+C. Electric motor
+D. Toroid
+1 
+y
+None
+
+ What causes the twinkling of stars?
+4
+A. Atmospheric refraction of starlight
+B. Dispersion of starlight
+C. Scattering of starlight
+D. None of the above
+0 
+y
+None
+
+Which is correct about the height of a capillary column of a liquid, at a particular temperature, as per Jurin’s law?
+4
+A. equal to the diameter of the tube
+B. directly proportional to the diameter of the tube
+C. inversely proportional to the diameter of the tube
+D. half of the diameter of the tube
+2 
+y
+None
+
+What happens to a body when its density is greater than the density of the fluid?
+4
+A.  it floats
+B. it sinks
+C. it stays at rest
+D. None of the above
+1 
+y
+None
+
+What is the S.I. unit of absorptive power?
+4
+A. dioptre
+B.metre
+C. Watt
+D. No unit
+3 
+y
+None
+
+ What do we call the magnitude of the maximum disturbance in the medium on either side of the mean value called as?
+4
+A. Frequency
+B. Angular Displacement
+C. Amplitude
+D. Wave number
+2 
+y
+None
+
+What is the size of the image formed by a concave mirror when the object is at focus?
+4
+A. Enlarged
+B. Point sized
+C. Same size
+D. Highly enlarged
+3 
+y
+None
+
+What happens when light travels from a denser medium to a rarer medium?
+4
+A. it slows down and bends towards the normal
+B. it speeds up and bends towards the normal
+C.it slows down and bends away from the normal
+D. it speeds up and bends away from the normal
+3 
+y
+None
+
+Which of the following produces Electromagnetic waves?
+4
+A. charges at rest
+B. charges in uniform motion
+C. accelerated charges
+D. All of the above
+2 
+y
+None
+
+Which of the following is correct about transverse mechanical waves?
+4
+A. they can travel through solids and gases
+B. they can travel through solids but not liquids
+C. they can travel through solids and liquids
+D. they can travel through gases but not solids
+1 
+y
+None
+
+ Which of the following instruments is used to measure the relative density of a liquid?
+4
+A. Hydrometer
+B. Hygrometer
+C. Gravimeter
+D. Lactometer
+0 
+y
+None
+
+What is the angle of contact for pure water and glass?
+4
+A. 0 degree
+B. 30 degree
+C. 60 degree
+D. 90 degree
+0 
+y
+None
+
+Which of the following is the orbital velocity of a satellite orbiting very close to the surface of earth?
+4
+A. 7.2 km/s
+B. 9.2 km/s
+C. 11.2 km/s
+D. 12. 2 km/s
+2 
+y
+None
+
+The value of acceleration due to gravity is minimum on which of these planets
+4
+A. Mars
+B. Jupiter
+C. Neptune
+D. Mercury
+3 
+y
+None
+
+The width of the depletion region is
+4
+A. Directly proportional to doping
+B. Inversely proportional to doping
+C. Independent of doping
+D. None of the above
+1 
+y
+None
+
+Photodiode is used in the detection of
+4
+A. Visible
+B. Invisible
+C. Infrared
+D. Both A and B
+3 
+y
+None
+
+A bucket of water is hung from a spring balance. A piece of iron is suspended in the water without touching the sides or touching the bottom of the bucket. The reading of the spring balance
+4
+A. Will increase
+B. Will decrease
+C. Does not change
+D. Can't say
+0 
+y
+None
+
+Two electric bulbs marked 25W – 220V and 100W – 220V are connected in series to a 440Vsupply. Which of the bulbs will fuse?
+4
+A. 25
+B. 100
+C. Both
+D. Neither
+0 
+y
+None
+
+In a simple harmonic motion, when the displacement is one half the amplitude, what fraction of the total energy is kinetic?
+4
+A. 1/4
+B. 2/4
+C. 3/4
+D. Zero
+2 
+y
+None
+
+A linear harmonic oscillator of force constant 2×106 N/m and amplitude 0.01m has a total mechanical energy of 160J. Its ___________
+4
+A. Potential energy is 160 J
+B. Potential energy is 100 J
+C. Potential energy is 140 J
+D. Potential energy is 120 J
+1 
+y
+None
+
+When germanium crystal is doped with phosphorus atoms, it becomes ………
+4
+A. Insulator
+B. Alloy
+C. N-type semiconductor
+D. P-type semiconductor
+2 
+y
+None
+
+At …………… °C, the temperature on the Celsius and Fahrenheit scales are equal
+4
+A. 40
+B. -40
+C. 100
+D. 212
+1 
+y
+None
+
+A solid sphere, a hollow sphere and a ring are released from top of an inclined plane (frictionless) so that they slide down the plane. Then, maximum acceleration down the plane is for (No rolling) is ______
+4
+A. Solid Sphere
+B. Hollow Sphere
+C. Ring
+D. All of the above
+3 
+y
+None
+
+A solid sphere is rotating in free space. If the radius of the sphere is increased keeping mass same, which one of the following will not be affected?
+4
+A. Moment of inertia
+B. Angular momentum
+C. Angular velocity
+D. Rotational Kinetic energy
+1 
+y
+None
+
+The photoelectric emission could be explained by the _________
+4
+A. Wave nature of light
+B. Particle nature of light
+C. Dual nature of light
+D. None of the above
+1 
+y
+None
+
+During Einstein’s Photoelectric Experiment, what changes are observed when the frequency of the incident radiation is increased?
+4
+A. The value of saturation current increases
+B. The value of stopping potential increases
+C. The value of stopping potential decreases
+D. None of the above
+1 
+y
+None
+
+Which of the following is correct about EMF of a cell?
+4
+A. it is the potential difference between the electrodes when current is flowing in the cell
+B.it is the drift velocity of the electrons when there is no current in the cell
+C. it is the potential difference between the electrodes when there is no current in the cell
+D. All of the above
+2 
+y
+None
+
+Which of the following is the mirror formula?
+4
+A. v + u =f
+B. 1/v + 1/u = 1/f
+C. 1/v - 1/u = f
+D.  v - u =f
+1 
+y
+None
+
+At a given volume and temperature, the pressure of a gas
+4
+A. varies inversely as its mass
+B. varies inversely as the square of its mass
+C. varies linearly as its mass
+D.is independent of its mass
+2 
+y
+None
+
+For which of the following process, the thermal conduction is maximum?
+4
+A. Combustion
+B. Conduction
+C. Convention
+D. Radiation
+3 
+y
+None
+
+What is the scale used for measuring the intensity of the earthquake
+4
+A. Metric Scale
+B. Quake Scale
+C.  Richter Scale
+D. Epicenter Scale
+2 
+y
+None
+
+ Which one of the following has the highest value of specific heat ?
+4
+A. Alcohol
+B. Methane
+C. Kerosine
+D. Water
+3 
+y
+None
+
+Which of the following is the unit of Strain?
+4
+A. Kg-m
+B. N/m
+C.  dyne/cm
+D. None of the above
+3 
+y
+None
+
+Two Flat mirrors are placed at an angle of 60° from each other. How many images will be formed of a Candle placed in between them?
+4
+A. Six
+B. Five
+C. Four
+D. Three
+1 
+y
+None
+
+Which of the following is the ultimate source of energy for us?
+4
+A LPG
+B Nuclear
+C CNG
+D Solar
+3 
+y
+None
+
+Which method is used to produce electricity in thermal power plant?
+4
+A.  By boiling the water to produce steam
+B.  By boiling water
+C. By pushing pistons by heat energy
+D. Any of the above
+1 
+y
+None
+
+ No current will flow between two charged bodies if they have the same 
+4
+A. Charge
+B. Resistance
+C. Potential
+D. Charge/Potential ratio
+2 
+y
+None
+
+Skating on ice is possible because 
+4
+A. the surface of ice is smooth
+B. the ice is cold
+C.pressure on the ice due to skate melts the ice by lowering its melting point forming a thin film
+D. the pressure on the ice due to skate raises its melting point
+2 
+y
+None
+
+An element X is divalent and another element Y is tetravalent. The compound formed by these two elements will be
+4
+ A. XY
+B. XY2
+C. XY4
+D. X2Y
+1 
+y
+None
+
+Which of the following statements is not true about an atom?
+4
+A. Atoms are not able to exist independently.
+B. Atoms are the basic units from which molecules and ions are formed
+C. Atoms are always neutral in nature.
+D. Atoms aggregate in large numbers to form the matter that we can see, feel or touch.
+3 
+y
+None
+
+Rain drops acquire spherical shape due to
+4
+A. Friction
+B. Elasticity
+C. Surface tension
+D. Viscosity
+2 
+y
+None
+
+The speed of light will be minimum while passing through
+4
+A water
+B vaccum
+C air
+D glass
+3 
+y
+None
+
+Specific resistance of all metals is mostly affected by
+4
+A magnetic field
+B pressure
+C volume
+D temperature
+3 
+y
+None
+
+ Direct Current produces a magnetic field similar to a permanent magnet. This magnetic field:
+4
+A is unidirectional and has a steady magnitude
+B is unidirectional but its magnitude varies in regular pattern
+C has steady magnitude but changes direction in regular pattern
+D changes direction and magnitude in regular pattern
+0 
+y
+None
+
+Consider the following:ignore_new_line1. Micaignore_new_line2. Graphite 3. Sulphur 4. Human body Which among the above is / are electrical conductors?
+4
+A. Only 1, 2 & 4
+B.Only 2, 3 & 4
+C.Only 2 & 4
+D.Only 2
+2 
+y
+None
+
+One joule of work is said to be done when__
+4
+A. a force of 1 dyne causes a displacement of 1 cm.
+B. a force of 1 dyne causes a displacement of 1 m
+C. a force of 1 N causes a displacement of 1 cm.
+D. a force of 1 N causes a displacement of 1 m
+3 
+y
+None
+
+The most suitable unit for expressing nuclear radius
+4
+A nanometre
+B angstrom
+C picometer
+D fermi
+3 
+y
+None
+
+working principle of a washing machine is
+4
+A dialysis
+B reverse osmosis
+C diffusion
+D centrifugation
+3 
+y
+None
+
+Walking of a man is an example of 
+4
+A. Multiplication of Vector
+B. Addition of Vector
+C. Subtraction of Vector
+D. Resolution of Vector
+3 
+y
+None
+
+Consider the following statements:ignore_new_line1. Lightning is caused due to discharge of similar charged cloudsignore_new_line2. Lightning conductor always develops the opposite charges as is the charge in the clouds Which among the above is / are correct statements
+4
+A. Only 1
+B. Only 2
+C. Both 1 and 2
+D. Neither 1 or 2
+1 
+y
+None
+
+Which of the following statement is correct regarding velocity and speed of a moving body?
+4
+A. Velocity of a moving body is always higher than its speed
+B. Speed of a moving body is always higher than its velocity
+C. Speed of a moving body is its velocity in a given direction
+D. Velocity of a moving body is its speed in a given direction
+3 
+y
+None
+
+ What is the least count of wrist watch
+4
+A. 1 second
+B. 1 minute
+C 1 hour
+D All of the above
+0 
+y
+None
+
+Kepler' s third law is called as
+4
+A. Laws of gravity
+B. Law of area
+C. Law of orbits
+D. Law of periods
+3 
+y
+None
+
+When a planet orbits a sun, one of the  foci of the elliptical orbit is
+4
+A. the perihelion
+B. the axis
+C. the sun
+D. the center
+2 
+y
+None
+
+Flying a bird is an example of ____________
+4
+A. Collinear vector
+B. Addition of Vector
+C. Multiplication of Vector
+D. Composition of Vector
+3 
+y
+None
+
+Least count of micrometer screw gauge is
+4
+A. 0.001cm
+B.  0.001mm
+C. 0.01cm
+D. 0.01mm
+0 
+y
+None
+
+An oscillator produces................... oscillation
+4
+A. Undamped
+B. Damped
+C. Demodulated
+D. Modulated
+0 
+y
+None
+
+When the flow parameters of any given instant remains same at every point, then flow is said to be
+4
+A. Laminar
+B. Turbulent
+C. Steady state
+D. Quasi Static
+2 
+y
+None
+
+Least count of Vernier calliper is
+4
+A.0.001mm
+B. 0.1 cm
+C. 0.01mm
+D. 0.01cm
+3 
+y
+None
+
+An ideal of any fluid must satisfy
+4
+A. Pascal's Law
+B. Stoke's Law
+C. Bernoulli's principle
+D. Equation of Continuity
+3 
+y
+None
+
+In parallel combination of n cells, we obtain
+4
+A. More Voltage
+B. More Current
+C. Less Current
+D. Less Voltage
+1 
+y
+None
+
+Resolution is
+4
+A. a measure of the bias in the instrument
+B.  a measure of the systematic errors
+C. the smallest amount of input signal change that the instrument can detect reliably
+D.  None of the above
+1 
+y
+None
+
+Absolute error of the measurement is
+4
+A. the difference between the individual measurement and the true value of the quantity cubed.
+B. the difference between the individual measurement and the true value of the quantity squared.
+C. the difference between two individual measurements and their mean
+D.the difference between the individual measurement and the true value of the quantity
+0 
+y
+None
+
+Length cannot be measured by
+4
+A. Fermi
+B. Debye
+C. Micron
+D. Light Year
+1 
+y
+None
+
+Which of the following is not unit of time
+4
+A Second
+B. Parsec
+C. Light Year
+D. Year
+2 
+y
+None
+
+Least count of micrometer screw gauge is
+4
+A. 0.001cm
+B. 0.01cm
+C. 0.1cm
+D. 0.001mm
+0 
+y
+None
+
+4.Electron volt is unit of
+4
+a. Potential difference
+b. Charge
+c. Energy
+d. Capacitor
+2 
+y
+None
+
+3. Dimension of work done is same as that of
+4
+a. Pressure
+b. Momentum
+c. Kinetic energy
+d. Power
+2 
+y
+None
+
+What is unit of electric field intensity
+4
+a N/C
+B V/m
+c Wb
+D Both a and c
+3 
+y
+None
+
+Which of the following is unit of magnetic induction
+4
+T
+N/Am
+Wb/m2
+All of the above
+3 
+y
+None
+

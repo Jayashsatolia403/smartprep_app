@@ -1,0 +1,736 @@
+Which of the following is a default tab stop in word?
+5
+Left
+Right
+Center
+Decimal
+None of these
+0 
+y
+None
+
+Shortcut key for footnote option in Word?
+5
+Ctrl + F
+Alt + F
+Shift + F
+Ctrl + Alt + F
+None of these
+3 
+y
+None
+
+We can emphasize text in word using?
+5
+Word wrap
+Indentation
+Highlight
+Zoom
+None of these
+2 
+y
+None
+
+In MS office 2013 which of the following menus include insert row column in table?
+5
+Design
+Insert
+Layout
+Page layout
+None of these
+2 
+y
+None
+
+Shortcut key for print preview in MS word 2013?
+5
+Ctrl + F4
+Ctrl + F2
+Ctrl + Alt + F3
+Ctrl + F12
+None of these
+1 
+y
+None
+
+Which among the following is a sans serif font?
+4
+Arial
+Courier
+Times
+All of these
+0 
+y
+None
+
+Ms office personal information Manager?
+5
+Internet explorer
+Ms access
+Organizer
+Outlook
+None of these
+3 
+y
+None
+
+Which of the following is not a vaid MS office extension?
+5
+.docx
+.pot
+.xlsm
+.ppt1
+All of these
+3 
+y
+None
+
+Which of the following is not a section break type in MS word?
+5
+Even page
+Odd page
+Column
+Next Page
+None of these
+2 
+y
+None
+
+_________ protocol is used by clients for receiving mails ?
+5
+SMTP
+HTTP
+POP
+SNMP
+FTP
+2 
+y
+None
+
+Which one of the following is not an application layer protocol?
+5
+HTTP
+SMTP
+FTP
+UDP
+All of these
+3 
+y
+None
+
+Which port number is used by SNMP ?
+5
+20
+161
+25
+143
+99
+1 
+y
+None
+
+Which port number is used by SMTP?
+5
+21
+22
+23
+25
+99
+3 
+y
+None
+
+Which port number is used by HTTP?
+5
+22
+25
+80
+110
+444
+2 
+y
+None
+
+Which port number is used by Telnet?
+5
+22
+23
+25
+80
+53
+1 
+y
+None
+
+Which protocol is more reliable?
+4
+TCP
+UDP
+Both TCP and UDP
+None of these
+0 
+y
+None
+
+Which one of the following is not a types of cloud ?
+5
+Public cloud
+Private cloud
+Protected cloud
+Hybrid cloud
+Community cloud
+2 
+y
+None
+
+In cloud computing SaaS stands for
+5
+Software as a system
+Software as a Software
+Software as a service
+Software as a Shell
+System as a software
+2 
+y
+None
+
+In powerpoint, the Header & Footer button can be found on the insert tab in which group?
+5
+Illustrations group
+Tables group
+Object group
+Text Group
+None of these
+3 
+y
+None
+
+The word wrap feature__________
+5
+Appears at the bottom of the document
+Allows you to type over text
+Automatically moves the text to next line when necessary
+Is the short horizontal line indicating the end of the document
+None of these
+2 
+y
+None
+
+Which of the following is not an option in clipboard?
+5
+Copy
+Paste
+Page setup
+Format painter
+All of these
+2 
+y
+None
+
+रेजिन( Regin) क्या है?ignore_new_lineignore_new_line[महत्वपूर्ण प्रश्न] ☆☆☆☆☆
+4
+एक बहुलक (polymer)
+वाइरस (virus)
+मैलवेयर (Malware)
+सर्च इंजन (Search Engine)
+2 
+y
+None
+
+निम्न में से अलग कौनसा है ?
+4
+जावा क्लाइंट
+वायरस
+ट्रोजन हॉर्स
+वार्म
+0 
+y
+None
+
+Microsoft Office (माइक्रोसॉफ्ट ऑफिस) में कौन-सी फंक्शन की (function key) प्रिंट प्रिव्यू विंडो (Print Preview window) प्रदर्शित करती है?
+4
+Shift + F2
+Alt + F2
+Alt + Ctrl + F2
+Ctrl + F2
+3 
+y
+None
+
+PROM का पूर्ण रूप क्या है?
+4
+प्रोग्राम रीड-आउटपुट मेमोरी (Program read-output memory)
+प्रोग्राम रीड-ओनली मेमोरी (Program read-only memory)
+प्राइमरी रीड-ओनली मेमोरी (Primary read only memory)
+प्रोग्रामेबल रीड-ओनली मेमोरी (Programmable read-only memory)
+3 
+y
+@Current_Affairs_Quiz_all_Exams
+
+कंप्यूटिंग के क्षेत्र ENIAC का पूर्ण रूप क्या है?
+4
+Electronic Numerical Integrated Advanced Computer
+Electronic Numbers Integration and Computer
+Electronic Numerical Integrator and Computer
+Electronic Numerals Integration and Compunting
+2 
+y
+None
+
+सामान्यतः F7 की (key) का उपयोग माइक्रोसॉफ्ट वर्ड (Microsoft Word), आउटलुक (Outlook ), आदि जैसे माइक्रोसॉफ्ट प्रोग्राम में ______ किया जाता है।
+4
+विभिन्न ऐप्स में कंटेंट खोजने के लिए
+फाइल और फ़ोल्डरों का नाम बदलने के लिए
+हेल्प (help) ओपन करने के लिए
+स्पेलिंग और ग्रामर को जाँचने के लिए
+3 
+y
+None
+
+Which option is not available in the MS word 2016 version?
+5
+Home
+Insert
+Formulas
+Reference
+All of these
+2 
+y
+None
+
+MS Excel 2016 में निम्नलिखित में से किसमेनू से 'मार्जिन्स' और 'ओरिएंटेशन' विकल्पों को चुना जा सकता है?
+4
+होम
+रिव्यू
+इंसर्ट
+पेज लेआउट
+3 
+y
+None
+
+मोशन डेटा को कंप्यूटर या दूसरे इलेक्ट्रॉनिक डिवाइसों में प्रविष्ट करने के लिए किस इनपुट डिवाइस का उपयोग किया जात है?
+4
+ट्रैकबॉल
+बारकोड रीडर
+मैग्नेटिक इंक कैरेक्टर रिकॉग्निशन
+लाइट पेन
+3 
+y
+None
+
+LASER का पूर्ण प्रारूप है
+4
+Long Amplification by Stimulated Emission Radiation.
+Light Amplification by Stimulated Emission Radiation
+Locally Amplified Stimulated Emission of Radiation.
+Light Amplification by Stimulated Emission of Radio.
+1 
+y
+None
+
+Which one of the following is the first indian super computer?
+5
+PARAM 10000
+PARAM 8000
+PRATYUSH
+MIHIR
+CDC 8000
+1 
+y
+None
+
+Which one of the following is the world first super computer?
+5
+Tianhe-2
+Fugau
+Param
+CDC 6600
+CRAY
+3 
+y
+None
+
+Which of the following is not application software?
+5
+MS excel
+Photoshop
+Wordpad
+Windows 7
+All of these
+3 
+y
+None
+
+If the page size increases,the internal fragmentation is also?
+4
+Increases
+Decreases
+Remains constant
+None of these
+0 
+y
+None
+
+The size of virtual memory is based on which of the following?
+5
+RAM
+Data bus
+CPU
+Address Bus
+None of these
+3 
+y
+None
+
+What is bootstrapping called?
+5
+Cold boot
+Cold hot boot
+Cold hot strap
+Hot boot
+None of these
+0 
+y
+None
+
+When does page fault occur?
+5
+The buffering occurs.
+The deadlock occurs
+The page does not present in memory.
+The page is present in memory.
+None of these
+2 
+y
+None
+
+What is the full name of FAT?
+5
+File attribute table
+File allocation table
+Font attribute table
+Format allocation table
+None of these
+1 
+y
+None
+
+What is the maximum length of the filename in DOS?
+5
+4
+6
+8
+10
+12
+2 
+y
+None
+
+Which of the following is not an operating system?
+5
+Windows
+DOS
+Linux
+Oracle
+Unix
+3 
+y
+None
+
+Internet server is known as____(Asked in RSMSB LIBRARY EXAM 2020)
+5
+Hub
+Bridge
+Client
+Host
+None of these
+3 
+y
+None
+
+Scopus is a ______ (Asked in RSMSB LIBRARY 2020)
+5
+Full text Database
+Numerical Database
+Abstract Database
+Bibliographical Database
+None of these
+2 
+y
+None
+
+Who developed Linux?
+5
+Dennis Ritchie
+Linus Torvalds
+Ken Thompson
+Prof. Andrew S. Tannenbaum
+None of these
+1 
+y
+None
+
+If you wish to extend the length of the network without having the signal degrade, you would use a
+5
+Switch
+Gateway
+Repeater
+Router
+None of these
+2 
+y
+None
+
+If you want to connect to your own computer through the Internet from another location, you can use
+5
+Instant message
+Email
+FTP
+Telnet
+None of these
+3 
+y
+None
+
+A network node joining three or more links is a______
+5
+DTE
+DCE
+DSE
+DTE and DCE
+None of these
+2 
+y
+None
+
+The protocol data unit (PDU) for the application layer in the internet stack is______
+5
+Frame
+Message
+Datagram
+Segment
+None of these
+1 
+y
+None
+
+Which one of the following is not a client-server application?
+5
+Web browsing
+Internet chat
+Email
+Ping
+None of these
+3 
+y
+None
+
+UDP stands for_____ Datagram protocol.
+5
+Unified
+Universal
+Unique
+User
+None of these
+3 
+y
+None
+
+______was the first spreadsheet on a microcomputer.
+5
+Excel
+Lotus 123
+VisiCalc
+StarCalc
+None of these
+2 
+y
+None
+
+Which of the following operating systems is not owned and licensed by a company?
+5
+Mac
+Linux
+Unix
+Windows
+None of these
+3 
+y
+None
+
+Which type of operating system does not interact with the computer directly?
+5
+Real time OS
+Distributed OS
+Time sharing OS
+Network OS
+Batch OS
+4 
+y
+None
+
+An________ is a software which acts as an interface between the end user and computer hardware
+5
+Application software
+Utility software
+Operating system
+Networking
+None of these
+2 
+y
+None
+
+CAN stands for
+5
+Common area network
+Campus area network
+Computer area network
+Connection area network
+None of these
+1 
+y
+None
+
+Microsoft was founded by Bill Gates and_______on April 4th 1975
+5
+Steve jobs
+Akio Morita
+Paul Allen
+Douglas Engelbart
+None of these
+2 
+y
+None
+
+LISP, a computer programming language developed about 1960 by______
+5
+Grace hopper
+Charles Babbage
+John McCarthy
+Konrad Zuse
+Bjarne Stroustrup
+2 
+y
+None
+
+PROLOG language was developed by?
+5
+Alain Colmerauer
+John G. Kemeny
+John Backus
+Dennis M. Ritchie
+Bjarne Stroustrup
+0 
+y
+None
+
+BASIC language was Invented by John G. Kemeny and Thomas E. Kurtz in which year?
+5
+1960
+1962
+1964
+1970
+1976
+2 
+y
+None
+
+The most efficient medium for ATM is:-
+5
+Twisted pair
+Coaxial cable
+The atmosphere
+Optical fiber
+None of these
+3 
+y
+None
+
+UNIVAC stands for
+5
+Unique Automatic Computer
+Universal Array Computer
+Unvalued Automatic Computer
+Universal Automatic Computer
+None of these
+3 
+y
+None
+
+Which of the following is the first generation computer?
+5
+CDC 1604
+IBM 1401
+ICL 2900
+UNIVAC
+All of these
+3 
+y
+None
+
+In which year the Microsoft company was founded?
+5
+1970
+1972
+1975
+1980
+1985
+2 
+y
+None
+
+How are registers measured?
+5
+Number of programs
+Number of bits
+Number of Occurence
+Number of reference points
+None of these
+1 
+y
+None
+
+A........ is approximately one billion bytes?
+5
+Megabyte
+Gigabyte
+Terabyte
+Petabyte
+None of these
+1 
+y
+None
+
+Which file starts MS WORD?
+5
+word.exe
+winword.exe
+msword.exe
+word2003.exe
+None of these
+1 
+y
+None
+
+In MICR, C stands for ______
+5
+Code
+Computer
+Character
+Colour
+Control
+2 
+y
+None
+
+Which key is used in combination with another key to perform a specific task?
+5
+Arrow
+Spacebar
+Enter
+Control
+Function
+3 
+y
+None
+

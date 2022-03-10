@@ -1,0 +1,68 @@
+Let $z \in C$ with ${Im}(z)=10$ and it satisfies $\frac{2 z-n}{2 z+n}=2 i-1$ for some natural number $n$, then 
+$n=20$ and ${Re}(z)=-10$
+$n=40$ and ${Re}(z)=10$
+$n=40$ and ${Re}(z)=-10$
+$n=20$ and ${Re}(z)=10$
+
+
+All the points in the set $S=\{\frac{\alpha+i}{\alpha-i}: \alpha \in \mathbf{R}\}(i=\sqrt{-1})$ lie on a
+circle whose radius is $\sqrt{2}$.
+straight line whose slope is $-1$
+circle whose radius is $1 .$
+straight line whose slope is 1 .
+
+
+Let $z \in C$ be such that $|z|<1$. If $\omega=\frac{5+3 z}{5(1-z)}$, then
+$4 {Im}(\omega)>5$
+$5 {Re}(\omega)>1$
+$5 {Im}(\omega)<1$
+$5 {Re}(\omega)>4$
+
+
+${Let}(-2-\frac{1}{3} i)^{3}=\frac{x+i y}{27}(i=\sqrt{-1})$, where $x$ and $y$ are real numbers, then $y-x$ equals
+91
+85
+$-85$
+$-91$
+
+
+A value of $\theta$ for which $\frac{2+3 i \sin \theta}{1-2 i \sin \theta}$ is purely imaginary, is
+$\frac{\pi}{3}$
+$\frac{\pi}{6}$
+$\sin ^{-1}(\frac{\sqrt{3}}{4})$
+$\sin ^{-1}(\frac{1}{\sqrt{3}})$
+
+
+If $|\begin{array}{ccc}6 i & -3 i & 1 \\ 4 & 3 i & -1 \\ 20 & 3 & i\end{array}|=x+i y$, then
+$x=3, y=1$ 
+$x=1, y=1$
+$x=0, y=3$
+$x=0, y=0$
+
+
+The value of sum $\sum_{n=1}^{13}(i^{n}+i^{n+1})$, where $i=\sqrt{-1}$, equals
+$i$
+$i-1$
+$-i$
+0
+
+
+The smallest positive integer $n$ for which $(\frac{1+i}{1-i})^{n}=1$, is 
+8
+16
+12
+None of these
+
+
+Let $a, b, x$ and $y$ be real numbers such that $a-b=1$ and $y \neq 0$. If the complex number $z=x+i y$ satisfies ${Im}(\frac{a z+b}{z+1})=y$, then which of the following is(are) possible value(s) of $x?$.
+$1-\sqrt{1+y^{2}}$
+$1+\sqrt{1+y^{2}}$
+$-1-\sqrt{1-y^{2}}$
+$-1+\sqrt{1-y^{2}}$
+
+
+If $a>0$ and $z=\frac{(1+i)^{2}}{a-i}$, has magnitude $\sqrt{\frac{2}{5}}$, then $\bar{z}$ is equal to
+$\frac{1}{5}-\frac{3}{5} i$
+$-\frac{1}{5}-\frac{3}{5} i$
+$-\frac{1}{5}+\frac{3}{5} i$
+$-\frac{3}{5}-\frac{1}{5} i$

@@ -1,0 +1,3 @@
+The International Code of Botanical Nomenclature (ICBN) is a set of rules and recommendations dealing with the formal botanical names given to plant. The foundations of ICBN are given in book written by C. Linnaeus named Philosophia Botanica. It is independent of zoological nomenclature. 
+The rank of species is basic and relative order of the ranks of taxa are as : species, genus, tribe, family, order, series, class, division and kingdom.
+The different ranks or categories have following specific endings of their names as division – phyla, class­ae, family­aceae.

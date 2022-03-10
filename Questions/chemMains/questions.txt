@@ -1,0 +1,94 @@
+1 Let $z \in C$ with $\operatorname{Im}(z)=10$ and it satisfies $\frac{2 z-n}{2 z+n}=2 i-1$ for some natural number $n$, then $\quad$
+4
+(a) $n=20$ and $\operatorname{Re}(z)=-10$ 
+(b) $n=40$ and $\operatorname{Re}(z)=10$
+(c) $n=40$ and $\operatorname{Re}(z)=-10$ 
+(d) $n=20$ and $\operatorname{Re}(z)=10$
+2
+y
+Let $z=x+10 i$, as $\operatorname{Im}(z)=10$ (given).ignore_new_lineSince $z$ satisfies,ignore_new_line$$ignore_new_line\begin{aligned}ignore_new_line& \frac{2 z-n}{2 z+n}=2 i-1, n \in N, \\ignore_new_line\therefore \quad &(2 x+20 i-n)=(2 i-1)(2 x+20 i+n) \\ignore_new_line\Rightarrow &(2 x-n)+20 i=(-2 x-n-40)+(4 x+2 n-20) iignore_new_line\end{aligned}ignore_new_line$$ignore_new_lineOn comparing real and imaginary parts, we getignore_new_line$$ignore_new_line\begin{aligned}ignore_new_line2 x-n &=-2 x-n-40 \text { and } 20=4 x+2 n-20 \\ignore_new_line\Rightarrow \quad 4 x &=-40 \text { and } 4 x+2 n=40 \\ignore_new_line\Rightarrow \quad x &=-10 \text { and }-40+2 n=40 \Rightarrow n=40 \\ignore_new_line\text { So, } \quad n &=40 \text { and } x=\operatorname{Re}(z)=-10 \\
+
+
+\text { Let } x+i y &=\frac{\alpha+i}{\alpha-i} \\
+\Rightarrow x+i y &=\frac{(\alpha+i)^{2}}{\alpha^{2}+1}=\frac{\left(\alpha^{2}-1\right)+(2 \alpha) i}{\alpha^{2}+1}=\frac{\alpha^{2}-1}{\alpha^{2}+1}+\left(\frac{2 \alpha}{\alpha^{2}+1}\right) i
+\end{aligned}
+$$
+On comparing real and imaginary parts, we get
+$$
+x=\frac{\alpha^{2}-1}{\alpha^{2}+1} \text { and } y=\frac{2 \alpha}{\alpha^{2}+1}
+$$
+
+
+
+
+
+
+All the points in the set $S=\left\{\frac{\alpha+i}{\alpha-i}: \alpha \in \mathbf{R}\right\}(i=\sqrt{-1})$ lie on a
+4
+(a) circle whose radius is $\sqrt{2}$.
+(b) straight line whose slope is $-1$
+(c) circle whose radius is 1 .
+(d) straight line whose slope is 1 .
+
+3 Let $z \in C$ be such that $|z|<1$. If $\omega=\frac{5+3 z}{5(1-z)}$, then
+(2019 Main, 9 April II)
+(a) $4 \operatorname{Im}(\omega)>5$
+(b) $5 \operatorname{Re}(\omega)>1$
+(c) $5 \operatorname{Im}(\omega)<1$
+(d) $5 \operatorname{Re}(\omega)>4$
+4 Let $\left(-2-\frac{1}{3} i\right)^{3}=\frac{x+i y}{27}(i=\sqrt{-1})$, where $x$ and $y$ are real numbers, then $y-x$ equals
+(2019 Main, 11 Jan I)
+(a) 91
+(b) 85
+(c) $-85$
+(d) $-91$
+- Let $A=\left\{\theta \in\left(-\frac{\pi}{2}, \pi\right): \frac{3+2 i \sin \theta}{1-2 i \sin \theta}\right.$ is purely imaginary $\}$
+Then, the sum of the elements in $A$ is (2019 Main, 9 Jan I)
+(a) $\frac{3 \pi}{4}$
+(b) $\frac{5 \pi}{6}$
+(c) $\pi$
+(d) $\frac{2 \pi}{3}$
+
+Let $z$ be a complex number such that $|z|+z=3+i$ (where $i=\sqrt{-1}$ ).
+Then, $|z|$ is equal to
+(a) $\frac{\sqrt{34}}{3}$
+(b) $\frac{5}{3}$
+(c) $\frac{\sqrt{41}}{4}$
+(2019 Main, 11 Jan II)
+A complex number $z$ is said to be unimodular, if $|z| \neq 1$.
+If $z_{1}$ and $z_{2}$ are complex numbers such that $\frac{z_{1}-2 z_{2}}{2-z_{1} \bar{z}_{2}}$ is unimodular and $z_{2}$ is not unimodular.
+Then, the point $z_{1}$ lies on a
+(2015 Main)
+(a) straight line parallel to $X$-axis
+(b) straight line parallel to $Y$-axis
+(c) circle of radius 2
+(d) circle of radius $\sqrt{2}$
+If $z$ is a complex number such that $|z| \geq 2$, then the minimum value of $\left|z+\frac{1}{2}\right|$
+(a) is equal to $5 / 2$
+(b) lies in the interval $(1,2)$
+(c) is strictly greater than $5 / 2$
+(d) is strictly greater than $3 / 2$ but less than $5 / 2$
+Let complex numbers $\alpha$ and $1 / \bar{\alpha}$ lies on circles $\left(x-x_{0}\right)^{2}+\left(y-y_{0}\right)^{2}=r^{2}$ and $\left(x-x_{0}\right)^{2}+\left(y-y_{0}\right)^{2}=4 r^{2}$, respectively.
+If $z_{0}=x_{0}+i y_{0}$ satisfies the equation $2\left|z_{0}\right|^{2}=r^{2}+2$, then $|\alpha|$ is equal to
+(a) $\frac{1}{\sqrt{2}}$
+(b) $\frac{1}{2}$
+(c) $\frac{1}{\sqrt{7}}$
+(2013 Adv.)
+(2014 Main)
+Let $z$ be a complex number such that the imaginary part of $z$ is non-zero and $a=z^{2}+z+1$ is real. Then, $a$ cannot take the value
+(a) $-1$
+(b) $\frac{1}{3}$
+(c) $\frac{1}{2}$
+(2012)
+Let $z=x+i y$ be a complex number where, $x$ and $y$ are integers. Then, the area of the rectangle whose vertices are the root of the equation $z \bar{z}^{3}+\bar{z} z^{3}=350$, is
+(a) 48
+(b) 32
+(c) 40
+(d) 80
+(2009)
+If $|z|=1$ and $z \neq \pm 1$, then all the values of $\frac{z}{1-z^{2}}$ lie on
+(a) a line not passing through the origin
+(2007, 3M)
+(b) $|z|=\sqrt{2}$
+(c) the $X$-axis
+(d) the $Y$-axis

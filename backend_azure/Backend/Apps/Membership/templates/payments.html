@@ -1,0 +1,350 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8" />
+	<meta name="viewport"
+		content="width=device-width,
+				initial-scale=1" />
+
+	<!-- Bootstrap CSS -->
+	<link
+	href=
+"https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity=
+"sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+	crossorigin="anonymous"
+	/>
+	<link rel="stylesheet"
+	href="{% static 'payments.css' %}" />
+	<link rel="preconnect"
+		href="https://fonts.gstatic.com" />
+	<link
+	href=
+"https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap"
+	rel="stylesheet"
+	/>
+	<title>Smartprep</title>
+</head>
+<body>
+	<section id="navbar">
+	<nav class="navbar navbar-expand-lg navbar-light">
+		<div class="container-fluid">
+		<a class="navbar-brand" href="#">
+			Smartprep
+			</a>
+		<button
+			class="navbar-toggler"
+			type="button"
+			data-bs-toggle="collapse"
+			data-bs-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent"
+			aria-expanded="false"
+			aria-label="Toggle navigation"
+		>
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse"
+			id="navbarSupportedContent">
+			<ul class="navbar-nav m-auto">
+			<li class="nav-item">
+				<a class="nav-link active"
+				aria-current="page"
+				href="#">Home</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link"
+				href="#service">Subscription</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link"
+				href="#about">About Us</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link"
+				href="#social">Contact Us</a>
+			</li>
+			</ul>
+		</div>
+		</div>
+	</nav>
+	</section>
+
+	<!-- banner -->
+	<section id="banner">
+	<div class="container-fluid" id="banner-container">
+		<div class="row" id="banner-row">
+		<div class="col-md-6" id="banner-col">
+			<h3>
+			BEST APP TO PREPARE FOR VARIOUS COMPETITIVE 
+            EXAMS HELD IN INDIA
+			</h3>
+			
+            <p>
+			    The Smart way to prepare
+			</p>
+
+			<div class="d-grid gap-2 d-md-flex justify-content-center">
+			<a class="btn btn-primary"
+				href="#"
+				role="button">Download</a>
+			</div>
+		</div>
+		</div>
+	</div>
+	</section>
+
+	<!-- Subscription -->
+	<section id="service">
+	<h1 class="text-center">Subscription</h1>
+	<div class="container-fluid" id="service-container">
+		<div class="row" id="banner-row">
+		<div class="col-md-4" id="service-col1">
+			<h3>Standard 30rs</h3>
+
+            <ul>
+                <li>Get Access of 30 Questions Daily & All Past Seen Questions for Lifetime.</li>
+                <li>Weekly Full Syllabus All India Mock Tests</li>
+                <li>Connect with other Aspirants, Ask Questions & Clear Doubts with some Funny Memes.</li>
+                <li>Get Access to High Quality Articles, Tips to Boost Your Preparation.</li>
+            </ul>
+
+			<form action="?amount=30" method="post">
+				{% csrf_token %}
+				<label for="exam">Choose Exam : </label>
+				<select name="exam" id="exam">
+					<option value=ias>IAS</option>
+					<option value=iasHindi>IAS Hindi Medium</option>
+					<option value=neet>NEET</option>
+					<option value=ras>RAS</option>
+					<option value=rasHindi>RAS Hindi Medium</option>
+					<option value=ibpsPO>IBPS PO</option>
+					<option value=ibpsClerk>IBPS CLERK</option>
+					<option value=sscCHSL>SSC CHSL</option>
+					<option value=sscCGL>SSC CGL</option>
+					<option value=sscCGLHindi>SSC CGL Hindi Medium</option>
+					<option value=ntpc>NTPC</option>
+					<option value=reet1>REET LEVEL 1</option>
+					<option value=reet2>REET LEVEL 2 Social Science</option>
+					<option value=reet2Science>REET LEVEL 2 Science</option>
+					<option value=patwari>PATWARI</option>
+					<option value=grade2nd>2nd Grade Paper 1</option>
+					<option value=grade2ndScience>2nd Grade Science</option>
+					<option value=grade2ndSS>2nd Grade Social Science </option>
+					<option value=sscGD>SSC GD</option>
+					<option value=sscMTS>SSC MTS</option>
+					<option value=rajPoliceConst>Rajasthan Police Constable</option>
+					<option value=rajLDC>Rajasthan LDC</option>
+					<option value=rrbGD>RRB GD</option>
+					<option value=sipaper1>SI Paper 1</option>
+					<option value=sipaper2>SI Paper 2</option>
+				</select>
+
+
+
+				<div class="d-grid gap-2 d-md-flex justify-content-center">
+					<input type="submit" value="Pay 30 Rs" class="btn btn-outline-primary"></input>
+				</div>
+		    </form>
+		</div>
+        
+		<div class="col-md-4" id="service-col2">
+			<h3>Premium 50rs</h3>
+
+            <ul>
+                <li>Get Access of 60 Questions Daily & All Past Seen Questions for Lifetime.</li>
+                <li>Weekly Full Syllabus All India Mock Tests</li>
+                <li>Connect with other Aspirants, Ask Questions & Clear Doubts with some Funny Memes.</li>
+                <li>Get Access to High Quality Articles, Tips to Boost Your Preparation.</li>
+            </ul>
+
+            <form action="?amount=50" method="post">
+				{% csrf_token %}
+				<label for="exam">Choose Exam : </label>
+				<select name="exam" id="exam">
+					<option value=ias>IAS</option>
+					<option value=iasHindi>IAS Hindi Medium</option>
+					<option value=neet>NEET</option>
+					<option value=ras>RAS</option>
+					<option value=rasHindi>RAS Hindi Medium</option>
+					<option value=ibpsPO>IBPS PO</option>
+					<option value=ibpsClerk>IBPS CLERK</option>
+					<option value=sscCHSL>SSC CHSL</option>
+					<option value=sscCGL>SSC CGL</option>
+					<option value=sscCGLHindi>SSC CGL Hindi Medium</option>
+					<option value=ntpc>NTPC</option>
+					<option value=reet1>REET LEVEL 1</option>
+					<option value=reet2>REET LEVEL 2 Social Science</option>
+					<option value=reet2Science>REET LEVEL 2 Science</option>
+					<option value=patwari>PATWARI</option>
+					<option value=grade2nd>2nd Grade Paper 1</option>
+					<option value=grade2ndScience>2nd Grade Science</option>
+					<option value=grade2ndSS>2nd Grade Social Science </option>
+					<option value=sscGD>SSC GD</option>
+					<option value=sscMTS>SSC MTS</option>
+					<option value=rajPoliceConst>Rajasthan Police Constable</option>
+					<option value=rajLDC>Rajasthan LDC</option>
+					<option value=rrbGD>RRB GD</option>
+					<option value=sipaper1>SI Paper 1</option>
+					<option value=sipaper2>SI Paper 2</option>
+				</select>
+
+
+
+				<div class="d-grid gap-2 d-md-flex justify-content-center">
+					<input type="submit" value="Pay 50 Rs" class="btn btn-outline-primary"></input>
+				</div>
+		    </form>
+		</div>
+		<div class="col-md-4" id="service-col3">
+			<h3>Premium 100rs</h3>
+
+            <ul>
+                <li>Get Access of 150 Questions Daily & All Past Seen Questions for Lifetime.</li>
+                <li>Weekly Full Syllabus All India Mock Tests</li>
+                <li>Connect with other Aspirants, Ask Questions & Clear Doubts with some Funny Memes.</li>
+                <li>Get Access to High Quality Articles, Tips to Boost Your Preparation.</li>
+            </ul>
+
+            <form action="?amount=100" method="post">
+				{% csrf_token %}
+				<label for="exam">Choose Exam : </label>
+				<select name="exam" id="exam">
+					<option value=ias>IAS</option>
+					<option value=iasHindi>IAS Hindi Medium</option>
+					<option value=neet>NEET</option>
+					<option value=ras>RAS</option>
+					<option value=rasHindi>RAS Hindi Medium</option>
+					<option value=ibpsPO>IBPS PO</option>
+					<option value=ibpsClerk>IBPS CLERK</option>
+					<option value=sscCHSL>SSC CHSL</option>
+					<option value=sscCGL>SSC CGL</option>
+					<option value=sscCGLHindi>SSC CGL Hindi Medium</option>
+					<option value=ntpc>NTPC</option>
+					<option value=reet1>REET LEVEL 1</option>
+					<option value=reet2>REET LEVEL 2 Social Science</option>
+					<option value=reet2Science>REET LEVEL 2 Science</option>
+					<option value=patwari>PATWARI</option>
+					<option value=grade2nd>2nd Grade Paper 1</option>
+					<option value=grade2ndScience>2nd Grade Science</option>
+					<option value=grade2ndSS>2nd Grade Social Science </option>
+					<option value=sscGD>SSC GD</option>
+					<option value=sscMTS>SSC MTS</option>
+					<option value=rajPoliceConst>Rajasthan Police Constable</option>
+					<option value=rajLDC>Rajasthan LDC</option>
+					<option value=rrbGD>RRB GD</option>
+					<option value=sipaper1>SI Paper 1</option>
+					<option value=sipaper2>SI Paper 2</option>
+				</select>
+
+
+
+				<div class="d-grid gap-2 d-md-flex justify-content-center">
+					<input type="submit" value="Pay 100 Rs" class="btn btn-outline-primary"></input>
+				</div>
+		    </form>
+		</div>
+		</div>
+	</div>
+	</section>
+	<hr />
+
+	<!-- about Us -->
+	<section id="about">
+	<h1 class="text-center">About Us</h1>
+	<div class="container-fluid" id="about-container">
+		<div class="row" id="banner-row">
+		<div class="col-md-6" id="about-col">
+			<h3>Why Us</h3>
+			<ul>
+			<li>
+				Smartprep is all about Delivering High
+				Quality Questions, Weekly Competitions, Practice Questions, Best Question of the day
+                to help it's users in their Preparation.
+			</li>
+			<li>Access to Exam Specific Forum where you
+                can discuss on problems with your peers.
+            </li>
+			<li>
+				High Quality Articles to keep you
+                Motivated and boost you knowledge.
+			</li>
+			<li>More than 24 Exams Available </li>
+			</ul>
+		</div>
+		</div>
+	</div>
+	</section>
+	<hr />
+
+
+	<!-- footer -->
+	<section id="footer">
+	<section id="banner">
+		<div class="container-fluid" id="banner-container">
+		<div class="row" id="banner-row">
+			<div class="col-md-4" id="footer-col1">
+			<h3>Smartprep</h3>
+				
+            <p>
+				At Smartprep we believe that customers should
+				always get easy-to-use, best in the kind
+				and fast Service. Smartprep has achieved
+				standards which helps customer to
+				achieve satisfaction and realize
+				value for their hard earned money.
+			</p>
+
+			</div>
+			<div class="col-md-4" id="footer-col2">
+			<h3>Contact Us</h3>
+                            
+            <p>Call Us- +91 9352085774</p>
+
+                            
+            <p>Email Us- smartprep.app@gmail.com</p>
+
+			</div>
+
+			<div class="col-md-4" id="footer-col2">
+			<h3>Need Help?</h3>
+			<form>
+				<div class="mb-3">
+				<input
+					type="email"
+					placeholder="Enter Your Email"
+					class="form-control"
+					id="exampleInputEmail1"
+					aria-describedby="emailHelp"
+				/>
+				<div id="emailHelp"
+					class="form-text">
+					Drop your email and we will contact you.
+				</div>
+				</div>
+				<button type="submit"
+						class="btn btn-primary">
+						Submit
+				</button>
+			</form>
+			</div>
+		</div>
+		</div>
+	</section>
+	</section>
+
+	<!-- Optional JavaScript; choose one of the two! -->
+
+	<!-- Option 1: Bootstrap Bundle with Popper -->
+	<script
+	src=
+"https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+	integrity=
+"sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+	crossorigin="anonymous"
+	></script>
+</body>
+</html>

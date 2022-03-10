@@ -1,0 +1,361 @@
+iasSubjects = ["currentAffairsWorldHard", 
+                   "currentAffairsIndiaEasy", 
+                   "currentAffairsIndiaHard", 
+                   "geographyIndEasy", 
+                   "geographyIndHard", 
+                   "geographyWorld",
+                   "polityIndEasy", 
+                   "polityIndHard", 
+                   "economyIndGen", 
+                   "economyIndBudgetAndSchemes", 
+                   "environmentAndEcologyHard", 
+                   "environmentAndEcologyEasy", 
+                   "historyIndEasy",
+                   "historyIndHard",
+                   "historyWorld",
+                   "InternationalRelationAndSecurity", 
+                   "sciAndTechHard", 
+                   "artAndCultureInd", 
+                   "constitutionAndGovernance",
+                   "decisionMaking",
+                   "iasMisc"]
+    
+jeeSubjects = ["physicsAdv", "mathsAdv", "chemAdv", "physicsMains", "mathsMains", "chemMains", "jeeMisc"]
+jeeAdvSubjects = ["physicsAdv", "mathsAdv", "chemAdv", "jeeAdvMisc"]
+jeeMainsSubjects = ["physicsMains", "mathsMains", "chemMains", "jeeMainsMisc"]
+
+neetSubjects = ["physicsMains", "bio", "chemMains", "neetMisc", "physicsNeet", "chemNeet"]
+
+rasSubjects = ["currentAffairsIndiaEasy", 
+                "currentAffairsIndiaHard", 
+                "currentAffairsWorldEasy", 
+                "geographyIndEasy", 
+                "geographyWorld",
+                "polityIndEasy",
+                "geographyIndHard", 
+                "polityIndHard", 
+                "economyIndGen", 
+                "economyIndBudgetAndSchemes",
+                "environmentAndEcologyHard", 
+                "environmentAndEcologyEasy", 
+                "historyIndEasy",
+                "historyIndHard",
+                "sciAndTechEasy", 
+                "sciAndTechHard", 
+                "artAndCultureInd", 
+                "constitutionAndGovernance",
+                "geographyRajEasy", 
+                "geographyRajHard", 
+                "historyRajHard", 
+                "historyRajEasy", 
+                "artAndCultureRaj", 
+                "polityRajEasy", 
+                "polityRajHard", 
+                "currentAffairsRajHard",
+                "currentAffairsRajEasy", 
+                "artAndCultureInd", 
+                "economyRajHard",
+                "economyRajEasy",
+                "reasoningHard", 
+                "reasoningEasy",
+                "rasMisc"]
+
+ndaSubjects = ["ndaPhysics", 
+                "ndaHistory", 
+                "ndaChemistry", 
+                "ndaMaths", 
+                "currentEvents",
+                "ndaMisc"]
+
+cdsSubjects = ["reasoningEasy", 
+                "reasoningHard", 
+                "currentAffairsIndiaEasy", 
+                "englishLangAndComprehensionHard",
+                "englishLangAndComprehensionEasy",
+                "geographyIndEasy", 
+                "polityIndEasy", 
+                "historyIndEasy", 
+                "sciAndTechEasy", 
+                "cdsMaths", 
+                "environmentAndEcologyEasy",
+                "cdsMisc"]
+
+ibpsPOSubjects = ["englishLangAndComprehensionHard", 
+                    "quantAptHard", 
+                    "reasoningHard", 
+                    "reasoningEasy", 
+                    "economyAndBanking",
+                    "dataAnalysisAndInterpretation", 
+                    "financialAwareness",
+                    "basicComputer",
+                    "financeAndAccounts",
+                    "ibpsPOMisc"]
+
+ibpsClerkSubjects = ["englishLangAndComprehensionEasy",
+                        "englishLangAndComprehensionHard", 
+                        "quantAptEasy", 
+                        "quantAptHard",
+                        "reasoningEasy", 
+                        "financialAwareness",
+                        "basicComputer",
+                        "financeAndAccounts",
+                        "ibpsClerkMisc"]
+
+sscCGLSubjects = ["reasoningHard", 
+                    "reasoningEasy", 
+                    "historyIndEasy", 
+                    "currentAffairsIndiaEasy", 
+                    "geographyIndEasy",
+                    "polityIndEasy",
+                    "quantAptEasy",
+                    "englishLangAndComprehensionHard",
+                    "englishLangAndComprehensionEasy",
+                    "financeAndAccounts",
+                    "statistics",
+                    "sscCGLMisc"]
+
+sscCHSLSubjects = ["reasoningHard", 
+                    "reasoningEasy", 
+                    "historyIndEasy", 
+                    "currentAffairsIndiaEasy", 
+                    "geographyIndEasy",
+                    "polityIndEasy",
+                    "quantAptEasy",
+                    "englishLangAndComprehensionEasy",
+                    "englishLangAndComprehensionHard",
+                    "sscCHSLMisc"
+                    ]
+
+ntpcSubjects = ["reasoningHard", 
+        "reasoningEasy", 
+        "historyIndEasy", 
+        "currentAffairsIndiaEasy", 
+        "geographyIndEasy",
+        "polityIndEasy",
+        "quantAptEasy",
+        "englishLangAndComprehensionEasy",
+        "ntpcMisc"]
+
+
+
+reet1Subjects = [
+        "reet1Misc",
+        "childDevelopmentAndEdu",
+        "hindi",
+        "englishLangAndComprehensionEasy",
+        "quantAptEasy",
+        "generalScience"]
+
+reet2Subjects = [
+        "reet2Misc",
+        "childDevelopmentAndEdu",
+        "hindi",
+        "englishLangAndComprehensionEasy",
+        "staticGK",
+        "geographyIndEasy", 
+        "geographyWorld",
+        "polityIndEasy",
+        "geographyIndHard", 
+        "polityIndHard", 
+        "economyIndGen", 
+        "historyIndEasy",
+        "historyIndHard",
+        "artAndCultureInd", 
+        "constitutionAndGovernance",
+        "geographyRajHard", 
+        "historyRajHard", 
+        "artAndCultureRaj", 
+        "polityRajHard", 
+        "currentAffairsRajHard",
+        "artAndCultureInd", 
+        "grade2ndSSMisc"]
+
+reet2ScienceSubjects = [
+        "reet2ScienceMisc",
+        "quantAptEasy",
+        "quantAptHard",
+        "childDevelopmentAndEdu",
+        "hindi",
+        "englishLangAndComprehensionEasy",
+        "bio", 
+        "grade2ndScienceMisc",
+        "generalScience"
+]
+
+
+
+sipaper1Subjects = ["hindi"]
+
+sipaper2Subjects = [
+        "reasoningEasy",
+        "reasoningHard",
+        "quantAptEasy",
+        "currentAffairsIndiaEasy",
+        "currentAffairsRajHard",
+        "currentAffairsRajEasy",
+        "currentAffairsWorldEasy",
+        "geographyIndEasy",
+        "polityIndEasy",
+        "economyIndGen",
+        "economyIndBudgetAndSchemes",
+        "historyIndEasy",
+        "generalScience",
+        "geographyRajEasy",
+        "geographyRajHard",
+        "historyRajEasy",
+        "historyRajHard",
+        "artAndCultureRaj",
+        "economyRajHard",
+        "economyRajEasy",
+        "sipaper2Misc"
+]
+
+patwariSubjects = [
+        "hindi",
+        "reasoningEasy",
+        "reasoningHard",
+        "quantAptEasy",
+        "currentAffairsIndiaEasy",
+        "currentAffairsRajHard",
+        "currentAffairsRajEasy",
+        "currentAffairsWorldEasy",
+        "englishLangAndComprehensionEasy",
+        "basicComputer",
+        "geographyIndEasy",
+        "polityIndEasy",
+        "economyIndGen",
+        "economyIndBudgetAndSchemes",
+        "historyIndEasy",
+        "generalScience",
+        "geographyRajEasy",
+        "geographyRajHard",
+        "historyRajEasy",
+        "historyRajHard",
+        "artAndCultureRaj",
+        "economyRajHard",
+        "economyRajEasy",
+        "patwariMisc"
+]
+
+grade2ndSubjects = [
+        "teachingApt",
+        "currentAffairsIndiaEasy",
+        "currentAffairsRajHard",
+        "currentAffairsRajEasy",
+        "currentAffairsWorldEasy",
+        "geographyIndEasy",
+        "polityIndEasy",
+        "economyIndGen",
+        "economyIndBudgetAndSchemes",
+        "historyIndEasy",
+        "generalScience",
+        "geographyRajEasy",
+        "geographyRajHard",
+        "historyRajEasy",
+        "historyRajHard",
+        "artAndCultureRaj",
+        "economyRajHard",
+        "economyRajEasy",
+        "grade2ndMisc"
+]
+
+grade2ndScienceSubjects = ["bio", "physicsNeet", "chemNeet", "grade2ndScienceMisc"]
+
+grade2ndSSSubjects = [
+        "staticGK",
+        "geographyIndEasy", 
+        "geographyWorld",
+        "polityIndEasy",
+        "geographyIndHard", 
+        "polityIndHard", 
+        "economyIndGen", 
+        "historyIndEasy",
+        "historyIndHard",
+        "artAndCultureInd", 
+        "constitutionAndGovernance",
+        "geographyRajHard", 
+        "historyRajHard", 
+        "artAndCultureRaj", 
+        "polityRajHard", 
+        "currentAffairsRajHard",
+        "artAndCultureInd", 
+        "grade2ndSSMisc"
+]
+
+sscGDSubjects = [
+        "rpcGKInd",
+        "hindi",
+        "rpcReasoning",
+        "gdQuantApt",
+        "sscGDMisc"
+]
+
+sscMTSSubjects = [
+        "gdQuantApt",
+        "rpcGKInd",
+        "rpcReasoning",
+        "englishLangAndComprehensionEasy",
+        "sscMTSMisc"
+]
+
+rajPoliceConstSubjects = [
+        "rpcGKInd",
+        "rpcReasoning",
+        "rpcGKRaj",
+        "basicComputer",
+        "rajPoliceConstMisc"
+]
+
+rajLDCSubjects = [
+        "hindi",
+        "reasoningEasy",
+        "reasoningHard",
+        "quantAptEasy",
+        "currentAffairsIndiaEasy",
+        "currentAffairsRajHard",
+        "currentAffairsRajEasy",
+        "currentAffairsWorldEasy",
+        "englishLangAndComprehensionEasy",
+        "basicComputer",
+        "geographyIndEasy",
+        "polityIndEasy",
+        "economyIndGen",
+        "economyIndBudgetAndSchemes",
+        "historyIndEasy",
+        "generalScience",
+        "geographyRajEasy",
+        "geographyRajHard",
+        "historyRajEasy",
+        "historyRajHard",
+        "artAndCultureRaj",
+        "economyRajHard",
+        "economyRajEasy",
+        "rajLDCMisc"
+]
+
+rrbGDSubjects = [
+        "gdQuantApt",
+        "rpcGKInd",
+        "rpcReasoning",
+        "rrbGDMisc"
+]
+
+
+
+# ("reet", "reet")
+
+
+
+
+
+# newSubjects = ["childDevelopmentAndEdu", "teachingApt", "hindi", "staticGK", "rpcGKInd","rpcReasoning","rpcGKRaj", "gdQuantApt"]
+
+
+# MODIFICATIONS = {
+#         "englishlng&cmp" -> "hard" & "easy"
+#         "crntafworld" -> "hard" & "easy"
+
+
+
+
+# NOTIFICATIONS -> REVIEW IAS

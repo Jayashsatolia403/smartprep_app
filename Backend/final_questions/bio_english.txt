@@ -1,0 +1,449 @@
+The label of a herbarium sheet does not carry information on
+4
+(a) date of collection 
+(b) name of collector
+(c) local names
+(d) height of the plant.
+3
+A herbarium is a collection of plants, which have been dried, pressed, mounted on herbarium sheets, identified and classified according to some approved system of classification. The storage of herbarium sheets forms a repository for future use. A printed label (7 × 12 cm) giving the following information is fixed on the lower, right corner of herbarium sheet:\n\n(i) Scientific name of plant \n(ii) Common/vernacular name \n(iii) Family \n(iv) Locality \n(v) Date of collection\n(vi) Collection number \n(vii) Name of collector \n(viii) Plant characteristics (optional) \n(ix) Name of institution (optional).
+
+Nomenclature is governed by certain universal rules. Which one of the following is contrary to the rules of nomenclature?
+4
+(a) The names are written in Latin and are italicised.
+(b) When written by hand the names are to be underlined.
+(c) Biological names can be written in any language.
+(d) The first word in a biological name represents the genus name and the second is a specific epithet.
+2
+Biological names are derived either from Latin language or are latinised. This is because Latin language is a dead language and therefore it will not change in form or spellings with the passage of time.
+
+Which one of the following is not a correct statement?
+4
+(a) A museum has collection of photographs of plants and animals.
+(b) Key is a taxonomic aid for identification of specimens.
+(c) Herbarium houses dried, pressed and preserved plant specimens .
+(d) Botanical gardens have collection of living plants for reference.
+0
+Museums have collections of preserved plant and animal specimens for study and reference. Specimens are preserved in the containers or jars in preservative solutions. Plant and animal specimens may also be preserved as dry specimens. Insects are preserved in insect boxes after collecting, killing and pinning. Larger animals like birds and mammals are usually stuffed and preserved. Museums often have collections of skeletons of animals too.
+
+The common characteristics between tomato and potato will be maximum at the level of their
+4
+(a) family
+(b) order
+(c) division
+(d) genus.
+0
+Potato (Solanum tuberosum) and tomato (Lycopersicum esculentum) both belong to family Solanaceae, which is commonly called as the “potato family”. Many plants belonging to this family are sources of vegetables, fruits etc. Plasmodium falciparum 
+
+Which one of the following organisms is scientifically correctly named, correctly printed according to the International Rules of Nomenclature and correctly described?
+4
+(a) Musca domestica the common house lizard, a reptile
+(b) Plasmodium falciparum a protozoan pathogen causing the most serious type of malaria.
+(c) Felis tigris  the Indian tiger, well protected in Gir forests.
+(d) E.coli  full name Entamoeba coli, a commonly occurring bacterium in human intestine.
+1
+Plasmodium falciparum is a protozoan parasite, one of the species of Plasmodium that causes malaria in humans. Being digenetic, its life cycle is complete in two hosts — man and mosquito. \nIts sexual cycle is completed in female Anopheles mosquito and infective individuals called sporozoites are formed.\nWhich are transmitted to humans with the bite of infected female Anopheles. \nAsexual cycle is passed in man in two phases. Malaria caused by P. falciparum (also known as aestivo\xadautumnal, malignant tertian or pernicious malaria) is the most dangerous form of malaria, with the highest rate ofcomplication and mortality. In this case fever cycle is of 48 hours and is often fatal to patient as it affects the brain.\nScientific name of common house lizard is Hemidactylus whereas Musca domestica is the scientific name of common housefly. Scientific name of Indian tiger is Panthera tigris. Full name of E.coli is Escherichia coli.\n
+
+Which one of the following animals is correctly matched with its particular taxonomic category?
+4
+(a) Tiger Tigris, species
+(b) Cuttlefish mollusca, class
+(c) Humans primata, family
+(d) Housefly Musca, order
+0
+Binomial nomenclature system of naming organisms using a two part Latinized (or scientific) name that was devised by the Swedish botanist Linnaeus (Carl Linne); it is also known as the Linnaean system. The first part is the generic name, the second is the specific name. Zoological name of tiger is Panthera tigris. So, tigris is species name of Tiger.
+
+Which one of the following aspects is an exclusive characteristic of living things?
+4
+(a) Isolated metabolic reactions occur in vitro
+(b) Increase in mass from inside only
+(c) Perception of events happening in the environment and their memory.
+(d) Increase in mass by accumulation of material both on surface as well as internally.
+2
+None
+
+ICBN stands for
+4
+(a) International Code of Botanical Nomenclature
+(b) International Congress of Biological Names
+(c) Indian Code of Botanical Nomenclature
+(d) Indian Congress of Biological Names.
+0
+The International Code of Botanical Nomenclature (ICBN) is a set of rules and recommendations dealing with the formal botanical names given to plant. The foundations of ICBN are given in book written by C. Linnaeus named Philosophia Botanica. It is independent of zoological nomenclature. \nThe rank of species is basic and relative order of the ranks of taxa are as : species, genus, tribe, family, order, series, class, division and kingdom.\nThe different ranks or categories have following specific endings of their names as division – phyla, class\xadae, family\xadaceae.
+
+The living organisms can be unexceptionally distinguished from the non­living things on the basis of their ability for
+4
+(a) interaction with the environment and progressive evolution
+(b) reproduction
+(c) growth and movement
+(d) responsiveness to touch.
+3
+None
+
+One of the most important functions of botanical gardens is that
+4
+(a) they provide a beautiful area for recreation
+(b) one can observe tropical plants there
+(c) they allow ex situ conservation of germ plasm
+(d) they provide the natural habitat for wild life.
+2
+Ex situ conservation means “offsite conservation”. \nIt is the process of protecting endangered species of plants and animals by removing it from an unsafe or threatened habitat and placing it or part of it under the care of humans. \nBotanical garden serve as ex situ conservation of germplasm of different plants, to maintain rare and endemic plant species and also to provide recreation and knowledge about plants to a common man.
+
+Which of the following are found in extreme saline conditions?
+4
+(a) Eubacteria
+(b) Cyanobacteria
+(c) Mycobacteria
+(d) Archaebacteria
+3
+Halophiles, a type of archaebacteria, usually occur in extreme saline conditions like salt pans, salt beds and salt marshes.
+
+Viroids differ from viruses in having
+4
+(a) DNA molecules without protein coat
+(b) RNA molecules with protein coat
+(c) RNA molecules without protein coat
+(d) DNA molecules with protein coat.
+2
+Viroids are free RNA particles that lack protein coat. They are infectious agents smaller than viruses.
+
+Which among the following are the smallest living cells, known without a definite cell wall, pathogenic to plants as well as animals and can survive without oxygen?
+4
+(a) Pseudomonas
+(b) Mycoplasma
+(c) Nostoc
+(d) Bacillus
+1
+Mycoplasmas are the smallest living cells, known without a definite cell wall. They are pathogenic to both plants and animals and can survive without oxygen.
+
+Which of the following components provides sticky character to the bacterial cell?
+4
+(a) Nuclear membrane
+(b) Plasma membrane
+(c) Glycocalyx
+(d) Cell wall
+2
+Glycocalyx is the outermost mucilage layer of the cell envelope which consists of non\xadcellulosic polysaccharides with or without proteins. It gives sticky character to the cell.
+
+DNA replication in bacteria occurs
+4
+(a) within nucleolus
+(b) prior to fission
+(c) just before transcription
+(d) during S phase.
+1
+DNA replicates in bacteria just before they divide by fission.
+
+Which one of the following is wrong for fungi?
+4
+(a) They are eukaryotic.
+(b) All fungi possess a purely cellulosic cell wall.
+(c) They are heterotrophic.
+(d) They are both unicellular and multicellular.
+1
+Cell wall in fungi is composed of chitin, a polysaccharide comprising N\xadacetyl glucosamine (a derivative of glucose).
+
+Methanogens belong to
+4
+(a) eubacteria
+(b) archaebacteria
+(c) dinoflagellates
+(d) slime moulds.
+1
+Methanogens belong to archaebacteria. They include methane producing genera such as Methanobacillus and Methanothrix. \nMethanogens are obligate anaerobes found in oxygen\xaddeficient environments, such as marshes, swamps, sludge (formed during sewage treatment), and the digestive systems of ruminants. \nMostly they obtain their energy by reducing carbon dioxide and oxidising hydrogen, with the production of methane.
+
+Select the wrong statement.
+4
+(a) The walls of diatoms are easily destructible.
+(b) ‘Diatomaceous earth’ is formed by the cell walls of diatoms.
+(c) Diatoms are chief producers in the oceans.
+(d) Diatoms are microscopic and float passively in water.
+0
+Diatoms are marine or freshwater unicellular organisms which have cell walls (frustules) composed of pectin impregnated with silica and consisting of two halves, one overlapping the other. The siliceous frustules of diatoms do not decay easily.
+
+The primitive prokaryotes responsible for the production of biogas from the dung of ruminant animals, include the
+4
+(a) methanogens
+(b) eubacteria
+(c) halophiles
+(d) thermoacidophiles.
+0
+Methanogens belong to archaebacteria. They include methane producing genera such as Methanobacillus and Methanothrix. \nMethanogens are obligate anaerobes found in oxygen\xaddeficient environments, such as marshes, swamps, sludge (formed during sewage treatment), and the digestive systems of ruminants. \nMostly they obtain their energy by reducing carbon dioxide and oxidising hydrogen, with the production of methane.
+
+Which one of the following statements is wrong?
+4
+(a) Eubacteria are also called false bacteria.
+(b) Phycomycetes are also called algal fungi.
+(c) Cyanobacteria are also called blue­green algae.
+(d) Golden algae are also called desmids.
+0
+Eubacteria are also called true bacteria.\n
+
+An example of colonial alga is
+4
+(a) Volvox
+(b) Ulothrix
+(c) Spirogyra
+(d) Chlorella.
+0
+None
+
+Select the mismatch.
+4
+(a) Cycas – Dioecious
+(b) Salvinia – Heterosporous
+(c) Equisetum – Homosporous
+(d) Pinus – Dioecious
+3
+Pinus is a monoecious plant, i.e., in Pinus the male and female cones or strobili are borne on the same plant.
+
+Zygotic meiosis is characteristic of
+4
+(a) Fucus
+(b) Funaria
+(c) Chlamydomonas 
+(d) Marchantia.
+2
+In Chlamydomonas, zygote divides by meiosis. It exhibits haplontic type of life cycle.
+
+Life cycles of Ectocarpus and Fucus respectively are
+4
+(a) diplontic, haplodiplontic
+(b) haplodiplontic, diplontic
+(c) haplodiplontic, haplontic
+(d) haplontic, diplontic.
+1
+Ectocarpus possesses haplodiplontic whereas Fucus possesses diplontic life cycle.
+
+Conifers are adapted to tolerate extreme environmental conditions because of
+4
+(a) broad hardy leaves
+(b) superficial stomata
+(c) thick cuticle
+(d) presence of vessels.
+2
+Needle like leaves with thick cuticle and sunken stomata are xerophytic adaptations of conifers for tolerating extreme environmental conditions.
+
+Which one of the following statements is wrong?
+4
+(a) Algae increase the level of dissolved oxygen in the immediate environment.
+(b) Algin is obtained from red algae, and carrageenan from brown algae.
+(c) Agar­agar is obtained from Gelidium and Gracilaria.
+(d) Laminaria and Sargassum are used as food.
+1
+Alginic acid is obtained from brown algae whereas carrageenan is obtained from red algae.
+
+Select the correct statement.
+4
+(a) Sequoia is one of the tallest trees.
+(b) The leaves of gymnosperms are not well adapted to extremes of climate.
+(c) Gymnosperms are both homosporous and heterosporous.
+(d) Salvinia, Ginkgo and Pinus all are gymnosperms.
+0
+Sequoia sempervirens is the tallest gymnosperm. The leaves of gymnosperms are well adapted to extremes of climate. \nThis is the reason for gymnosperm to flourish in cold areas where instead of rain, snow is the source of water. Gymnosperms are heterosporous i.e., produce two different kinds of spores\xadmicrospores and megaspores. Salvinia is an aquatic pteridophyte.
+
+In bryophytes and pteridophytes, transport of male gametes requires
+4
+(a) birds
+(b) water
+(c) wind
+(d) insects.
+1
+The sperms of bryophytes and pteridophytes are flagellated and hence require an external supply of water to reach archaegonia.
+
+Which one of the following statements is wrong?
+4
+(a) Chlorella and Spirulina are used as space food.
+(b) Mannitol is stored food in Rhodophyceae.
+(c) Algin and carrageenan are products of algae.
+(d) Agar­agar is obtained from Gelidium and Gracilaria.
+1
+Laminarin and mannitol are food reserves of brown algae or Phaeophyceae. Rhodophycean algae store food in the form of floridean starch.
+
+In which of the following, gametophyte is not independent free living?
+4
+(a) Pteris
+(b) Pinus
+(c) Funaria
+(d) Marchantia
+1
+In gymnosperms (like Pinus), the male and female gametophyte do not have an independent free living existence. \nThey remain within the sporangia retained on the sporophytes i.e., female gametophyte (within megasporangium) and male gametophyte (within microsporangium).
+
+Important characteristic that hemichordates share with chordates is
+4
+(a) ventral tubular nerve cord
+(b) pharynx with gill slits
+(c) pharynx without gill slits
+(d) absence of notochord.
+1
+An important characteristics that hemichordates and chorddates share is presence of pharyngeal gill slits. \nGill slits are dorsal in position in hemichordates whereas they are lateral in chordates. A true unotochord does not occur in hemichordates.\nNervous system is distinctly of vertebrate type being intraepidermal in position and having a ventral nerve cord.
+
+Which among these is the correct combination of aquatic mammals?
+4
+(a) Dolphins, Seals, Trygon
+(b) Whales, Dolphins, Seals
+(c) Trygon, Whales, Seals
+(d) Seals, Dolphins, Sharks
+1
+Whales, dolphin and seals are examples of aquatic mammals. Trygon and sharks are cartilaginous fishes.
+
+Which of the following represents order of ‘Horse’?
+4
+(a) Perissodactyla
+(b) Caballus
+(c) Ferus
+(d) Equidae
+0
+Perissodactyla represents the order of horse. Equidae is the family, caballus is the subspecies whereas E. ferus is the species of horse.
+
+In case of poriferans, the spongocoel is lined with flagellated cells called
+4
+(a) oscula
+(b) choanocytes
+(c) mesenchymal cells 
+(d) ostia.
+1
+Spongocoel is the central body cavity of the sponges. It is lined by highly specialised flagellated cells called choanocytes.
+
+Choose the correct statement.
+4
+(a) All mammals are viviparous.
+(b) All cyclostomes do not possess jaws and paired fins.
+(c) All reptiles have a three­chambered heart.
+(d) All pisces have gills covered by an operculum.
+1
+Ornithorhynchus and Tachyglossus are oviparous mammals. \nCrocodile is a reptile which possesses four chambered heart. In cartilaginous fish (except Chimaera) gills are not covered by an oper\xad culum.
+
+Which one of the following characteristics is not shared by birds and mammals?
+4
+(a) Viviparity
+(b) Warm blooded nature
+(c) Ossified endoskeleton
+(d) Breathing using lungs
+0
+All birds are oviparous while all mammals except Ornithorhyncus (duck billed platypus) and Echidna or Tachyglossus (spiny anteater) are viviparous.
+
+Which of the following characteristic features always holds true for the corresponding group of animals?
+4
+Possess a mouth with an upper and a lower jaw - Chordata
+3–chambered heart with one incompletely divided ventricle - Reptilia
+Cartilaginous endoskeleton - Chondrichthyes
+Viviparous - Mammalia
+2
+Phylum Chordata includes both jawless vertebrates (Agnatha) and jawed vertebrates (Gnathostomata).\nCrocodile of Class Reptilia has four chambered heart with two auricles and two ventricles.\nDuck billed platypus and spiny anteater are oviparous mammals.
+
+Which of the following features is not present in the Phylum Arthropoda?
+4
+(a) Parapodia
+(b) Jointed appendages
+(c) Chitinous exoskeleton
+(d) Metameric segmentation
+0
+Parapodia are flattened, fleshy, vertical flap\xad like outgrowths of body wall found in annelids on lateral sides of trunk segments. \nThese are hollow structures enclosing coelom which is continuous with that of trunk segments. \nThese serve the dual purpose of locomotion and respiration.
+
+Body having meshwork of cells, internal cavities lined with food filtering flagellated cells and indirect development are the characteristics of Phylum
+4
+(a) Mollusca
+(b) Protozoa
+(c) Coelenterata
+(d) Porifera.
+3
+Phylum Porifera (the sponges) has cellular level of body organisation, with inner cellular layer consisting of highly specialised flagellated cells called choanocytes (or collar cells). \nThe development in this phylum is indirect as it includes a free swimming larva called amphiblastula or parenchymula for dispersal of the species.
+
+Metagenesis refers to
+4
+(a) occurrence of a drastic change in form dur­ing post­embryonic development
+(b) presence of a segmented body and parthe­nogenetic mode of reproduction
+(c) presence of different morphic forms
+(d) alternation of generation between asexual and sexual phases of an organism.
+3
+An alternation of generation between asexual and sexual phases of an organism is referred to as metagenesis. E.g. in Obelia (a coelenterate), polyps reproduce asexually and medusae reproduce sexually.
+
+Coconut fruit is a
+4
+(a) berry
+(b) nut
+(c) capsule
+(d) drupe.
+3
+Coconut fruit is fibrous drupe with a fibrous mesocarp.
+
+In Bougainvillea, thorns are the modifications of
+4
+(a) adventitious root 
+(b) stem
+(c) leaf
+(d) stipules.
+1
+None
+
+The morphological nature of the edible part of coconut is
+4
+(a) cotyledon
+(b) endosperm
+(c) pericarp
+(d) perisperm.
+1
+None
+
+The term ‘polyadelphous’ is related to
+4
+(a) gynoecium
+(b) androecium
+(c) corolla
+(d) calyx.
+1
+Polyadelphous condition represents cohesion of stamens. In this condition stamens of a flower are fused by their filaments only to form many groups, e.g., Citrus.
+
+How many plants among Indigofera, Sesbania, Salvia, Allium, Aloe, mustard, groundnut, radish, gram and turnip have stamens with different lengths in their flowers?
+4
+(a) Three
+(b) Four
+(c) Five
+(d) Six
+1
+None
+
+Radial symmetry is found in the flowers of
+4
+(a) Brassica
+(b) Trifolium
+(c) Pisum
+(d) Cassia.
+0
+The flowers of Brassica are radially symmetrical whereas flowers of Trifolium, Pisum and Cassia are zygomorphic.
+
+Free­central placentation is found in
+4
+(a) Dianthus
+(b) Argemone
+(c) Brassica
+(d) Citrus.
+0
+Free central placentation is found in Dianthus. Parietal placentation is present in Argemone and Brassica whereas Citrus has axile placentation in ovary.
+
+Which of the following is not a stem modification?
+4
+(a) Tendrils of cucumber
+(b) Flattened structures of Opuntia
+(c) Pitcher of Nepenthes
+(d) Thorns of citrus
+2
+Pitcher of Nepenthes is a modification of leaf. In Nepenthes, the pitchers are meant for catching and digesting insects. The lamina is modified into pitcher. The leaf apex gives rise to a coloured lid for attracting the insects.
+
+Stems modified into flat green organs performing the functions of leaves are known as
+4
+(a) phylloclades
+(b) scales
+(c) cladodes
+(d) phyllodes.
+0
+Phylloclades are flattened green stems which have taken over the function of photosynthesis while cladodes are only the branches of stem that are modified to take over the function of leaves. \nCladodes may not be flattened as in Ruscus aculeatus, cladodes are leaf\xadlike with spiny tip whereas in Asparagus, they are slightly flattened, fleshy, straight or curved pointed structures which develop in clusters in the axil of scale leaves.
+
+Cotyledon of maize grain is called
+4
+(a) coleoptile
+(b) scutellum
+(c) plumule
+(d) coleorhiza.
+1
+None
