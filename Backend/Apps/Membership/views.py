@@ -58,7 +58,6 @@ stripe.api_key = os.getenv("STRIPE_API_KEY")
 
 #         SERVER_URL = os.getenv("SERVER_URL")
 
-#         testPlan = 'price_1KEtv3CRUp8Jfn8fxaqA9xWG'
         
 #         session = stripe.checkout.Session.create(
 #             payment_method_types=['card'],
@@ -92,10 +91,6 @@ def checkout(request):
         exam = request.GET['exam']
 
         SERVER_URL = int(os.getenv("SERVER_URL"))
-
-        membership30ID = 'price_1KFJ0dCRUp8Jfn8fpHdBR0Ge'
-        membership50ID = 'price_1KFJ4TCRUp8Jfn8fsgSwOn5W'
-        membership100ID = 'price_1KFJ5vCRUp8Jfn8fFe2EMzMt'
 
         # Create Stripe Checkout
         

@@ -1,8 +1,6 @@
 from telethon import TelegramClient
 
 # Remember to use your own values from my.telegram.org!
-api_id = 7544514
-api_hash = '77944c05c35c878cfef5707c25aacb1a'
 client = TelegramClient('anon', api_id, api_hash)
 
 async def main():
@@ -51,7 +49,7 @@ async def main():
     # await client.send_file('me', '/home/me/Pictures/holidays.jpg')
 
     # You can print the message history of any chat:
-    async for message in client.iter_messages(-1001239140977):
+    async for message in client.iter_messages():
 
 
         print(" >> \n")

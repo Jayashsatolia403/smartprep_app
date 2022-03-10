@@ -104,21 +104,6 @@ WSGI_APPLICATION = 'Backend.wsgi.application'
 
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'smartprep-db',
-        'USER': 'Jayash403@smartprep-dbserver',
-        'PASSWORD': os.getenv("DB_PASSWORD"),
-        'HOST': 'smartprep-dbserver.postgres.database.azure.com',
-        'PORT': 5432,
-        'OPTIONS': {
-            'sslmode': 'require'
-        }
-    }
-}
-
-
 
 
 
